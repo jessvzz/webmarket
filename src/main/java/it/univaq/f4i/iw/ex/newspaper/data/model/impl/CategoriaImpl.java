@@ -12,7 +12,7 @@ public class CategoriaImpl extends DataItemImpl<Integer> implements Categoria {
 
     private int id;
     private String nome;
-    private Categoria padre; //  permette valori nulli
+    private Integer padre; //  permette valori nulli
     private List<Caratteristica> caratteristiche;
 
     // Costruttori
@@ -22,7 +22,7 @@ public class CategoriaImpl extends DataItemImpl<Integer> implements Categoria {
         padre = null;
     }
 
-    public CategoriaImpl(int id, String nome, Categoria padre) {
+    public CategoriaImpl(int id, String nome, int padre) {
         this.id= id;
         this.nome= nome;
         this.padre= padre;
@@ -49,12 +49,12 @@ public class CategoriaImpl extends DataItemImpl<Integer> implements Categoria {
     }
 
     @Override
-    public Categoria getPadre() {
+    public int getPadre() {
         return padre;
     }
 
     @Override
-    public void setPadre(Categoria padre) {
+    public void setPadre(int padre) {
         this.padre = padre;
     }
 

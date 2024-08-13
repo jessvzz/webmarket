@@ -12,8 +12,8 @@ public interface Categoria extends DataItem<Integer> {
     String getNome();
     void setNome(String nome);
 
-    Categoria getPadre();
-    void setPadre(Categoria padre);
+    int getPadre();
+    void setPadre(int padre);
 
     List<Caratteristica> getCaratteristiche ();
     void setCaratteristiche(List<Caratteristica> caratteristiche);

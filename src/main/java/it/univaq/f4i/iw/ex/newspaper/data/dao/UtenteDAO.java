@@ -4,7 +4,6 @@ package it.univaq.f4i.iw.ex.newspaper.data.dao;
 
 import it.univaq.f4i.iw.ex.newspaper.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
-import java.util.List;
 
 public interface UtenteDAO {
 
