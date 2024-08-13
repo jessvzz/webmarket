@@ -1,0 +1,10 @@
+<h2>Available issues</h2>
+<#if (issues?size>0)>
+<ul>
+    <#list issues as issue>
+    <li>
+        <b>1</b> &nbsp; (${issue.date.format('dd/MM/yyyy')}) &nbsp;<a>[show issue]</a>
+    </li>
+    </#list>
+</ul>
+</#if>
