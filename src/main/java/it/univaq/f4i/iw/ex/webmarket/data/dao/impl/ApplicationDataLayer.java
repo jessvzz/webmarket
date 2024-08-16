@@ -21,7 +21,7 @@ public class ApplicationDataLayer extends DataLayer {
 
     @Override
     public void init() throws DataException {
-        registerDAO(Caratteristica.class, new CaratteristicaDAO_MySQL(this));
+        registerDAO(Utente.class, new UtenteDAO_MySQL(this));
 
     }
     
