@@ -34,7 +34,6 @@
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/StatoProposta.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/CaratteristicaRichiestaImpl.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/PropostaAcquisto.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/controller/ListIssues.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/impl/UtenteDAO_MySQL.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/UtenteDAO.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/RichiestaOrdineImpl.java
@@ -47,6 +46,7 @@
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/result/StreamResult.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/CaratteristicaDAO.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/TipologiaUtente.java
+/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/controller/OrdinanteHomepage.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/controller/DummyModelFiller.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/OptimisticLockException.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/proxy/PropostaAcquistoProxy.java

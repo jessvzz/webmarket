@@ -3,7 +3,6 @@ it/univaq/f4i/iw/ex/webmarket/data/model/Ordine.class
 it/univaq/f4i/iw/ex/webmarket/data/dao/CaratteristicaDAO.class
 it/univaq/f4i/iw/ex/webmarket/data/model/impl/proxy/PropostaAcquistoProxy.class
 it/univaq/f4i/iw/ex/webmarket/data/dao/PropostaAcquistoDAO.class
-it/univaq/f4i/iw/ex/webmarket/controller/ListIssues.class
 it/univaq/f4i/iw/framework/result/TemplateResult.class
 it/univaq/f4i/iw/ex/webmarket/data/dao/impl/CategoriaDAO_MySQL.class
 it/univaq/f4i/iw/ex/webmarket/controller/Logout.class
@@ -25,6 +24,7 @@ it/univaq/f4i/iw/ex/webmarket/data/model/impl/CaratteristicaRichiestaImpl.class
 it/univaq/f4i/iw/framework/result/TemplateManagerException.class
 it/univaq/f4i/iw/ex/webmarket/data/dao/CategoriaDAO.class
 it/univaq/f4i/iw/ex/webmarket/data/model/impl/OrdineImpl.class
+it/univaq/f4i/iw/ex/webmarket/controller/OrdinanteHomepage.class
 it/univaq/f4i/iw/ex/webmarket/data/model/PropostaAcquisto.class
 it/univaq/f4i/iw/framework/data/DataCache.class
 it/univaq/f4i/iw/framework/result/FailureResult.class
