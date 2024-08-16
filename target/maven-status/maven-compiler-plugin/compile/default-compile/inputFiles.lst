@@ -53,6 +53,7 @@
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/newspaper/data/model/impl/TipologiaUtente.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/newspaper/data/dao/CaratteristicaDAO.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/newspaper/data/model/PropostaAcquisto.java
+/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/newspaper/data/model/impl/proxy/CategoriaProxy.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/newspaper/data/dao/UtenteDAO.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/newspaper/data/model/impl/proxy/OrdineProxy.java
 /Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/DataException.java
