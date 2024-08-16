@@ -18,7 +18,7 @@ public class ListIssues extends BaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Issues");
-        res.activate("issue_list.ftl.html", request, response);
+        res.activate("homepageordinante.ftl.html", request, response);
     }
 
     @Override

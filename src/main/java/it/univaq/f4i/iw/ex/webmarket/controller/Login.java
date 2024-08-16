@@ -47,6 +47,8 @@ public class Login extends BaseController {
 
         if (!username.isEmpty() && !password.isEmpty()) {
             try {
+                System.out.println("email: " + username);
+
                 Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(username);
                // if (u != null && SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
                     //se la validazione ha successo
@@ -56,10 +58,10 @@ public class Login extends BaseController {
                     //if an origin URL has been transmitted, return to it
                     if (request.getParameter("referrer") != null) {
                         //response.sendRedirect(request.getParameter("referrer"));
-                        response.sendRedirect(request.getParameter("issues"));
+                        response.sendRedirect(request.getParameter("homepageordinante"));
 
                     } else {
-                        response.sendRedirect("issues");
+                        response.sendRedirect("homepageordinante");
                     }
                     return;
                // }
@@ -84,6 +86,7 @@ public class Login extends BaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
         try {
+            Logger.getLogger(Login.class.getName()).log(Level.INFO, null, "Sono qui");            
             if (request.getParameter("login") != null) {
                 action_login(request, response);
             } else {
