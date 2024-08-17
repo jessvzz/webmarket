@@ -86,6 +86,7 @@ public class Login extends BaseController {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
         try {
+
             Logger.getLogger(Login.class.getName()).log(Level.INFO, null, "Sono qui");            
             if (request.getParameter("login") != null) {
                 action_login(request, response);
