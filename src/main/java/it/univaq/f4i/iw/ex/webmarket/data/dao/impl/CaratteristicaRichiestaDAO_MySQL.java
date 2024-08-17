@@ -98,6 +98,7 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
     @Override
     public CaratteristicaRichiesta getCaratteristicaRichiesta(int caratteristica_key, int richiesta_key)throws DataException {
         CaratteristicaRichiesta c= null;
+        /*
         if (dataLayer.getCache().has(CaratteristicaRichiesta.class, caratteristica_key,richiesta_key)) {
             c = dataLayer.getCache().get(CaratteristicaRichiesta.class, caratteristica_key, richiesta_key);
         } else {
@@ -113,7 +114,7 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
             } catch (SQLException ex) {
                 throw new DataException("Unable to load CaratteristicaRichiesta by caratteristica_key and richiesta_key", ex);
             }
-        }
+        }*/
         return c;
     }
     
