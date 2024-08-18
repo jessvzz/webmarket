@@ -1,61 +1,62 @@
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/controller/Logout.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/proxy/CaratteristicaProxy.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/impl/ApplicationDataLayer.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/DataItemProxy.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/DataLayer.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/impl/CategoriaDAO_MySQL.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/impl/CaratteristicaRichiestaDAO_MySQL.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/OrdineImpl.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/StatoRichiesta.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/CategoriaDAO.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/DAO.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/controller/Login.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/controller/BaseController.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/RichiestaOrdine.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/impl/RichiestaOrdineDAO_MySQL.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/DataItem.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/RichiestaOrdineDAO.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/PropostaAcquistoImpl.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/controller/AbstractBaseController.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/proxy/CategoriaProxy.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/UtenteImpl.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/CaratteristicaImpl.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/impl/OrdineDAO_MySQL.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/DataItemImpl.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/result/TemplateResult.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/impl/PropostaAcquistoDAO_MySQL.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/Ordine.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/result/TemplateManagerException.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/result/FailureResult.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/CaratteristicaRichiestaDAO.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/DataItemProxyImpl.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/proxy/UtenteProxy.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/Caratteristica.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/StatoProposta.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/CaratteristicaRichiestaImpl.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/PropostaAcquisto.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/impl/UtenteDAO_MySQL.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/UtenteDAO.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/RichiestaOrdineImpl.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/proxy/RichiestaOrdineProxy.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/security/SecurityHelpers.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/Utente.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/OrdineDAO.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/CaratteristicaRichiesta.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/DataCache.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/result/StreamResult.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/CaratteristicaDAO.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/TipologiaUtente.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/controller/OrdinanteHomepage.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/controller/DummyModelFiller.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/OptimisticLockException.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/proxy/PropostaAcquistoProxy.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/PropostaAcquistoDAO.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/result/SplitSlashesFmkExt.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/proxy/OrdineProxy.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/StatoOrdine.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/Categoria.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/result/DataModelFiller.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/dao/impl/CaratteristicaDAO_MySQL.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/framework/data/DataException.java
-/Users/jessviozzi/Desktop/webmarket/src/main/java/it/univaq/f4i/iw/ex/webmarket/data/model/impl/CategoriaImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\CaratteristicaDAO.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\StatoRichiesta.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\data\DataItemImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\OrdineDAO.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\UtenteDAO.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\CaratteristicaRichiesta.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\result\TemplateResult.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\TipologiaUtente.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\RichiestaOrdine.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\data\DataItemProxy.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\data\DataItem.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\impl\ApplicationDataLayer.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\proxy\CategoriaProxy.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\controller\DummyModelFiller.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\data\DataException.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\proxy\PropostaAcquistoProxy.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\data\DataItemProxyImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\UtenteImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\PropostaAcquisto.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\StatoProposta.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\result\SplitSlashesFmkExt.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\CaratteristicaRichiestaDAO.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\impl\PropostaAcquistoDAO_MySQL.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\impl\UtenteDAO_MySQL.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\impl\OrdineDAO_MySQL.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\CaratteristicaRichiestaImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\PropostaAcquistoImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\result\FailureResult.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\CategoriaImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\data\DAO.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\OrdineImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\impl\CaratteristicaDAO_MySQL.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\result\TemplateManagerException.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\security\SecurityHelpers.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\CategoriaDAO.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\PropostaAcquistoDAO.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\CaratteristicaImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\Caratteristica.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\impl\CaratteristicaRichiestaDAO_MySQL.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\impl\CategoriaDAO_MySQL.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\RichiestaOrdineDAO.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\Categoria.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\Utente.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\proxy\UtenteProxy.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\dao\impl\RichiestaOrdineDAO_MySQL.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\proxy\CaratteristicaRichiestaProxy.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\data\OptimisticLockException.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\result\StreamResult.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\controller\Login.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\RichiestaOrdineImpl.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\StatoOrdine.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\controller\AbstractBaseController.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\controller\BaseController.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\result\DataModelFiller.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\data\DataCache.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\proxy\OrdineProxy.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\controller\Logout.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\Ordine.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\framework\data\DataLayer.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\proxy\RichiestaOrdineProxy.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\controller\OrdinanteHomepage.java
+C:\Users\difgi\OneDrive\UNI\Esami DA PASSARE\Web_Engineering\webmarket\src\main\java\it\univaq\f4i\iw\ex\webmarket\data\model\impl\proxy\CaratteristicaProxy.java

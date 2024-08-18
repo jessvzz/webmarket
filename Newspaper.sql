@@ -14,7 +14,7 @@ DROP DATABASE IF EXISTS `webdb2`;
 CREATE DATABASE `webdb2`; 
 DROP USER IF EXISTS 'website'@'localhost';
 CREATE USER 'website'@'localhost' IDENTIFIED BY 'webpass';
-GRANT ALL ON webdb2.* TO 'website'@'localhost';
+GRANT ALL PRIVILEGES ON webdb2.* TO 'website'@'localhost';
 
 USE `webdb2`;
 
