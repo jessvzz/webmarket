@@ -66,7 +66,7 @@ public class Login extends BaseController {
     
                         case Ordinante -> "homepageordinante";
                         case Tecnico -> "homepagetecnico";
-                        case Amministratore -> "homepageamministratore";
+                        case Amministratore -> "homepageadmin";
                         default -> "login";
                     };
                     
