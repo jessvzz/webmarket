@@ -12,7 +12,7 @@ import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 
-import java.sql.Statement;
+// import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -80,54 +80,22 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
     //helper
     private CaratteristicaRichiestaProxy createCaratteristicaRichiesta(ResultSet rs) throws DataException {
         try{
-            CaratteristicaRichiestaProxy a = (CaratteristicaRichiestaProxy) createCaratteristicaRichiesta();
-
-            a.setKey(rs.getInt("ID"));
-           
+            CaratteristicaRichiestaProxy cr = (CaratteristicaRichiestaProxy) createCaratteristicaRichiesta();
+            cr.setKey(rs.getInt("ID"));
             // Ottenere RichiestaOrdineDAO
              RichiestaOrdineDAO richiestaOrdineDAO = (RichiestaOrdineDAO) dataLayer.getDAO(RichiestaOrdine.class);
-             a.setRichiestaOrdine(richiestaOrdineDAO.getRichiestaOrdine(rs.getInt("richiesta_id")));
-
+             cr.setRichiestaOrdine(richiestaOrdineDAO.getRichiestaOrdine(rs.getInt("richiesta_id")));
             // Ottenere CaratteristicaDAO
-            //TODO: errore su setCaratteristica: The method setCaratteristica(Caratteristica) in the type CaratteristicaRichiestaProxy is not applicable for the arguments (CaratteristicaDAO)Java(67108979)
             CaratteristicaDAO caratteristicaDAO = (CaratteristicaDAO) dataLayer.getDAO(Caratteristica.class);
-            // a.setCaratteristica(caratteristicaDAO.getCaratteristica(rs.getInt("caratteristica_id")));
-           
-            a.setValore(rs.getString("valore"));
-            return a;
+            cr.setCaratteristica(caratteristicaDAO.getCaratteristica(rs.getInt("caratteristica_id")));
+            cr.setValore(rs.getString("valore"));
+            return cr;
         } catch (SQLException ex) {
             throw new DataException("Unable to create CaratteristicaRichiesta from ResultSet", ex);
         }
         
     }
 
-
-    //TODO: errore nell'has di dataLayer.getCache() e nel get di sotto: The method has(Class<C>, C) in the type DataCache is not applicable for the arguments (Class<CaratteristicaRichiesta>, int, int)Java(67108979)
-  /* 
-    @Override
-    public CaratteristicaRichiesta getCaratteristicaRichiesta(int caratteristica_key, int richiesta_key)throws DataException {
-        CaratteristicaRichiesta c= null;
-        
-        if (dataLayer.getCache().has(CaratteristicaRichiesta.class, caratteristica_key,richiesta_key)) {
-            c = dataLayer.getCache().get(CaratteristicaRichiesta.class, caratteristica_key, richiesta_key);
-        } else {
-            try {
-                sCaratteristicaRichiestaByID.setInt(1, caratteristica_key);
-                sCaratteristicaRichiestaByID.setInt(2, richiesta_key);
-                try (ResultSet rs= sCaratteristicaRichiestaByID.executeQuery()) {
-                    if (rs.next()) {
-                        c = createCaratteristicaRichiesta(rs);
-                        dataLayer.getCache().add(CaratteristicaRichiesta.class, c);
-                    }
-                }
-            } catch (SQLException ex) {
-                throw new DataException("Unable to load CaratteristicaRichiesta by caratteristica_key and richiesta_key", ex);
-            }
-        }
-        return c;
-    }
-    */
-    
 
      @Override
      public CaratteristicaRichiesta getCaratteristicaRichiesta(int cr_key) throws DataException {
@@ -150,39 +118,6 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
           return c;
       }
 
-    @Override
-    public void storeCaratteristicaRichiesta(CaratteristicaRichiesta caratteristicaRichiesta) throws DataException {
-        try {
-            if (caratteristicaRichiesta.getKey() != null && caratteristicaRichiesta.getKey() > 0) {
-                if (caratteristicaRichiesta instanceof DataItemProxy && !((DataItemProxy) caratteristicaRichiesta).isModified()) {
-                    return;
-                }
-                uCaratteristicaRichiesta.setInt(1, caratteristicaRichiesta.getRichiestaOrdine().getKey());
-                uCaratteristicaRichiesta.setInt(2, caratteristicaRichiesta.getCaratteristica().getKey());
-                uCaratteristicaRichiesta.setString(3, caratteristicaRichiesta.getValore());
-                uCaratteristicaRichiesta.setInt(4, caratteristicaRichiesta.getKey());
-                uCaratteristicaRichiesta.executeUpdate();
-            } else {
-                iCaratteristicaRichiesta.setInt(1, caratteristicaRichiesta.getRichiestaOrdine().getKey());
-                iCaratteristicaRichiesta.setInt(2, caratteristicaRichiesta.getCaratteristica().getKey());
-                iCaratteristicaRichiesta.setString(3, caratteristicaRichiesta.getValore());
-                if (iCaratteristicaRichiesta.executeUpdate() == 1) {
-                    try (ResultSet keys = iCaratteristicaRichiesta.getGeneratedKeys()) {
-                        if (keys.next()) {
-                            int key = keys.getInt(1);
-                            caratteristicaRichiesta.setKey(key);
-                            dataLayer.getCache().add(CaratteristicaRichiesta.class, caratteristicaRichiesta);
-                        }
-                    }
-                }
-            }
-            if (caratteristicaRichiesta instanceof DataItemProxy) {
-                ((DataItemProxy) caratteristicaRichiesta).setModified(false);
-            }
-        } catch (SQLException ex) {
-            throw new DataException("Unable to store CaratteristicaRichiesta", ex);
-        }
-    }
 
     @Override
     public List<Caratteristica> getCaratteristicheByRichiesta(int richiesta_key) throws DataException {
@@ -224,6 +159,39 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
     }
     
 
+    @Override
+    public void storeCaratteristicaRichiesta(CaratteristicaRichiesta caratteristicaRichiesta) throws DataException {
+        try {
+            if (caratteristicaRichiesta.getKey() != null && caratteristicaRichiesta.getKey() > 0) {
+                if (caratteristicaRichiesta instanceof DataItemProxy && !((DataItemProxy) caratteristicaRichiesta).isModified()) {
+                    return;
+                }
+                uCaratteristicaRichiesta.setInt(1, caratteristicaRichiesta.getRichiestaOrdine().getKey());
+                uCaratteristicaRichiesta.setInt(2, caratteristicaRichiesta.getCaratteristica().getKey());
+                uCaratteristicaRichiesta.setString(3, caratteristicaRichiesta.getValore());
+                uCaratteristicaRichiesta.setInt(4, caratteristicaRichiesta.getKey());
+                uCaratteristicaRichiesta.executeUpdate();
+            } else {
+                iCaratteristicaRichiesta.setInt(1, caratteristicaRichiesta.getRichiestaOrdine().getKey());
+                iCaratteristicaRichiesta.setInt(2, caratteristicaRichiesta.getCaratteristica().getKey());
+                iCaratteristicaRichiesta.setString(3, caratteristicaRichiesta.getValore());
+                if (iCaratteristicaRichiesta.executeUpdate() == 1) {
+                    try (ResultSet keys = iCaratteristicaRichiesta.getGeneratedKeys()) {
+                        if (keys.next()) {
+                            int key = keys.getInt(1);
+                            caratteristicaRichiesta.setKey(key);
+                            dataLayer.getCache().add(CaratteristicaRichiesta.class, caratteristicaRichiesta);
+                        }
+                    }
+                }
+            }
+            if (caratteristicaRichiesta instanceof DataItemProxy) {
+                ((DataItemProxy) caratteristicaRichiesta).setModified(false);
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to store CaratteristicaRichiesta", ex);
+        }
+    }
 
 
 }

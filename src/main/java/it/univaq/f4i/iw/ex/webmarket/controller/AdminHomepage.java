@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class OrdinanteHomepage extends BaseController {
+public class AdminHomepage extends BaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Issues");
-        res.activate("homepageordinante.ftl.html", request, response);
+        res.activate("homepageadmin.ftl.html", request, response);
     }
 
     @Override
