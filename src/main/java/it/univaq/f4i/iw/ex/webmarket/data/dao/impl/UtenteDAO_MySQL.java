@@ -2,6 +2,7 @@ package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.UtenteDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.UtenteProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -18,6 +19,8 @@ import java.sql.Statement;
  *
  * @author Giuseppe Della Penna, Giulia Di Flamminio & Samanta Di Stefano
  */
+
+//to do --> modifica store utente
 public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
 
     private PreparedStatement sUserByID, sUserByEmail, iUser, uUser;
@@ -77,6 +80,8 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             a.setKey(rs.getInt("ID"));
             a.setEmail(rs.getString("email"));
             a.setPassword(rs.getString("password"));
+            a.setTipologiaUtenteId(TipologiaUtente.valueOf(rs.getString("tipologia_utente")));
+
             return a;
         } catch (SQLException ex) {
             throw new DataException("Unable to create user object form ResultSet", ex);

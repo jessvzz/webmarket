@@ -47,24 +47,38 @@ public class Login extends BaseController {
 
         if (!username.isEmpty() && !password.isEmpty()) {
             try {
-                System.out.println("email: " + username);
-
+                //System.out.println("email: " + username);
+                System.out.println("ciao "+username);
+                
                 Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(username);
+                
                // if (u != null && SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
+                if (u != null && password.equals(u.getPassword())) {
                     //se la validazione ha successo
                     //if the identity validation succeeds
+                    System.out.println("sono dentro, l'utente è: "+u.getEmail());
                     SecurityHelpers.createSession(request, username, u.getKey());
                     //se è stato trasmesso un URL di origine, torniamo a quell'indirizzo
                     //if an origin URL has been transmitted, return to it
+                    System.out.println("tipologia "+u.getTipologiaUtenteId());
+                    String redirectPage;
+                    redirectPage = switch (u.getTipologiaUtenteId()) {
+    
+                        case Ordinante -> "homepageordinante";
+                        case Tecnico -> "homepagetecnico";
+                        case Amministratore -> "homepageamministratore";
+                        default -> "login";
+                    };
+                    
                     if (request.getParameter("referrer") != null) {
                         //response.sendRedirect(request.getParameter("referrer"));
-                        response.sendRedirect(request.getParameter("homepageordinante"));
+                        response.sendRedirect(request.getParameter(redirectPage));
 
                     } else {
-                        response.sendRedirect("homepageordinante");
+                        response.sendRedirect(redirectPage);
                     }
                     return;
-               // }
+                }
             } catch (DataException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }

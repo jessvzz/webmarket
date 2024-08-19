@@ -72,6 +72,14 @@
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.OrdinanteHomepage</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>TecnicoHomepage</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.TecnicoHomepage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminHomepage</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.AdminHomepage</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>WriteArticle</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.ComposeArticle</servlet-class>
     </servlet>
@@ -110,6 +118,14 @@
     <servlet-mapping>
         <servlet-name>OrdinanteHomepage</servlet-name>
         <url-pattern>/homepageordinante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TecnicoHomepage</servlet-name>
+        <url-pattern>/homepagetecnico</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminHomepage</servlet-name>
+        <url-pattern>/homepageadmin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>WriteArticle</servlet-name>
