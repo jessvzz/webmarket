@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
 
+import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.CaratteristicaDAO_MySQL;
+import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.RichiestaOrdineDAO_MySQL;
+import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
+import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
+
 /**
  *
  * @author Giuseppe Della Penna
@@ -35,6 +40,9 @@ public class DataLayer implements AutoCloseable {
     }
 
     public void init() throws DataException {
+         registerDAO(RichiestaOrdine.class, new RichiestaOrdineDAO_MySQL(this));
+         registerDAO(Caratteristica.class, new CaratteristicaDAO_MySQL(this));
+         //Altri DAO
         // registerDAO(RichiestaOrdine.class, new RichiestaOrdineDAO_MySQL(this));
         //call registerDAO for your own DAOs
     }

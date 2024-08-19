@@ -68,6 +68,7 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
 
     }
 
+    @SuppressWarnings("unused")
     private CaratteristicaProxy createCaratteristica(ResultSet rs) throws DataException {
         try {
             CaratteristicaProxy c = (CaratteristicaProxy) createCaratteristica();

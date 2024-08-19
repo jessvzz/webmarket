@@ -10,7 +10,9 @@ public interface CaratteristicaRichiestaDAO {
 
     CaratteristicaRichiesta createCaratteristicaRichiesta();
 
-    CaratteristicaRichiesta getCaratteristicaRichiesta(int caratteristica_key, int richiesta_key) throws DataException;
+    // CaratteristicaRichiesta getCaratteristicaRichiesta(int caratteristica_key, int richiesta_key) throws DataException;
+    
+    CaratteristicaRichiesta getCaratteristicaRichiesta(int cr_key) throws DataException;
 
     List<Caratteristica> getCaratteristicheByRichiesta(int richiesta_key) throws DataException;
 
