@@ -1,12 +1,14 @@
 package it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy;
 
+import java.sql.Date;
+
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.RichiestaOrdineImpl;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
-import java.sql.Date;
+// import java.sql.Date;
 
 
 
@@ -43,11 +45,11 @@ public class RichiestaOrdineProxy extends RichiestaOrdineImpl implements DataIte
     }
 
 //TODO: mi da errore
-    // @Override
-    // public void setData(Date data) {
-    //     super.setData(data);
-    //     this.modified = true;
-    // }
+    //  @Override
+    //  public void setData(Date data) {
+    //      super.setData(data);
+    //      this.modified = true;
+    //  }
 
     @Override
     public void setCodiceRichiesta(String codiceRichiesta) {

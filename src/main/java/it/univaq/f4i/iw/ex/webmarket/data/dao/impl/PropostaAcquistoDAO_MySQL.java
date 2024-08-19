@@ -14,11 +14,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.sql.Statement;
+
 
 public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDAO {
 
     // Query SQL precompilate
-    private PreparedStatement sPropostaByID, sProposteByRichiesta, sAllProposte, iProposta, uProposta, dProposta;
+    private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente, sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta;
 
     public PropostaAcquistoDAO_MySQL(DataLayer d) {
         super(d);
@@ -33,9 +35,13 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             sPropostaByID = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ID = ?");
             sProposteByRichiesta = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE richiesta_id = ?");
             sAllProposte = connection.prepareStatement("SELECT * FROM proposta_acquisto");
-            //TODO: mi da l'errore sul Statement.RETURN_generated_KEYS
-            // iProposta = connection.prepareStatement("INSERT INTO proposta_acquisto (produttore, prodotto, codice, prezzo, URL, note, stato, motivazione, richiesta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+            sProposteByUtente = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE utente_id = ?");
+            sProposteByOrdine = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ordine_id = ?");
+            
+            iProposta = connection.prepareStatement("INSERT INTO proposta_acquisto (produttore, prodotto, codice, prezzo, URL, note, stato, motivazione, richiesta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, prezzo=?, URL=?, note=?, stato=?, motivazione=?, richiesta_id=? WHERE ID=?");
+            uInviaProposta = connection.prepareStatement("UPDATE proposta_acquisto SET stato=? WHERE ID=?");
             dProposta = connection.prepareStatement("DELETE FROM proposta_acquisto WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Errore durante l'inizializzazione del data layer per le proposte d'acquisto", ex);
@@ -193,19 +199,49 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
 
     @Override
     public List<PropostaAcquisto> getProposteByUtente(int utente_key) throws DataException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getProposteByUtente'");
+           List<PropostaAcquisto> proposte = new ArrayList<>();
+    try {
+        sProposteByUtente.setInt(1, utente_key);
+        try (ResultSet rs = sProposteByUtente.executeQuery()) {
+            while (rs.next()) {
+                proposte.add(createPropostaAcquisto(rs));
+            }
+        }
+    } catch (SQLException ex) {
+        throw new DataException("Impossibile caricare le proposte d'acquisto per l'utente specificato", ex);
+    }
+    return proposte;
     }
 
     @Override
     public List<PropostaAcquisto> getProposteByOrdine(int ordine_key) throws DataException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getProposteByOrdine'");
+        List<PropostaAcquisto> proposte = new ArrayList<>();
+        try {
+            sProposteByOrdine.setInt(1, ordine_key);
+            try (ResultSet rs = sProposteByOrdine.executeQuery()) {
+                while (rs.next()) {
+                    proposte.add(createPropostaAcquisto(rs));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Impossibile caricare le proposte d'acquisto per l'ordine specificato", ex);
+        }
+        return proposte;
     }
+    
 
     @Override
     public void inviaPropostaAcquisto(PropostaAcquisto proposta) throws DataException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'inviaPropostaAcquisto'");
+        try {
+            if (proposta.getKey() != null && proposta.getKey() > 0) {
+                uInviaProposta.setString(1, StatoProposta.INVIATA.toString());
+                uInviaProposta.setInt(2, proposta.getKey());
+                uInviaProposta.executeUpdate();
+            } else {
+                throw new DataException("Impossibile inviare una proposta non esistente");
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Impossibile inviare la proposta d'acquisto", ex);
+        }
     }
 }

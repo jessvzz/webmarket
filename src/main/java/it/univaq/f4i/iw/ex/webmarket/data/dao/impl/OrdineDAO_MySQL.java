@@ -1,7 +1,9 @@
 package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.OrdineDAO;
+import it.univaq.f4i.iw.ex.webmarket.data.dao.PropostaAcquistoDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
+import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.OrdineProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
@@ -63,13 +65,9 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         try {
             OrdineProxy o = (OrdineProxy) createOrdine();
             o.setKey(rs.getInt("ID"));
-
-            //TODO: mi da l'errore su stato se non faccio valueOf e su proposta se decommento
             o.setStato(StatoOrdine.valueOf(rs.getString("stato")));
-            // PropostaAcquisto proposta = PropostaAcquistoDAO.getPropostaAcquisto(rs.getInt("richiesta_id"));
-            // o.setProposta(proposta);
-            //al posto di
-            //  o.setProposta(rs.getInt("proposta_id"));
+              PropostaAcquistoDAO propostaAcquistoDAO = (PropostaAcquistoDAO) dataLayer.getDAO(PropostaAcquisto.class);
+             o.setProposta(propostaAcquistoDAO.getPropostaAcquisto(rs.getInt("proposta_id")));
             return o;
         } catch (SQLException ex) {
             throw new DataException("Unable to create ordine object from ResultSet", ex);
