@@ -45,7 +45,7 @@ CREATE TABLE utente (
     username varchar(255) UNIQUE NOT NULL,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
-    tipologia_utente ENUM('Ordinante', 'Tecnico', 'Amministratore') NOT NULL
+    tipologia_utente ENUM('ORDINANTE', 'TECNICO', 'AMMINISTRATORE') NOT NULL
 );
 
 CREATE TABLE richiesta_ordine (
@@ -94,7 +94,7 @@ CREATE TABLE proposta_acquisto (
     prezzo float NOT NULL,
     URL text NOT NULL,
     note varchar(255) NOT NULL,
-    stato ENUM('Accettato','Rifiutato','In attesa') NOT NULL,
+    stato ENUM('ACCETTATO','RIFIUTATO','IN_ATTESA') NOT NULL,
     motivazione text DEFAULT NULL,
     richiesta_id int(11) NOT NULL,
     CONSTRAINT id_richiesta_proposta FOREIGN KEY (richiesta_id)
@@ -105,7 +105,7 @@ CREATE TABLE proposta_acquisto (
 
 CREATE TABLE ordine (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    stato ENUM('Accettato','Respinto perché non conforme','Respinto perché non funzionante') NOT NULL,
+    stato ENUM('ACCETTATO','RESPINTO_NON_CONFORME','RESPINTO_NON_FUNZIONANTE') NOT NULL,
     proposta_id int(11) NOT NULL,
     CONSTRAINT id_proposta FOREIGN KEY (proposta_id)
         REFERENCES proposta_acquisto(ID)
@@ -336,13 +336,13 @@ INSERT INTO caratteristica (nome, categoria_id) VALUES
 
 
 INSERT INTO utente (username, email, password, tipologia_utente) VALUES
-    ('giulia','giulia@example.com', 'giulia', 'Ordinante'), #1
-    ('gea', 'gea@example.com', 'gea', 'Ordinante'), #2
-    ('samanta', 'samanta@example.com', 'samanta', 'Ordinante'), #3
-    ('tecnico1','tecnico1@example.com', 'tecnico1', 'Tecnico'), #4
-    ('tecnico2','tecnico2@example.com', 'tecnico2', 'Tecnico'), #5
-    ('tecnico3','tecnico3@example.com', 'tecnico3', 'Tecnico'), #6
-    ('admin', 'admin@example.com', 'admin', 'Amministratore'); #7
+    ('giulia','giulia@example.com', 'giulia', 'ORDINANTE'), #1
+    ('gea', 'gea@example.com', 'gea', 'ORDINANTE'), #2
+    ('samanta', 'samanta@example.com', 'samanta', 'ORDINANTE'), #3
+    ('tecnico1','tecnico1@example.com', 'tecnico1', 'TECNICO'), #4
+    ('tecnico2','tecnico2@example.com', 'tecnico2', 'TECNICO'), #5
+    ('tecnico3','tecnico3@example.com', 'tecnico3', 'TECNICO'), #6
+    ('admin', 'admin@example.com', 'admin', 'AMMINISTRATORE'); #7
 
 INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) VALUES
     (NULL, 0, '2024-08-06', 1, NULL, 4), /* 1) Giulia -> Portatili */
@@ -382,9 +382,9 @@ INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) V
     (3, 49, 'Indifferente'); #Processore
 
 INSERT INTO proposta_acquisto (produttore, prodotto, prezzo, URL, note, stato, motivazione, richiesta_id) VALUES
-    ('Apple', 'iPhone 15 Pro 256GB Titanio Blu', 1369, 'https://www.apple.com/it/shop/buy-iphone/iphone-15-pro/display-da-6,1%22-256gb-titanio-blu', 'Dal sito potrà tranquillamente cambiare colore o capacità di archiviazione', 'In attesa', NULL, 2), #1
-    ('Nintendo', 'Nintendo Switch Modello OLED (bianco)', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-bianco-000000000010007454', 'La nuova Switch con schermo OLED', 'Rifiutato', 'Troppo vecchia, è uscita nel 2021, la voglio più nuova', 3), #2
-    ('Nintendo', 'Nintendo Switch Modello OLED edizione speciale Mario (rossa)', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-edizione-speciale-mario-rossa-000000000010011772', 'Questa è la versione speciale Mario, è tutta rossa ed è uscita a fine 2023!', 'Accettato', NULL, 3); #3
+    ('Apple', 'iPhone 15 Pro 256GB Titanio Blu', 1369, 'https://www.apple.com/it/shop/buy-iphone/iphone-15-pro/display-da-6,1%22-256gb-titanio-blu', 'Dal sito potrà tranquillamente cambiare colore o capacità di archiviazione', 'IN_ATTESA', NULL, 2), #1
+    ('Nintendo', 'Nintendo Switch Modello OLED (bianco)', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-bianco-000000000010007454', 'La nuova Switch con schermo OLED', 'RIFIUTATO', 'Troppo vecchia, è uscita nel 2021, la voglio più nuova', 3), #2
+    ('Nintendo', 'Nintendo Switch Modello OLED edizione speciale Mario (rossa)', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-edizione-speciale-mario-rossa-000000000010011772', 'Questa è la versione speciale Mario, è tutta rossa ed è uscita a fine 2023!', 'ACCETTATO', NULL, 3); #3
 
 INSERT INTO ordine (stato, proposta_id) VALUES
-    ('Accettato' , 3); #1
+    ('ACCETTATO' , 3); #1

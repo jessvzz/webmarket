@@ -64,9 +64,9 @@ public class Login extends BaseController {
                     String redirectPage;
                     redirectPage = switch (u.getTipologiaUtente()) {
     
-                        case Ordinante -> "homepageordinante";
-                        case Tecnico -> "homepagetecnico";
-                        case Amministratore -> "homepageadmin";
+                        case ORDINANTE -> "homepageordinante";
+                        case TECNICO -> "homepagetecnico";
+                        case AMMINISTRATORE -> "homepageadmin";
                         default -> "login";
                     };
                     

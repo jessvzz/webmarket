@@ -19,11 +19,8 @@ public interface PropostaAcquistoDAO {
 
     List<PropostaAcquisto> getProposteAcquistoByRichiesta(int richiesta_id) throws DataException; 
 
-    void deletePropostaAcquisto(int proposta_key) throws DataException;
     // Per metterlo nel db
     void storePropostaAcquisto(PropostaAcquisto proposta) throws DataException;
 
     void inviaPropostaAcquisto(PropostaAcquisto proposta) throws DataException;
-
-    //void deletePropostaAcquisto(int proposta_key) throws DataException;
 }

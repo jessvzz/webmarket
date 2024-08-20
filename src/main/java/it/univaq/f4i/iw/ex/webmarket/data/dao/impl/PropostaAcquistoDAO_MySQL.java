@@ -188,16 +188,6 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
     }
 
     @Override
-    public void deletePropostaAcquisto(int proposta_key) throws DataException {
-        try {
-            dProposta.setInt(1, proposta_key);
-            dProposta.executeUpdate();
-        } catch (SQLException ex) {
-            throw new DataException("Impossibile eliminare la proposta d'acquisto", ex);
-        }
-    }
-
-    @Override
     public List<PropostaAcquisto> getProposteByUtente(int utente_key) throws DataException {
            List<PropostaAcquisto> proposte = new ArrayList<>();
     try {
@@ -234,7 +224,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
     public void inviaPropostaAcquisto(PropostaAcquisto proposta) throws DataException {
         try {
             if (proposta.getKey() != null && proposta.getKey() > 0) {
-                uInviaProposta.setString(1, StatoProposta.INVIATA.toString());
+                uInviaProposta.setString(1, StatoProposta.IN_ATTESA.toString());
                 uInviaProposta.setInt(2, proposta.getKey());
                 uInviaProposta.executeUpdate();
             } else {

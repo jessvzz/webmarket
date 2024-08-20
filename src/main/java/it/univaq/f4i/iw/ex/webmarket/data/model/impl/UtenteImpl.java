@@ -22,7 +22,7 @@ public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
         tipologiaUtente = null;
     }
 
-    public UtenteImpl(int id, String email, String password, TipologiaUtente tipologiaUtente) {
+    public UtenteImpl(int id, String username, String email, String password, TipologiaUtente tipologiaUtente) {
         this.id= id;
         this.username = username;
         this.email= email;
