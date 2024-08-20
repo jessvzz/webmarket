@@ -187,6 +187,92 @@ select.medium,input.medium {
           color: white;
         }
 
+        
+        
+       /*
+    homepage admin
+*/
+
+.container-beige {
+    background-color: #fff7e6; 
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hi-text {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.two-buttons-container {
+    display: flex;
+    justify-content: center; 
+    gap: 20px; 
+    flex-wrap: wrap;
+}
+
+.button-purple, .button-orange {
+    width: 180px; 
+    height: 230px; 
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.button-purple {
+    background-color: #ff6f3e; 
+}
+
+.button-orange {
+    background-color: #546de5; 
+}
+
+.button-purple:hover {
+    background-color: #e65c2e; 
+}
+
+.button-orange:hover {
+    background-color: #405dce; 
+}
+
+.icon {
+    width: 80px; 
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Responsive for hopmepage admin*/
+@media (max-width: 768px) {
+    .button-purple, .button-orange {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .two-buttons-container {
+        gap: 10px; 
+    }
+}
 
 @media only screen and (max-width: 959px) {
     body,html {    
