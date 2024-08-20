@@ -16,18 +16,22 @@ import it.univaq.f4i.iw.framework.data.DataLayer;
 public class CaratteristicaProxy extends CaratteristicaImpl implements DataItemProxy{
     
     protected boolean modified;
+    protected DataLayer dataLayer;
     protected int categoria_id = 0;
     /*
     protected int author_key = 0;
     protected int issue_key = 0;
 */
-    protected DataLayer dataLayer;
     
-
+    public CaratteristicaProxy(DataLayer d) {
+    super();
+    this.dataLayer = d;
+    this.modified = false;
+}
 
     @Override
-    public void setId(int id) {
-        super.setId(id);
+    public void setKey(Integer key) {
+        super.setKey(key);
         this.modified = true;
     }
 
@@ -43,6 +47,7 @@ public class CaratteristicaProxy extends CaratteristicaImpl implements DataItemP
         this.categoria_id = categoria.getId();
         this.modified =true;
     }
+    
 
     @Override
     public boolean isModified() {
@@ -52,10 +57,6 @@ public class CaratteristicaProxy extends CaratteristicaImpl implements DataItemP
     @Override
     public void setModified(boolean dirty) {
         this.modified = dirty;
-    }
-
-    public void setKey(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

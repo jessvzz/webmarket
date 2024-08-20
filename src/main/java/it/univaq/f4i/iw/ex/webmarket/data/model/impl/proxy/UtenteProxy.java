@@ -1,5 +1,6 @@
 package it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy;
 
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
@@ -33,10 +34,17 @@ public class UtenteProxy extends UtenteImpl implements DataItemProxy  {
     }
 
     @Override
-    public void setPassword(String surname) {
-        super.setPassword(surname);
+    public void setPassword(String pw) {
+        super.setPassword(pw);
         this.modified = true;
     }
+
+    @Override
+    public void setTipologiaUtente(TipologiaUtente tipologiaUtente) {
+        super.setTipologiaUtente(tipologiaUtente);
+        this.modified = true;
+    }
+
 
     //METODI DEL PROXY
     //PROXY-ONLY METHODS

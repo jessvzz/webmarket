@@ -74,14 +74,14 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
     }
 
     //helper
-    private UtenteProxy createUser(ResultSet rs) throws DataException {
+    private UtenteProxy createUtente(ResultSet rs) throws DataException {
         try {
             UtenteProxy a = (UtenteProxy) createUtente();
             a.setKey(rs.getInt("ID"));
             a.setEmail(rs.getString("email"));
             a.setPassword(rs.getString("password"));
-            a.setTipologiaUtenteId(TipologiaUtente.valueOf(rs.getString("tipologia_utente")));
-
+            a.setTipologiaUtente(TipologiaUtente.valueOf(rs.getString("tipologia_utente")));
+    
             return a;
         } catch (SQLException ex) {
             throw new DataException("Unable to create user object form ResultSet", ex);
@@ -110,7 +110,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                         //of the AuthorImpl class to quickly
                         //create an instance from the current record
 
-                        u = createUser(rs);
+                        u = createUtente(rs);
                         //e lo mettiamo anche nella cache
                         //and put it also in the cache
                         dataLayer.getCache().add(Utente.class, u);
@@ -150,11 +150,13 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 }
                 uUser.setString(1, user.getEmail());
                 uUser.setString(2, user.getPassword());
+                uUser.setString(3, user.getTipologiaUtente().name());
                 //uUser.setInt(3, user.getKey());
 
             } else { //insert
                 iUser.setString(1, user.getEmail());
                 iUser.setString(2, user.getPassword());
+                iUser.setString(3, user.getTipologiaUtente().name());
 
                 if (iUser.executeUpdate() == 1) {
                     //per leggere la chiave generata dal database

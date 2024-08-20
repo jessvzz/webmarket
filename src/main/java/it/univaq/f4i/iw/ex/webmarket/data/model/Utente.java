@@ -19,7 +19,7 @@ public interface Utente extends DataItem<Integer> {
 
     void setPassword(String password);
 
-    TipologiaUtente getTipologiaUtenteId();
+    TipologiaUtente getTipologiaUtente();
 
-    void setTipologiaUtenteId(TipologiaUtente tipologiaUtente);
+    void setTipologiaUtente(TipologiaUtente tipologiaUtente);
 }

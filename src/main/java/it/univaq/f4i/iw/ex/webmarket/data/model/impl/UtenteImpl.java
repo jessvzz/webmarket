@@ -58,14 +58,12 @@ public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
     }
 
     @Override
-    public TipologiaUtente  getTipologiaUtenteId() {
+    public TipologiaUtente  getTipologiaUtente() {
         return tipologiaUtente;
     }
 
-
-
     @Override
-    public void setTipologiaUtenteId(TipologiaUtente tipologiaUtente) {
+    public void setTipologiaUtente(TipologiaUtente tipologiaUtente) {
         this.tipologiaUtente = tipologiaUtente;
     }
 

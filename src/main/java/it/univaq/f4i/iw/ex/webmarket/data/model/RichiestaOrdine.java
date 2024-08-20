@@ -1,7 +1,6 @@
 package it.univaq.f4i.iw.ex.webmarket.data.model;
 
 import java.util.Date;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.framework.data.DataItem;
 

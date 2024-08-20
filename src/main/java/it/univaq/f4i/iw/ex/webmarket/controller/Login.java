@@ -30,7 +30,7 @@ public class Login extends BaseController {
 //        //esempio di creazione utente
 //        //create user example
 //        try {
-//            User u = ((NewspaperDataLayer) request.getAttribute("datalayer")).getUserDAO().createUser();
+//            User u = ((NewspaperDataLayer) request.getAttribute("datalayer")).getUserDAO().createUtente();
 //            u.setUsername("a");
 //            u.setPassword(SecurityHelpers.getPasswordHashPBKDF2("p"));
 //            ((NewspaperDataLayer) request.getAttribute("datalayer")).getUserDAO().storeUser(u);
@@ -60,9 +60,9 @@ public class Login extends BaseController {
                     SecurityHelpers.createSession(request, username, u.getKey());
                     //se è stato trasmesso un URL di origine, torniamo a quell'indirizzo
                     //if an origin URL has been transmitted, return to it
-                    System.out.println("tipologia "+u.getTipologiaUtenteId());
+                    System.out.println("tipologia "+u.getTipologiaUtente());
                     String redirectPage;
-                    redirectPage = switch (u.getTipologiaUtenteId()) {
+                    redirectPage = switch (u.getTipologiaUtente()) {
     
                         case Ordinante -> "homepageordinante";
                         case Tecnico -> "homepagetecnico";
