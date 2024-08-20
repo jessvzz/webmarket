@@ -42,7 +42,7 @@ public class Login extends BaseController {
     //nota: usente di default nel database: nome a, password p
     //note: default user in the database: name: a, password p
     private void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String username = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         if (!username.isEmpty() && !password.isEmpty()) {
@@ -50,7 +50,7 @@ public class Login extends BaseController {
                 //System.out.println("email: " + username);
                 System.out.println("ciao "+username);
                 
-                Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByEmail(username);
+                Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByUsername(username);
                 
                // if (u != null && SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
                 if (u != null && password.equals(u.getPassword())) {

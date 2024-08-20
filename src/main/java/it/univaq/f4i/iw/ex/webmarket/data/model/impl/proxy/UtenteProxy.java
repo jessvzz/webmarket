@@ -28,6 +28,12 @@ public class UtenteProxy extends UtenteImpl implements DataItemProxy  {
 
 
     @Override
+    public void setUsername(String username) {
+        super.setUsername(username);
+        this.modified = true;
+    }
+    
+    @Override
     public void setEmail(String email) {
         super.setEmail(email);
         this.modified = true;

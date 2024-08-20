@@ -23,7 +23,7 @@ import java.sql.Statement;
 //to do --> modifica store utente
 public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
 
-    private PreparedStatement sUserByID, sUserByEmail, iUser, uUser;
+    private PreparedStatement sUserByID, sUserByEmail, sUserByUsername, iUser, uUser;
 
     public UtenteDAO_MySQL(DataLayer d) {
         super(d);
@@ -38,6 +38,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             //precompile all the queries uses in this class
             sUserByID = connection.prepareStatement("SELECT * FROM utente WHERE ID = ?");
             sUserByEmail = connection.prepareStatement("SELECT ID FROM utente WHERE email = ?");
+            sUserByUsername = connection.prepareStatement("SELECT ID FROM utente WHERE username = ?");
             iUser = connection.prepareStatement("INSERT INTO utente (email,password) VALUES(?,?)", Statement.RETURN_GENERATED_KEYS);
             uUser = connection.prepareStatement("UPDATE utente SET email=?,password=? WHERE ID=?");
         } catch (SQLException ex) {
@@ -78,6 +79,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         try {
             UtenteProxy a = (UtenteProxy) createUtente();
             a.setKey(rs.getInt("ID"));
+            a.setUsername(rs.getString("username"));
             a.setEmail(rs.getString("email"));
             a.setPassword(rs.getString("password"));
             a.setTipologiaUtente(TipologiaUtente.valueOf(rs.getString("tipologia_utente")));
@@ -138,6 +140,22 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         }
         return null;
     }
+    
+    @Override
+    public Utente getUtenteByUsername(String username) throws DataException {
+
+        try {
+            sUserByUsername.setString(1, username);
+            try ( ResultSet rs = sUserByUsername.executeQuery()) {
+                if (rs.next()) {
+                    return getUtente(rs.getInt("ID"));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to find user", ex);
+        }
+        return null;
+    }
 
     @Override
     public void storeUtente(Utente user) throws DataException {
@@ -151,12 +169,16 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 uUser.setString(1, user.getEmail());
                 uUser.setString(2, user.getPassword());
                 uUser.setString(3, user.getTipologiaUtente().name());
+                uUser.setString(4, user.getUsername());
+
                 //uUser.setInt(3, user.getKey());
 
             } else { //insert
                 iUser.setString(1, user.getEmail());
                 iUser.setString(2, user.getPassword());
                 iUser.setString(3, user.getTipologiaUtente().name());
+                iUser.setString(4, user.getUsername());
+
 
                 if (iUser.executeUpdate() == 1) {
                     //per leggere la chiave generata dal database

@@ -17,6 +17,8 @@ public interface UtenteDAO {
 
     Utente getUtenteByEmail(String email) throws DataException;
 
+    Utente getUtenteByUsername(String username) throws DataException;
+
     void deleteUtente(int utente_key) throws DataException;
     
 

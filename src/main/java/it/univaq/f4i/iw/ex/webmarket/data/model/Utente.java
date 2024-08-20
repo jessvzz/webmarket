@@ -10,6 +10,10 @@ public interface Utente extends DataItem<Integer> {
     int getId();
 
     void setId(int id);
+    
+    String getUsername();
+    
+    void setUsername(String username);
 
     String getEmail();
 

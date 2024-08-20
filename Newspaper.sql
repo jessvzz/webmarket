@@ -42,7 +42,8 @@ CREATE TABLE caratteristica (
 
 CREATE TABLE utente (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    email varchar(255) UNIQUE NOT NULL,
+    username varchar(255) UNIQUE NOT NULL,
+    email varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
     tipologia_utente ENUM('Ordinante', 'Tecnico', 'Amministratore') NOT NULL
 );
@@ -334,14 +335,14 @@ INSERT INTO caratteristica (nome, categoria_id) VALUES
 
 
 
-INSERT INTO utente (email, password, tipologia_utente) VALUES
-    ('giulia@example.com', 'giulia', 'Ordinante'), #1
-    ('gea@example.com', 'gea', 'Ordinante'), #2
-    ('samanta@example.com', 'samanta', 'Ordinante'), #3
-    ('tecnico1@example.com', 'tecnico1', 'Tecnico'), #4
-    ('tecnico2@example.com', 'tecnico2', 'Tecnico'), #5
-    ('tecnico3@example.com', 'tecnico3', 'Tecnico'), #6
-    ('admin@example.com', 'admin', 'Amministratore'); #7
+INSERT INTO utente (username, email, password, tipologia_utente) VALUES
+    ('giulia','giulia@example.com', 'giulia', 'Ordinante'), #1
+    ('gea', 'gea@example.com', 'gea', 'Ordinante'), #2
+    ('samanta', 'samanta@example.com', 'samanta', 'Ordinante'), #3
+    ('tecnico1','tecnico1@example.com', 'tecnico1', 'Tecnico'), #4
+    ('tecnico2','tecnico2@example.com', 'tecnico2', 'Tecnico'), #5
+    ('tecnico3','tecnico3@example.com', 'tecnico3', 'Tecnico'), #6
+    ('admin', 'admin@example.com', 'admin', 'Amministratore'); #7
 
 INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) VALUES
     (NULL, 0, '2024-08-06', 1, NULL, 4), /* 1) Giulia -> Portatili */

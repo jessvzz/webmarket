@@ -8,6 +8,7 @@ import it.univaq.f4i.iw.framework.data.DataItemImpl;
 public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
 
     private int id;
+    private String username;
     private String email;
     private String password;
     private TipologiaUtente tipologiaUtente;
@@ -15,6 +16,7 @@ public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
     // Costruttori
     public UtenteImpl() {
         super();
+        username = "";
         email = "";
         password = "";
         tipologiaUtente = null;
@@ -22,6 +24,7 @@ public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
 
     public UtenteImpl(int id, String email, String password, TipologiaUtente tipologiaUtente) {
         this.id= id;
+        this.username = username;
         this.email= email;
         this.password= password;
         this.tipologiaUtente= tipologiaUtente;
@@ -37,6 +40,16 @@ public class UtenteImpl extends DataItemImpl<Integer> implements Utente {
         this.id= id;
     }
 
+    @Override
+    public String getUsername() {
+        return username;
+    }
+    
+    @Override
+    public void setUsername(String username) {
+        this.username= username;
+    }
+    
     @Override
     public String getEmail() {
         return email;
