@@ -1,2 +1,47 @@
-<h2>Ordinante</h2>
-<p>Welcome</p>
+<div class="container-beige">
+    <h1 class="hi-text">Ciao, ${user.username}*</h1>
+
+    <!-- Sezione Notifiche -->
+    <div class="notification">
+        <a href="notifiche">
+            <span class="notification-icon">⚠️</span> 
+            <span class="notification-text">Notifiche</span>
+        </a>
+    </div>
+    
+    <!-- Sezione Principale con le Card -->
+    <div class="three-buttons-container">
+        
+        <!-- Card Richieste Effettuate -->
+        <div class="card-blue">
+            <a href="richiesteEffettuate">
+                <img src="images/richiesteEff.svg" alt="Icona Richieste" class="icon">
+                <p>Richieste effettuate</p>
+            </a>
+        </div>
+        
+        <!-- Card Nuova Richiesta -->
+        <div class="card-green">
+            <a href="nuovaRichiesta">
+                <img src="images/nuovaRic.svg" alt="Icona Nuova Richiesta" class="icon">
+                <p>Nuova Richiesta</p>
+            </a>
+        </div>
+        
+        <!-- Card Ordini -->
+        <div class="card-orange">
+            <a href="ordini">
+                <img src="images/ordini.svg" alt="Icona Ordini" class="icon">
+                <p>Ordini</p>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Link Logout -->
+    <div class="logout-container">
+        <a href="logout" class="logout-link">
+            <img src="images/logout-svg.svg" alt="Icona Logout" class="logout-icon">
+            <span>Logout</span>
+        </a>
+    </div>
+</div>
