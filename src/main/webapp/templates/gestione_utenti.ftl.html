@@ -1,6 +1,16 @@
 <div class="container-beige">
     <h2 class="form-title">Aggiungi un utente</h2>
+    <#if error??>
+<div class="error-message">${error}</div>
+</#if>
+
+<#if success??>
+<div class="success-message">${success}</div>
+</#if>
+
     <div class="form-container">
+    <form method="POST" action="gestioneutenti">
+    <input type="hidden" name="action" value="createUser">
         <div class="role-selection">
             <label class="white-label" for="role">Ruolo:</label>
             <div class="role-buttons">
@@ -10,7 +20,7 @@
                 <input type="radio" id="role-tecnico" name="role" value="TECNICO">
                 <label for="role-tecnico" class="lblue-button">Tecnico</label>
 
-                <input type="radio" id="role-admin" name="role" value="ADMIN">
+                <input type="radio" id="role-admin" name="role" value="AMMINISTRATORE">
                 <label for="role-admin" class="lblue-button">Admin</label>
             </div>
         </div>
@@ -34,6 +44,7 @@
             <button class="purple-button"><a href="homepageadmin">INDIETRO</a></button>
             <button class="orange-button">SALVA</button>
         </div>
+    </form>
     </div>
 </div>
 

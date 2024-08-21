@@ -6,6 +6,8 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -33,27 +35,54 @@ public class GestioneUtenti extends BaseController {
     try {
         HttpSession session = SecurityHelpers.checkSession(request);
         if (session == null) {
-            
-            // Se la sessione non è valida, torno login
             response.sendRedirect("login");
             return;
         }
-        
-        // trovo user
-        int userId = (int) session.getAttribute("userid");
-        Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtente(userId);
-        
-        if (u != null) {
-            request.setAttribute("user", u);
-        }
 
-        action_default(request, response);
+        String action = request.getParameter("action");
+        if (action != null && action.equals("createUser")) {
+            action_createUser(request, response);
+        } else {
+            action_default(request, response);
+        }
 
     } catch (IOException | TemplateManagerException | DataException ex) {
         handleError(ex, request, response);
     }
 }
 
+    private void action_createUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, DataException, TemplateManagerException {
+    String username = request.getParameter("username");
+    String email = request.getParameter("email");
+    String password = request.getParameter("temp-password");
+    String confirmPassword = request.getParameter("confirm-password");
+    String roleParam = request.getParameter("role");
+    
+    if (username == null || email == null || password == null || confirmPassword == null || roleParam == null) {
+        request.setAttribute("error", "Tutti i campi sono obbligatori.");
+        action_default(request, response);
+        return;
+    }
+
+    if (!password.equals(confirmPassword)) {
+        request.setAttribute("error", "Le password non coincidono.");
+        action_default(request, response);
+        return;
+    }
+
+    TipologiaUtente role = TipologiaUtente.valueOf(roleParam.toUpperCase());
+
+    Utente nuovoUtente = new UtenteImpl();
+    nuovoUtente.setUsername(username);
+    nuovoUtente.setEmail(email);
+    nuovoUtente.setPassword(password);
+    nuovoUtente.setTipologiaUtente(role);
+
+    ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().storeUtente(nuovoUtente);
+
+    request.setAttribute("success", "Utente creato con successo!");
+    action_default(request, response);
+}
 
 
     /**
