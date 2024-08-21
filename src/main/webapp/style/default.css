@@ -220,7 +220,7 @@ select.medium,input.medium {
     flex-wrap: wrap;
 }
 
-.button-purple, .button-orange {
+.card-purple, .card-orange {
     width: 180px; 
     height: 230px; 
     border-radius: 20px;
@@ -234,21 +234,22 @@ select.medium,input.medium {
     transition: background-color 0.3s ease;
 }
 
-.button-purple {
+.card-purple {
     background-color: #ff6f3e; 
 }
 
-.button-orange {
+.card-orange {
     background-color: #546de5; 
 }
 
-.button-purple:hover {
+.card-purple:hover {
     background-color: #e65c2e; 
 }
 
-.button-orange:hover {
+.card-orange:hover {
     background-color: #405dce; 
 }
+
 
 .icon {
     width: 80px; 
@@ -262,9 +263,169 @@ p {
     font-size: 16px;
 }
 
+.form-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    background-color: #f5a25d;
+    padding: 20px;
+    border-radius: 30px;
+    text-align: left;
+}
+
+.role-selection {
+    margin-bottom: 20px;
+}
+
+.role-selection label{
+    display: block;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 5px;}
+
+.role-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.lblue-button {
+    background-color: #aad4fc;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    flex: 1;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.lblue-button.selected {
+    background-color: #67c4f1;
+}
+
+.lblue-button:hover {
+    background-color: #67c4f1;
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 10px; 
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: white;
+    text-align: right; 
+    padding-right: 10px;
+}
+
+.form-group input {
+   padding: 10px;
+    border: none;
+    border-radius: 17px;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.purple-button {
+    background-color: #546de5;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 30px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.purple-button a {
+    color: #fff; 
+    text-decoration: none; 
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.orange-button {
+    background-color: #ff6f3e;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 30px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.purple-button:hover {
+    background-color: #405dce;
+}
+
+.orange-button:hover {
+    background-color: #e65c2e;
+}
+
 /* Responsive for hopmepage admin*/
+@media (max-width: 600px) {
+    .container-beige {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .form-group input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .role-buttons {
+        flex-direction: column;
+    }
+
+    .lblue-button {
+        margin: 5px 0;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .orange-button,
+    .purple-button {
+        margin: 5px 0;
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
 @media (max-width: 768px) {
-    .button-purple, .button-orange {
+    .card-purple, .card-orange {
         width: 100%;
         height: 200px;
     }

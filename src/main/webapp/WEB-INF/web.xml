@@ -52,22 +52,6 @@
         <param-value>jdbc/webdb2</param-value>
     </context-param>
     <servlet>
-        <servlet-name>Image</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.RenderImage</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Issue</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.MakeIssue</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Article</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.MakeArticle</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ComposeIssue</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.ComposeIssue</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>OrdinanteHomepage</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.OrdinanteHomepage</servlet-class>
     </servlet>
@@ -80,9 +64,10 @@
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.AdminHomepage</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>WriteArticle</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.ComposeArticle</servlet-class>
+        <servlet-name>GestioneUtenti</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.GestioneUtenti</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.Login</servlet-class>
@@ -99,22 +84,7 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Issue</servlet-name>
-        <url-pattern>/issue</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Article</servlet-name>
-        <url-pattern>/article</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ComposeIssue</servlet-name>
-        <url-pattern>/compose</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Image</servlet-name>
-        <url-pattern>/image</url-pattern>
-    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>OrdinanteHomepage</servlet-name>
         <url-pattern>/homepageordinante</url-pattern>
@@ -128,8 +98,8 @@
         <url-pattern>/homepageadmin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>WriteArticle</servlet-name>
-        <url-pattern>/write</url-pattern>
+        <servlet-name>GestioneUtenti</servlet-name>
+        <url-pattern>/gestioneutenti</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
