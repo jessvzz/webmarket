@@ -280,7 +280,7 @@ p {
     margin-bottom: 20px;
 }
 
-.role-selection label{
+.white-label{
     display: block;
     font-size: 16px;
     color: white;
@@ -290,6 +290,15 @@ p {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+}
+
+.role-buttons input[type="radio"] {
+    display: none; 
+}
+
+
+.role-buttons input[type="radio"]:checked + label {
+    background-color: #67c4f1;
 }
 
 .lblue-button {
@@ -303,10 +312,7 @@ p {
     flex: 1;
     margin: 0 5px;
     transition: background-color 0.3s ease;
-}
-
-.lblue-button.selected {
-    background-color: #67c4f1;
+    font-size:14px;
 }
 
 .lblue-button:hover {
