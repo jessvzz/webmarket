@@ -460,7 +460,53 @@ p {
     background-color: #e65c2e;
 }
 
-/* Responsive for hopmepage admin*/
+
+/* Parte tecnico */
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    margin-left: auto;
+    justify-content: right;
+}
+
+.search-input {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 16px;
+    width: 300px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #F9AA75;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #e18f58;
+}
+
+.elenco-container {
+    display: flex;
+    justify-content: center; 
+    gap: 10px; 
+    flex-wrap: wrap;
+}
+
+
+/* Responsive for homepage admin*/
 @media (max-width: 600px) {
     .container-beige {
         width: 90%;
