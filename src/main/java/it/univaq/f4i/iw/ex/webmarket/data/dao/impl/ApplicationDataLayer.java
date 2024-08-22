@@ -1,8 +1,10 @@
 package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
 
 
+import it.univaq.f4i.iw.ex.webmarket.data.dao.CategoriaDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.UtenteDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
+import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataLayer;
@@ -22,11 +24,16 @@ public class ApplicationDataLayer extends DataLayer {
     @Override
     public void init() throws DataException {
         registerDAO(Utente.class, new UtenteDAO_MySQL(this));
+        registerDAO(Categoria.class, new CategoriaDAO_MySQL(this));
 
     }
     
      public UtenteDAO getUtenteDAO() {
         return (UtenteDAO) getDAO(Utente.class);
+    }
+     
+     public CategoriaDAO getCategoriaDAO() {
+        return (CategoriaDAO) getDAO(Categoria.class);
     }
 
 }

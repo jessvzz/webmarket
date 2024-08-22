@@ -68,6 +68,10 @@
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.GestioneUtenti</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>GestioneCategorie</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.GestioneCategorie</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RichiesteTecnico</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.RichiesteTecnico</servlet-class>
     </servlet>
@@ -104,6 +108,10 @@
     <servlet-mapping>
         <servlet-name>GestioneUtenti</servlet-name>
         <url-pattern>/gestioneutenti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GestioneCategorie</servlet-name>
+        <url-pattern>/gestionecategorie</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RichiesteTecnico</servlet-name>

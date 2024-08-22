@@ -1,0 +1,22 @@
+<div class="container-beige">
+    <div class="title-container">
+        <a href="homepageadmin">
+        <div class="logo">
+            <img src="images/home-svg.svg" alt="Home" />
+        </div>
+         </a>
+        <h2 class="title-dark-brown">Categorie</h2>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+    </div>
+    <#if (categorie?size>0)>
+    <div class="categories">
+        <button class="lblue-button width150px">Aggiungi</button>
+        <#list categorie as categoria>
+        <button class="purple-button width150px">${categoria.nome}</button>
+        </#list>
+    </div>
+    </#if>
+</div>
+

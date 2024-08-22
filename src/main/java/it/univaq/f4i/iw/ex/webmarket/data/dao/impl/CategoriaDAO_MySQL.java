@@ -33,6 +33,8 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
     private PreparedStatement sCategorieFiglioFromPadre;
 
     private PreparedStatement dCategoria;
+    
+
 
     public CategoriaDAO_MySQL(DataLayer d) {
         super(d);
@@ -42,6 +44,7 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
     public void init() throws DataException {
         try {
             super.init();
+     
             sCategoriaByID = connection.prepareStatement("SELECT * FROM categoria WHERE ID=?");
             sCategoriaByNome = connection.prepareStatement("SELECT ID FROM categoria WHERE nome=?");
             sCategoriaByCaratteristica = connection.prepareStatement("SELECT categoria.ID FROM categoria, caratteristica WHERE categoria.ID=caratteristica.categoria_id AND caratteristica.ID=?");
@@ -49,7 +52,7 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
             iCategoria = connection.prepareStatement("INSERT INTO categoria(nome, padre) VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
             uCategoria = connection.prepareStatement("UPDATE categoria SET nome=?, padre=? WHERE ID=?");
-
+            sCategorie = connection.prepareStatement("SELECT ID FROM categoria");
             sCategorieFiglioFromPadre = connection.prepareStatement("SELECT * FROM categoria WHERE padre = ?");
 
             dCategoria = connection.prepareStatement("DELETE FROM categoria WHERE ID=?");
