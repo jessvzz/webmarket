@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
+
+
 /**
  *
  * @author jessviozzi
@@ -80,7 +84,19 @@ public class GestioneUtenti extends BaseController {
     nuovoUtente.setTipologiaUtente(role);
 
     ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().storeUtente(nuovoUtente);
-
+    try {
+              String subject = "Benvenuto in WebMarket";
+              String body = "Ciao " + username + ",\n\n" +
+                            "Ecco le tue credenziali per accedere:\n" +
+                            "Username: " + username + "\n" +
+                            "Password temporanea: " + password + "\n\n" +
+                            "Ti consigliamo di cambiare la tua password al primo accesso.\n\n";
+              EmailSender.sendEmail(email, subject, body);
+              request.setAttribute("success", "Utente creato con successo e email inviata!");
+          } catch (Exception e) {
+              request.setAttribute("error", "Utente creato con successo, ma si è verificato un problema durante l'invio dell'email.");
+              e.printStackTrace();
+          }
     request.setAttribute("success", "Utente creato con successo!");
     action_default(request, response);
 }
