@@ -4,6 +4,7 @@
 - [x] Far matchare gli enum col db
 - [ ] Cambiare il nome del file .sql del db
 - [ ] Cercare di togliere la sottolineatura dalle scritte delle card
+- [ ] Inserire una proposta d'acquisto come "ordinata"
 
 ## Gea:
 - [ ]

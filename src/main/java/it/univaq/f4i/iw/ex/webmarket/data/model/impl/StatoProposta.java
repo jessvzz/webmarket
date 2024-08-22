@@ -4,6 +4,7 @@ public enum StatoProposta {
 
     ACCETTATO,
     RIFIUTATO,
-    IN_ATTESA
+    IN_ATTESA,
+    ORDINATO
    
 }

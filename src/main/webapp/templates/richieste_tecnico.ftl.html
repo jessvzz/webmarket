@@ -1,9 +1,30 @@
 <div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #5D54BE;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <h3 style="color: #5D54BE; margin-left: 10px;">> Richieste non evase</h3> 
+    </div>
     <div class="search-container">
         <input type="text" placeholder="Cerca..." class="search-input">
         <button class="search-button">Vai</button>
     </div>
-    <div class="elenco-container">
-        
+    <div class="filter-container">
+        <p class="filter-text">Filtra per categoria:</p>
+        <select name="category" id="category" class="filter-select">
+            <!-- TODO: Rendere dinamiche le categorie -->
+            <option value="tutte">Tutte</option>
+            <option value="cat1">1</option>
+            <option value="cat2">2</option>
+            <option value="cat3">3</option>
+        </select>
+    </div>
+    <div class="rows-container">
+        <!-- TODO: Rendere dinamiche le righe mostrate -->
+        <div class="card-row" style="background-color: #5D54BE;">
+
+        </div>
     </div>
 </div>
