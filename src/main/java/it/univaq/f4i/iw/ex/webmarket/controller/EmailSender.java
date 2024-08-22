@@ -57,8 +57,6 @@ public class EmailSender {
             throw new RuntimeException(e);
         }
     }
- public static void main(String[] args) {
-        sendEmail("destinatario@example.com", "Oggetto dell'email", "Corpo dell'email");
-    }
+ 
     
 }
