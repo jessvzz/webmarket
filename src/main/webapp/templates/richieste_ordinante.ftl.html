@@ -1,0 +1,46 @@
+<div class="container-beige">
+    
+    <div class="nav-container">
+        <div class="home-card" style="background-color:#90D5FE">
+            <a href="homepageordinante">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <h3 style="color:#90D5FE; margin-left: 10px;">> Richieste Effettuate</h3> 
+    </div>
+
+    <!-- Sezione per la ricerca e il filtro -->
+    <div class="search-container">
+        <input type="text" placeholder="Cerca..." class="search-input">
+        <button class="search-button">Vai</button>
+    </div>
+    <div class="filter-container">
+        <p class="filter-text">Filtra per stato:</p>
+        <select name="status" id="status" class="filter-select">
+            <option value="tutti">Tutti</option>
+            <option value="in_carico">In Carico</option>
+            <option value="risolta">Risolta</option>
+            <option value="in_attesa">In Attesa</option>
+            <option value="ordinato">Ordinato</option>
+        </select>
+    </div>
+
+    <!-- Sezione che mostra le richieste effettuate -->
+    <div class="rows-container">
+         <!-- TODO: farle dinamiche -->
+
+         <div class="card-row-skyblue">
+            <div class="card-row-content">
+                <p class="card-row-text">Codice</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Categoria</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Data</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Stato</p>
+            </div>
+    </div>
+</div>

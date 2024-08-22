@@ -84,6 +84,11 @@
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.StoricoTecnico</servlet-class>
     </servlet>
     
+ <servlet>
+        <servlet-name>RichiesteOrdinante</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.RichiesteOrdinante</servlet-class>
+    </servlet>
+
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.Login</servlet-class>
@@ -133,6 +138,12 @@
         <servlet-name>StoricoTecnico</servlet-name>
         <url-pattern>/storico_tecnico</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RichiesteOrdinante</servlet-name>
+        <url-pattern>/richieste_ordinante</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
