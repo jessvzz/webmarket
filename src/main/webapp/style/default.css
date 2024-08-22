@@ -617,6 +617,7 @@ p {
     padding: 0;
     margin-right: auto;
     justify-content: flex-end;
+    margin-bottom: 20px;
 }
 
 .filter-text {
@@ -644,18 +645,20 @@ p {
 
 /* Elenco contenuti */
 .rows-container {
+    width: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
 }
 
-.card-row {
-    width: auto;
-    background-color: #ffffff;
+.card-row-purple, .card-row-skyblue, .card-row-orange {
+    width: 90%;
+    height: auto;
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -664,8 +667,28 @@ p {
     transition: background-color 0.3s ease;
 }
 
-.card-row:hover {
-    background-color: #f5f5f5;
+.card-row-purple {
+    background-color: #5D54BE;
+}
+
+.card-row-skyblue {
+    background-color: #90D5FE;
+}
+
+.card-row-orange {
+    background-color: #F67956;
+}
+
+.card-row-purple:hover {
+    background-color: #5935ad;
+}
+
+.card-row-skyblue:hover {
+    background-color: #67c4f1;
+}
+
+.card-row-orange:hover {
+    background-color: #e65c2e;
 }
 
 .card-row-content {
@@ -680,6 +703,13 @@ p {
     color: #333;
     text-align: center;
     transition: background-color 0.3s ease;
+    margin: 10px;
+}
+
+.card-row-text {
+    font-size: 20px;
+    color: #000000;
+    margin: 10px;
 }
 
 
