@@ -727,12 +727,21 @@ p {
     .search-bar, .search-bar input {
         width: 50%;
     }
+    
+    .categories {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
 }
 
 
 .width150px{
-    width: 150px;
+    max-width: 150px;
 }
+
 @media (max-width: 768px) {
     .card-purple, .card-orange, .card-skyblue {
         width: 100%;
