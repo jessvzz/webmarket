@@ -12,9 +12,11 @@
     </div>
     <#if (categorie?size>0)>
     <div class="categories">
-        <button class="lblue-button width150px">Aggiungi</button>
+        <button class="lblue-button width150px height61px span-1">Aggiungi</button>
         <#list categorie as categoria>
-        <button class="purple-button width150px category-item">${categoria.nome}</button>
+        <a href="categoria?n=${categoria.key}">
+        <button class="purple-button width150px category-item height61px span-1">${categoria.nome}</button>
+        </a>
         </#list>
     </div>
     </#if>

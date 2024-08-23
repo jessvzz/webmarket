@@ -226,6 +226,11 @@ select.medium,input.medium {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.container-beige-not-centered{
+    background-color: #fff7e6;
+    padding: 20px;
+    border-radius: 10px;
+}
 .hi-text {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 30px;
@@ -261,7 +266,11 @@ select.medium,input.medium {
     vertical-align: text-center;
     color: #1e1e1e;
 }
-
+.buttons-container{
+    display: flex;
+    gap: 20px; 
+    flex-wrap: wrap;
+}
 .two-buttons-container {
     display: flex;
     justify-content: center; 
@@ -275,6 +284,7 @@ select.medium,input.medium {
     gap: 10px; 
     flex-wrap: wrap;
 }
+
 
 .notifications-container {
     display: flex;
@@ -411,7 +421,7 @@ p {
     font-size:14px;
 }
 
-.lblue-button:hover {
+.lblue-button:hover, .icon-button:hover {
     background-color: #67c4f1;
 }
 
@@ -521,14 +531,78 @@ p {
     font-size: 24px;
     font-weight: bold;
     color: #4a3835;
-    margin: 0;
+    margin: 10px;
 }
 
 
 .categories {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px; 
+    justify-items: start; 
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.breadcrumb a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb span {
+    font-size: 18px;
+    color: #e78e52;
+    margin-left: 10px;
+}
+
+.category-details {
+    margin-top: 20px;
+}
+
+.icon-button {
+    background-color: #aad4fc;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 70%;
+    height: auto;
+}
+
+.parent-category {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.parent-category strong {
+    font-size: 18px;
+    color: #4d2c1c;
+}
+
+.subcategories strong {
+    font-size: 18px;
+    color: #4d2c1c;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.subcategory-buttons {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
@@ -767,10 +841,20 @@ p {
     }
 }
 
-
-.width150px{
-    max-width: 150px;
-}
+/* utili */
+    .width150px{
+        max-width: 150px;
+    }
+    
+   
+    
+    .span-1{
+       grid-column: span 1;
+    }
+    
+    .margin-right{
+        margin-right: 10px;
+    }
 
 @media (max-width: 768px) {
     .card-purple, .card-orange, .card-skyblue {
