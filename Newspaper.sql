@@ -94,7 +94,7 @@ CREATE TABLE proposta_acquisto (
     prezzo float NOT NULL,
     URL text NOT NULL,
     note varchar(255) NOT NULL,
-    stato ENUM('ACCETTATO','RIFIUTATO','IN_ATTESA') NOT NULL,
+    stato ENUM('ACCETTATO','RIFIUTATO','IN_ATTESA','ORDINATO') NOT NULL,
     motivazione text DEFAULT NULL,
     richiesta_id int(11) NOT NULL,
     CONSTRAINT id_richiesta_proposta FOREIGN KEY (richiesta_id)
