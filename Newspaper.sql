@@ -51,7 +51,7 @@ CREATE TABLE utente (
 CREATE TABLE richiesta_ordine (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     note varchar(255),
-    stato tinyint(1) NOT NULL,
+    stato ENUM('IN_ATTESA','PRESA_IN_CARICO','RISOLTA','ORDINATA') NOT NULL,
     data DATE NOT NULL,
     codice_richiesta varchar(255) UNIQUE NOT NULL,
     utente int(11) NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE proposta_acquisto (
     prezzo float NOT NULL,
     URL text NOT NULL,
     note varchar(255) NOT NULL,
-    stato ENUM('ACCETTATO','RIFIUTATO','IN_ATTESA', 'ORDINATO') NOT NULL,
+    stato ENUM('ACCETTATO','RIFIUTATO','IN_ATTESA','ORDINATO') NOT NULL,
     motivazione text DEFAULT NULL,
     richiesta_id int(11) NOT NULL,
     CONSTRAINT id_richiesta_proposta FOREIGN KEY (richiesta_id)
@@ -345,9 +345,9 @@ INSERT INTO utente (username, email, password, tipologia_utente) VALUES
     ('admin', 'admin@example.com', 'admin', 'AMMINISTRATORE'); #7
 
 INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) VALUES
-    (NULL, 0, '2024-08-06', 1, NULL, 4), /* 1) Giulia -> Portatili */
-    ('Vorrei un telefono impermeabile', 1, '2023-01-29', 2, 5, 11), /* 2) Gea -> Tecnico2 -> Smartphone */
-    (NULL, 1, '2023-01-29', 3, 4, 13); /* 3) Samanta -> Tecnico1 -> Console videogiochi */
+    (NULL, 'IN_ATTESA', '2024-08-06', 1, NULL, 4), /* 1) Giulia -> Portatili */
+    ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 2, 5, 11), /* 2) Gea -> Tecnico2 -> Smartphone */
+    (NULL, 'RISOLTA', '2023-01-29', 3, 4, 13); /* 3) Samanta -> Tecnico1 -> Console videogiochi */
 
 INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES
     /* 1) Giulia -> Portatili */
