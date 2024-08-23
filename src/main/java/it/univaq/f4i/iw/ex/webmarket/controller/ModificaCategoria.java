@@ -55,7 +55,7 @@ public class ModificaCategoria extends BaseController{
 
         request.setAttribute("success", "Categoria creata con successo");
               
-        action_default(request, response, n);
+        response.sendRedirect("categoria?n="+n);    
     }
 
     @Override
