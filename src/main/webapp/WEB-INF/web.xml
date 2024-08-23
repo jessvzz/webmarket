@@ -108,6 +108,10 @@
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.NuovaRichiesta</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>NotificheOrdinante</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.NotificheOrdinante</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.Login</servlet-class>
     </servlet>
@@ -178,6 +182,10 @@
     <servlet-mapping>
         <servlet-name>NuovaRichiesta</servlet-name>
         <url-pattern>/nuova_richiesta</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>NotificheOrdinante</servlet-name>
+        <url-pattern>/notifiche_ordinante</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
