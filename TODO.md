@@ -7,7 +7,10 @@
 - [x] Inserire una proposta d'acquisto come "ordinata"
 
 ## Gea:
-- [ ]
+- [ ] rivedi css gestionecatgorie
+- [ ] email
+- [ ] login (hash password etc)
+- [ ] header + footer
 
 ## Samanta:
 - [ ] aggiungere CHIUSA come stato Richiesta dell'utente

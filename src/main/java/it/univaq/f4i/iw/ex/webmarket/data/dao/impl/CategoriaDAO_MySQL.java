@@ -176,4 +176,21 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
             throw new DataException("Unable to delete Categoria", e);
         }
     }
+    
+    @Override
+    public List<Categoria> getCategorieByPadre(int padre) throws DataException {
+    List<Categoria> result = new ArrayList<>();
+    try {
+        sCategorieFiglioFromPadre.setInt(1, padre);
+        try (ResultSet rs = sCategorieFiglioFromPadre.executeQuery()) {
+            while (rs.next()) {
+                result.add(createCategoria(rs));
+            }
+        }
+    } catch (SQLException ex) {
+        throw new DataException("Unable to load child categories by parent ID", ex);
+    }
+    return result;
+}
+
 }

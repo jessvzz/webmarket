@@ -4,7 +4,7 @@
         <a href="gestionecategorie"><span> > Categorie</span></a>
     </div>
     <div class="category-details">
-        <h2 class="title-dark-brown">Categoria 1</h2>
+        <h2 class="title-dark-brown">${categoria.nome}</h2>
         <div class="buttons-container">
             <button class="lblue-button width150px">Modifica</button>
             <button class="icon-button">
@@ -13,16 +13,22 @@
         </div>
         <div class="parent-category">
             <strong>Categoria padre:</strong>
-            <button class="purple-button">Categoria</button>
+            <a href="categoria?n=${padre.key}">
+            <button class="purple-button">${padre.nome}</button>
+            </a>
         </div>
         <div class="subcategories">
             <strong>Sotto categorie:</strong>
             <div class="subcategory-buttons">
-                <button class="purple-button width150px margin-right">Categoria</button>
-                <button class="purple-button width150px margin-right">Categoria</button>
-                <button class="purple-button width150px margin-right">Categoria</button>
-                <button class="purple-button width150px margin-right">Categoria</button>
-                <button class="purple-button width150px margin-right">Categoria</button>
+                <#if (categorieFiglie?size>0)>
+            <#list categorieFiglie as figlia>
+            <a href="categoria?n=${figlia.key}">
+                <button class="purple-button width150px margin-right">${figlia.nome}</button>
+            </a>
+            </#list>
+        <#else>
+            <span>Nessuna sottocategoria</span>
+        </#if>
             </div>
         </div>
     </div>

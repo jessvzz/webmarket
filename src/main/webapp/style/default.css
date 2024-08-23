@@ -537,9 +537,8 @@ p {
 
 .categories {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px; 
-    justify-items: start; 
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
 }
 
 .breadcrumb {
