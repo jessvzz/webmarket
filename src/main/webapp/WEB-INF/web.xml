@@ -76,6 +76,10 @@
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.CategoriaController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ModificaCategoria</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.ModificaCategoria</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RichiesteTecnico</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.RichiesteTecnico</servlet-class>
     </servlet>
@@ -138,6 +142,10 @@
     <servlet-mapping>
         <servlet-name>Categoria</servlet-name>
         <url-pattern>/categoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificaCategoria</servlet-name>
+        <url-pattern>/modificacategoria</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RichiesteTecnico</servlet-name>

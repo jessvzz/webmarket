@@ -1,0 +1,25 @@
+<div class="container-beige">
+    <h2 class="title-dark-brown">Modifica la categoria</h2>
+    <form action="submit-category" method="post" class="form-container-orange">
+        <div class="form-group">
+            <label for="parent-category">Categoria padre:</label>
+            <select id="parent-category" class="lblue-select">
+                <option value="">Seleziona</option>
+                <option value="1">Categoria 1</option>
+                <option value="2">Categoria 2</option>
+                <option value="3">Categoria 3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="category-name">Nome:</label>
+            <input type="text" id="category-name" value="${categoria.nome}">
+        </div>
+        <div class="form-buttons">
+            <a href="categoria?n=${categoria.key}">
+            <button class="purple-button">INDIETRO</button>
+            </a>
+            <button type="submit" class="orange-button">SALVA</button>
+        </div>
+    </form>
+</div>
+
