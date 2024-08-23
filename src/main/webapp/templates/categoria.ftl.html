@@ -9,7 +9,7 @@
             <a href="modificacategoria?n=${categoria.key}">
             <button class="lblue-button width150px">Modifica</button>
             </a>
-            <button class="icon-button">
+            <button class="icon-button" id="delete-button" data-key="${categoria.key}">
                 <img src="images/trashcan-svg.svg" alt="Delete" />
             </button>
         </div>
@@ -35,3 +35,5 @@
         </div>
     </div>
 </div>
+ <script type="module" src="scripts/categoria.js"></script>
+

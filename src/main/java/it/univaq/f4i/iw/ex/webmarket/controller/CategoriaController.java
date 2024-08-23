@@ -50,6 +50,20 @@ public class CategoriaController extends BaseController{
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
+     
+     private void action_deleteCategory(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, DataException {
+        try {
+            Categoria categoria = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategoria(n);
+            if (categoria != null) {
+                ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().deleteCategoria(categoria);
+                response.sendRedirect("gestionecategorie"); // Redirigi alla lista delle categorie dopo l'eliminazione
+            } else {
+                handleError("Unable to find category to delete", request, response);
+            }
+        } catch (DataException ex) {
+            handleError("Data access exception: " + ex.getMessage(), request, response);
+        }
+    }
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -58,7 +72,12 @@ public class CategoriaController extends BaseController{
         int n;
         try {
             n = SecurityHelpers.checkNumeric(request.getParameter("n"));
+            String action = request.getParameter("action");
+            if ("deleteCategory".equals(action)) {
+                action_deleteCategory(request, response, n);
+            } else {
             action_categoria(request, response, n);
+            }
         } catch (NumberFormatException ex) {
             handleError("Invalid number specified", request, response);
         } catch (IOException | TemplateManagerException ex) {
