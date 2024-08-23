@@ -147,6 +147,7 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
                 System.out.println("Sono qui e la categoria è:" + categoria.getKey() );
                 uCategoria.setString(1, categoria.getNome());
                 uCategoria.setInt(2, categoria.getKey());
+                uCategoria.executeUpdate();
             } else { //insert
                 iCategoria.setString(1, categoria.getNome());
                 iCategoria.setInt(2, categoria.getPadre());
