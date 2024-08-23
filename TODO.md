@@ -4,7 +4,9 @@
 - [x] Far matchare gli enum col db
 - [ ] Cambiare il nome del file .sql del db
 - [ ] Cercare di togliere la sottolineatura dalle scritte delle card
-- [x] Inserire una proposta d'acquisto come "ordinata"
+- [x] Inserire una **richiesta** d'acquisto come "ordinata"
+- [x] Controllare lo spazio tra le card nella home tecnico
+- [ ] Modificare il resize delle righe
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
