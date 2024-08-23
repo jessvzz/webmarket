@@ -1,0 +1,31 @@
+<div class="container-beige">
+    <h2 class="title-dark-brown">
+            Aggiungi Categoria
+    </h2>
+    <form action="submit-category" method="post" class="form-container-orange">
+
+        <div class="form-group">
+            <label for="parent-category">Categoria padre:</label>
+            <#if (categorie?size>0)>
+
+            <select id="parent-category" class="lblue-select">
+                <option value="">Seleziona</option>
+                <#list categorie as cat>
+                <option value="${cat.key}">${cat.nome}</option>
+                </#list>
+            </select>
+            </#if>
+        </div>
+        <div class="form-group">
+            <label for="category-name">Nome:</label>
+            <input type="text" id="category-name" value="">
+        </div>
+        <div class="form-buttons">
+            <a href="gestionecategorie">
+            <button type="button" class="purple-button">INDIETRO</button>
+            </a>
+            <button type="submit" class="orange-button">SALVA</button>
+        </div>
+    </form>
+</div>
+

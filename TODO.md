@@ -11,6 +11,7 @@
 - [ ] email
 - [ ] login (hash password etc)
 - [ ] header + footer
+- [ ] action aggiungi + modifica categoria
 
 ## Samanta:
 - [ ] aggiungere CHIUSA come stato Richiesta dell'utente

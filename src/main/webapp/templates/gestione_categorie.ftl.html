@@ -12,7 +12,9 @@
     </div>
     <#if (categorie?size>0)>
     <div class="categories">
+        <a href="aggiungicategoria">
         <button class="lblue-button width150px height61px span-1">Aggiungi</button>
+        </a>
         <#list categorie as categoria>
         <a href="categoria?n=${categoria.key}">
         <button class="purple-button width150px category-item height61px span-1">${categoria.nome}</button>

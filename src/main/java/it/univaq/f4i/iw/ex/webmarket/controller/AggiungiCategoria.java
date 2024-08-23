@@ -12,7 +12,6 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -23,19 +22,18 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jessviozzi
  */
-public class ModificaCategoria extends BaseController{
-     private void action_categoria(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
+public class AggiungiCategoria extends BaseController{
+     private void action_categoria(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException, DataException {
         try {
-            Categoria categoria = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategoria(n);
+            request.setAttribute("categorie", ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getAllCategorie());
 
-            request.setAttribute("categoria", categoria);
                 
-            request.setAttribute("page_title", "modifica categoria");
+            request.setAttribute("page_title", "aggiungi categoria");
                 
             TemplateResult res = new TemplateResult(getServletContext());
               
             request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
-            res.activate("modifica_categoria.ftl.html", request, response);
+            res.activate("aggiungi_categoria.ftl.html", request, response);
           
         } catch (DataException ex) {
             handleError("Data access exception: " + ex.getMessage(), request, response);
@@ -46,10 +44,8 @@ public class ModificaCategoria extends BaseController{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
 
-        int n;
         try {
-            n = SecurityHelpers.checkNumeric(request.getParameter("n"));
-            action_categoria(request, response, n);
+            action_categoria(request, response);
         } catch (NumberFormatException ex) {
             handleError("Invalid number specified", request, response);
         } catch (IOException | TemplateManagerException ex) {
