@@ -6,6 +6,7 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.CategoriaImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author jessviozzi
  */
 public class ModificaCategoria extends BaseController{
-     private void action_categoria(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
+     private void action_default(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
         try {
             Categoria categoria = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategoria(n);
 
@@ -41,15 +42,36 @@ public class ModificaCategoria extends BaseController{
             handleError("Data access exception: " + ex.getMessage(), request, response);
         }
     }
+     
+    private void action_updateCategory(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, DataException, TemplateManagerException {
+        String name = request.getParameter("category-name");
+        
+        System.out.println("da qui ho questo nome: "+name+", e questa n: "+n);
+        Categoria categoria = new CategoriaImpl();
+        categoria.setNome(name);
+        categoria.setKey(n);
+
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().storeCategoria(categoria);
+
+        request.setAttribute("success", "Categoria creata con successo");
+              
+        action_default(request, response, n);
+    }
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
 
         int n;
+        n = SecurityHelpers.checkNumeric(request.getParameter("n"));
+
         try {
-            n = SecurityHelpers.checkNumeric(request.getParameter("n"));
-            action_categoria(request, response, n);
+            String action = request.getParameter("action");
+            if (action != null && action.equals("updateCategory")) {
+                action_updateCategory(request, response, n);
+            } else{
+            action_default(request, response, n);}
+            
         } catch (NumberFormatException ex) {
             handleError("Invalid number specified", request, response);
         } catch (IOException | TemplateManagerException ex) {

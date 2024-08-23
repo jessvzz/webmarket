@@ -51,7 +51,8 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
 
             iCategoria = connection.prepareStatement("INSERT INTO categoria(nome, padre) VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
-            uCategoria = connection.prepareStatement("UPDATE categoria SET nome=?, padre=? WHERE ID=?");
+            uCategoria = connection.prepareStatement("UPDATE categoria SET nome=? WHERE ID=?");
+            
             sCategorie = connection.prepareStatement("SELECT ID FROM categoria");
             sCategorieFiglioFromPadre = connection.prepareStatement("SELECT * FROM categoria WHERE padre = ?");
 
@@ -140,13 +141,16 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
     public void storeCategoria(Categoria categoria) throws DataException {
         try {
             if (categoria.getKey() != null && categoria.getKey() > 0) { //update
-                if (categoria instanceof DataItemProxy && !((DataItemProxy) categoria).isModified()) {
+                /*if (categoria instanceof DataItemProxy && !((DataItemProxy) categoria).isModified()) {
                     return;
-                }
+                }*/
+                System.out.println("Sono qui e la categoria è:" + categoria.getKey() );
                 uCategoria.setString(1, categoria.getNome());
-                uCategoria.setInt(3, categoria.getKey());
+                uCategoria.setInt(2, categoria.getKey());
             } else { //insert
                 iCategoria.setString(1, categoria.getNome());
+                iCategoria.setInt(2, categoria.getPadre());
+
                 if (iCategoria.executeUpdate() == 1) {
                     try (ResultSet keys = iCategoria.getGeneratedKeys()) {
                         if (keys.next()) {

@@ -2,13 +2,13 @@
     <h2 class="title-dark-brown">
             Aggiungi Categoria
     </h2>
-    <form action="submit-category" method="post" class="form-container-orange">
-
+    <form action="aggiungicategoria" method="post" class="form-container-orange">
+        <input type="hidden" name="action" value="createCategory">
         <div class="form-group">
             <label for="parent-category">Categoria padre:</label>
             <#if (categorie?size>0)>
 
-            <select id="parent-category" class="lblue-select">
+            <select id="parent-category" name="parent-category" class="lblue-select">
                 <option value="">Seleziona</option>
                 <#list categorie as cat>
                 <option value="${cat.key}">${cat.nome}</option>
@@ -18,13 +18,13 @@
         </div>
         <div class="form-group">
             <label for="category-name">Nome:</label>
-            <input type="text" id="category-name" value="">
+            <input type="text" id="category-name" name="category-name" value="">
         </div>
         <div class="form-buttons">
             <a href="gestionecategorie">
             <button type="button" class="purple-button">INDIETRO</button>
             </a>
-            <button type="submit" class="orange-button">SALVA</button>
+            <button class="orange-button">SALVA</button>
         </div>
     </form>
 </div>
