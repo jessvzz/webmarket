@@ -4,7 +4,7 @@
     </div>
     <div class="logininfo">
         <#if logininfo??>
-        ${logininfo.username} (<a href="logout?referrer=${thispageurl?url}">logout</a>)
+        ${logininfo.username} (<a href="logout?referrer=${thispageurl?url}" style="color: black;">[logout]</a>)
         <#else>
         <em>not logged in</em> (<a href="login?referrer=${thispageurl?url}">login</a>)
         </#if>

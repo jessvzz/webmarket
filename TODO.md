@@ -3,10 +3,11 @@
 - [x] Togliere INVIATA in StatoProposta
 - [x] Far matchare gli enum col db
 - [ ] Cambiare il nome del file .sql del db
-- [ ] Cercare di togliere la sottolineatura dalle scritte delle card
+- [x] Cercare di togliere la sottolineatura dalle scritte delle card
 - [x] Inserire una **richiesta** d'acquisto come "ordinata"
 - [x] Controllare lo spazio tra le card nella home tecnico
 - [ ] Modificare il resize delle righe
+- [ ] Sistemare la dimensione della card-richieste-storico
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
