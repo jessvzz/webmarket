@@ -13,13 +13,13 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.util.Properties;
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
 
 
 /**
@@ -84,16 +84,30 @@ public class GestioneUtenti extends BaseController {
     nuovoUtente.setTipologiaUtente(role);
 
     ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().storeUtente(nuovoUtente);
-    try {
-              String subject = "Benvenuto in WebMarket";
-              String body = "Ciao " + username + ",\n\n" +
-                            "Ecco le tue credenziali per accedere:\n" +
-                            "Username: " + username + "\n" +
-                            "Password temporanea: " + password + "\n\n" +
-                            "Ti consigliamo di cambiare la tua password al primo accesso.\n\n";
-              EmailSender.sendEmail(email, subject, body);
-              request.setAttribute("success", "Utente creato con successo e email inviata!");
-          } catch (Exception e) {
+       try {
+        // Questa poi voglio spostarla ma ora funziona e rimane così 
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.outlook.com"); 
+        props.put("mail.smtp.port", "587"); 
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
+            }
+        });
+
+        String subject = "Benvenuto in WebMarket";
+        String body = "Ciao e Benvenuto in WebMarket,\n\n" +
+                      "Ecco le tue credenziali per accedere:\n" +
+                      "Username: " + username + "\n" +
+                      "Password temporanea: " + password + "\n\n" +
+                      "Ti consigliamo di cambiare la tua password al primo accesso.\n\n";
+        
+        EmailSender.sendEmail(session, email, subject, body);
+        request.setAttribute("success", "Utente creato con successo e email inviata!");
+    } catch (Exception e) {
               request.setAttribute("error", "Utente creato con successo, ma si è verificato un problema durante l'invio dell'email.");
               e.printStackTrace();
           }
@@ -109,7 +123,7 @@ public class GestioneUtenti extends BaseController {
      */
     @Override
     public String getServletInfo() {
-        return "Main Newspaper servlet";
+        return "Gestione Utenti servlet";
     }// </editor-fold>
 
 }

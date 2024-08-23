@@ -11,10 +11,10 @@
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
-- [ ] email
+- [x] email
 - [ ] login (hash password etc)
 - [ ] header + footer
-- [ ] aggiusta modifica categoria
+- [x] aggiusta modifica categoria
 
 ## Samanta:
 - [ ] aggiungere CHIUSA come stato Richiesta dell'utente
@@ -25,3 +25,6 @@
 - [Figma dell'admin](https://www.figma.com/file/c6hYZIz2AJhbynd5b2UdG1?node-id=0-1&t=uapcU6HHGd49wdL5-0&type=whiteboard)
 - [Figma del tecnico](https://www.figma.com/board/0ZPJHIJs8QkLfjyrD49TUD/Prototipo-tecnico?node-id=0-1&t=G3JxyWIsZNVApCBr-1)
 - [Figma dell'ordinante](https://www.figma.com/board/Hdn2GgIKPyrXPcuaPm8Rmh/Bozza-Ordinante?node-id=0-1&t=Zk8EPDTFiqD4A2yj-0)
+
+# COSE A CUI PENSARE
+-[ ] inviare la mail nella creazione utente richiede molto tempo
