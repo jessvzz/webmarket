@@ -1,12 +1,12 @@
-<div class="row" id="header">
+<div class="row header-container" id="header">
     <div class="sixteen columns">Web Market
-        <div class="subtitle">La piattaforma online per la PA</div>
+        <div class="subtitle">L'eCommerce facile per il tuo ente</div>
     </div>
     <div class="logininfo">
         <#if logininfo??>
-        ${logininfo.username} (<a href="logout?referrer=${thispageurl?url}" style="color: black;">[logout]</a>)
+        <a href="logout?referrer=${thispageurl?url}" style="color: black;"><img class="tiny-logo" src="images/logout.svg" alt="Log Out" /></a>
         <#else>
-        <em>not logged in</em> (<a href="login?referrer=${thispageurl?url}">login</a>)
+        <a href="login?referrer=${thispageurl?url}">[login]</a>
         </#if>
     </div>
 </div>
