@@ -1083,11 +1083,11 @@ p {
     }
 
     .card-row-orange, .card-row-purple, .card-row-skyblue {
-        width: 100%;
+        flex-direction: column;
     }
 
     .card-row-content {
-        width: 100%;
+        width: 80%;
     }
 }
 
