@@ -26,17 +26,7 @@ public class Login extends BaseController {
         TemplateResult result = new TemplateResult(getServletContext());
         request.setAttribute("referrer", request.getParameter("referrer"));
         result.activate("login.ftl.html", request, response);
-
-//        //esempio di creazione utente
-//        //create user example
-//        try {
-//            User u = ((NewspaperDataLayer) request.getAttribute("datalayer")).getUserDAO().createUtente();
-//            u.setUsername("a");
-//            u.setPassword(SecurityHelpers.getPasswordHashPBKDF2("p"));
-//            ((NewspaperDataLayer) request.getAttribute("datalayer")).getUserDAO().storeUser(u);
-//        } catch (DataException | NoSuchAlgorithmException | InvalidKeySpecException ex) {
-//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+       
     }
 
     //nota: usente di default nel database: nome a, password p
@@ -47,20 +37,18 @@ public class Login extends BaseController {
 
         if (!username.isEmpty() && !password.isEmpty()) {
             try {
-                //System.out.println("email: " + username);
+                
                 System.out.println("ciao "+username);
                 
                 Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByUsername(username);
                 
                if (u != null && SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
-                //if (u != null && password.equals(u.getPassword())) {
+                
                     //se la validazione ha successo
                     //if the identity validation succeeds
-                    System.out.println("sono dentro, l'utente è: "+u.getEmail());
                     SecurityHelpers.createSession(request, username, u.getKey());
                     //se è stato trasmesso un URL di origine, torniamo a quell'indirizzo
                     //if an origin URL has been transmitted, return to it
-                    System.out.println("tipologia "+u.getTipologiaUtente());
                     String redirectPage;
                     redirectPage = switch (u.getTipologiaUtente()) {
     
@@ -71,20 +59,23 @@ public class Login extends BaseController {
                     };
                     
                     if (request.getParameter("referrer") != null) {
-                        //response.sendRedirect(request.getParameter("referrer"));
-                        response.sendRedirect(request.getParameter(redirectPage));
+                        response.sendRedirect(request.getParameter("referrer"));
 
                     } else {
                         response.sendRedirect(redirectPage);
                     }
                     return;
-                }
+                } else{
+                    request.setAttribute("error", "Email o password non corretti");
+
+               }
             } catch (DataException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         //se la validazione fallisce...
         //if the validation fails...
+        //request.setAttribute("error", "Email o password non corretti");
         handleError("Login failed", request, response);
     }
 
@@ -101,7 +92,6 @@ public class Login extends BaseController {
             throws ServletException {
         try {
 
-            Logger.getLogger(Login.class.getName()).log(Level.INFO, null, "Sono qui");            
             if (request.getParameter("login") != null) {
                 action_login(request, response);
             } else {
