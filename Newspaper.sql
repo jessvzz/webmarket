@@ -342,8 +342,8 @@ INSERT INTO utente (username, email, password, tipologia_utente) VALUES
 
 INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) VALUES
     (NULL, 'IN_ATTESA', '2024-08-06', 1, NULL, 4), /* 1) Giulia -> Portatili */
-    ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 2, 5, 11), /* 2) Gea -> Tecnico2 -> Smartphone */
-    (NULL, 'RISOLTA', '2023-01-29', 3, 4, 13); /* 3) Samanta -> Tecnico1 -> Console videogiochi */
+    ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 2, 2, 11), /* 2) Gea -> Tecnicog -> Smartphone */
+    (NULL, 'RISOLTA', '2023-01-29', 3, 2, 13); /* 3) Samanta -> Tecnicog -> Console videogiochi */
 
 INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES
     /* 1) Giulia -> Portatili */
