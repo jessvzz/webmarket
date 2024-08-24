@@ -41,7 +41,7 @@ public class Login extends BaseController {
 
     //nota: usente di default nel database: nome a, password p
     //note: default user in the database: name: a, password p
-    private void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -52,8 +52,8 @@ public class Login extends BaseController {
                 
                 Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByUsername(username);
                 
-               // if (u != null && SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
-                if (u != null && password.equals(u.getPassword())) {
+               if (u != null && SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
+                //if (u != null && password.equals(u.getPassword())) {
                     //se la validazione ha successo
                     //if the identity validation succeeds
                     System.out.println("sono dentro, l'utente è: "+u.getEmail());
@@ -111,6 +111,10 @@ public class Login extends BaseController {
             }
         } catch (IOException | TemplateManagerException ex) {
             handleError(ex, request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

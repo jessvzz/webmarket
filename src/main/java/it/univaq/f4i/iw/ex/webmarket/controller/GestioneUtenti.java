@@ -13,7 +13,11 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -52,10 +56,14 @@ public class GestioneUtenti extends BaseController {
 
     } catch (IOException | TemplateManagerException | DataException ex) {
         handleError(ex, request, response);
-    }
+    }   catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(GestioneUtenti.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(GestioneUtenti.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }
 
-    private void action_createUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, DataException, TemplateManagerException {
+    private void action_createUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, DataException, TemplateManagerException, NoSuchAlgorithmException, InvalidKeySpecException {
     String username = request.getParameter("username");
     String email = request.getParameter("email");
     String password = request.getParameter("temp-password");
@@ -76,11 +84,12 @@ public class GestioneUtenti extends BaseController {
     }
 
     TipologiaUtente role = TipologiaUtente.valueOf(roleParam.toUpperCase());
+    String hashedPass = SecurityHelpers.getPasswordHashPBKDF2(password);
 
     Utente nuovoUtente = new UtenteImpl();
     nuovoUtente.setUsername(username);
     nuovoUtente.setEmail(email);
-    nuovoUtente.setPassword(password);
+    nuovoUtente.setPassword(hashedPass);
     nuovoUtente.setTipologiaUtente(role);
 
     ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().storeUtente(nuovoUtente);
