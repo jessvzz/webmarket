@@ -22,10 +22,6 @@
         <param-value>templates</param-value>
     </context-param>
     <context-param>
-        <param-name>view.data.static.author</param-name>
-        <param-value>Giuseppe Della Penna</param-value>
-    </context-param>
-    <context-param>
         <param-name>view.data.static.homepage_url</param-name>
         <param-value>homepage</param-value>
     </context-param>
@@ -44,7 +40,25 @@
     <context-param>
         <param-name>security.protect.patterns</param-name>
         <!-- qui configuriamo i pattern delle URL da proteggere -->
-        <param-value>/compose,/write</param-value>
+        <param-value>
+            /homepageordinante,
+             /homepagetecnico,
+             /homepageadmin,
+             /gestioneutenti,
+             /gestionecategorie,
+             /categoria,
+             /modificacategoria,
+             /aggiungicategoria,
+             /richieste_tecnico,
+             proposte_tecnico,
+             /storico_tecnico,
+             /richieste_ordinante,
+             /ordini,
+             /nuova_richiesta,
+             /notifiche_ordinante,
+             /profilo_ordinante,
+             /detailrichiesta_tecnico,
+        </param-value>
     </context-param>
     <context-param>
         <param-name>data.source</param-name>
