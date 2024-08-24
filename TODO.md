@@ -7,7 +7,7 @@
 - [x] Inserire una **richiesta** d'acquisto come "ordinata"
 - [x] Controllare lo spazio tra le card nella home tecnico
 - [ ] Modificare il resize delle righe
-- [ ] Sistemare la dimensione della card-richieste-storico
+- [x] Sistemare la dimensione della card-richieste-storico
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
