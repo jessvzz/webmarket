@@ -901,6 +901,15 @@ p {
     color: white;
 }
 
+.skyblue-richiesta-storico1 {
+    background-color:  #0D99FF;
+    width: auto;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    color: white;
+}
 .skyblue-richiesta-storico {
     background-color: #90D5FE;
     height: 80px;
