@@ -163,6 +163,8 @@
     <servlet>
         <servlet-name>MotivaRifiuto</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.MotivaRifiuto</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DetailPropostaTecnico</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.DetailPropostaTecnico</servlet-class>
     </servlet>
@@ -273,6 +275,8 @@
     <servlet-mapping>
         <servlet-name>MotivaRifiuto</servlet-name>
         <url-pattern>/motiva_rifiuto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DetailPropostaTecnico</servlet-name>
         <url-pattern>/detailproposta_tecnico</url-pattern>
     </servlet-mapping>
