@@ -62,8 +62,12 @@
              /dettaglio_richiesta_ord,
              /dettaglio_ordine_ord,
              /dettaglio_proposta_ord,
+<<<<<<< HEAD
              /successo_ordine,
              /motiva_rifiuto,
+=======
+             /detailproposta_tecnico
+>>>>>>> db72035dfeb7203beaebda4eed7b43b4a6e569ae
         </param-value>
     </context-param>
     <context-param>
@@ -151,17 +155,22 @@
         <servlet-name>DettaglioOrdineOrd</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.DettaglioOrdineOrd</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>DettaglioPropostaOrd</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.DettaglioPropostaOrd</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>SuccessoOrdine</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.SuccessoOrdine</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MotivaRifiuto</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.MotivaRifiuto</servlet-class>
+=======
+        <servlet-name>DetailPropostaTecnico</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.DetailPropostaTecnico</servlet-class>
+>>>>>>> db72035dfeb7203beaebda4eed7b43b4a6e569ae
     </servlet>
     <servlet>
         <servlet-name>login</servlet-name>
@@ -259,17 +268,22 @@
         <servlet-name>DettaglioOrdineOrd</servlet-name>
         <url-pattern>/dettaglio_ordine_ord</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DettaglioPropostaOrd</servlet-name>
         <url-pattern>/dettaglio_proposta_ord</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>SuccessoOrdine</servlet-name>
         <url-pattern>/successo_ordine</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MotivaRifiuto</servlet-name>
         <url-pattern>/motiva_rifiuto</url-pattern>
+=======
+        <servlet-name>DetailPropostaTecnico</servlet-name>
+        <url-pattern>/detailproposta_tecnico</url-pattern>
+>>>>>>> db72035dfeb7203beaebda4eed7b43b4a6e569ae
     </servlet-mapping>
     <session-config>
         <session-timeout>
