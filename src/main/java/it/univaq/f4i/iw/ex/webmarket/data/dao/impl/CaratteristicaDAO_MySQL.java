@@ -19,7 +19,7 @@ import java.util.List;
 public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
 
 
-    private PreparedStatement sCaratteristicaByID, sCaratteristicheByRichiesta, sCaratteristiche, iCaratteristica, uCaratteristica, dCaratteristica;
+    private PreparedStatement sCaratteristicaByID, sCaratteristicheByRichiesta, sCaratteristiche, iCaratteristica, uCaratteristica, dCaratteristica, sCaratteristicaByCategoria;
 
 
     public CaratteristicaDAO_MySQL(DataLayer d) {
@@ -33,6 +33,7 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
             super.init();
 
             sCaratteristicaByID = connection.prepareStatement("SELECT * FROM caratteristica WHERE ID = ?");
+            sCaratteristicaByCategoria = connection.prepareStatement("SELECT * FROM caratteristica WHERE categoria_id=?");
             sCaratteristicheByRichiesta = connection.prepareStatement("SELECT c.* FROM caratteristica c JOIN caratteristica_richiesta cr ON c.ID = cr.caratteristica_id WHERE cr.richiesta_id = ?");
             sCaratteristiche = connection.prepareStatement("SELECT * FROM caratteristica");
             iCaratteristica = connection.prepareStatement("INSERT INTO caratteristica (nome, categoria_id) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
@@ -137,6 +138,23 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
     }
     return result;
     }
+    
+    @Override
+    public List<Caratteristica> getCaratteristicheByCategoria(int categoria) throws DataException {
+        List<Caratteristica> result = new ArrayList<>();
+    try {
+        sCaratteristicheByRichiesta.setInt(1, categoria);
+        try (ResultSet rs = sCaratteristicheByRichiesta.executeQuery()) {
+            while (rs.next()) {
+                result.add(createCaratteristica(rs));
+            }
+        }
+    } catch (SQLException ex) {
+        throw new DataException("Unable to load caratteristiche by categoria ID", ex);
+    }
+    return result;
+    }
+
 
     @Override
     public void storeCaratteratica(Caratteristica caratteristica) throws DataException {

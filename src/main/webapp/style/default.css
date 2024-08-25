@@ -44,10 +44,17 @@ body,html {
 }
 
 input {
-    border: 1px solid #53829D;
-    background:  white;
-    font-size: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 17px;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
+
 
 a {
     text-decoration: none;
@@ -620,7 +627,7 @@ p {
 }
 
 .form-container-orange {
-    background-color: #e78e52;
+    background-color: #eba06e;
     padding: 20px;
     border-radius: 30px;
     text-align: left;
@@ -672,6 +679,30 @@ p {
 .home-icon {
     width: 60%;
     height: auto;
+}
+
+#caratteristiche-container {
+    margin-bottom: 15px;
+}
+
+.caratteristica-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cancel-btn {
+    background-color: #f67956;
+    border: none;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancel-btn :hover {
+    background-color: #e65746;
 }
 
 /* Barra di ricerca */

@@ -13,6 +13,9 @@ public interface CaratteristicaDAO {
     Caratteristica getCaratteristica(int Caratteristica_key) throws DataException;
 
     List<Caratteristica> getCaratteristicheByRichiesta(int richiesta_key) throws DataException;
+    
+    List<Caratteristica> getCaratteristicheByCategoria(int richiesta_key) throws DataException;
+
 
     void storeCaratteratica(Caratteristica caratteristica) throws DataException;
 

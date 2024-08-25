@@ -15,9 +15,13 @@
         </div>
         <div class="parent-category">
             <strong>Categoria padre:</strong>
+             <#if (padre??)>
             <a href="categoria?n=${padre.key}">
             <button class="purple-button">${padre.nome}</button>
             </a>
+             <#else>
+            <span>Sei nel root</span>
+        </#if>
         </div>
         <div class="subcategories">
             <strong>Sotto categorie:</strong>
