@@ -900,7 +900,6 @@ p {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    margin: 20px;
 }
 
 .row-tecnico > * {
@@ -1012,6 +1011,7 @@ p {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 10px;
 }
 
 .btn-verde:hover {
@@ -1089,6 +1089,7 @@ p {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-right: 20px;
+    margin-bottom: 10px;
 }
 
 .btn-arancio:hover {
@@ -1105,6 +1106,22 @@ p {
 
     .container-richieste-storico {
         width: auto;
+    }
+
+    .container-info-proposta {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .container-skyblue-proposta {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .container-skyblue-proposta label {
+        text-align: center;
+        margin-right: 0;
     }
 
     .form-container {
@@ -1161,6 +1178,8 @@ p {
     .row-tecnico {
         width: 100%;
         flex-direction: column;
+        text-align: center;
+        justify-items: center;
     }
 
     .form-group-tecnico {
@@ -1225,6 +1244,14 @@ p {
 
     .card-row-content {
         width: 80%;
+    }
+
+    .grey-row {
+        width: auto;
+    }
+
+    .badge-stato {
+        width: 100%;
     }
 }
 
