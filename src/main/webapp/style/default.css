@@ -481,6 +481,16 @@ p {
     transition: background-color 0.3s ease;
 }
 
+.green-button {
+    background-color: #53dd47;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 30px;
+    color: rgb(104, 102, 102);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
 .purple-button a {
     color: #fff; 
     text-decoration: none; 
@@ -504,6 +514,9 @@ p {
     background-color: #405dce;
 }
 
+.purple-button:hover {
+    background-color: #06b22e;
+}
 .orange-button:hover {
     background-color: #e65c2e;
 }
@@ -1043,7 +1056,8 @@ p {
     }
 
     .orange-button,
-    .purple-button {
+    .purple-button,
+    .green-button {
         margin: 5px 0;
         padding: 10px;
         font-size: 16px;

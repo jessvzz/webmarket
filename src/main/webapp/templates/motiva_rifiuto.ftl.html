@@ -1,0 +1,29 @@
+<div class="container-beige">
+    <h2 class="form-title">Gentile Cliente, inserisca la motivazione del rifiuto per l'ordine #codiceOrdine</h2>
+    <div class="form-container">
+    <form method="POST" action="motivarifiuto">
+
+        <div class="motivaione-selection">
+            <label class="white-label" for="motivo">Rifiutato per:</label>
+            <div class="role-buttons">
+                <input type="radio" id="role-ordinante" name="role" value="ORDINANTE" checked>
+                <label for="role-ordinante" class="lblue-button">Non Conformità</label>
+
+                <input type="radio" id="role-tecnico" name="role" value="TECNICO">
+                <label for="role-tecnico" class="lblue-button">Malfunzionamento</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="note">Note aggiuntive:</label>
+            <input type="note" id="note" name="note" placeholder="note">
+        </div>
+       
+        <div class="form-buttons">
+            <a href="homepageordinante">
+            <button type="button" class="purple-button">INDIETRO</button>
+            </a>
+            <button type="submit" class="orange-button">SALVA</button>
+        </div>
+    </form>
+    </div>
+</div>
