@@ -914,6 +914,7 @@ p {
     font-size: 20px;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .form-group-tecnico label {
@@ -1039,12 +1040,19 @@ p {
     margin: 20px;
 }
 
-.container-skyblue-proposta {
+.container-skyblue-proposta, .container-purple-proposta {
     width: 80%;
-    background-color: #90D5FE;
     padding: 20px;
     border-radius: 30px;
     text-align: right;
+}
+
+.container-skyblue-proposta {
+    background-color: #90D5FE;
+}
+
+.container-purple-proposta {
+    background-color: #5D54BE;
 }
 
 .container-skyblue-proposta label {
@@ -1053,6 +1061,15 @@ p {
     display: block;
     font-size: 25px;
     color: #333;
+    margin-right: 150px;
+}
+
+.container-purple-proposta label {
+    width: 100%;
+    text-align: right;
+    display: block;
+    font-size: 25px;
+    color: #ffffff;
     margin-right: 150px;
 }
 
@@ -1096,6 +1113,16 @@ p {
     background-color: #df9869;
 }
 
+/* Invio di una nuova proposta */
+.textfield-grey {
+    width: 2000px;
+    height: auto;
+    background-color: #E6E6E6;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
 
 /* Responsive for homepage admin*/
 @media (max-width: 600px) {
@@ -1113,13 +1140,18 @@ p {
         flex-direction: column;
     }
 
-    .container-skyblue-proposta {
+    .container-skyblue-proposta, .container-purple-proposta {
         width: 100%;
         text-align: center;
         justify-content: center;
     }
 
     .container-skyblue-proposta label {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .container-purple-proposta label {
         text-align: center;
         margin-right: 0;
     }
@@ -1252,6 +1284,10 @@ p {
 
     .badge-stato {
         width: 100%;
+    }
+
+    .textfield-grey {
+        width: auto;
     }
 }
 
