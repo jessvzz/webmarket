@@ -1,6 +1,7 @@
 package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.RichiestaOrdineDAO;
+import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.RichiestaOrdineProxy;
@@ -35,7 +36,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
 
             // Precompilazione delle query utilizzate nella classe
             sRichiestaOrdineByID = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE ID = ?");
-            sRichiesteByUtente = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE utente_id = ?");
+            sRichiesteByUtente = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE utente = ?");
             sRichiesteInoltrate = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
             sRichiesteTecnico = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE tecnico_id = ?");
             sRichiesteRisolte = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
@@ -76,6 +77,10 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             richiesta.setData(rs.getDate("data"));
             richiesta.setCodiceRichiesta(rs.getString("codice_richiesta"));
             // Impostazione di utente, tecnico e categoria non implementata qui, potrebbe essere fatta attraverso ulteriori query
+            int categoriaId = rs.getInt("categoria_id");
+            Categoria categoria = ((ApplicationDataLayer) getDataLayer()).getCategoriaDAO().getCategoria(categoriaId);
+            richiesta.setCategoria(categoria);
+
             return richiesta;
         } catch (SQLException ex) {
             throw new DataException("Unable to create RichiestaOrdine object from ResultSet", ex);

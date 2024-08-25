@@ -65,6 +65,6 @@ public class GestioneCategorie extends BaseController {
      */
     @Override
     public String getServletInfo() {
-        return "Main Webmarket servlet";
+        return "Servlet per la gestione delle categorie";
     }// </editor-fold>
 }

@@ -341,9 +341,9 @@ INSERT INTO utente (username, email, password, tipologia_utente) VALUES
     ('geaviozzi', 'geaviozzi@icloud.com', '3ece874c150039c7740d2d5c74ecf2f0b64c3a6c972bbd1b389ca3db8402bdb5a783084ac59a1015c793f4c24a8fbcb2', 'ORDINANTE'); #passgea
 
 INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) VALUES
-    (NULL, 'IN_ATTESA', '2024-08-06', 1, NULL, 4), /* 1) Giulia -> Portatili */
-    ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 2, 2, 11), /* 2) Gea -> Tecnicog -> Smartphone */
-    (NULL, 'RISOLTA', '2023-01-29', 3, 2, 13); /* 3) Samanta -> Tecnicog -> Console videogiochi */
+    (NULL, 'IN_ATTESA', '2024-08-06', 3, NULL, 4), /* 1) Giulia -> Portatili */
+    ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 3, 5, 11), /* 2) Gea -> Tecnico2 -> Smartphone */
+    (NULL, 'RISOLTA', '2023-01-29', 3, 4, 13); /* 3) Samanta -> Tecnico1 -> Console videogiochi */
 
 INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES
     /* 1) Giulia -> Portatili */

@@ -24,53 +24,32 @@
     </div>
 
     <!-- Sezione che mostra le richieste effettuate -->
+        <#if (richieste?size>0)>
+
     <div class="rows-container">
          <!-- TODO: farle dinamiche -->
-<a href="dettaglio_richiesta_ord" class="a-cards">
+        <#list richieste as richiesta>
+
+        <a href="dettaglio_richiesta_ord?n=${richiesta.key}" class="a-cards">
          <div class="card-row-skyblue">
             <div class="card-row-content">
-                <p class="card-row-text">Codice</p>
+                <p class="card-row-text">Codice: ${richiesta.codiceRichiesta}</p>
             </div>
             <div class="card-row-content">
-                <p class="card-row-text">Categoria</p>
+                <p class="card-row-text">Categoria: ${richiesta.categoria.nome}</p>
             </div>
             <div class="card-row-content">
-                <p class="card-row-text">Data</p>
+                <p class="card-row-text">Data: ${richiesta.data} </p>
             </div>
             <div class="card-row-content">
-                <p class="card-row-text">Stato</p>
+                <p class="card-row-text">Stato: ${richiesta.stato} </p>
             </div>
          </div>
-         <a href="dettaglio_richiesta_ord" class="a-cards">
-         <div class="card-row-skyblue">
-            <div class="card-row-content">
-                <p class="card-row-text">Codice</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Categoria</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Data</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Stato</p>
-            </div>
-         </div>
-         <a href="dettaglio_richiesta_ord" class="a-cards">
-         <div class="card-row-skyblue">
-            <div class="card-row-content">
-                <p class="card-row-text">Codice</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Categoria</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Data</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Stato</p>
-            </div>
-         </div>
+         
+        </a>
+        </#list>
         
         </div>
+       </#if>
+
 </div>
