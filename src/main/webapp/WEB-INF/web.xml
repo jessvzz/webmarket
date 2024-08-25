@@ -61,7 +61,8 @@
              /detailstorico_tecnico,
              /dettaglio_richiesta_ord,
              /dettaglio_ordine_ord,
-             /dettaglio_proposta_ord
+             /dettaglio_proposta_ord,
+             /detailproposta_tecnico
         </param-value>
     </context-param>
     <context-param>
@@ -149,9 +150,13 @@
         <servlet-name>DettaglioOrdineOrd</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.DettaglioOrdineOrd</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>DettaglioPropostaOrd</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.DettaglioPropostaOrd</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailPropostaTecnico</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.DetailPropostaTecnico</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>login</servlet-name>
@@ -249,9 +254,13 @@
         <servlet-name>DettaglioOrdineOrd</servlet-name>
         <url-pattern>/dettaglio_ordine_ord</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DettaglioPropostaOrd</servlet-name>
         <url-pattern>/dettaglio_proposta_ord</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailPropostaTecnico</servlet-name>
+        <url-pattern>/detailproposta_tecnico</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

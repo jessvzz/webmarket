@@ -708,7 +708,7 @@ p {
 /* Barra di ricerca */
 .search-container {
     display: flex;
-    align-items: right;
+    align-items: center;
     background-color: transparent;
     border-radius: 0;
     box-shadow: none;
@@ -729,6 +729,7 @@ p {
 }
 
 .search-button {
+    height: 100%;
     padding: 10px 20px;
     border: none;
     background-color: #F9AA75;
@@ -880,7 +881,7 @@ p {
     box-sizing: border-box;
 }
 
-.row-richieste-storico {
+.row-tecnico {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -889,22 +890,22 @@ p {
     margin: 20px;
 }
 
-.row-richieste-storico > * {
+.row-tecnico > * {
     flex: 0 1 auto;
     margin: 0;
 }
 
-.form-group-richiesta-storico {
+.form-group-tecnico {
     width: 75%;
     margin-bottom: 20px;
     color: #333;
-    font-size: 60px;
+    font-size: 20px;
     display: flex;
     flex-direction: row;
 }
 
-.form-group-richiesta-storico label {
-    text-align: center;
+.form-group-tecnico label {
+    text-align: left;
     display: block;
     font-size: 25px;
     color: #333;
@@ -941,6 +942,7 @@ p {
     border: none;
     color: white;
 }
+
 .skyblue-richiesta-storico {
     background-color: #90D5FE;
     height: 80px;
@@ -986,7 +988,7 @@ p {
 
 .btn-verde {
     display: block;
-    width: 20%;
+    width: auto;
     padding: 10px;
     background-color: #AAE8B4;
     color: #333;
@@ -1003,6 +1005,83 @@ p {
     background-color: #98D8A2;
 }
 
+/* Detail proposta tecnico */
+.container-proposta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.container-info-proposta {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: right;
+    justify-content: left;
+    gap: 20px;
+    margin: 20px;
+}
+
+.container-skyblue-proposta {
+    width: 80%;
+    background-color: #90D5FE;
+    padding: 20px;
+    border-radius: 30px;
+    text-align: right;
+}
+
+.container-skyblue-proposta label {
+    width: 100%;
+    text-align: right;
+    display: block;
+    font-size: 25px;
+    color: #333;
+    margin-right: 150px;
+}
+
+.badge-stato {
+    background-color: #bdbdbd;
+    width: 10%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    color: black;
+    text-align: center;
+}
+
+.grey-row {
+    width: 2000px;
+    background-color: #E6E6E6;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn-arancio {
+    display: block;
+    width: auto;
+    padding: 10px;
+    background-color: #F9AA75;
+    color: #333;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+}
+
+.btn-arancio:hover {
+    background-color: #df9869;
+}
+
 
 /* Responsive for homepage admin*/
 @media (max-width: 600px) {
@@ -1017,6 +1096,10 @@ p {
 
     .form-container {
         padding: 15px;
+    }
+
+    .container-proposta {
+        width: auto;
     }
 
     .form-title {
@@ -1061,17 +1144,17 @@ p {
         width: 100%;
     }
 
-    .row-richieste-storico {
+    .row-tecnico {
         width: 100%;
         flex-direction: column;
     }
 
-    .form-group-richiesta-storico {
+    .form-group-tecnico {
         width: 100%;
         flex-direction: column;
     }
 
-    .btn-verde, .skyblue-richiesta-storico, .orange-richiesta-storico, .pink-richiesta-storico1, .pink-richiesta-storico2 {
+    .btn-verde, .btn-arancio, .skyblue-richiesta-storico, .orange-richiesta-storico, .pink-richiesta-storico1, .pink-richiesta-storico2 {
         width: 100%;
     }
 }
