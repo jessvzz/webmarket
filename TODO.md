@@ -6,7 +6,7 @@
 - [x] Cercare di togliere la sottolineatura dalle scritte delle card
 - [x] Inserire una **richiesta** d'acquisto come "ordinata"
 - [x] Controllare lo spazio tra le card nella home tecnico
-- [ ] Modificare il resize delle righe
+- [x] Modificare il resize delle righe
 - [x] Sistemare la dimensione della card-richieste-storico
 
 ## Gea:

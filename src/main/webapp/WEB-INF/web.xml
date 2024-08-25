@@ -65,7 +65,8 @@
              /successo_ordine,
              /motiva_rifiuto,
              /detailproposta_tecnico,
-             /invioproposta
+             /invioproposta,
+             /notifiche_tecnico 
         </param-value>
     </context-param>
     <context-param>
@@ -172,6 +173,10 @@
     <servlet>
         <servlet-name>InvioProposta</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.InvioProposta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NotificheTecnico</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.NotificheTecnico</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>login</servlet-name>
@@ -288,6 +293,10 @@
     <servlet-mapping>
         <servlet-name>InvioProposta</servlet-name>
         <url-pattern>/invioproposta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotificheTecnico</servlet-name>
+        <url-pattern>/notifiche_tecnico</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -324,7 +324,7 @@ select.medium,input.medium {
     transition: background-color 0.3s ease;
 }
 
-.card-pink-notifications {
+.card-pink-notifications, .card-notif-pulse {
     width: 180px; 
     height: 50px; 
     border-radius: 20px;
@@ -336,9 +336,20 @@ select.medium,input.medium {
     background-color: #FFC7C2;
     text-align: center;
     transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.card-notif-pulse {
+    animation: pulse 2s infinite;
 }
 
 .card-pink-notifications .img-notif {
+    width: 15%;
+    height: auto;
+    margin-right: 10px;
+}
+
+.card-notif-pulse .img-notif {
     width: 15%;
     height: auto;
     margin-right: 10px;
@@ -805,7 +816,7 @@ p {
     justify-content: center;
 }
 
-.card-row-purple, .card-row-skyblue, .card-row-orange {
+.card-row-purple, .card-row-skyblue, .card-row-orange, .card-row-pink, .card-row-notif {
     width: 90%;
     height: auto;
     border-radius: 10px;
@@ -832,6 +843,10 @@ p {
     background-color: #F67956;
 }
 
+.card-row-pink {
+    background-color: #FFC7C2;
+}
+
 .card-row-purple:hover {
     background-color: #5935ad;
 }
@@ -842,6 +857,10 @@ p {
 
 .card-row-orange:hover {
     background-color: #e65c2e;
+}
+
+.card-row-pink:hover {
+    background-color: #c9908b;
 }
 
 .card-row-content {
@@ -884,6 +903,12 @@ p {
     margin: inherit;
     flex: inherit;
     padding: inherit;
+    margin-right: inherit;
+    max-width: inherit;
+    font-size: inherit;
+    border: inherit;
+    margin-left: inherit;
+    margin-bottom: inherit;
 }
 
 /* Contenuti detail richiesta e storico */
@@ -1123,6 +1148,21 @@ p {
     text-align: center;
 }
 
+/* Notifica non letta */
+.card-row-notif {
+    background-color: #FFC7C2;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+      background-color: #FFC7C2;
+    }
+    50% {
+      background-color: #ff0000;
+    }
+}
+
 
 /* Responsive for homepage admin*/
 @media (max-width: 600px) {
@@ -1245,7 +1285,7 @@ p {
         height: 200px;
     }
 
-    .card-pink-notifications {
+    .card-pink-notifications, .card-notif-pulse {
         width: 100%;
         height: 50px;
     }
@@ -1270,7 +1310,7 @@ p {
         align-items: center;
     }
 
-    .card-row-orange, .card-row-purple, .card-row-skyblue {
+    .card-row-orange, .card-row-purple, .card-row-skyblue, .card-row-pink, .card-row-notif {
         flex-direction: column;
     }
 
