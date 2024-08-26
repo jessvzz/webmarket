@@ -1,5 +1,6 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -52,6 +53,14 @@ public class NuovaRichiesta extends BaseController {
             int n = SecurityHelpers.checkNumeric(nParam);
             if (n != 0) {
                 fetch_subcategories(request, response, n);
+                List<Categoria> subCategories = ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                    .getCategoriaDAO().getCategorieByPadre(n);
+                
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                ObjectMapper objectMapper = new ObjectMapper();
+                response.getWriter().write(objectMapper.writeValueAsString(subCategories));                
+                return;
             }
         }
                 action_default(request, response);
