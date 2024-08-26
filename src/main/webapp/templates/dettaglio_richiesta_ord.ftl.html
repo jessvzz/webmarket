@@ -42,7 +42,7 @@
                 <label for="proposte">Proposte:</label>
                 <#list richiesta.proposte as proposta>
                     <div class="pink-richiesta-storico2">
-                        <a href="dettaglio_proposta_ord?n=${proposta.id}"> ${proposta.id}</a>
+                        <a href="dettaglio_proposta_ord?n=${proposta.key}"> ${proposta.id}</a>
                     </div>
                 </#list>
             <#else>

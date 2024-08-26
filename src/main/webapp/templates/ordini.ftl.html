@@ -7,6 +7,7 @@
         </div>
         <h3 style="color: #5D54BE; margin-left: 10px;">> Ordini</h3> 
     </div>
+    
     <div class="search-container">
         <input type="text" placeholder="Cerca..." class="search-input">
         <button class="search-button">Vai</button>
@@ -22,8 +23,9 @@
         </select>
     </div>
 
+  
     <!-- Sezione che mostra gli ordini effettuati -->
-    <#if (ordini?size>0)>
+      <#if (ordini?? && ordini?size > 0)>
 
     <div class="rows-container">
 
@@ -32,8 +34,7 @@
         <a href="dettaglio_ordine_ord?n=${ordine.key}" class="a-cards"> 
         <div class="card-row-purple">
             <div class="card-row-content">
-                <!--TODO: fixare il problema con l'ID-->
-                <p class="card-row-text">ID: ${ordine.id}</p>
+                <p class="card-row-text">ID: ${ordine.key}</p>
             </div>
             <div class="card-row-content">
                 <p class="card-row-text">Stato: ${ordine.stato}</p>
@@ -42,8 +43,11 @@
                 <p class="card-row-text">Proposta: ${ordine.proposta.getCodice()}</p>
             </div>
         </div>
-    </a>
-        </#list>        
+     </a>
+        </#list>     
     </div>
-    </#if>
+        <#else>
+    <p>Nessun ordine trovato.</p>
+      </#if>   
+
 </div>

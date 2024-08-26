@@ -29,6 +29,7 @@ public class DettaglioRichiestaOrd extends BaseController {
         // Recupero la richiesta dal database utilizzando il DAO
         request.setAttribute("richiesta", ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiestaOrdine(richiestaId));
         request.setAttribute("proposte", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getProposteAcquistoByRichiesta(richiestaId));
+        System.out.println(richiestaId);
         res.activate("dettaglio_richiesta_ord.ftl.html", request, response);
     }
 

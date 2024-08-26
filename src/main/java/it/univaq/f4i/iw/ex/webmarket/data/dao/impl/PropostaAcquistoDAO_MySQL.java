@@ -36,8 +36,8 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             sProposteByRichiesta = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE richiesta_id = ?");
             sAllProposte = connection.prepareStatement("SELECT * FROM proposta_acquisto");
 
-            sProposteByUtente = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE utente_id = ?");
-            sProposteByOrdine = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ordine_id = ?");
+            sProposteByUtente = connection.prepareStatement("SELECT pa.* FROM proposta_acquisto pa JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ?");
+            // sProposteByOrdine = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ordine_id = ?");
             
             iProposta = connection.prepareStatement("INSERT INTO proposta_acquisto (produttore, prodotto, codice, prezzo, URL, note, stato, motivazione, richiesta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, prezzo=?, URL=?, note=?, stato=?, motivazione=?, richiesta_id=? WHERE ID=?");
