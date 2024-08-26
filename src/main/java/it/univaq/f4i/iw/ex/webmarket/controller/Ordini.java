@@ -25,7 +25,7 @@ public class Ordini extends BaseController {
 
         //creo un nuovo dao che continete una lista di ordini
          request.setAttribute("ordini", ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdiniByUtente(user));
-         request.setAttribute("proposte", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostDao().getProposteByUtente(user)); 
+         request.setAttribute("proposte", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getProposteByUtente(user)); 
          res.activate("ordini.ftl.html", request, response);
     }
 
