@@ -8,42 +8,48 @@
         <a href="richieste_ordinante">
             <h3 style="color: #0D99FF; margin-left: 10px;">> Richieste Effettuate</h3>
         </a>
-        <h3 style="color: #0D99FF; margin-left: 10px;">> Richiesta #codice</h3> <!-- TODO: dinamico-->
+        <h3 style="color: #0D99FF; margin-left: 10px;">> Richiesta #${richiesta.codiceRichiesta}</h3> 
     </div>
-    <h1 class="hi-text" style="text-align: left;">#codiceRichiesta </h1> <!-- TODO: Dinamico-->
     <br>
     <div class="container-richieste-storico">
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="categoria">Categoria:</label>
-                <div class="skyblue-richiesta-storico1" style="width: auto;">categoria</div>
+                <div class="skyblue-richiesta-storico1" style="width: auto;">${richiesta.categoria.nome}</div>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="stato">Stato:</label>
-                <div class="green-storico">stato</div>
+                <div class="green-storico">${richiesta.stato}</div>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="caratteristiche">Caratteristiche:</label>
-                <div class="skyblue-richiesta-storico">caratteristiche</div>
+                <div class="skyblue-richiesta-storico">${richiesta.caratteristiche!'Nessuna caratteristica specificata.'}</div>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="note">Note:</label>
-                <div class="orange-richiesta-storico">note</div>
+                <div class="orange-richiesta-storico">${richiesta.note!'Nessuna nota inserita'}</div>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="motivazione">Proposte d'acquisto:</label>
+                <#if richiesta.proposte?? && richiesta.proposte?size > 0>
+                <label for="proposte">Proposte:</label>
+                <#list richiesta.proposte as proposta>
+                    <div class="pink-richiesta-storico2">
+                        <a href="dettaglio_proposta_ord?n=${proposta.id}"> ${proposta.id}</a>
+                    </div>
+                </#list>
+            <#else>
                 <div class="pink-richiesta-storico2">
-                  <a href ="dettaglio_proposta_ord" > #proposta</a> </div>
-                <div class="pink-richiesta-storico2">#proposta2</div>
-                <div class="pink-richiesta-storico2" style="margin-right: 0px;">#proposta3</div>
+                    Nessuna proposta disponibile.
+                </div>
+            </#if>
             </div>
         </div>
     </div>

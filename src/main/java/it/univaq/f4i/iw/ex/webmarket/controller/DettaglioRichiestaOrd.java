@@ -2,13 +2,17 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
+import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
+import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +20,15 @@ import javax.servlet.http.HttpSession;
 
 public class DettaglioRichiestaOrd extends BaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response, int user) throws IOException, ServletException, TemplateManagerException, DataException{
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Dettaglio richiesta ordinante");
+
+        int richiestaId = Integer.parseInt(request.getParameter("n"));
+
+        // Recupero la richiesta dal database utilizzando il DAO
+        request.setAttribute("richiesta", ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiestaOrdine(richiestaId));
+        request.setAttribute("proposte", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getProposteAcquistoByRichiesta(richiestaId));
         res.activate("dettaglio_richiesta_ord.ftl.html", request, response);
     }
 
@@ -30,12 +40,17 @@ public class DettaglioRichiestaOrd extends BaseController {
             response.sendRedirect("login");
             return;
         }
+    // Recupero l'ID dell'utente dalla sessione
+    int userId = (int) session.getAttribute("userid");
 
         String action = request.getParameter("action");
-        action_default(request, response);
+        action_default(request, response, userId);
 
     } catch (IOException | TemplateManagerException /* | DataException */ ex) {
         handleError(ex, request, response);
+    }
+    catch (DataException ex) {
+        Logger.getLogger(RichiesteOrdinante.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
 
