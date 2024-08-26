@@ -31,7 +31,10 @@ public class NuovaRichiesta extends BaseController {
     }
     
     //fetching delle subcategorie
-    private void fetch_subcategories(HttpServletRequest request, HttpServletResponse response, int n){}
+    private void fetch_subcategories(HttpServletRequest request, HttpServletResponse response, int n) throws DataException{
+        request.setAttribute("subcategorie", ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategorieByPadre(n));
+
+    }
 
     // Metodo per processare le richieste
     @Override

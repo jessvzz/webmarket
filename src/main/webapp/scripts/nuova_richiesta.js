@@ -13,12 +13,13 @@ function loadSubCategories(parentCategoryId) {
         })
         .then(data => {
            
-            //let subCategorySelect = document.createElement("select");
-            
+            let container = document.getElementById("subcategories-container");           
         })
         .catch(error => {
             console.error("Errore nel caricamento delle sottocategorie:", error);
         });
      * 
      */
+     
+
 }
