@@ -36,6 +36,10 @@ public class NuovaRichiesta extends BaseController {
         request.setAttribute("subcategorie", ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategorieByPadre(n));
 
     }
+    
+     private void action_ForwardRichiesta(HttpServletRequest request, HttpServletResponse response, int category) throws DataException{
+         System.out.println("categoria: "+ category);
+    }
 
     // Metodo per processare le richieste
     @Override
@@ -63,8 +67,15 @@ public class NuovaRichiesta extends BaseController {
                 return;
             }
         }
-                action_default(request, response);
-            
+        
+        String action = request.getParameter("action");
+        if (action != null && action.equals("avanti")) {
+            int category = Integer.parseInt(request.getParameter("chosen-category"));
+
+            action_ForwardRichiesta(request, response, category);
+        } else {
+            action_default(request, response);
+        }             
     
         } catch (IOException | TemplateManagerException /* | DataException */ ex) {
             handleError(ex, request, response);

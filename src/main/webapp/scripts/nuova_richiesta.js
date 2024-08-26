@@ -2,6 +2,8 @@ function loadSubCategories(parentCategoryId) {
     console.log("selected: "+parentCategoryId);
     
     if (!parentCategoryId) return;
+    let chosenCategory = document.getElementById("chosen-category");
+    chosenCategory.setAttribute("value", parentCategoryId);
     
     let container = document.getElementById("subcategories-container");
     

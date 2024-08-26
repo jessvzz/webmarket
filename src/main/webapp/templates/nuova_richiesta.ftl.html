@@ -10,8 +10,10 @@
     </div>
 
     <!-- Selezione della Categoria -->
-    <form method="POST" action="gestioneutenti">
-    <input type="hidden" name="action" value="createUser">
+    <form method="POST" action="nuova_richiesta">
+    <input type="hidden" name="action" value="avanti">
+
+    <input type="hidden" id="chosen-category" name="chosen-category">
     <div class="category-container">
         <h4>Scegli la categoria del prodotto che desideri acquistare</h4>
         <#if (categorie?size>0)>
