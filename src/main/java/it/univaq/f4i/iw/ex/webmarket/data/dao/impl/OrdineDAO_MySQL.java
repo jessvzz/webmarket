@@ -64,7 +64,12 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
     private OrdineProxy createOrdine(ResultSet rs) throws DataException {
         try {
             OrdineProxy o = (OrdineProxy) createOrdine();
-            o.setKey(rs.getInt("ID"));
+                    // Impostiamo l'ID dell'ordine recuperato dal ResultSet
+                  int id = rs.getInt("ID");
+                 o.setKey(id);
+            // o.setKey(rs.getInt("ID"));
+            System.out.println("ID dell'ordine recuperato: " + id); // Debug: Mostra l'ID recuperato
+        
             o.setStato(StatoOrdine.valueOf(rs.getString("stato")));
               PropostaAcquistoDAO propostaAcquistoDAO = (PropostaAcquistoDAO) dataLayer.getDAO(PropostaAcquisto.class);
              o.setProposta(propostaAcquistoDAO.getPropostaAcquisto(rs.getInt("proposta_id")));

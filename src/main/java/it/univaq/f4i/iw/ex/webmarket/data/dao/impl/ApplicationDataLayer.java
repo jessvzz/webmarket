@@ -2,10 +2,14 @@ package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
 
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.CategoriaDAO;
+import it.univaq.f4i.iw.ex.webmarket.data.dao.OrdineDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.RichiestaOrdineDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.UtenteDAO;
+import it.univaq.f4i.iw.ex.webmarket.data.dao.PropostaAcquistoDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
+import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
+import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -28,8 +32,8 @@ public class ApplicationDataLayer extends DataLayer {
         registerDAO(Utente.class, new UtenteDAO_MySQL(this));
         registerDAO(Categoria.class, new CategoriaDAO_MySQL(this));
         registerDAO(RichiestaOrdine.class, new RichiestaOrdineDAO_MySQL(this));
-
-
+        registerDAO(Ordine.class, new OrdineDAO_MySQL(this));
+        registerDAO(PropostaAcquisto.class, new PropostaAcquistoDAO_MySQL(this));
     }
     
      public UtenteDAO getUtenteDAO() {
@@ -44,4 +48,10 @@ public class ApplicationDataLayer extends DataLayer {
         return (RichiestaOrdineDAO) getDAO(RichiestaOrdine.class);
     }
 
+    public OrdineDAO getOrdineDAO() {
+        return (OrdineDAO) getDAO(Ordine.class);
+    }
+    public PropostaAcquistoDAO getPropostDao() {
+       return (PropostaAcquistoDAO) getDAO(PropostaAcquisto.class);
+    }
 }

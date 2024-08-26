@@ -21,45 +21,29 @@
             <option value="cat3">3</option>
         </select>
     </div>
+
+    <!-- Sezione che mostra gli ordini effettuati -->
+    <#if (ordini?size>0)>
+
     <div class="rows-container">
-        <!-- TODO: dinamico -->
 
-        <a href="dettaglio_ordine_ord" class="a-cards"> 
-        <div class="card-row-purple">
-            <div class="card-row-content">
-                <p class="card-row-text">ID</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Stato</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Proposta</p>
-            </div>
-        </div>
-        <a href="dettaglio_ordine_ord" class="a-cards">
-        <div class="card-row-purple">
-            <div class="card-row-content">
-                <p class="card-row-text">ID</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Stato</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Proposta</p>
-            </div>
-        </div>
-       <a href="dettaglio_ordine_ord" class="a-cards">
-        <div class="card-row-purple">
-            <div class="card-row-content">
-                <p class="card-row-text">ID</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Stato</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Proposta</p>
-            </div>
-        </div>
+        <#list ordini as ordine>
 
+        <a href="dettaglio_ordine_ord?n=${ordine.key}" class="a-cards"> 
+        <div class="card-row-purple">
+            <div class="card-row-content">ù
+                <!--TODO: fixare il problema con l'ID-->
+                <p class="card-row-text">ID: ${ordine.id}</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Stato: ${ordine.stato}</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Proposta: ${ordine.proposta.getCodice()}</p>
+            </div>
+        </div>
+    </a>
+        </#list>        
     </div>
+    </#if>
 </div>

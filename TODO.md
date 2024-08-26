@@ -17,6 +17,7 @@
 - [x] aggiusta modifica categoria
 
 ## Samanta:
+- [ ] fixare visualizzazione ID=0 dentro ORDINI, non capisco perchè.
 - [ ] aggiungere CHIUSA come stato Richiesta dell'utente
 - [ ] può l'utente modificare la sua richiesta una volta inoltrata e non ancora presa in carico?
 - [ ] capire quando effettivamente l'ordinante può "chiudere" la richiesta dato che ho assunto possa farlo nel momento in cui accetta sia proposta che ordine     consegnato, oppure deve chiuderla a prescindere se rifiuta l'ordine ricevuto per x motivi.
