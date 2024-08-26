@@ -525,9 +525,13 @@ p {
     background-color: #405dce;
 }
 
+/*
+dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte 
 .purple-button:hover {
     background-color: #06b22e;
 }
+
+*/
 .orange-button:hover {
     background-color: #e65c2e;
 }
