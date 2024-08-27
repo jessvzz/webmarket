@@ -21,7 +21,8 @@ public interface PropostaAcquisto extends DataItem<Integer> {
     String getCodice();
     void setCodice(String produttore);
 
-    
+    String getCodiceProdotto();
+    void setCodiceProdotto(String codiceProdotto);    
     
     double getPrezzo();
     void setPrezzo(double prezzo);

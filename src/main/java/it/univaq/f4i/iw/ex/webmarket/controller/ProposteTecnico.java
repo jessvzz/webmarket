@@ -1,9 +1,6 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -13,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,9 +19,14 @@ import javax.servlet.http.HttpSession;
  */
 public class ProposteTecnico extends BaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response, int user) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Proposte Tecnico");
+
+        
+        //creo un nuovo dao che contenente una lista di richieste non ancora evase (stato: IN_ATTESA)
+        request.setAttribute("proposte", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getProposteByTecnico(user));
+
         res.activate("proposte_tecnico.ftl.html", request, response);
     }
 
@@ -35,23 +39,24 @@ public class ProposteTecnico extends BaseController {
             return;
         }
 
-        String action = request.getParameter("action");
-        action_default(request, response);
+        // Recupero l'ID del tecnico dalla sessione
+        int tecnicoId = (int) session.getAttribute("userid");
+        
+        //ho aggiunto id perchè dobbiamo filtrare le richieste che ha fatto l'utente interessato
+        action_default(request, response, tecnicoId);
 
-    } catch (IOException | TemplateManagerException /* | DataException */ ex) {
+    } catch (IOException | TemplateManagerException ex) {
         handleError(ex, request, response);
-    }
+    }    catch (DataException ex) {
+            Logger.getLogger(RichiesteOrdinante.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }
 
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    // Descrizione della servlet
     @Override
     public String getServletInfo() {
-        return "Main Newspaper servlet";
-    }// </editor-fold>
+        return "Servlet per la gestione delle proposte inviate dal tecnico";
+    }
 
 }

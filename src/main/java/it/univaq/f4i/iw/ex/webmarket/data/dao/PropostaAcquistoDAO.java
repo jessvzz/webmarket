@@ -13,6 +13,8 @@ public interface PropostaAcquistoDAO {
 
     List<PropostaAcquisto> getProposteByUtente(int utente_key) throws DataException;
 
+    List<PropostaAcquisto> getProposteByTecnico(int tecnico_key) throws DataException;
+
     List<PropostaAcquisto> getProposteByOrdine(int ordine_key) throws DataException;
 
     List<PropostaAcquisto> getAllProposteAcquisto() throws DataException;
