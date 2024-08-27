@@ -348,7 +348,10 @@ INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) 
     ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 3, 2, 11), /* 2) Gea -> Tecnico2 -> Smartphone */
     (NULL, 'RISOLTA', '2023-01-29', 3, 2, 13); /* 3) Samanta -> Tecnico1 -> Console videogiochi */
     (NULL, 'ORDINATA', '2024-08-01', '4', '5', '15') /* 4) Samanta -> TecnicoS-> Fotocamera */
- 
+    (NULL, 'RISOLTA', '2024-08-01', 'VpQW7v7cc5', 4, 5, 15),
+    (NULL, 'IN_ATTESA', '2024-08-26', 'wfLWRTsoFf', 4, NULL, 12),
+    (NULL, 'PRESA_IN_CARICO', '2024-08-13', 'q3ZWk2ngtG', 4, 5, 4);
+    
 INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES
     /* 1) Giulia -> Portatili */
     (1, 1, 'Indifferente'), #Marca
@@ -384,9 +387,10 @@ INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) V
 INSERT INTO proposta_acquisto (produttore, prodotto, codice_prodotto, prezzo, URL, note, stato, motivazione, richiesta_id) VALUES
     ('Apple', 'iPhone 15 Pro 256GB Titanio Blu', '1a2b3c4d', 1369, 'https://www.apple.com/it/shop/buy-iphone/iphone-15-pro/display-da-6,1%22-256gb-titanio-blu', 'Dal sito potrà tranquillamente cambiare colore o capacità di archiviazione', 'IN_ATTESA', NULL, 2), #1
     ('Nintendo', 'Nintendo Switch Modello OLED (bianco)', '2b3c4d5e', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-bianco-000000000010007454', 'La nuova Switch con schermo OLED', 'RIFIUTATO', 'Troppo vecchia, è uscita nel 2021, la voglio più nuova', 3), #2
-    ('Nintendo', 'Nintendo Switch Modello OLED edizione speciale Mario (rossa)', '3c4d5e6f', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-edizione-speciale-mario-rossa-000000000010011772', 'Questa è la versione speciale Mario, è tutta rossa ed è uscita a fine 2023!', 'ACCETTATO', NULL, 3); #3
-    ('Canon', 'Canon EOS 2000D + EF-S 18-55 mm DC III', 'AHloaLmj9R', '', 475.98, 'https://www.amazon.it/Canon-Camera-2000d-55-III-2728-C002/dp/B07BMV268V/ref=asc_df_B07BMV268V/?tag=googshopit-21&linkCode=df0&hvadid=700886612843&hvpos=&hvnetw=g&hvrand=843493562612396069&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1008064&hvtargid=pla-785247369067&mcid=f5094b4c6126324c8ad3252f06f8ff80&gad_source=1&th=1', 'Accessori non inclusi, visita il sito per ulteriori dettagli.', 'ORDINATO', NULL, 4);
+    ('Nintendo', 'Nintendo Switch Modello OLED edizione speciale Mario (rossa)', '3c4d5e6f', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-edizione-speciale-mario-rossa-000000000010011772', 'Questa è la versione speciale Mario, è tutta rossa ed è uscita a fine 2023!', 'ACCETTATO', NULL, 3), #3
+    ('Canon', 'Canon EOS 2000D + EF-S 18-55 mm DC III', 'AHloaLmj9R', '6b9c1d0e', 475.98, 'https://www.amazon.it/Canon-Camera-2000d-55-III-2728-C002/dp/B07BMV268V/ref=asc_df_B07BMV268V/?tag=googshopit-21&linkCode=df0&hvadid=700886612843&hvpos=&hvnetw=g&hvrand=843493562612396069&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1008064&hvtargid=pla-785247369067&mcid=f5094b4c6126324c8ad3252f06f8ff80&gad_source=1&th=1', 'Accessori non inclusi, visita il sito per ulteriori dettagli.', 'ORDINATO', NULL, 4), #4
+    ('Lenovo', 'Lenovo Yoga Pro 7', 'JlkFpEXqQT', '9b8c7d6e', 899.99, 'https://www.unieuro.it/online/Notebook/Yoga-Pro-7-Ultrathin-14-Intel-i7-16GB-512GB-pidLNV82Y7005HIX?gad_source=1&gclid=CjwKCAjw8rW2BhAgEiwAoRO5rFLPrUeSd6sncIFHfDVBbb3RbqsE0UHsvas5IlSnL1CQsTKodJ9OCRoCAnIQAvD_BwE&gclsrc=aw.ds', 'Prezzo consigliato 1.499,00. Non farti perdere questa occasione.', 'IN_ATTESA', NULL, 8) ; #5
 
 INSERT INTO ordine (stato, proposta_id) VALUES
     ('ACCETTATO' , 3), #1
-    ('ACCETTATO', 6);
+    ('ACCETTATO', 6); #2

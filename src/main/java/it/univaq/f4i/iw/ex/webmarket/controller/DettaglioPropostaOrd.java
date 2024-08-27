@@ -9,16 +9,23 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class DettaglioPropostaOrd extends BaseController {
-
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response, int user) throws IOException, ServletException, TemplateManagerException,DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Dettaglio proposta ordinante");
+
+        int proposta_key = Integer.parseInt(request.getParameter("n"));
+        System.out.println("ID Proposta: " + proposta_key);
+        request.setAttribute("proposta", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(proposta_key));
+        System.out.println("Proposta Recuperata: ");
         res.activate("dettaglio_proposta_ord.ftl.html", request, response);
     }
 
@@ -31,11 +38,16 @@ public class DettaglioPropostaOrd extends BaseController {
             return;
         }
 
-        String action = request.getParameter("action");
-        action_default(request, response);
+  // Recupero l'ID dell'utente dalla sessione
+  int userId = (int) session.getAttribute("userid");
+        
+  //ho aggiunto id perchè dobbiamo filtrare le richieste che ha fatto l'utente interessato
+  action_default(request, response, userId);
 
     } catch (IOException | TemplateManagerException /* | DataException */ ex) {
         handleError(ex, request, response);
+    } catch (DataException ex) {
+            Logger.getLogger(RichiesteOrdinante.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
 

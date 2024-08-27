@@ -1295,6 +1295,29 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 /* utili */
+
+.container-salm-proposta{
+    width: 80%;
+    padding: 20px;
+    border-radius: 30px;
+    text-align: right;
+}
+
+.container-salm-proposta {
+    background-color: #e78e52;
+}
+
+.container-salm-proposta label {
+    width: 100%;
+    text-align: right;
+    display: block;
+    font-size: 25px;
+    color: #333;
+    margin-right: 150px;
+}
+
+
+
 .card-notifiche {
     width: 180px; 
     height: 50px; 

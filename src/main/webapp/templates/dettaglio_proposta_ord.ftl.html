@@ -6,65 +6,72 @@
             </a>
         </div>
         <a href="dettaglio_ordine_ord">
-            <h3 style="color: #F67956; margin-left: 10px;">> Dettaglio Ordine</h3>
+            <h3 style="color: #F67956; margin-left: 10px;">> Dettaglio Proposta</h3>
         </a>
-        <h3 style="color: #F67956; margin-left: 10px;">> Proposta #codice</h3> <!-- TODO: dinamico-->
+        <h3 style="color: #F67956; margin-left: 10px;">> Proposta #${proposta.codice}</h3> 
     </div>
-    <h1 class="hi-text" style="text-align: left;">#codiceProposta </h1> <!-- TODO: Dinamico-->
     <br>
-    <div class="container-richieste-storico">
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="categoria">Categoria:</label>
-                <div class="skyblue-richiesta-storico1" style="width: auto;">categoria</div>
-            </div>
+    <div class="container-proposta">
+        <div class="container-info-proposta">
+            <div class="badge-stato">stato:
+                <#if proposta.stato??>
+    ${proposta.stato}
+<#else>
+    Stato non disponibile
+</#if>
+            </div> 
         </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="produttore">Produttore:</label>
-                <div class="orange-richiesta-storico">produttore</div>
+
+        <div class="container-salm-proposta">
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label for="nome produttore">Nome produttore:</label>
+                    <div class="grey-row">${proposta.produttore}</div>
+                </div>
             </div>
-        </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="prodotto">Prodotto:</label>
-                <div class="orange-richiesta-storico">prodotto</div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label for="nome prodotto">Nome prodotto:</label>
+                    <div class="grey-row">${proposta.prodotto}</div>
+                </div>
             </div>
-        </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="codice">Codice:</label>
-                <div class="orange-richiesta-storico">codice</div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label for="nome prodotto">Codice prodotto:</label>
+                    <div class="grey-row">${proposta.codiceProdotto}</div>
+                </div>
             </div>
-        </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="prezzo">Prezzo:</label>
-                <div class="orange-richiesta-storico">prezzo</div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label for="nome prodotto">Prezzo:</label>
+                    <div class="grey-row">${proposta.prezzo}</div>
+                </div>
             </div>
-        </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="url">Url:</label>
-                <div class="orange-richiesta-storico">url</div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label for="nome prodotto">URL:</label>
+                    <div class="grey-row">${proposta.url}</div>
+                </div>
             </div>
-        </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="note">Note:</label>
-                <div class="orange-richiesta-storico">note</div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label for="nome prodotto">Note:</label>
+                    <div class="grey-row">${proposta.note}</div>
+                </div>
             </div>
-        </div>
-        <div>
+            <br>
+
+</div>
+    
         <a href="successo_ordine">
         <button class="green-button">ACCETTA</button> </a>
      <!-- <button type="submit" class="green-button">ACCETTA</button> -->
-        </div></div>
+        </div>
         <div>
             <a href ="motiva_rifiuto">
              <!-- <button type="submit" class="orange-button">RIFIUTA</button> -->
              <button class="orange-button">RIFIUTA</button>
             </a>
             </div>
-    </div>
+    
 </div>
