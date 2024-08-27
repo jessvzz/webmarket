@@ -19,6 +19,7 @@
 - [x] aggiusta modifica categoria
 
 ## Samanta:
+- [ ]: richiesta presa in carico => proposta notificata all'ordinante ?
 - [ ]: in "dettaglio ordine" modifica css e fai controller 
 - [ ]: fixare in "dettaglio richiesta" la presenza delle proposte + css!
 - [ ]: nel db in "proposta" non mi da il codice prodotto

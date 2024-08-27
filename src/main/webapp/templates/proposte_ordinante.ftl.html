@@ -1,0 +1,55 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color:#e78e52">
+            <a href="homepageordinante">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <h3 style="color:#e78e52; margin-left: 10px;">> Proposte Ricevute</h3> 
+    </div>
+    <!-- Sezione per la ricerca e il filtro -->
+    <div class="search-container">
+        <input type="text" placeholder="Cerca..." class="search-input">
+        <button class="search-button">Vai</button>
+    </div>
+    <div class="filter-container">
+        <p class="filter-text">Filtra per stato:</p>
+        <select name="status" id="status" class="filter-select">
+            <option value="tutti">Tutti</option>
+            <option value="in_carico">In Carico</option>
+            <option value="risolta">Risolta</option>
+            <option value="in_attesa">In Attesa</option>
+            <option value="ordinato">Ordinato</option>
+        </select>
+    </div>
+
+    <!-- Sezione che mostra le proposte ricevute -->
+     
+        <#if (proposte?size>0)>
+
+    <div class="rows-container">
+        <#list proposte as proposta>
+
+        <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
+         <div class="card-row-skyblue">
+            <div class="card-row-content">
+                <p class="card-row-text">Codice: ${richiesta.codiceRichiesta}</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Categoria: ${richiesta.categoria.nome}</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Data: ${richiesta.data} </p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Stato: ${richiesta.stato} </p>
+            </div>
+         </div>
+         
+        </a>
+        </#list>
+        
+        </div>
+       </#if>
+
+</div>

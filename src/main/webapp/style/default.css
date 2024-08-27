@@ -1280,6 +1280,41 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 /* utili */
+.card-notifiche {
+    width: 180px; 
+    height: 50px; 
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #c9d2d5;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.card-notifiche .img-prof{
+    width: 15%;
+    height: auto;
+    margin-right: 10px;
+}
+
+
+.card-notifiche:hover {
+    background-color: #b9babc; 
+}
+
+
+.card-text {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 23px;
+    vertical-align: text-center;
+    color: #1e1e1e;
+}
+
+
     .width150px{
         max-width: 150px;
     }
