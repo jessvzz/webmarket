@@ -28,21 +28,21 @@
         <#if (proposte?size>0)>
 
     <div class="rows-container">
+
         <#list proposte as proposta>
 
         <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
-         <div class="card-row-skyblue">
+         <div class="card-row-salm max-width-card">
             <div class="card-row-content">
-                <p class="card-row-text">Codice: ${richiesta.codiceRichiesta}</p>
+                <p class="card-row-text">Codice: ${proposta.codice}</p>
             </div>
+
             <div class="card-row-content">
-                <p class="card-row-text">Categoria: ${richiesta.categoria.nome}</p>
-            </div>
+                <p class="card-row-text">Data: </p>
+            </div> 
+
             <div class="card-row-content">
-                <p class="card-row-text">Data: ${richiesta.data} </p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Stato: ${richiesta.stato} </p>
+                <p class="card-row-text">Stato:${proposta.getStatoProposta()!"Stato non disponibile"}</p>
             </div>
          </div>
          

@@ -310,7 +310,7 @@ select.medium,input.medium {
     flex-wrap: wrap;
 }
 
-.card-purple, .card-orange, .card-skyblue {
+.card-purple, .card-orange, .card-skyblue, .card-salm {
     width: 180px; 
     height: 230px; 
     border-radius: 20px;
@@ -367,6 +367,10 @@ select.medium,input.medium {
     background-color: #90D5FE; 
 }
 
+.card-salm {
+    background-color:#e78e52; 
+}
+
 .card-purple:hover {
     background-color: #5935ad; 
 }
@@ -377,6 +381,10 @@ select.medium,input.medium {
 
 .card-skyblue:hover {
     background-color: #67c4f1; 
+}
+
+.card-salm:hover {
+    background-color: #e27a34; 
 }
 
 .card-pink-notifications:hover {
@@ -831,7 +839,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     justify-content: center;
 }
 
-.card-row-purple, .card-row-skyblue, .card-row-orange, .card-row-pink, .card-row-notif {
+.card-row-purple, .card-row-skyblue,.card-row-salm, .card-row-orange, .card-row-pink, .card-row-notif {
     width: 90%;
     height: auto;
     border-radius: 10px;
@@ -854,6 +862,10 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     background-color: #90D5FE;
 }
 
+.card-row-salm {
+    background-color: #e78e52;
+}
+
 .card-row-orange {
     background-color: #F67956;
 }
@@ -868,6 +880,9 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .card-row-skyblue:hover {
     background-color: #67c4f1;
+}
+.card-row-salm:hover {
+    background-color: #e27a34;
 }
 
 .card-row-orange:hover {
@@ -1338,7 +1353,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     }
 
 @media (max-width: 768px) {
-    .card-purple, .card-orange, .card-skyblue {
+    .card-purple, .card-orange, .card-skyblue, .card-salm {
         width: 100%;
         height: 200px;
     }
@@ -1368,7 +1383,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
         align-items: center;
     }
 
-    .card-row-orange, .card-row-purple, .card-row-skyblue, .card-row-pink, .card-row-notif {
+    .card-row-orange, .card-row-purple, .card-row-skyblue, .card-row-pink, .card-row-notif , .card-row-salm{
         flex-direction: column;
     }
 
