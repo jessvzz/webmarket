@@ -78,7 +78,7 @@ public class Login extends BaseController {
         //se la validazione fallisce...
         //if the validation fails...
         //request.setAttribute("error", "Email o password non corretti");
-        handleError("Login failed", request, response);
+        //handleError("Login failed", request, response);
     }
 
     /**
