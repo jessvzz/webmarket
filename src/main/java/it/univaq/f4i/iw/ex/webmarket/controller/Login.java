@@ -31,7 +31,7 @@ public class Login extends BaseController {
 
     //nota: usente di default nel database: nome a, password p
     //note: default user in the database: name: a, password p
-    private void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
+    private void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, TemplateManagerException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -66,12 +66,14 @@ public class Login extends BaseController {
                     }
                     return;
                 } else{
-                    request.setAttribute("error", "Email o password non corretti");
+                    request.setAttribute("error", "Username o password non corretti");
+                    action_default(request, response);
 
                }
             } catch (DataException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
         //se la validazione fallisce...
         //if the validation fails...
