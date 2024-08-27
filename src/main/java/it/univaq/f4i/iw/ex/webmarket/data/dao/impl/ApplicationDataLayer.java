@@ -1,6 +1,7 @@
 package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
 
 
+import it.univaq.f4i.iw.ex.webmarket.data.dao.CaratteristicaDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.CategoriaDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.OrdineDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.RichiestaOrdineDAO;
@@ -34,6 +35,7 @@ public class ApplicationDataLayer extends DataLayer {
         registerDAO(RichiestaOrdine.class, new RichiestaOrdineDAO_MySQL(this));
         registerDAO(Ordine.class, new OrdineDAO_MySQL(this));
         registerDAO(PropostaAcquisto.class, new PropostaAcquistoDAO_MySQL(this));
+        registerDAO(Caratteristica.class, new CaratteristicaDAO_MySQL(this));
         
     }
     
@@ -54,5 +56,9 @@ public class ApplicationDataLayer extends DataLayer {
     }
     public PropostaAcquistoDAO getPropostaAcquistoDAO() {
        return (PropostaAcquistoDAO) getDAO(PropostaAcquisto.class);
+    }
+    
+     public CaratteristicaDAO getCaratteristicaDAO() {
+       return (CaratteristicaDAO) getDAO(Caratteristica.class);
     }
 }

@@ -14,13 +14,20 @@ document.getElementById('add-caratteristica').addEventListener('click', function
     removeButton.innerHTML = '✖';
     removeButton.type = 'button';
     
+    const addButton = document.createElement('button');
+    addButton.className = 'cancel-btn';
+    addButton.innerHTML = 'ok';
+    addButton.type = 'button';
+    
 
     removeButton.addEventListener('click', function () {
         container.removeChild(caratteristicaItem);
     });
-
+    
     caratteristicaItem.appendChild(caratteristicaInput);
     caratteristicaItem.appendChild(removeButton);
+    caratteristicaItem.appendChild(addButton);
+ 
 
     container.appendChild(caratteristicaItem);
 });

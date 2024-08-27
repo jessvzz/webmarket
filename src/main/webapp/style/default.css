@@ -491,6 +491,17 @@ p {
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
+.light-orange-button {
+    background-color: #e78e52;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 30px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    
+}
 
 .green-button {
     background-color: #53dd47;
@@ -1273,7 +1284,6 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
         max-width: 150px;
     }
     
-   
     
     .span-1{
        grid-column: span 1;
@@ -1281,6 +1291,10 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     
     .margin-right{
         margin-right: 10px;
+    }
+    
+    .margin-bottom{
+        margin-bottom: 10px;
     }
 
 @media (max-width: 768px) {

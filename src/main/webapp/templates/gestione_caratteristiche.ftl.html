@@ -1,0 +1,26 @@
+<form action="categoria?n=${categoria.key}" method="post" >
+        <input type="hidden" name="action" value="updateCaratteristiche">
+<div>
+            <p>Caratteristiche di ${categoria.nome}:</p>
+            <button type="button" id="add-caratteristica" class="orange-button margin-bottom">Aggiungi</button>
+            <div id="caratteristiche-container">
+                
+            </div>
+            <div class="categories">
+                <#if (caratteristiche?size>0)>
+                <#list caratteristiche as car>
+                <div class="light-orange-button width150px category-item height61px">${car.nome}</div>
+                </#list>
+                </#if>
+            </div>
+            <div class="form-buttons">
+            <a href="categoria?n=${categoria.key}">
+            <button type="button" class="purple-button">INDIETRO</button>
+            </a>
+            <button type="submit" class="orange-button">AVANTI</button>
+        </div>
+        </div>
+</form>
+
+ <script type="module" src="scripts/modifica_caratteristiche.js"></script>
+

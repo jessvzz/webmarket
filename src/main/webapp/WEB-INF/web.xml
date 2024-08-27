@@ -99,6 +99,10 @@
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.CategoriaController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>GestioneCaratteristiche</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.CaratteristicheController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ModificaCategoria</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.ModificaCategoria</servlet-class>
     </servlet>
@@ -218,6 +222,10 @@
     <servlet-mapping>
         <servlet-name>Categoria</servlet-name>
         <url-pattern>/categoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GestioneCaratteristiche</servlet-name>
+        <url-pattern>/gestisci_caratteristiche</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ModificaCategoria</servlet-name>

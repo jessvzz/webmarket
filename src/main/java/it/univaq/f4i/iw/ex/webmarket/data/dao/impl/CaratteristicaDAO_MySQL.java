@@ -50,6 +50,7 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
     public void destroy() throws DataException {
         try {
             sCaratteristicaByID.close();
+            sCaratteristicaByCategoria.close();
             sCaratteristicheByRichiesta.close();
             sCaratteristiche.close();
             iCaratteristica.close();
@@ -76,8 +77,8 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
             c.setKey(rs.getInt("ID"));
             c.setNome(rs.getString("nome"));
             // c.setCategoria(rs.getInt("categoria_id"));
-            CategoriaDAO categoriaDAO = (CategoriaDAO) dataLayer.getDAO(CategoriaDAO.class);
-            Categoria categoria = categoriaDAO.getCategoria(rs.getInt("categoria_id"));
+             int categoriaId = rs.getInt("categoria_id");
+            Categoria categoria = ((ApplicationDataLayer) getDataLayer()).getCategoriaDAO().getCategoria(categoriaId);
             c.setCategoria(categoria);
 
             return c;
@@ -143,8 +144,8 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
     public List<Caratteristica> getCaratteristicheByCategoria(int categoria) throws DataException {
         List<Caratteristica> result = new ArrayList<>();
     try {
-        sCaratteristicheByRichiesta.setInt(1, categoria);
-        try (ResultSet rs = sCaratteristicheByRichiesta.executeQuery()) {
+        sCaratteristicaByCategoria.setInt(1, categoria);
+        try (ResultSet rs = sCaratteristicaByCategoria.executeQuery()) {
             while (rs.next()) {
                 result.add(createCaratteristica(rs));
             }
