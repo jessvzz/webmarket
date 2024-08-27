@@ -21,55 +21,31 @@
             <option value="cat3">3</option>
         </select>
     </div>
+
+<!-- Sezione che mostra le richieste non evase -->
+    <#if (richieste?size>0)>
+
     <div class="rows-container">
         <!-- TODO: Rendere dinamiche le righe mostrate -->
-        <a href="detailrichiesta_tecnico" class="a-cards">
+        <#list richieste as richiesta>
+
+        <a href="detailrichiesta_tecnico?n={richiesta.key}" class="a-cards">
             <div class="card-row-purple">
                 <div class="card-row-content">
-                    <p class="card-row-text">Codice</p>
+                    <p class="card-row-text">${richiesta.codiceRichiesta}</p>
                 </div>
                 <div class="card-row-content">
-                    <p class="card-row-text">Username</p>
+                    <p class="card-row-text">${richiesta.utente.username}</p>
                 </div>
                 <div class="card-row-content">
-                    <p class="card-row-text">Categoria</p>
+                    <p class="card-row-text">${richiesta.categoria.nome}</p>
                 </div>
                 <div class="card-row-content">
-                    <p class="card-row-text">Data</p>
+                    <p class="card-row-text">${richiesta.data}</p>
                 </div>
             </div>
         </a>
-        <a href="detailrichiesta_tecnico" class="a-cards">
-            <div class="card-row-purple">
-                <div class="card-row-content">
-                    <p class="card-row-text">Codice</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Username</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Categoria</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Data</p>
-                </div>
-            </div>
-        </a>
-        <a href="detailrichiesta_tecnico" class="a-cards">
-            <div class="card-row-purple">
-                <div class="card-row-content">
-                    <p class="card-row-text">Codice</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Username</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Categoria</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Data</p>
-                </div>
-            </div>
-        </a>
+        </#list>
     </div>
+    </#if>
 </div>

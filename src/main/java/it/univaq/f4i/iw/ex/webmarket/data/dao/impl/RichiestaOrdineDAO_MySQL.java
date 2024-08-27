@@ -3,6 +3,7 @@ package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.RichiestaOrdineDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
+import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.RichiestaOrdineProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
@@ -80,6 +81,10 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             int categoriaId = rs.getInt("categoria_id");
             Categoria categoria = ((ApplicationDataLayer) getDataLayer()).getCategoriaDAO().getCategoria(categoriaId);
             richiesta.setCategoria(categoria);
+
+            int utenteId = rs.getInt("utente");
+            Utente utente = ((ApplicationDataLayer) getDataLayer()).getUtenteDAO().getUtente(utenteId);
+            richiesta.setUtente(utente);
 
             return richiesta;
         } catch (SQLException ex) {
