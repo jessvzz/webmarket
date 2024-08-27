@@ -19,10 +19,13 @@
 - [x] aggiusta modifica categoria
 
 ## Samanta:
-- [ ] fixare visualizzazione ID=0 dentro ORDINI, non capisco perchè.
-- [ ] aggiungere CHIUSA come stato Richiesta dell'utente
+- [ ]: in "dettaglio ordine" modifica css e fai controller 
+- [ ]: fixare in "dettaglio richiesta" la presenza delle proposte + css!
+- [ ]: nel db in "proposta" non mi da il codice prodotto
+- [ ]: aggiungiamo il campo data alla tabella Ordine?
+- [ ]: fixare nel db la parte DROP USER IF EXISTS 'website'@'localhost'; (IF EXIST mi da errore)
 - [ ] può l'utente modificare la sua richiesta una volta inoltrata e non ancora presa in carico?
-- [ ] capire quando effettivamente l'ordinante può "chiudere" la richiesta dato che ho assunto possa farlo nel momento in cui accetta sia proposta che ordine     consegnato, oppure deve chiuderla a prescindere se rifiuta l'ordine ricevuto per x motivi.
+- [ ] capire quando effettivamente l'ordinante può "chiudere" la richiesta dato che ho assunto possa farlo nel  momento in cui accetta sia proposta che ordine consegnato, oppure deve chiuderla a prescindere se rifiuta l'ordine ricevuto per x motivi.
 
 # ALTRO
 - [Figma dell'admin](https://www.figma.com/file/c6hYZIz2AJhbynd5b2UdG1?node-id=0-1&t=uapcU6HHGd49wdL5-0&type=whiteboard)

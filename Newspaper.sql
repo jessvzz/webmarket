@@ -91,7 +91,7 @@ CREATE TABLE proposta_acquisto (
     produttore varchar(500) NOT NULL,
     prodotto varchar(500) NOT NULL,
     codice varchar(500) NOT NULL,
-    codice_prodotto varchar(50) NOT NULL
+    codice_prodotto varchar(50) NOT NULL,
     prezzo float NOT NULL,
     URL text NOT NULL,
     note varchar(255) NOT NULL,
@@ -340,12 +340,15 @@ INSERT INTO utente (username, email, password, tipologia_utente) VALUES
     ('admin', 'admin@example.com', '282db4a4425f50237e7df29d56988825f15dd8b34fa74af54e650ce0fd8897a82dff0b952017a3a88a62f5f1b0e0e467', 'AMMINISTRATORE'), #admin
     ('tecnicog', 'difgiulia@gmail.com', 'aec1e7153435fb922c594376ca7e0ed24d0e8ad306648ba4a2153165941157d3a2a80649d70780821a4b8b6e5e8bb4a6', 'TECNICO'), #tecnico1
     ('geaviozzi', 'geaviozzi@icloud.com', '3ece874c150039c7740d2d5c74ecf2f0b64c3a6c972bbd1b389ca3db8402bdb5a783084ac59a1015c793f4c24a8fbcb2', 'ORDINANTE'); #passgea
+    ('samanta', 'samanta_dis@hotmail.com', '63a7d1207dab49f5cdc13091e8a87006097ca0c7fecba40b316d8571d415a7d5109e48bdba061a98fa7ff551717fd79a', 'ORDINANTE'),
+    ('tecnicoS', 'samanta_dis@hotmail.com', '277fb18292a23f495c1f5ffd79af834aa2107d47ea2f7db6b7d1ac3098d451a6bbee64f6e041d7b0850791ec3a5cded9', 'TECNICO');
 
 INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) VALUES
     (NULL, 'IN_ATTESA', '2024-08-06', 3, NULL, 4), /* 1) Giulia -> Portatili */
     ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 3, 2, 11), /* 2) Gea -> Tecnico2 -> Smartphone */
     (NULL, 'RISOLTA', '2023-01-29', 3, 2, 13); /* 3) Samanta -> Tecnico1 -> Console videogiochi */
-
+    (NULL, 'ORDINATA', '2024-08-01', '4', '5', '15') /* 4) Samanta -> TecnicoS-> Fotocamera */
+ 
 INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES
     /* 1) Giulia -> Portatili */
     (1, 1, 'Indifferente'), #Marca
@@ -382,6 +385,8 @@ INSERT INTO proposta_acquisto (produttore, prodotto, codice_prodotto, prezzo, UR
     ('Apple', 'iPhone 15 Pro 256GB Titanio Blu', '1a2b3c4d', 1369, 'https://www.apple.com/it/shop/buy-iphone/iphone-15-pro/display-da-6,1%22-256gb-titanio-blu', 'Dal sito potrà tranquillamente cambiare colore o capacità di archiviazione', 'IN_ATTESA', NULL, 2), #1
     ('Nintendo', 'Nintendo Switch Modello OLED (bianco)', '2b3c4d5e', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-bianco-000000000010007454', 'La nuova Switch con schermo OLED', 'RIFIUTATO', 'Troppo vecchia, è uscita nel 2021, la voglio più nuova', 3), #2
     ('Nintendo', 'Nintendo Switch Modello OLED edizione speciale Mario (rossa)', '3c4d5e6f', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-edizione-speciale-mario-rossa-000000000010011772', 'Questa è la versione speciale Mario, è tutta rossa ed è uscita a fine 2023!', 'ACCETTATO', NULL, 3); #3
+    ('Canon', 'Canon EOS 2000D + EF-S 18-55 mm DC III', 'AHloaLmj9R', '', 475.98, 'https://www.amazon.it/Canon-Camera-2000d-55-III-2728-C002/dp/B07BMV268V/ref=asc_df_B07BMV268V/?tag=googshopit-21&linkCode=df0&hvadid=700886612843&hvpos=&hvnetw=g&hvrand=843493562612396069&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1008064&hvtargid=pla-785247369067&mcid=f5094b4c6126324c8ad3252f06f8ff80&gad_source=1&th=1', 'Accessori non inclusi, visita il sito per ulteriori dettagli.', 'ORDINATO', NULL, 4);
 
 INSERT INTO ordine (stato, proposta_id) VALUES
-    ('ACCETTATO' , 3); #1
+    ('ACCETTATO' , 3), #1
+    ('ACCETTATO', 6);

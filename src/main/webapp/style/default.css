@@ -1297,6 +1297,11 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
         margin-bottom: 10px;
     }
 
+    .max-width-card {
+        width: 100%;
+        max-width: 1200px;
+    }
+
 @media (max-width: 768px) {
     .card-purple, .card-orange, .card-skyblue {
         width: 100%;
