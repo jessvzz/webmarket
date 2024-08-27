@@ -37,9 +37,6 @@ public class NuovaRichiesta extends BaseController {
 
     }
     
-     private void action_ForwardRichiesta(HttpServletRequest request, HttpServletResponse response, int category) throws DataException{
-         System.out.println("categoria: "+ category);
-    }
 
     // Metodo per processare le richieste
     @Override
@@ -71,8 +68,11 @@ public class NuovaRichiesta extends BaseController {
         String action = request.getParameter("action");
         if (action != null && action.equals("avanti")) {
             int category = Integer.parseInt(request.getParameter("chosen-category"));
-
-            action_ForwardRichiesta(request, response, category);
+            System.out.println("chosen: " + category);
+            request.setAttribute("chosen", category);
+            String redirectURL = "nuova_richiesta_caratteristiche?n=" + category;
+            response.sendRedirect(redirectURL);
+            return;
         } else {
             action_default(request, response);
         }             

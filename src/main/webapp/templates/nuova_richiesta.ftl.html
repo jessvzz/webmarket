@@ -10,10 +10,15 @@
     </div>
 
     <!-- Selezione della Categoria -->
-    <form method="POST" action="nuova_richiesta">
+    <#if (chosen??)>
+    <form method="post" action="nuova_richiesta_caratteristiche?n=${chosen}">
+        <#else>
+        <form method="post" action="">
+    </#if>
     <input type="hidden" name="action" value="avanti">
 
     <input type="hidden" id="chosen-category" name="chosen-category">
+
     <div class="category-container">
         <h4>Scegli la categoria del prodotto che desideri acquistare</h4>
         <#if (categorie?size>0)>
@@ -36,39 +41,6 @@
         </div>
     </form>
 
-    <!-- Form delle Caratteristiche -->
-    <div id="characteristics-form" class="characteristics-container orange" style="display: none;">
-        <h4>Caratteristiche</h4>
-        <p>Se hai preferenze, inserisci i valori delle caratteristiche, altrimenti se ti è indifferente spunta la checkbox</p>
-
-        <div class="characteristics-row">
-            <label for="marca">Marca:</label>
-            <input type="text" id="marca" name="marca" placeholder="Inserisci marca">
-            <input type="checkbox" id="marca-indifferente" name="marca-indifferente"> Indifferente
-        </div>
-        
-        <div class="characteristics-row">
-            <label for="colore">Colore:</label>
-            <input type="text" id="colore" name="colore" placeholder="Inserisci colore">
-            <input type="checkbox" id="colore-indifferente" name="colore-indifferente"> Indifferente
-        </div>
-        
-        <div class="characteristics-row">
-            <label for="anno">Anno:</label>
-            <input type="text" id="anno" name="anno" placeholder="Inserisci anno">
-            <input type="checkbox" id="anno-indifferente" name="anno-indifferente"> Indifferente
-        </div>
-
-        <div class="characteristics-row">
-            <label for="note">Note:</label>
-            <textarea id="note" name="note" placeholder="Inserisci eventuali note"></textarea>
-        </div>
-        
-        <!-- Pulsante per Inviare la Richiesta -->
-        <div class="button-container">
-            <button class="orange-button" onclick="submitForm()">Invia Richiesta</button>
-        </div>
-    </div>
 </div>
 
 <!-- script -->

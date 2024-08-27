@@ -1,0 +1,33 @@
+    <!-- Form delle Caratteristiche -->
+    <div id="characteristics-form" class="characteristics-container orange">
+        <h4>Caratteristiche</h4>
+        <p>Se hai preferenze, inserisci i valori delle caratteristiche, altrimenti se ti è indifferente spunta la checkbox</p>
+
+        <div class="characteristics-row">
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" placeholder="Inserisci marca">
+            <input type="checkbox" id="marca-indifferente" name="marca-indifferente"> Indifferente
+        </div>
+        
+        <div class="characteristics-row">
+            <label for="colore">Colore:</label>
+            <input type="text" id="colore" name="colore" placeholder="Inserisci colore">
+            <input type="checkbox" id="colore-indifferente" name="colore-indifferente"> Indifferente
+        </div>
+        
+        <div class="characteristics-row">
+            <label for="anno">Anno:</label>
+            <input type="text" id="anno" name="anno" placeholder="Inserisci anno">
+            <input type="checkbox" id="anno-indifferente" name="anno-indifferente"> Indifferente
+        </div>
+
+        <div class="characteristics-row">
+            <label for="note">Note:</label>
+            <textarea id="note" name="note" placeholder="Inserisci eventuali note"></textarea>
+        </div>
+        
+        <!-- Pulsante per Inviare la Richiesta -->
+        <div class="button-container">
+            <button class="orange-button" onclick="submitForm()">Invia Richiesta</button>
+        </div>
+    </div>

@@ -5,6 +5,7 @@ function loadSubCategories(parentCategoryId) {
     let chosenCategory = document.getElementById("chosen-category");
     chosenCategory.setAttribute("value", parentCategoryId);
     
+    
     let container = document.getElementById("subcategories-container");
     
    

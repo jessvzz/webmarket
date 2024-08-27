@@ -55,6 +55,8 @@
              /richieste_ordinante,
              /ordini,
              /nuova_richiesta,
+             /nuova_richiesta_caratteristiche, 
+             /gestisci_caratteristiche,
              /notifiche_ordinante,
              /profilo_ordinante,
              /detailrichiesta_tecnico,
@@ -133,6 +135,10 @@
     <servlet>
         <servlet-name>NuovaRichiesta</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.NuovaRichiesta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NuovaRichiestaCaratteristiche</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.NuovaRichiestaCaratteristiche</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NotificheOrdinante</servlet-name>
@@ -258,6 +264,10 @@
     <servlet-mapping>
         <servlet-name>NuovaRichiesta</servlet-name>
         <url-pattern>/nuova_richiesta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NuovaRichiestaCaratteristiche</servlet-name>
+        <url-pattern>/nuova_richiesta_caratteristiche</url-pattern>
     </servlet-mapping>
         <servlet-mapping>
         <servlet-name>NotificheOrdinante</servlet-name>
