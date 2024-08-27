@@ -40,23 +40,12 @@ CREATE TABLE caratteristica (
         ON UPDATE CASCADE
 );
 
-CREATE TABLE ente (
-	ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    ragione_sociale varchar(255) NOT NULL,
-    indirizzo varchar(500) NOT NULL
-);
-
 CREATE TABLE utente (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     username varchar(255) UNIQUE NOT NULL,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
-    tipologia_utente ENUM('ORDINANTE', 'TECNICO', 'AMMINISTRATORE') NOT NULL,
-    ente int(11),
-    CONSTRAINT ente_utente FOREIGN KEY (ente)
-        REFERENCES ente(ID)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+    tipologia_utente ENUM('ORDINANTE', 'TECNICO', 'AMMINISTRATORE') NOT NULL
 );
 
 CREATE TABLE richiesta_ordine (
@@ -344,14 +333,12 @@ INSERT INTO caratteristica (nome, categoria_id) VALUES
     ('Batteria', 16), #60
     ('Obiettivo', 16); #61
 
-INSERT INTO  ente (ragione_sociale, indirizzo) VALUES
-('Comune di Porto Sant Elpidio', 'via dei Tigli 73, Porto Sant Elpidio');
+
 
 INSERT INTO utente (username, email, password, tipologia_utente) VALUES
     ('admin', 'admin@example.com', '282db4a4425f50237e7df29d56988825f15dd8b34fa74af54e650ce0fd8897a82dff0b952017a3a88a62f5f1b0e0e467', 'AMMINISTRATORE'), #admin
-    ('tecnicog', 'difgiulia@gmail.com', 'aec1e7153435fb922c594376ca7e0ed24d0e8ad306648ba4a2153165941157d3a2a80649d70780821a4b8b6e5e8bb4a6', 'TECNICO'); #tecnico1    
-    INSERT INTO utente (username, email, password, tipologia_utente, ente) VALUES
-    ('geaviozzi', 'geaviozzi@icloud.com', '3ece874c150039c7740d2d5c74ecf2f0b64c3a6c972bbd1b389ca3db8402bdb5a783084ac59a1015c793f4c24a8fbcb2', 'ORDINANTE', 1); #passgea
+    ('tecnicog', 'difgiulia@gmail.com', 'aec1e7153435fb922c594376ca7e0ed24d0e8ad306648ba4a2153165941157d3a2a80649d70780821a4b8b6e5e8bb4a6', 'TECNICO'), #tecnico1
+    ('geaviozzi', 'geaviozzi@icloud.com', '3ece874c150039c7740d2d5c74ecf2f0b64c3a6c972bbd1b389ca3db8402bdb5a783084ac59a1015c793f4c24a8fbcb2', 'ORDINANTE'); #passgea
 
 INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) VALUES
     (NULL, 'IN_ATTESA', '2024-08-06', 3, NULL, 4), /* 1) Giulia -> Portatili */
