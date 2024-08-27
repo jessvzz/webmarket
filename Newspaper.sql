@@ -91,6 +91,7 @@ CREATE TABLE proposta_acquisto (
     produttore varchar(500) NOT NULL,
     prodotto varchar(500) NOT NULL,
     codice varchar(500) NOT NULL,
+    codice_prodotto varchar(50) NOT NULL
     prezzo float NOT NULL,
     URL text NOT NULL,
     note varchar(255) NOT NULL,
@@ -377,10 +378,10 @@ INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) V
     (3, 48, 'Indifferente'), #Memoria archiviazione
     (3, 49, 'Indifferente'); #Processore
 
-INSERT INTO proposta_acquisto (produttore, prodotto, prezzo, URL, note, stato, motivazione, richiesta_id) VALUES
-    ('Apple', 'iPhone 15 Pro 256GB Titanio Blu', 1369, 'https://www.apple.com/it/shop/buy-iphone/iphone-15-pro/display-da-6,1%22-256gb-titanio-blu', 'Dal sito potrà tranquillamente cambiare colore o capacità di archiviazione', 'IN_ATTESA', NULL, 2), #1
-    ('Nintendo', 'Nintendo Switch Modello OLED (bianco)', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-bianco-000000000010007454', 'La nuova Switch con schermo OLED', 'RIFIUTATO', 'Troppo vecchia, è uscita nel 2021, la voglio più nuova', 3), #2
-    ('Nintendo', 'Nintendo Switch Modello OLED edizione speciale Mario (rossa)', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-edizione-speciale-mario-rossa-000000000010011772', 'Questa è la versione speciale Mario, è tutta rossa ed è uscita a fine 2023!', 'ACCETTATO', NULL, 3); #3
+INSERT INTO proposta_acquisto (produttore, prodotto, codice_prodotto, prezzo, URL, note, stato, motivazione, richiesta_id) VALUES
+    ('Apple', 'iPhone 15 Pro 256GB Titanio Blu', '1a2b3c4d', 1369, 'https://www.apple.com/it/shop/buy-iphone/iphone-15-pro/display-da-6,1%22-256gb-titanio-blu', 'Dal sito potrà tranquillamente cambiare colore o capacità di archiviazione', 'IN_ATTESA', NULL, 2), #1
+    ('Nintendo', 'Nintendo Switch Modello OLED (bianco)', '2b3c4d5e', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-bianco-000000000010007454', 'La nuova Switch con schermo OLED', 'RIFIUTATO', 'Troppo vecchia, è uscita nel 2021, la voglio più nuova', 3), #2
+    ('Nintendo', 'Nintendo Switch Modello OLED edizione speciale Mario (rossa)', '3c4d5e6f', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-edizione-speciale-mario-rossa-000000000010011772', 'Questa è la versione speciale Mario, è tutta rossa ed è uscita a fine 2023!', 'ACCETTATO', NULL, 3); #3
 
 INSERT INTO ordine (stato, proposta_id) VALUES
     ('ACCETTATO' , 3); #1

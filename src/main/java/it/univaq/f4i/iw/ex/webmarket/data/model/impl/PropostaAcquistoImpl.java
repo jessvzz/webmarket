@@ -10,6 +10,7 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
     private int id;
     private String produttore;
     private String prodotto;
+    private String codiceProdotto;
     private String codice;
     private double prezzo;
     private String url;
@@ -23,6 +24,7 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
         super();
         produttore = "";
         prodotto = "";
+        codiceProdotto = "";
         codice = "";
         prezzo = 0;
         url = "";
@@ -32,10 +34,11 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
         richiestaOrdine = null;
     }
 
-    public PropostaAcquistoImpl(int id, String produttore, String prodotto, String codice, float prezzo, String url, String note, StatoProposta stato, String motivazione, RichiestaOrdine richiestaOrdine) {
+    public PropostaAcquistoImpl(int id, String produttore, String prodotto, String codiceProdotto, String codice, float prezzo, String url, String note, StatoProposta stato, String motivazione, RichiestaOrdine richiestaOrdine) {
         this.id = id;
         this.produttore = produttore;
         this.prodotto = prodotto;
+        this.codiceProdotto = codiceProdotto;
         this.codice = codice;
         this.prezzo = prezzo;
         this.url = url;
@@ -73,6 +76,16 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
     @Override
     public void setProdotto(String prodotto) {
         this.prodotto = prodotto;
+    }
+
+    @Override
+    public String getCodiceProdotto() {
+        return codiceProdotto;
+    }
+
+    @Override
+    public void setCodiceProdotto(String codiceProdotto) {
+        this.codiceProdotto = codiceProdotto;
     }
 
     @Override

@@ -20,7 +20,7 @@ import java.sql.Statement;
 public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDAO {
 
     // Query SQL precompilate
-    private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente, sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta;
+    private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente,sProposteByTecnico,sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta;
 
     public PropostaAcquistoDAO_MySQL(DataLayer d) {
         super(d);
@@ -36,6 +36,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             sProposteByRichiesta = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE richiesta_id = ?");
             sAllProposte = connection.prepareStatement("SELECT * FROM proposta_acquisto");
 
+            sProposteByTecnico = connection.prepareStatement("SELECT pa.* FROM proposta_acquisto pa JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ?");
             sProposteByUtente = connection.prepareStatement("SELECT pa.* FROM proposta_acquisto pa JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ?");
             // sProposteByOrdine = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ordine_id = ?");
             
@@ -55,8 +56,11 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             sPropostaByID.close();
             sProposteByRichiesta.close();
             sAllProposte.close();
+            sProposteByTecnico.close();
+            sProposteByUtente.close();
             iProposta.close();
             uProposta.close();
+            uInviaProposta.close();
             dProposta.close();
         } catch (SQLException ex) {
             // Ignora eccezione di chiusura
@@ -234,4 +238,20 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             throw new DataException("Impossibile inviare la proposta d'acquisto", ex);
         }
     }
+
+    @Override
+    public List<PropostaAcquisto> getProposteByTecnico(int tecnico_key) throws DataException {
+        List<PropostaAcquisto> proposte = new ArrayList<>();
+        try {
+            sProposteByTecnico.setInt(1, tecnico_key);
+            try (ResultSet rs = sProposteByTecnico.executeQuery()) {
+                while (rs.next()) {
+                    proposte.add(createPropostaAcquisto(rs));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Impossibile caricare le proposte d'acquisto per il tecnico specificato", ex);
+        }
+        return proposte;
+        }
 }

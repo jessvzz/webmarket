@@ -39,6 +39,12 @@ public class PropostaAcquistoProxy extends PropostaAcquistoImpl implements DataI
         this.modified = true;
     }
 
+    @Override
+    public void setCodiceProdotto(String codiceProdotto) {
+        super.setCodiceProdotto(codiceProdotto);
+        this.modified = true;
+    }
+
 
     @Override
     public void setCodice(String codice) {
