@@ -5,6 +5,7 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
+import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
@@ -30,6 +31,9 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
             if (categoria != null) {
                 request.setAttribute("categoria", categoria);
                 
+                List<Caratteristica> caratteristiche= ((ApplicationDataLayer) request.getAttribute("datalayer")).getCaratteristicaDAO().getCaratteristicheByCategoria(n);
+
+                request.setAttribute("caratteristiche", caratteristiche);
                 request.setAttribute("page_title", "Selezione Caratteristiche");
                 //verr� usato automaticamente il template di outline spcificato tra i context parameters
                 //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template
