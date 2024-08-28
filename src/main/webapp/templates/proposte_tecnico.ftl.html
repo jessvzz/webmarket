@@ -22,26 +22,23 @@
         </select>
     </div>
     
-<!-- Sezione che mostra le richieste non evase -->
+    <!-- Sezione che mostra le richieste non evase -->
     <#if (proposte?size>0)>
 
     <div class="rows-container">
         <!-- TODO: Rendere dinamiche le righe mostrate -->
         <#list proposte as proposta>
 
-        <a href="detailproposta_tecnico?n={proposta.key}" class="a-cards">
+        <a href="detailproposta_tecnico?n=${proposta.key}" class="a-cards">
             <div class="card-row-skyblue">
                 <div class="card-row-content">
-                    <p class="card-row-text">${proposta.codiceProposta}</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">${proposta.richiesta.utente.nome}</p>
+                    <p class="card-row-text">${proposta.codice}</p>
                 </div>
                 <div class="card-row-content">
                     <p class="card-row-text">${proposta.data}</p>
                 </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Stato</p>
+                <div class="card-row-content" stato="${proposta.getStatoProposta()}">
+                    <p class="card-row-text">${proposta.getStatoProposta()}</p>
                 </div>
             </div>
         </a>
@@ -49,3 +46,5 @@
     </div>
     </#if>
 </div>
+
+<script src="scripts/proposte_tecnico.js"></script>

@@ -83,7 +83,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             p.setProduttore(rs.getString("produttore"));
             p.setProdotto(rs.getString("prodotto"));
             p.setCodice(rs.getString("codice"));
-            p.setCodice(rs.getString("codice_prodotto"));
+            p.setCodiceProdotto(rs.getString("codice_prodotto"));
             p.setPrezzo(rs.getFloat("prezzo"));
             p.setUrl(rs.getString("URL"));
             p.setNote(rs.getString("note"));

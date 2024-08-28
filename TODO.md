@@ -9,7 +9,7 @@
 - [x] Modificare il resize delle righe
 - [x] Sistemare la dimensione della card-richieste-storico
 - [x] Aggiungere data alla proposta acquisto
-- [ ] Finire visualizzazione proposte tecnico
+- [ ] Finire visualizzazione proposte tecnico (mostrare l'username dell'utente)
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
