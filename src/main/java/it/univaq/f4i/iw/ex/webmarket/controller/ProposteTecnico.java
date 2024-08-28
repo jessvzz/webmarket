@@ -42,7 +42,7 @@ public class ProposteTecnico extends BaseController {
         // Recupero l'ID del tecnico dalla sessione
         int tecnicoId = (int) session.getAttribute("userid");
         
-        //ho aggiunto id perchè dobbiamo filtrare le richieste che ha fatto l'utente interessato
+        //ho aggiunto id perchè dobbiamo filtrare le proposte che ha inviato il tecnico loggato
         action_default(request, response, tecnicoId);
 
     } catch (IOException | TemplateManagerException ex) {
