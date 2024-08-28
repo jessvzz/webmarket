@@ -8,7 +8,7 @@
 - [x] Controllare lo spazio tra le card nella home tecnico
 - [x] Modificare il resize delle righe
 - [x] Sistemare la dimensione della card-richieste-storico
-- [ ] Aggiungere data alla proposta acquisto
+- [x] Aggiungere data alla proposta acquisto
 - [ ] Finire visualizzazione proposte tecnico
 
 ## Gea:

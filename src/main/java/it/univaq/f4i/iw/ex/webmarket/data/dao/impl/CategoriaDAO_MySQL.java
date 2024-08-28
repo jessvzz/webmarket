@@ -53,7 +53,8 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
 
             uCategoria = connection.prepareStatement("UPDATE categoria SET nome=? WHERE ID=?");
             
-            sCategorie = connection.prepareStatement("SELECT ID FROM categoria");
+            sCategorie = connection.prepareStatement("SELECT nome FROM categoria");
+            
             sCategorieFiglioFromPadre = connection.prepareStatement("SELECT * FROM categoria WHERE padre = ?");
 
             dCategoria = connection.prepareStatement("DELETE FROM categoria WHERE ID=?");

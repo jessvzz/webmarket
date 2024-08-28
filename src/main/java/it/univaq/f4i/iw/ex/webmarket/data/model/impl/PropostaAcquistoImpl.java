@@ -3,6 +3,7 @@ package it.univaq.f4i.iw.ex.webmarket.data.model.impl;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
+import java.util.Date;
 
 
 
@@ -16,6 +17,7 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
     private String url;
     private String note;
     private StatoProposta stato;
+    private Date data;
     private String motivazione;
     private RichiestaOrdine richiestaOrdine;
 
@@ -30,11 +32,12 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
         url = "";
         note = "";
         stato = null;
+        data = null;
         motivazione = "";
         richiestaOrdine = null;
     }
 
-    public PropostaAcquistoImpl(int id, String produttore, String prodotto, String codiceProdotto, String codice, float prezzo, String url, String note, StatoProposta stato, String motivazione, RichiestaOrdine richiestaOrdine) {
+    public PropostaAcquistoImpl(int id, String produttore, String prodotto, String codiceProdotto, String codice, float prezzo, String url, String note, StatoProposta stato,Date data, String motivazione, RichiestaOrdine richiestaOrdine) {
         this.id = id;
         this.produttore = produttore;
         this.prodotto = prodotto;
@@ -44,6 +47,7 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
         this.url = url;
         this.note = note;
         this.stato = stato;
+        this.data = data;
         this.motivazione = motivazione;
         this.richiestaOrdine = richiestaOrdine;
     }
@@ -136,6 +140,16 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
     @Override
     public void setStatoProposta(StatoProposta stato) {
         this.stato = stato;
+    }
+
+    @Override
+    public Date getData() {
+        return data;
+    }
+
+    @Override
+    public void setData(Date data) {
+        this.data = data;
     }
 
     @Override
