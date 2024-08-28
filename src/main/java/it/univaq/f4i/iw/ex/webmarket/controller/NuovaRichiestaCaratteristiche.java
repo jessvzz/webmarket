@@ -6,19 +6,27 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
+import it.univaq.f4i.iw.ex.webmarket.data.model.CaratteristicaRichiesta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
+import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
+import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.CaratteristicaRichiestaImpl;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.RichiestaOrdineImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -51,6 +59,44 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
         }
     }
      
+    private void send_request(HttpServletRequest request, HttpServletResponse response, int n) throws DataException{        
+        RichiestaOrdine richiestaOrdine = new RichiestaOrdineImpl();  // Creo istanza della richiesta d'ordine
+        
+       // trovo user
+        HttpSession session = SecurityHelpers.checkSession(request);
+
+        int userId = (int) session.getAttribute("userid");
+        Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtente(userId);
+        richiestaOrdine.setUtente(u);
+
+        ((ApplicationDataLayer) request.getAttribute("datalayer"))
+            .getRichiestaOrdineDAO().storeRichiestaOrdine(richiestaOrdine);
+
+        // recupero caratteristiche
+        List<Caratteristica> caratteristiche = ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getCaratteristicaDAO().getCaratteristicheByCategoria(n);
+
+        // associo caratteristiche alla richiesta d'ordine
+        for (Caratteristica caratteristica : caratteristiche) {
+            CaratteristicaRichiesta caratteristicaRichiesta = new CaratteristicaRichiestaImpl();
+            caratteristicaRichiesta.setCaratteristica(caratteristica);
+            caratteristicaRichiesta.setRichiestaOrdine(richiestaOrdine);
+
+            // vedo se è indifferente
+            String indifferente = request.getParameter("caratteristica" + caratteristica.getKey() + "-indifferente");
+            if (indifferente != null && indifferente.equals("on")) {
+                caratteristicaRichiesta.setValore("indifferente");
+            } else {
+                // prendo valore
+                String valore = request.getParameter("caratteristica" + caratteristica.getKey());
+                caratteristicaRichiesta.setValore(valore);
+            }
+
+            // salvo caratteristica nel db
+            ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getCaratteristicaRichiestaDAO().storeCaratteristicaRichiesta(caratteristicaRichiesta);
+        }
+    }
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -60,7 +106,14 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
         try {
             n = SecurityHelpers.checkNumeric(request.getParameter("n"));
             
-            action_categoria(request, response, n);
+            String action = request.getParameter("action");
+            if (action != null && action.equals("createRichiesta")) {
+                send_request(request, response, n);
+            } else {
+                action_categoria(request, response, n);
+            }
+
+            
         } catch (NumberFormatException ex) {
             handleError("Invalid number specified", request, response);
         } catch (IOException | TemplateManagerException ex) {
