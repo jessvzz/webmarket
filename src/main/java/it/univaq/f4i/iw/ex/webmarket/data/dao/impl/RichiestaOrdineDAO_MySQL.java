@@ -41,7 +41,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             sRichiesteInoltrate = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
             sRichiesteTecnico = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE tecnico_id = ?");
             sRichiesteRisolte = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
-            iRichiestaOrdine = connection.prepareStatement("INSERT INTO richiesta_ordine (note, stato, data, codice_richiesta, utente_id, tecnico_id, categoria_id) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            iRichiestaOrdine = connection.prepareStatement("INSERT INTO richiesta_ordine (note, stato, data, utente, categoria_id) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uRichiestaOrdine = connection.prepareStatement("UPDATE richiesta_ordine SET note=?, stato=?, data=?, codice_richiesta=?, utente_id=?, tecnico_id=?, categoria_id=? WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing RichiestaOrdine data layer", ex);
@@ -149,10 +149,8 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
                 iRichiestaOrdine.setString(1, richiesta.getNote());
                 iRichiestaOrdine.setString(2, richiesta.getStato().name());
                 iRichiestaOrdine.setDate(3, new java.sql.Date(richiesta.getData().getTime()));
-                iRichiestaOrdine.setString(4, richiesta.getCodiceRichiesta());
-                iRichiestaOrdine.setInt(5, richiesta.getUtente().getKey());
-                iRichiestaOrdine.setInt(6, richiesta.getTecnico().getKey());
-                iRichiestaOrdine.setInt(7, richiesta.getCategoria().getKey());
+                iRichiestaOrdine.setInt(4, richiesta.getUtente().getKey());
+                iRichiestaOrdine.setInt(5, richiesta.getCategoria().getKey());
 
                 if (iRichiestaOrdine.executeUpdate() == 1) {
                     try (ResultSet keys = iRichiestaOrdine.getGeneratedKeys()) {

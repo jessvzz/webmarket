@@ -12,12 +12,14 @@ import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.CaratteristicaRichiestaImpl;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.RichiestaOrdineImpl;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +70,19 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
         int userId = (int) session.getAttribute("userid");
         Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtente(userId);
         richiestaOrdine.setUtente(u);
+        richiestaOrdine.setStato(StatoRichiesta.IN_ATTESA);  
 
+        Categoria categoria = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategoria(n);
+        richiestaOrdine.setCategoria(categoria);
+
+        richiestaOrdine.setData(new Date());
+        
+        String note = request.getParameter("note");
+        if(note != null){
+            richiestaOrdine.setNote(note);
+        }
+
+        //creo nuova richiesta nel db
         ((ApplicationDataLayer) request.getAttribute("datalayer"))
             .getRichiestaOrdineDAO().storeRichiestaOrdine(richiestaOrdine);
 
@@ -89,7 +103,12 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
             } else {
                 // prendo valore
                 String valore = request.getParameter("caratteristica" + caratteristica.getKey());
-                caratteristicaRichiesta.setValore(valore);
+                if (valore != null){
+                    caratteristicaRichiesta.setValore(valore);
+                } else{
+                    caratteristicaRichiesta.setValore("indifferente");
+                }
+                
             }
 
             // salvo caratteristica nel db
@@ -104,7 +123,12 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
 
         int n;
         try {
+            String param =  request.getParameter("n");
+            System.out.println("Parametro: " + param); 
             n = SecurityHelpers.checkNumeric(request.getParameter("n"));
+            
+            System.out.println("Parametro n: " + n); 
+
             
             String action = request.getParameter("action");
             if (action != null && action.equals("createRichiesta")) {

@@ -34,7 +34,7 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
             sCaratteristicaRichiestaByID = connection.prepareStatement("SELECT * FROM caratteristica_richiesta WHERE ID = ?");
             sCaratteristicheByRichiesta = connection.prepareStatement("SELECT * FROM caratteristica_richiesta WHERE richiesta_id = ?");
             sRichiesteByCaratteristica = connection.prepareStatement("SELECT * FROM caratteristica_richiesta WHERE caratteristica_id = ?");
-            iCaratteristicaRichiesta = connection.prepareStatement("INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES(?,?,?)");
+            iCaratteristicaRichiesta = connection.prepareStatement("INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES(?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             uCaratteristicaRichiesta = connection.prepareStatement("UPDATE caratteristica_richiesta SET richiesta_id=?, caratteristica_id=?, valore=? WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing data layer", ex);
