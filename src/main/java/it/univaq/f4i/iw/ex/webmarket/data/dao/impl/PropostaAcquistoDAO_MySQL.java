@@ -2,6 +2,8 @@ package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.PropostaAcquistoDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
+import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
+import it.univaq.f4i.iw.ex.webmarket.data.dao.RichiestaOrdineDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.PropostaAcquistoProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
@@ -81,16 +83,15 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             p.setProduttore(rs.getString("produttore"));
             p.setProdotto(rs.getString("prodotto"));
             p.setCodice(rs.getString("codice"));
+            p.setCodice(rs.getString("codice_prodotto"));
             p.setPrezzo(rs.getFloat("prezzo"));
             p.setUrl(rs.getString("URL"));
             p.setNote(rs.getString("note"));
-            //
             p.setStatoProposta(StatoProposta.valueOf(rs.getString("stato")));
             p.setMotivazione(rs.getString("motivazione"));
-            // Recupera l'oggetto RichiestaOrdine tramite il suo ID
-        // RichiestaOrdine richiesta = richiestaOrdineDAO.getRichiestaOrdine(rs.getInt("richiesta_id"));
-        // p.setRichiestaOrdine(richiesta);
-            // p.setRichiestaOrdine(rs.getInt("richiesta_id")); 
+            //Recupera l'oggetto RichiestaOrdine tramite il suo ID
+            RichiestaOrdineDAO richiestaOrdineDAO = (RichiestaOrdineDAO) dataLayer.getDAO(RichiestaOrdine.class);
+            p.setRichiestaOrdine(richiestaOrdineDAO.getRichiestaOrdine(rs.getInt("proposta_id")));
             return p;
         } catch (SQLException ex) {
             throw new DataException("Impossibile creare l'oggetto proposta d'acquisto dal ResultSet", ex);

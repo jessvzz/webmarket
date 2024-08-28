@@ -310,7 +310,7 @@ select.medium,input.medium {
     flex-wrap: wrap;
 }
 
-.card-purple, .card-orange, .card-skyblue {
+.card-purple, .card-orange, .card-skyblue, .card-salm {
     width: 180px; 
     height: 230px; 
     border-radius: 20px;
@@ -367,6 +367,10 @@ select.medium,input.medium {
     background-color: #90D5FE; 
 }
 
+.card-salm {
+    background-color:#e78e52; 
+}
+
 .card-purple:hover {
     background-color: #5935ad; 
 }
@@ -377,6 +381,10 @@ select.medium,input.medium {
 
 .card-skyblue:hover {
     background-color: #67c4f1; 
+}
+
+.card-salm:hover {
+    background-color: #e27a34; 
 }
 
 .card-pink-notifications:hover {
@@ -831,7 +839,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     justify-content: center;
 }
 
-.card-row-purple, .card-row-skyblue, .card-row-orange, .card-row-pink, .card-row-notif {
+.card-row-purple, .card-row-skyblue,.card-row-salm, .card-row-orange, .card-row-pink, .card-row-notif {
     width: 90%;
     height: auto;
     border-radius: 10px;
@@ -854,6 +862,10 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     background-color: #90D5FE;
 }
 
+.card-row-salm {
+    background-color: #e78e52;
+}
+
 .card-row-orange {
     background-color: #F67956;
 }
@@ -868,6 +880,9 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .card-row-skyblue:hover {
     background-color: #67c4f1;
+}
+.card-row-salm:hover {
+    background-color: #e27a34;
 }
 
 .card-row-orange:hover {
@@ -1280,6 +1295,64 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 /* utili */
+
+.container-salm-proposta{
+    width: 80%;
+    padding: 20px;
+    border-radius: 30px;
+    text-align: right;
+}
+
+.container-salm-proposta {
+    background-color: #e78e52;
+}
+
+.container-salm-proposta label {
+    width: 100%;
+    text-align: right;
+    display: block;
+    font-size: 25px;
+    color: #333;
+    margin-right: 150px;
+}
+
+
+
+.card-notifiche {
+    width: 180px; 
+    height: 50px; 
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #c9d2d5;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.card-notifiche .img-prof{
+    width: 15%;
+    height: auto;
+    margin-right: 10px;
+}
+
+
+.card-notifiche:hover {
+    background-color: #b9babc; 
+}
+
+
+.card-text {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 23px;
+    vertical-align: text-center;
+    color: #1e1e1e;
+}
+
+
     .width150px{
         max-width: 150px;
     }
@@ -1297,8 +1370,13 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
         margin-bottom: 10px;
     }
 
+    .max-width-card {
+        width: 100%;
+        max-width: 1200px;
+    }
+
 @media (max-width: 768px) {
-    .card-purple, .card-orange, .card-skyblue {
+    .card-purple, .card-orange, .card-skyblue, .card-salm {
         width: 100%;
         height: 200px;
     }
@@ -1328,7 +1406,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
         align-items: center;
     }
 
-    .card-row-orange, .card-row-purple, .card-row-skyblue, .card-row-pink, .card-row-notif {
+    .card-row-orange, .card-row-purple, .card-row-skyblue, .card-row-pink, .card-row-notif , .card-row-salm{
         flex-direction: column;
     }
 
