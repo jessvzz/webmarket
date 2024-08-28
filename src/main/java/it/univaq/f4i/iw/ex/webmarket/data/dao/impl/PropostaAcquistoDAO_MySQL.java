@@ -88,10 +88,11 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             p.setUrl(rs.getString("URL"));
             p.setNote(rs.getString("note"));
             p.setStatoProposta(StatoProposta.valueOf(rs.getString("stato")));
+            p.setData(rs.getDate("data"));
             p.setMotivazione(rs.getString("motivazione"));
             //Recupera l'oggetto RichiestaOrdine tramite il suo ID
             RichiestaOrdineDAO richiestaOrdineDAO = (RichiestaOrdineDAO) dataLayer.getDAO(RichiestaOrdine.class);
-            p.setRichiestaOrdine(richiestaOrdineDAO.getRichiestaOrdine(rs.getInt("proposta_id")));
+            p.setRichiestaOrdine(richiestaOrdineDAO.getRichiestaOrdine(rs.getInt("richiesta_id")));
             return p;
         } catch (SQLException ex) {
             throw new DataException("Impossibile creare l'oggetto proposta d'acquisto dal ResultSet", ex);

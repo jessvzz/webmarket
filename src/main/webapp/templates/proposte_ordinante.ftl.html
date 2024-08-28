@@ -16,10 +16,6 @@
         <p class="filter-text">Filtra per stato:</p>
         <select name="status" id="status" class="filter-select">
             <option value="tutti">Tutti</option>
-            <option value="in_carico">In Carico</option>
-            <option value="risolta">Risolta</option>
-            <option value="in_attesa">In Attesa</option>
-            <option value="ordinato">Ordinato</option>
         </select>
     </div>
 
@@ -27,7 +23,7 @@
      
         <#if (proposte?size>0)>
 
-    <div class="rows-container">
+       <div class="rows-container">
 
         <#list proposte as proposta>
 
@@ -38,7 +34,7 @@
             </div>
 
             <div class="card-row-content">
-                <p class="card-row-text">Data: </p>
+                <p class="card-row-text">Data: ${proposta.data}</p>
             </div> 
 
             <div class="card-row-content">
@@ -48,8 +44,6 @@
          
         </a>
         </#list>
-        
         </div>
        </#if>
-
 </div>

@@ -36,10 +36,10 @@ public class ProposteOrdinante extends BaseController {
         }
 
         // Recupero l'ID del tecnico dalla sessione
-        int user = (int) session.getAttribute("userid");
+        int userId = (int) session.getAttribute("userid");
         
         //ho aggiunto id perchè dobbiamo filtrare le richieste che ha fatto l'utente interessato
-        action_default(request, response, user);
+        action_default(request, response, userId);
 
     } catch (IOException | TemplateManagerException ex) {
         handleError(ex, request, response);
