@@ -61,7 +61,7 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
         }
     }
      
-    private void send_request(HttpServletRequest request, HttpServletResponse response, int n) throws DataException{        
+    private void send_request(HttpServletRequest request, HttpServletResponse response, int n) throws DataException, IOException{        
         RichiestaOrdine richiestaOrdine = new RichiestaOrdineImpl();  // Creo istanza della richiesta d'ordine
         
        // trovo user
@@ -97,7 +97,7 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
             caratteristicaRichiesta.setRichiestaOrdine(richiestaOrdine);
 
             // vedo se è indifferente
-            String indifferente = request.getParameter("caratteristica" + caratteristica.getKey() + "-indifferente");
+            String indifferente = request.getParameter(caratteristica.getKey() + "-indifferente");
             if (indifferente != null && indifferente.equals("on")) {
                 caratteristicaRichiesta.setValore("indifferente");
             } else {
@@ -114,6 +114,9 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
             // salvo caratteristica nel db
             ((ApplicationDataLayer) request.getAttribute("datalayer"))
                 .getCaratteristicaRichiestaDAO().storeCaratteristicaRichiesta(caratteristicaRichiesta);
+            
+            String redirectURL = "homepageordinante";
+            response.sendRedirect(redirectURL);
         }
     }
 

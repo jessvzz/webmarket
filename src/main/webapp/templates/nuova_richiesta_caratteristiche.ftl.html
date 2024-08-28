@@ -9,8 +9,8 @@
         <#list caratteristiche as caratteristica>
         <div class="characteristics-row">
             <label for="caratteristica${caratteristica.key}">${caratteristica.nome}:</label>
-            <input type="text" id="caratteristica${caratteristica.key}" name="${caratteristica.key}" placeholder="Inserisci ${caratteristica.nome}">
-            <input type="checkbox" id="caratteristica${caratteristica.key}-indifferente" name="marca-indifferente"> Indifferente
+            <input type="text" id="caratteristica${caratteristica.key}" name="caratteristica${caratteristica.key}" placeholder="Inserisci ${caratteristica.nome}">
+            <input type="checkbox" id="caratteristica${caratteristica.key}-indifferente" name="${caratteristica.key}-indifferente"> Indifferente
         </div>
     </#list>
     <#else>
