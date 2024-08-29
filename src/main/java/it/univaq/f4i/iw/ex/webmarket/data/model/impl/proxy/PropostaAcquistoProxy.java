@@ -81,7 +81,7 @@ public class PropostaAcquistoProxy extends PropostaAcquistoImpl implements DataI
 
     @Override
     public void setMotivazione(String motivazione) {
-        super.setProduttore(motivazione);
+        super.setMotivazione(motivazione);
         this.modified = true;
     }
 

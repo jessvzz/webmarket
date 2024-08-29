@@ -14,11 +14,7 @@
     <div class="container-proposta">
         <div class="container-info-proposta">
             <div class="badge-stato">stato:
-                <#if proposta.stato??>
-    ${proposta.stato}
-<#else>
-    Stato non disponibile
-</#if>
+                ${proposta.stato ! "Stato non disponibile"}
             </div> 
         </div>
 

@@ -1,6 +1,7 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
+import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
@@ -25,8 +26,13 @@ public class DettaglioPropostaOrd extends BaseController {
         int proposta_key = Integer.parseInt(request.getParameter("n"));
         System.out.println("ID Proposta: " + proposta_key);
 
-        request.setAttribute("proposta", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(proposta_key));
-        System.out.println("Proposta Recuperata");
+        // request.setAttribute("proposta", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(proposta_key));
+        // System.out.println("Proposta Recuperata");
+
+        PropostaAcquisto proposta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(proposta_key);
+        System.out.println("Proposta Recuperata: " + proposta);
+        request.setAttribute("proposta", proposta);
+
         res.activate("dettaglio_proposta_ord.ftl.html", request, response);
     }
 
