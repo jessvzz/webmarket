@@ -5,10 +5,10 @@
                 <img src="images/home-svg.svg" alt="icona home" class="home-icon">
             </a>
         </div>
-        <a href="dettaglio_ordine_ord">
-            <h3 style="color: #F67956; margin-left: 10px;">> Dettaglio Proposta</h3>
+        <a href="proposte_ordinante">
+            <h3 style="color: #F67956; margin-left: 10px;">> Proposte</h3>
         </a>
-        <h3 style="color: #F67956; margin-left: 10px;">> Proposta #${proposta.codice}</h3> 
+        <h3 style="color: #F67956; margin-left: 10px;">> Dettaglio Proposta #${proposta.codice}</h3> 
     </div>
     <br>
     <div class="container-proposta">
@@ -26,7 +26,7 @@
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome produttore">Nome produttore:</label>
-                    <div class="grey-row">${proposta.produttore}</div>
+                    <div class="grey-row">${proposta.produttore!"Produttore non disponibile"}</div>
                 </div>
             </div>
             <div class="row-tecnico">

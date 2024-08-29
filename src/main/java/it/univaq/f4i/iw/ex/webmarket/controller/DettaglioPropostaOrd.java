@@ -24,8 +24,9 @@ public class DettaglioPropostaOrd extends BaseController {
 
         int proposta_key = Integer.parseInt(request.getParameter("n"));
         System.out.println("ID Proposta: " + proposta_key);
+
         request.setAttribute("proposta", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(proposta_key));
-        System.out.println("Proposta Recuperata: ");
+        System.out.println("Proposta Recuperata");
         res.activate("dettaglio_proposta_ord.ftl.html", request, response);
     }
 
@@ -40,7 +41,7 @@ public class DettaglioPropostaOrd extends BaseController {
 
   // Recupero l'ID dell'utente dalla sessione
   int userId = (int) session.getAttribute("userid");
-        
+  String action = request.getParameter("action");
   //ho aggiunto id perchè dobbiamo filtrare le richieste che ha fatto l'utente interessato
   action_default(request, response, userId);
 

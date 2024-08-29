@@ -171,4 +171,24 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
     public void setRichiestaOrdine(RichiestaOrdine richiestaOrdine) {
         this.richiestaOrdine = richiestaOrdine;
     }
+    @Override
+    public String toString() {
+        return "PropostaAcquistoImpl{" +
+                "id=" + id +
+                ", produttore='" + produttore + '\'' +
+                ", prodotto='" + prodotto + '\'' +
+                ", codiceProdotto='" + codiceProdotto + '\'' +
+                ", codice='" + codice + '\'' +
+                ", prezzo=" + prezzo +
+                ", url='" + url + '\'' +
+                ", note='" + note + '\'' +
+                ", stato=" + stato +
+                ", data=" + data +
+                ", motivazione='" + motivazione + '\'' +
+                ", richiestaOrdine=" + (richiestaOrdine != null ? richiestaOrdine.getId() : "null") +
+                '}';
+    }
+    
+
+
 }
