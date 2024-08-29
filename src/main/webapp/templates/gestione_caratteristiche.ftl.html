@@ -9,7 +9,9 @@
             <div class="categories">
                 <#if (caratteristiche?size>0)>
                 <#list caratteristiche as car>
-                <div class="light-orange-button width150px category-item height61px">${car.nome}</div>
+                <div class="light-orange-button width150px category-item height61px">${car.nome} <button type="button" class="trashcan-button" data-id="${car.id}">
+                    🗑️ 
+                </button></div>
                 </#list>
                 </#if>
             </div>

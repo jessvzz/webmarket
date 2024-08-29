@@ -105,7 +105,7 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
                 // prendo valore
                 String valore = request.getParameter("caratteristica" + caratteristica.getKey());
                 System.out.println("valore: "+valore);
-                if (valore != null){
+                if (valore != ""){
                     caratteristicaRichiesta.setValore(valore);
                 } else{
                     caratteristicaRichiesta.setValore("indifferente");
