@@ -92,6 +92,7 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
 
         // associo caratteristiche alla richiesta d'ordine
         for (Caratteristica caratteristica : caratteristiche) {
+            System.out.println("key: " + caratteristica.getKey());
             CaratteristicaRichiesta caratteristicaRichiesta = new CaratteristicaRichiestaImpl();
             caratteristicaRichiesta.setCaratteristica(caratteristica);
             caratteristicaRichiesta.setRichiestaOrdine(richiestaOrdine);
@@ -103,6 +104,7 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
             } else {
                 // prendo valore
                 String valore = request.getParameter("caratteristica" + caratteristica.getKey());
+                System.out.println("valore: "+valore);
                 if (valore != null){
                     caratteristicaRichiesta.setValore(valore);
                 } else{
@@ -115,9 +117,9 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
             ((ApplicationDataLayer) request.getAttribute("datalayer"))
                 .getCaratteristicaRichiestaDAO().storeCaratteristicaRichiesta(caratteristicaRichiesta);
             
-            String redirectURL = "homepageordinante";
-            response.sendRedirect(redirectURL);
         }
+        String redirectURL = "homepageordinante";
+        response.sendRedirect(redirectURL);
     }
 
     @Override
