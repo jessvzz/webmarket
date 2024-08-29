@@ -8,17 +8,17 @@
         <h3 style="color: #0D99FF; margin-left: 10px;">> Proposte inviate</h3> 
     </div>
     <div class="search-container">
-        <input type="text" placeholder="Cerca..." class="search-input">
-        <button class="search-button">Vai</button>
+        <input type="text" id="search-input" placeholder="Cerca..." class="search-input">
+        <button id="search-button" class="search-button">Vai</button>
     </div>
     <div class="filter-container">
         <p class="filter-text">Filtra per stato:</p>
-        <select name="category" id="category" class="filter-select">
-            <!-- TODO: Rendere dinamiche le categorie -->
-            <option value="tutte">Tutti</option>
-            <option value="cat1">1</option>
-            <option value="cat2">2</option>
-            <option value="cat3">3</option>
+        <select name="stato" id="stato" class="filter-select">
+            <!-- TODO: Rendere dinamici gli stati -->
+            <option value="tutti">Tutti</option>
+            <option value="stato1">1</option>
+            <option value="stato2">2</option>
+            <option value="stato3">3</option>
         </select>
     </div>
     
@@ -26,13 +26,15 @@
     <#if (proposte?size>0)>
 
     <div class="rows-container">
-        <!-- TODO: Rendere dinamiche le righe mostrate -->
         <#list proposte as proposta>
 
         <a href="detailproposta_tecnico?n=${proposta.key}" class="a-cards">
             <div class="card-row-skyblue">
                 <div class="card-row-content">
                     <p class="card-row-text">${proposta.codice}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">${proposta.getRichiestaOrdine().getUtente().getUsername()}</p>
                 </div>
                 <div class="card-row-content">
                     <p class="card-row-text">${proposta.data}</p>
