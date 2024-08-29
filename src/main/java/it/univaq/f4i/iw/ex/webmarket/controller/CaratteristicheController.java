@@ -7,6 +7,7 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.CaratteristicaImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
@@ -50,7 +51,27 @@ public class CaratteristicheController extends BaseController{
         }
     }
      
-    
+    private void createCaratteristica(HttpServletRequest request, HttpServletResponse response, int n) 
+        throws ServletException, IOException, DataException {
+    String caratteristicaNome = request.getParameter("nuova-caratteristica");
+
+    if (caratteristicaNome != null && !caratteristicaNome.isEmpty()) {
+        Caratteristica nuovaCaratteristica = new CaratteristicaImpl();
+        nuovaCaratteristica.setNome(caratteristicaNome);
+
+        Categoria categoria = ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getCategoriaDAO().getCategoria(n);
+        nuovaCaratteristica.setCategoria(categoria);
+
+        ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getCaratteristicaDAO().storeCaratteratica(nuovaCaratteristica);
+
+        response.sendRedirect("gestisci_caratteristiche?n=" + n);
+    } else {
+        handleError("Invalid characteristic name", request, response);
+    }
+}
+
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -60,7 +81,14 @@ public class CaratteristicheController extends BaseController{
         try {
             n = SecurityHelpers.checkNumeric(request.getParameter("n"));
             
-            action_categoria(request, response, n);
+            String action = request.getParameter("action");
+
+            if ("createCaratteristica".equals(action)) {
+                createCaratteristica(request, response, n);
+            } else{
+                action_categoria(request, response, n);
+            }
+            
             
         } catch (NumberFormatException ex) {
             handleError("Invalid number specified", request, response);
