@@ -1,14 +1,17 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
+import it.univaq.f4i.iw.ex.webmarket.data.dao.OrdineDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
+import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,9 +23,15 @@ import javax.servlet.http.HttpSession;
  */
 public class StoricoTecnico extends BaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response, int tecnico) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Storico Tecnico");
+
+        // Recupera gli ordini associati al tecnico loggato
+        OrdineDAO ordineDAO = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO();
+        List<Ordine> ordini = ordineDAO.getOrdiniByTecnico(tecnico);
+        request.setAttribute("ordini", ordini);
+
         res.activate("storico_tecnico.ftl.html", request, response);
     }
 
@@ -35,23 +44,22 @@ public class StoricoTecnico extends BaseController {
             return;
         }
 
-        String action = request.getParameter("action");
-        action_default(request, response);
+        // Recupero l'ID del tecnico dalla sessione
+        int tecnicoId = (int) session.getAttribute("userid");
 
-    } catch (IOException | TemplateManagerException /* | DataException */ ex) {
+        action_default(request, response, tecnicoId);
+
+    } catch (IOException | TemplateManagerException ex) {
         handleError(ex, request, response);
-    }
+    }    catch (DataException ex) {
+            Logger.getLogger(StoricoTecnico.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }
 
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
-        return "Main Newspaper servlet";
-    }// </editor-fold>
+        return "Servlet per la visualizzazione e gestione dello storico ordini del tecnico";
+    }
 
 }

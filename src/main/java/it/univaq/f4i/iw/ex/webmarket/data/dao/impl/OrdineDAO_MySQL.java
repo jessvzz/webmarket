@@ -17,7 +17,7 @@ import java.util.List;
 // Implementazione MySQL dell'interfaccia OrdineDAO
 public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
     // Query SQL precompilate
-    private PreparedStatement sOrdineByID, sOrdiniByUtente, sAllOrdini, iOrdine, uOrdine, dOrdine;
+    private PreparedStatement sOrdineByID, sOrdiniByUtente, sOrdiniByTecnico, sAllOrdini, iOrdine, uOrdine, dOrdine;
 
     public OrdineDAO_MySQL(DataLayer d) {
         super(d);
@@ -30,6 +30,7 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             // Inizializzazione delle prepared statements con le query SQL
             sOrdineByID = connection.prepareStatement("SELECT * FROM ordine WHERE ID = ?");
             sOrdiniByUtente = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ?");
+            sOrdiniByTecnico = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ?");
             sAllOrdini = connection.prepareStatement("SELECT * FROM ordine");
             iOrdine = connection.prepareStatement("INSERT INTO ordine (stato, proposta_id) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
             uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? WHERE ID=?");
@@ -112,6 +113,22 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             }
         } catch (SQLException ex) {
             throw new DataException("Unable to load ordini by utente ID", ex);
+        }
+        return ordini;
+    }
+
+    @Override
+    public List<Ordine> getOrdiniByTecnico(int tecnico_key) throws DataException {
+        List<Ordine> ordini = new ArrayList<>();
+        try {
+            sOrdiniByTecnico.setInt(1, tecnico_key);
+            try (ResultSet rs = sOrdiniByTecnico.executeQuery()) {
+                while (rs.next()) {
+                    ordini.add(createOrdine(rs));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load ordini by tecnico ID", ex);
         }
         return ordini;
     }

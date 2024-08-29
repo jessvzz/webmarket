@@ -10,8 +10,8 @@
 - [x] Sistemare la dimensione della card-richieste-storico
 - [x] Aggiungere data alla proposta acquisto
 - [x] Finire visualizzazione proposte tecnico (mostrare l'username dell'utente)
-- [ ] Implementare la ricerca in proposte e richieste
-- [ ] Implementare il filtro in proposte e richieste
+- [ ] Implementare la ricerca in proposte, richieste e storico
+- [ ] Implementare il filtro in proposte, richieste e storico
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie

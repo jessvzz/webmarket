@@ -14,7 +14,7 @@ function getStatoProposta(statoProposta) {
             backgroundColor = "#E4CCFF";
             break;
         default:
-            backgroundColor = "#FFFFFF"; // Colore di default
+            backgroundColor = "#FFFFFF";
     }
     return `
         <div class="card-row-content" style="background-color: ${backgroundColor};">

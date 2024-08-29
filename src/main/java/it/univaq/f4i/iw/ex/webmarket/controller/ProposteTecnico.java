@@ -23,8 +23,7 @@ public class ProposteTecnico extends BaseController {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Proposte Tecnico");
 
-        
-        //creo un nuovo dao che contenente una lista di richieste non ancora evase (stato: IN_ATTESA)
+        // Proposte inviate dal tecnico loggato
         request.setAttribute("proposte", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getProposteByTecnico(user));
 
         res.activate("proposte_tecnico.ftl.html", request, response);
@@ -48,7 +47,7 @@ public class ProposteTecnico extends BaseController {
     } catch (IOException | TemplateManagerException ex) {
         handleError(ex, request, response);
     }    catch (DataException ex) {
-            Logger.getLogger(RichiesteOrdinante.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProposteTecnico.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
 

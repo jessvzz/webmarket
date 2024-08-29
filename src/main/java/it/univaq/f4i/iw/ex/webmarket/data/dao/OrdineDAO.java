@@ -17,6 +17,9 @@ public interface OrdineDAO {
     // Recupera gli Ordini associati ad un utente specifico
     List<Ordine> getOrdiniByUtente(int utente_key) throws DataException;
 
+    // Recupera gli Ordini associati ad un tecnico specifico
+    List<Ordine> getOrdiniByTecnico(int tecnico_key) throws DataException;
+
     // Recupera tutti gli Ordini nel database
     List<Ordine> getAllOrdini() throws DataException;
 

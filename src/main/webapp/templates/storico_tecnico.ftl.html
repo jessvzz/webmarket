@@ -13,63 +13,33 @@
     </div>
     <div class="filter-container">
         <p class="filter-text">Filtra per stato:</p>
-        <select name="category" id="category" class="filter-select">
-            <!-- TODO: Rendere dinamiche le categorie -->
-            <option value="tutte">Tutte</option>
-            <option value="cat1">1</option>
-            <option value="cat2">2</option>
-            <option value="cat3">3</option>
+        <select name="stato" id="stato" class="filter-select">
+            <option value="tutti">Tutti</option>
+            <option value="ACCETTATO">Accettato</option>
+            <option value="RESPINTO_NON_CONFORME">Respinto perché non conforme</option>
+            <option value="RESPINTO_NON_FUNZIONANTE">Respinto perché non funzionante</option>
         </select>
     </div>
     <div class="rows-container">
-        <!-- TODO: Rendere dinamiche le righe mostrate -->
-        <a href="detailstorico_tecnico" class="a-cards">
+        <#list ordini as ordine>
+        <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards">
             <div class="card-row-orange">
                 <div class="card-row-content">
-                    <p class="card-row-text">Codice</p>
+                    <p class="card-row-text">${ordine.proposta.codice}</p>
                 </div>
                 <div class="card-row-content">
-                    <p class="card-row-text">Username</p>
+                    <p class="card-row-text">${ordine.proposta.richiestaOrdine.utente.username}</p>
                 </div>
                 <div class="card-row-content">
-                    <p class="card-row-text">Data</p>
+                    <p class="card-row-text">${ordine.proposta.data}</p>
                 </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Stato</p>
+                <div class="card-row-content" stato="${ordine.stato}">
+                    <p class="card-row-text">${ordine.stato}</p>
                 </div>
             </div>
         </a>
-        <a href="detailstorico_tecnico" class="a-cards">
-            <div class="card-row-orange">
-                <div class="card-row-content">
-                    <p class="card-row-text">Codice</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Username</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Data</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Stato</p>
-                </div>
-            </div>
-        </a>
-        <a href="detailstorico_tecnico" class="a-cards">
-            <div class="card-row-orange">
-                <div class="card-row-content">
-                    <p class="card-row-text">Codice</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Username</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Data</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Stato</p>
-                </div>
-            </div>
-        </a>
+        </#list>
     </div>
 </div>
+
+<script src="scripts/storico_tecnico.js"></script>
