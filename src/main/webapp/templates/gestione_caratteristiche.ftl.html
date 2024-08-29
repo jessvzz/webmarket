@@ -1,20 +1,24 @@
-<form action="gestisci_caratteristiche?n=${categoria.key}" method="post" >
-        <input type="hidden" name="action" value="createCaratteristica">
+
 <div>
             <p>Caratteristiche di ${categoria.nome}:</p>
+            <form action="gestisci_caratteristiche?n=${categoria.key}" method="post" >
+        <input type="hidden" name="action" value="createCaratteristica">
             <button type="button" id="add-caratteristica" class="orange-button margin-bottom">Aggiungi</button>
             <div id="caratteristiche-container">
                 
             </div>
+            </form>
+
             <div class="categories">
                 <#if (caratteristiche?size>0)>
                 <#list caratteristiche as car>
                 <div class="light-orange-button width150px category-item height61px">${car.nome}  
-                    <form method="POST" action="gestisci_caratteristiche?n=${categoria.key}">
-                                <input type="hidden" name="action" value="${car.key}">
-                                <input type="submit" id="action" name="action" value="Elimina">
-                        
-                </form>
+                   <form method="POST" action="gestisci_caratteristiche?n=${categoria.key}">
+                        <input type="hidden" name="action" value="deleteCaratteristica">
+                        <input type="hidden" name="caratteristicaId" value="${car.key}">
+                        <input type="submit" value="Elimina">
+                    </form>
+
                 </div>
                 </#list>
                 </#if>
@@ -26,7 +30,6 @@
             </a>
         </div>
         </div>
-</form>
 
  <script type="module" src="scripts/modifica_caratteristiche.js"></script>
 

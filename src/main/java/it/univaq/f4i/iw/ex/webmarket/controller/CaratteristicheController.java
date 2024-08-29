@@ -77,32 +77,34 @@ public class CaratteristicheController extends BaseController{
     }
 }
     
-    private void deleteCaratteristica(HttpServletRequest request, HttpServletResponse response) 
-        throws ServletException, IOException, DataException {
-        System.out.println("sono qui");
-    String caratteristicaId = request.getParameter("id");
-
-    if (caratteristicaId != null && !caratteristicaId.isEmpty()) {
-        ((ApplicationDataLayer) request.getAttribute("datalayer"))
-                .getCaratteristicaDAO().deleteCaratteristica(Integer.parseInt(caratteristicaId));
-
-        response.sendRedirect("gestisci_caratteristiche?n=" + request.getParameter("n"));
-    } else {
-        handleError("Invalid characteristic ID", request, response);
-    }
-}
     
     
-    private void handleDelete(HttpServletRequest request, HttpServletResponse response, Integer caratteristicaKey, int n) {
-        try {
-            ApplicationDataLayer dl = (ApplicationDataLayer) request.getAttribute("datalayer");
-            Caratteristica caratteristica = dl.getCaratteristicaDAO().getCaratteristica(caratteristicaKey);
-            dl.getCaratteristicaDAO().deleteCaratteristica(caratteristicaKey);
-            response.sendRedirect("gestisci_caratteristiche?n=" + n);
+        private void deleteCaratteristica(HttpServletRequest request, HttpServletResponse response, int n) 
+            throws IOException, ServletException, DataException, TemplateManagerException {
             
-        } catch (IOException | DataException ex) {
-            handleError(ex, request, response);
+            System.out.println("sono qui");
+        String caratteristicaIdParam = request.getParameter("caratteristicaId");
+
+        if (caratteristicaIdParam != null && !caratteristicaIdParam.trim().isEmpty()) {
+            try {
+                int caratteristicaId = Integer.parseInt(caratteristicaIdParam);
+
+                ApplicationDataLayer dataLayer = (ApplicationDataLayer) request.getAttribute("datalayer");
+                Caratteristica caratteristica = dataLayer.getCaratteristicaDAO().getCaratteristica(caratteristicaId);
+
+                if (caratteristica != null && caratteristica.getCategoria().getKey() == n) {
+                    dataLayer.getCaratteristicaDAO().deleteCaratteristica(caratteristicaId);
+                    request.setAttribute("success", "Caratteristica eliminata con successo.");
+                } else {
+                    request.setAttribute("error", "Caratteristica non trovata o non appartiene a questa categoria.");
+                }
+            } catch (NumberFormatException e) {
+                request.setAttribute("error", "ID caratteristica non valido.");
+            }
+        } else {
+            request.setAttribute("error", "ID caratteristica mancante.");
         }
+        action_categoria(request, response, n);
     }
     
 
@@ -114,18 +116,24 @@ public class CaratteristicheController extends BaseController{
         int n;
         try {
             n = SecurityHelpers.checkNumeric(request.getParameter("n"));
-            Map<String, String[]> parameterMap = request.getParameterMap();
 
             String action = request.getParameter("action");
             
-            if ("createCaratteristica".equals(action)) {
-                createCaratteristica(request, response, n);
-            } 
-            else if ("Elimina".equals(action)) {
-
-                handleDelete(request, response, Integer.parseInt(parameterMap.get("id")[0]), n);
-            }else{
+            if (action == null || action.isEmpty()) {
                 action_categoria(request, response, n);
+            } else {
+                switch (action) {
+                    case "createCaratteristica":
+                        createCaratteristica(request, response, n);
+                        break;
+                    case "deleteCaratteristica":
+                        deleteCaratteristica(request, response, n);
+                        break;
+                    default:
+                        request.setAttribute("error", "Azione non riconosciuta.");
+                        action_categoria(request, response, n);
+                        break;
+                }
             }
             
             
