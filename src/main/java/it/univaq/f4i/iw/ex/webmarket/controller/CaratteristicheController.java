@@ -34,7 +34,6 @@ public class CaratteristicheController extends BaseController{
                 
                 List<Caratteristica> caratteristiche = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCaratteristicaDAO().getCaratteristicheByCategoria(n);
                 
-                System.out.println("caratteristiche: "+ caratteristiche);
                 request.setAttribute("caratteristiche", caratteristiche);
                 
                 request.setAttribute("page_title", "Caratteristiche di "+categoria.getNome());
@@ -54,8 +53,9 @@ public class CaratteristicheController extends BaseController{
     private void createCaratteristica(HttpServletRequest request, HttpServletResponse response, int n) 
         throws ServletException, IOException, DataException {
     String caratteristicaNome = request.getParameter("nuova-caratteristica");
-
+    System.out.println("sono nel metodo");
     if (caratteristicaNome != null && !caratteristicaNome.isEmpty()) {
+        System.out.println("sono nell'if");
         Caratteristica nuovaCaratteristica = new CaratteristicaImpl();
         nuovaCaratteristica.setNome(caratteristicaNome);
 
@@ -66,11 +66,13 @@ public class CaratteristicheController extends BaseController{
         ((ApplicationDataLayer) request.getAttribute("datalayer"))
                 .getCaratteristicaDAO().storeCaratteratica(nuovaCaratteristica);
 
+        System.out.println("parametro nel create car: "+n);
         response.sendRedirect("gestisci_caratteristiche?n=" + n);
     } else {
         handleError("Invalid characteristic name", request, response);
     }
 }
+    
 
 
     @Override
@@ -81,8 +83,10 @@ public class CaratteristicheController extends BaseController{
         try {
             n = SecurityHelpers.checkNumeric(request.getParameter("n"));
             
+            System.out.println("n: "+n);
             String action = request.getParameter("action");
-
+            System.out.println("Action: " + request.getParameter("action"));
+            System.out.println("Metodo HTTP: " + request.getMethod());
             if ("createCaratteristica".equals(action)) {
                 createCaratteristica(request, response, n);
             } else{
