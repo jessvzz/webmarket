@@ -9,9 +9,13 @@
             <div class="categories">
                 <#if (caratteristiche?size>0)>
                 <#list caratteristiche as car>
-                <div class="light-orange-button width150px category-item height61px">${car.nome} <button type="button" class="trashcan-button" data-id="${car.id}">
-                    🗑️ 
-                </button></div>
+                <div class="light-orange-button width150px category-item height61px">${car.nome}  
+                    <form method="POST" action="gestisci_caratteristiche?n=${categoria.key}">
+                                <input type="hidden" name="action" value="${car.key}">
+                                <input type="submit" id="action" name="action" value="Elimina">
+                        
+                </form>
+                </div>
                 </#list>
                 </#if>
             </div>

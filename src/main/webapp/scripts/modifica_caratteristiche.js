@@ -1,5 +1,5 @@
 
-document.getElementById('add-caratteristica').addEventListener('click', function () {
+   document.getElementById('add-caratteristica').addEventListener('click', function () {
     const container = document.getElementById('caratteristiche-container');
 
     const caratteristicaItem = document.createElement('div');

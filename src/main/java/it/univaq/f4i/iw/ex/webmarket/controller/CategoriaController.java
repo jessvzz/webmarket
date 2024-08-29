@@ -56,7 +56,7 @@ public class CategoriaController extends BaseController{
             Categoria categoria = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategoria(n);
             if (categoria != null) {
                 ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().deleteCategoria(categoria);
-                response.sendRedirect("gestionecategorie"); // Redirigi alla lista delle categorie dopo l'eliminazione
+                response.sendRedirect("gestionecategorie");
             } else {
                 handleError("Unable to find category to delete", request, response);
             }

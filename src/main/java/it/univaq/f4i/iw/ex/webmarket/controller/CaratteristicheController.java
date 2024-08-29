@@ -15,6 +15,7 @@ import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -50,6 +51,9 @@ public class CaratteristicheController extends BaseController{
         }
     }
      
+   
+
+     
     private void createCaratteristica(HttpServletRequest request, HttpServletResponse response, int n) 
         throws ServletException, IOException, DataException {
     String caratteristicaNome = request.getParameter("nuova-caratteristica");
@@ -73,6 +77,34 @@ public class CaratteristicheController extends BaseController{
     }
 }
     
+    private void deleteCaratteristica(HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException, DataException {
+        System.out.println("sono qui");
+    String caratteristicaId = request.getParameter("id");
+
+    if (caratteristicaId != null && !caratteristicaId.isEmpty()) {
+        ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getCaratteristicaDAO().deleteCaratteristica(Integer.parseInt(caratteristicaId));
+
+        response.sendRedirect("gestisci_caratteristiche?n=" + request.getParameter("n"));
+    } else {
+        handleError("Invalid characteristic ID", request, response);
+    }
+}
+    
+    
+    private void handleDelete(HttpServletRequest request, HttpServletResponse response, Integer caratteristicaKey, int n) {
+        try {
+            ApplicationDataLayer dl = (ApplicationDataLayer) request.getAttribute("datalayer");
+            Caratteristica caratteristica = dl.getCaratteristicaDAO().getCaratteristica(caratteristicaKey);
+            dl.getCaratteristicaDAO().deleteCaratteristica(caratteristicaKey);
+            response.sendRedirect("gestisci_caratteristiche?n=" + n);
+            
+        } catch (IOException | DataException ex) {
+            handleError(ex, request, response);
+        }
+    }
+    
 
 
     @Override
@@ -82,14 +114,17 @@ public class CaratteristicheController extends BaseController{
         int n;
         try {
             n = SecurityHelpers.checkNumeric(request.getParameter("n"));
-            
-            System.out.println("n: "+n);
+            Map<String, String[]> parameterMap = request.getParameterMap();
+
             String action = request.getParameter("action");
-            System.out.println("Action: " + request.getParameter("action"));
-            System.out.println("Metodo HTTP: " + request.getMethod());
+            
             if ("createCaratteristica".equals(action)) {
                 createCaratteristica(request, response, n);
-            } else{
+            } 
+            else if ("Elimina".equals(action)) {
+
+                handleDelete(request, response, Integer.parseInt(parameterMap.get("id")[0]), n);
+            }else{
                 action_categoria(request, response, n);
             }
             
