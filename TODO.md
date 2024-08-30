@@ -1,4 +1,6 @@
 # COSE DA FARE
+-[ ] implementare ricerca e filtro in proposte tecnico
+
 ## Giulia:
 - [x] Togliere INVIATA in StatoProposta
 - [x] Far matchare gli enum col db
@@ -16,8 +18,8 @@
 ## Gea:
 - [ ] rivedi css gestionecatgorie
 - [x] email
-- [ ] login (hash password etc)
-- [ ] header + footer
+- [x] login (hash password etc)
+- [x] header + footer
 - [x] aggiusta modifica categoria
 
 ## Samanta:

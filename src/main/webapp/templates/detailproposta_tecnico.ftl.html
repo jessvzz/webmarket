@@ -8,68 +8,75 @@
         <a href="proposte_tecnico">
             <h3 style="color: #0D99FF; margin-left: 10px;">> Proposte inviate</h3>
         </a>
-        <h3 style="color: #0D99FF; margin-left: 10px;">> Proposta #codice</h3> <!-- TODO: Codice dinamico-->
+        <h3 style="color: #0D99FF; margin-left: 10px;">> Proposta # ${proposta.key}</h3> 
     </div>
     <div class="container-proposta">
         <div class="container-info-proposta">
-            <h1 class="hi-text">#codiceRichiesta - usernameordinante</h1> <!-- TODO: Dinamico-->
-            <div class="badge-stato">stato</div> <!-- TODO: Cambiare (oltre lo stato) dinamicamente anche il colore del badge -->
+            <h1 class="hi-text"> Richiesta#: ${proposta.richiestaOrdine.codiceRichiesta} - ${proposta.richiestaOrdine.utente.username}</h1>
+            <div class="badge-stato" stato="${proposta.getStatoProposta()}">${proposta.getStatoProposta()}</div> <!-- TODO: Cambiare (oltre lo stato) dinamicamente anche il colore del badge -->
         </div>
         <div class="container-skyblue-proposta">
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome produttore">Nome produttore:</label>
-                    <div class="grey-row">produttore</div>
+                    <div class="grey-row">${proposta.produttore}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome prodotto">Nome prodotto:</label>
-                    <div class="grey-row">prodotto</div>
+                    <div class="grey-row">${proposta.prodotto}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome prodotto">Codice prodotto:</label>
-                    <div class="grey-row">codice</div>
+                    <div class="grey-row">${proposta.codice}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome prodotto">Prezzo:</label>
-                    <div class="grey-row">prezzo</div>
+                    <div class="grey-row">${proposta.prezzo}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome prodotto">URL:</label>
-                    <div class="grey-row">url</div>
+                    <div class="grey-row"><a href="${proposta.url}">Visualizza</a></div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome prodotto">Note:</label>
-                    <div class="grey-row">note</div>
+                    <div class="grey-row">${proposta.note}</div>
                 </div>
             </div>
+            <#if proposta.getStatoProposta() == "RIFIUTATO">            
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome prodotto">Motivazione del rifiuto:</label>
-                    <div class="grey-row" style="background-color: #FFC7C2;">motivazione</div>
+                    <div class="grey-row" style="background-color: #FFC7C2;">${proposta.motivazione}</div>
                 </div>
             </div>
+            </#if>
             <br>
             <div class="row-tecnico">
                 <div class="form-group-tecnico" style="justify-content: center;">
+                    <#if proposta.getStatoProposta() == "RIFIUTATO">
                     <a href="detailrichiesta_tecnico">
                         <button class="btn-arancio">Proponi altro</button>
                     </a>
+                    </#if>
+                    <#if proposta.getStatoProposta() == "ACCETTATO">
                     <a href="homepagetecnico">
                         <button class="btn-verde">Invia ordine</button>
                     </a>
+                </#if>
                 </div>
             </div>
         </div>
     </div>
     <br>
 </div>
+<script src="scripts/proposte_tecnico.js"></script>

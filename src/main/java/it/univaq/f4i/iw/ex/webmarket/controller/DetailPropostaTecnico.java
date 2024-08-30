@@ -1,6 +1,7 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
+import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
@@ -9,6 +10,8 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,8 +23,11 @@ import javax.servlet.http.HttpSession;
  */
 public class DetailPropostaTecnico extends BaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
+        PropostaAcquisto proposta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(n);
+        request.setAttribute("proposta", proposta);
+
         request.setAttribute("page_title", "Detail proposta");
         res.activate("detailproposta_tecnico.ftl.html", request, response);
     }
@@ -30,17 +36,22 @@ public class DetailPropostaTecnico extends BaseController {
         throws ServletException {
     try {
         HttpSession session = SecurityHelpers.checkSession(request);
+        int n;
+        n = SecurityHelpers.checkNumeric(request.getParameter("n"));
+
         if (session == null) {
             response.sendRedirect("login");
             return;
         }
 
         String action = request.getParameter("action");
-        action_default(request, response);
+        action_default(request, response, n);
 
     } catch (IOException | TemplateManagerException /* | DataException */ ex) {
         handleError(ex, request, response);
-    }
+    }   catch (DataException ex) {
+            Logger.getLogger(DetailPropostaTecnico.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }
 
 
