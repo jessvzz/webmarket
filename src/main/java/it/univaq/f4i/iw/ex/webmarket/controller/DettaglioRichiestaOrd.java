@@ -38,6 +38,7 @@ public class DettaglioRichiestaOrd extends BaseController {
         res.activate("dettaglio_richiesta_ord.ftl.html", request, response);
     }
 
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {

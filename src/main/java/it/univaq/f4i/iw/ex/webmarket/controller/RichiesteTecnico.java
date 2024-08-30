@@ -25,6 +25,7 @@ public class RichiesteTecnico extends BaseController {
         res.activate("richieste_tecnico.ftl.html", request, response);
     }
 
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {

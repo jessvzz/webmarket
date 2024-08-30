@@ -48,7 +48,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             sRichiesteTecnico = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE tecnico_id = ?");
             sRichiesteRisolte = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
             iRichiestaOrdine = connection.prepareStatement("INSERT INTO richiesta_ordine (note, stato, data, utente, categoria_id) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uRichiestaOrdine = connection.prepareStatement("UPDATE richiesta_ordine SET note=?, stato=?, data=?, codice_richiesta=?, utente_id=?, tecnico_id=?, categoria_id=? WHERE ID=?");
+            uRichiestaOrdine = connection.prepareStatement("UPDATE richiesta_ordine SET note=?, stato=?, data=?, codice_richiesta=?, utente=?, tecnico=?, categoria_id=? WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing RichiestaOrdine data layer", ex);
         }
@@ -84,7 +84,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             richiesta.setStato(StatoRichiesta.valueOf(rs.getString("stato")));
             richiesta.setData(rs.getDate("data"));
             richiesta.setCodiceRichiesta(rs.getString("codice_richiesta"));
-            // Impostazione di utente, tecnico e categoria non implementata qui, potrebbe essere fatta attraverso ulteriori query
+            // Impostazione di tecnico non implementata qui, potrebbe essere fatta attraverso ulteriori query
             int categoriaId = rs.getInt("categoria_id");
             Categoria categoria = ((ApplicationDataLayer) getDataLayer()).getCategoriaDAO().getCategoria(categoriaId);
             richiesta.setCategoria(categoria);

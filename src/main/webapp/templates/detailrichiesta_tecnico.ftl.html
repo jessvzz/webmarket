@@ -22,7 +22,15 @@
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="caratteristiche">Caratteristiche:</label>
-                <div class="skyblue-richiesta-storico">caratteristiche</div>
+                <#if (caratteristiche?size>0)>
+                
+                <div class="skyblue-richiesta-storico">
+                    <#list caratteristiche as car>
+                    ${car.caratteristica.nome} : ${car.valore} <br>
+                    </#list>
+                </div>
+                
+                </#if>
             </div>
         </div>
         <div class="row-tecnico">

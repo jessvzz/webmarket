@@ -12,6 +12,8 @@
     </div>
     <h1 class="hi-text" style="text-align: left;">#${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
     <br>
+    <form action="" method="post" class="form-container-orange">
+        <input type="hidden" name="action" value="prendiInCarico">
     <div class="container-richieste-storico">
         <div class="row-tecnico">
             <div class="form-group-tecnico">
@@ -40,7 +42,8 @@
             </div>
         </div>
         <div class="row-tecnico">
-                <button class="btn-verde">Prendi in carico</button>
+            <button type="submit" class="btn-verde">Prendi in carico</button>
         </div>
     </div>
+    </form>
 </div>
