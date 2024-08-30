@@ -13,10 +13,11 @@
     <br>
     <div class="container-proposta">
         <div class="container-info-proposta">
-            <div class="badge-stato">stato:
+            <div class="badge-stato" stato="${proposta.getStatoProposta()}">
                 ${proposta.getStatoProposta()! "Stato non disponibile"}
             </div> 
         </div>
+
 
         <div class="container-salm-proposta">
             <div class="row-tecnico">
@@ -58,7 +59,7 @@
             <br>
 
 </div>
-    
+<script src="scripts/dettaglio_proposta_ord.js"></script>
         <a href="successo_ordine">
         <button class="green-button">ACCETTA</button> </a>
      <!-- <button type="submit" class="green-button">ACCETTA</button> -->
