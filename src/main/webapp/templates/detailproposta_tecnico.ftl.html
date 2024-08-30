@@ -69,9 +69,10 @@
                     </a>
                     </#if>
                     <#if proposta.getStatoProposta() == "ACCETTATO">
-                    <a href="homepagetecnico">
-                        <button class="btn-verde">Invia ordine</button>
-                    </a>
+                    <form action="" method="post">
+                        <input type="hidden" name="action" value="inviaOrdine">
+                        <button type="submit" class="btn-verde">Invia ordine</button>
+                    </form>
                 </#if>
                 </div>
             </div>

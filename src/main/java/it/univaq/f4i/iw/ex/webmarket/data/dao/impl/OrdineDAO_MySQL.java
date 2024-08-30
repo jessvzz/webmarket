@@ -162,7 +162,7 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             } else {
                 // Inserisce un nuovo ordine nel database
                 iOrdine.setString(1, ordine.getStato().toString());
-                iOrdine.setInt(2, ordine.getProposta().getId());
+                iOrdine.setInt(2, ordine.getProposta().getKey());
                 if (iOrdine.executeUpdate() == 1) {
                     try (ResultSet keys = iOrdine.getGeneratedKeys()) {
                         if (keys.next()) {
