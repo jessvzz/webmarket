@@ -7,6 +7,7 @@
         </div>
         <h3 style="color: #5D54BE; margin-left: 10px;">> Richieste non evase</h3> 
     </div>
+    <#if (richieste?size>0)>
     <div class="search-container">
         <input type="text" placeholder="Cerca..." class="search-input">
         <button class="search-button">Vai</button>
@@ -23,7 +24,6 @@
     </div>
 
 <!-- Sezione che mostra le richieste non evase -->
-    <#if (richieste?size>0)>
 
     <div class="rows-container">
         <!-- TODO: Rendere dinamiche le righe mostrate -->
@@ -47,5 +47,7 @@
         </a>
         </#list>
     </div>
+    <#else>
+        <h1 class="hi-text" style="text-align: left;">Non ci sono richieste non ancora evase</h1>
     </#if>
 </div>
