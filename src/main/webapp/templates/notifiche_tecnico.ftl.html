@@ -11,6 +11,7 @@
         <#if (richieste?size>0)>
         <!-- TODO: Rendere dinamiche le righe mostrate -->
         <#list richieste as richiesta>
+        <a href="richiesta_inattesa?n=${richiesta.key}">
         <div class="card-row-pink">
              <p class="card-row-text">Nuova richiesta da prendere in carico:</p>
             <div class="card-row-content">
@@ -20,6 +21,7 @@
                 <p class="card-row-text">${richiesta.categoria.nome}</p>
             </div>
         </div>
+            </a>
         </#list>
         </#if>
         

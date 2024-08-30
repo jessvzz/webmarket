@@ -138,6 +138,23 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
         return caratteristiche;
     }
     
+    @Override
+    public List<CaratteristicaRichiesta> getCaratteristicaRichiestaByRichiesta(int richiesta_key) throws DataException {
+        List<CaratteristicaRichiesta> caratteristiche = new ArrayList<>();
+        try {
+            sCaratteristicheByRichiesta.setInt(1, richiesta_key);
+            try (ResultSet rs = sCaratteristicheByRichiesta.executeQuery()) {
+                while (rs.next()) {
+                    CaratteristicaRichiesta caratteristicaRichiesta = createCaratteristicaRichiesta(rs);
+                    caratteristiche.add(caratteristicaRichiesta);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load Caratteristiche by Richiesta", ex);
+        }
+        return caratteristiche;
+    }
+    
 
     @Override
     public List<RichiestaOrdine> getRichiesteByCaratteristica(int caratteristica_key) throws DataException {

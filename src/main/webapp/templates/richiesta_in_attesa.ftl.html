@@ -1,0 +1,46 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #5D54BE;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <a href="notifiche_tecnico">
+            <h3 style="color: #5D54BE; margin-left: 10px;">> Notifiche</h3>
+        </a>
+        <h3 style="color: #5D54BE; margin-left: 10px;">> Richiesta #${richiesta.codiceRichiesta}</h3>
+    </div>
+    <h1 class="hi-text" style="text-align: left;">#${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
+    <br>
+    <div class="container-richieste-storico">
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label for="categoria">Categoria:</label>
+                <div class="purple-richiesta-storico" style="width: auto;">${richiesta.categoria.nome}</div>
+            </div>
+        </div>
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label for="caratteristiche">Caratteristiche:</label>
+                <#if (caratteristiche?size>0)>
+                
+                <div class="skyblue-richiesta-storico">
+                    <#list caratteristiche as car>
+                    ${car.caratteristica.nome} : ${car.valore} <br>
+                    </#list>
+                </div>
+                
+                </#if>
+            </div>
+        </div>
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label for="note">Note:</label>
+                <div class="orange-richiesta-storico">${richiesta.note!'Nessuna nota inserita'}</div>
+            </div>
+        </div>
+        <div class="row-tecnico">
+                <button class="btn-verde">Prendi in carico</button>
+        </div>
+    </div>
+</div>

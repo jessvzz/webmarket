@@ -7,6 +7,8 @@ import it.univaq.f4i.iw.framework.data.DataException;
 import java.util.List;
 
 public interface CaratteristicaRichiestaDAO {
+    List<CaratteristicaRichiesta> getCaratteristicaRichiestaByRichiesta(int richiesta_key) throws DataException;
+
 
     CaratteristicaRichiesta createCaratteristicaRichiesta();
 
