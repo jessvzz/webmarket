@@ -37,13 +37,15 @@
                 <p class="card-row-text">Data: ${proposta.data}</p>
             </div> 
 
-            <div class="card-row-content">
-                <p class="card-row-text">Stato:${proposta.getStatoProposta()!"Stato non disponibile"}</p>
+            <div class="card-row-content" stato="${proposta.getStatoProposta()}">
+                <p class="card-row-text">${proposta.getStatoProposta()!"Stato non disponibile"}</p>
             </div>
          </div>
          
         </a>
         </#list>
         </div>
+        
+<script src="scripts/proposte_ord.js"></script>
        </#if>
 </div>
