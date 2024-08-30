@@ -78,8 +78,10 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
         richiestaOrdine.setData(new Date());
         
         String note = request.getParameter("note");
-        if(note != null){
+        if (!note.isEmpty()) {
             richiestaOrdine.setNote(note);
+        } else {
+            richiestaOrdine.setNote(null);
         }
 
         //creo nuova richiesta nel db
