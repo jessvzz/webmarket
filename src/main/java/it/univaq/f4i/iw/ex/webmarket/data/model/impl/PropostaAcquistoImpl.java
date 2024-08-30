@@ -174,7 +174,7 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
     @Override
     public String toString() {
         return "PropostaAcquistoImpl{" +
-                "id=" + id +
+                "id=" + this.getKey() +
                 ", produttore='" + produttore + '\'' +
                 ", prodotto='" + prodotto + '\'' +
                 ", codiceProdotto='" + codiceProdotto + '\'' +
@@ -185,7 +185,7 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
                 ", stato=" + stato +
                 ", data=" + data +
                 ", motivazione='" + motivazione + '\'' +
-                ", richiestaOrdine=" + (richiestaOrdine != null ? richiestaOrdine.getId() : "null") +
+                ", richiestaOrdine=" + richiestaOrdine.getKey() +
                 '}';
     }
     
