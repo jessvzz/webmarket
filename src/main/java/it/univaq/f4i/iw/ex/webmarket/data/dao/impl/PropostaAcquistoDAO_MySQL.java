@@ -166,7 +166,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
                 uProposta.setString(6, proposta.getNote());
                 uProposta.setString(7, proposta.getStatoProposta().toString());
                 uProposta.setString(8, proposta.getMotivazione());
-                uProposta.setInt(9, proposta.getRichiestaOrdine().getId());
+                uProposta.setInt(9, proposta.getRichiestaOrdine().getKey());
                 uProposta.setInt(10, proposta.getKey());
                 uProposta.executeUpdate();
             } else {

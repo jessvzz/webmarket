@@ -1,5 +1,6 @@
 # COSE DA FARE
 -[ ] implementare ricerca e filtro in proposte tecnico
+-[ ] storico tecnico order by id (non mi fa impazzire che ci sia la data)
 
 ## Giulia:
 - [x] Togliere INVIATA in StatoProposta

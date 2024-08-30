@@ -6,6 +6,7 @@ import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.OrdineImpl;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoOrdine;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -38,10 +39,15 @@ public class DetailPropostaTecnico extends BaseController {
   
     private void action_sendOrdine(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
         PropostaAcquisto proposta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(n);
+        proposta.setStatoProposta(StatoProposta.ORDINATO);
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
+
         Ordine ordine = new OrdineImpl();
         ordine.setProposta(proposta);
         ordine.setStato(StatoOrdine.IN_ATTESA);
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordine);
+        
+        response.sendRedirect("storico_tecnico"); 
         
 
     }

@@ -64,7 +64,7 @@
             <div class="row-tecnico">
                 <div class="form-group-tecnico" style="justify-content: center;">
                     <#if proposta.getStatoProposta() == "RIFIUTATO">
-                    <a href="detailrichiesta_tecnico">
+                    <a href="detailrichiesta_tecnico?n=${proposta.richiestaOrdine.key}">
                         <button class="btn-arancio">Proponi altro</button>
                     </a>
                     </#if>
