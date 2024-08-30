@@ -52,7 +52,7 @@ CREATE TABLE richiesta_ordine (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     note varchar(255),
     stato ENUM('IN_ATTESA','PRESA_IN_CARICO','RISOLTA','ORDINATA') NOT NULL,
-    data DATE DEFAULT CURRENT_DATE,
+    data DATE,
     codice_richiesta varchar(255) UNIQUE NOT NULL,
     utente int(11) NOT NULL,
     tecnico int(11),
@@ -96,7 +96,7 @@ CREATE TABLE proposta_acquisto (
     URL text NOT NULL,
     note varchar(255) NOT NULL,
     stato ENUM('ACCETTATO','RIFIUTATO','IN_ATTESA','ORDINATO') NOT NULL,
-    data DATE DEFAULT CURRENT_DATE,
+    data DATE,
     motivazione text DEFAULT NULL,
     richiesta_id int(11) NOT NULL,
     CONSTRAINT id_richiesta_proposta FOREIGN KEY (richiesta_id)

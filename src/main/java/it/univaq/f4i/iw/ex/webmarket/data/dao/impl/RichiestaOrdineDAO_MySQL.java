@@ -170,6 +170,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         }
     }
 
+    
     @Override
     public List<RichiestaOrdine> getRichiesteInoltrate() throws DataException {
         List<RichiestaOrdine> result = new ArrayList<>();

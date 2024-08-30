@@ -8,21 +8,20 @@
         <h3 style="color: #FF867B; margin-left: 10px;">> Notifiche</h3> 
     </div>
     <div class="rows-container">
+        <#if (richieste?size>0)>
         <!-- TODO: Rendere dinamiche le righe mostrate -->
-        <div class="card-row-notif">
-            <div class="card-row-content">
-                <p class="card-row-text">testo notifica</p>
-            </div>
-        </div>
+        <#list richieste as richiesta>
         <div class="card-row-pink">
+             <p class="card-row-text">Nuova richiesta da prendere in carico:</p>
             <div class="card-row-content">
-                <p class="card-row-text">testo notifica</p>
+                <p class="card-row-text">${richiesta.codiceRichiesta}</p>
+            </div>
+             <div class="card-row-content">
+                <p class="card-row-text">${richiesta.categoria.nome}</p>
             </div>
         </div>
-        <div class="card-row-pink">
-            <div class="card-row-content">
-                <p class="card-row-text">testo notifica</p>
-            </div>
-        </div>
+        </#list>
+        </#if>
+        
     </div>
 </div>  
