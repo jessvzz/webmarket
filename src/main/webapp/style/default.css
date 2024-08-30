@@ -1141,10 +1141,25 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .grey-row {
     width: 2000px;
+    max-width: 2000px;
     background-color: #E6E6E6;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+}
+
+.grey-row a {
+    text-decoration: underline;
+    display: inline-block;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom; 
 }
 
 .btn-arancio {
