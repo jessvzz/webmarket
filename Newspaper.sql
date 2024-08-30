@@ -341,12 +341,12 @@ INSERT INTO utente (username, email, password, tipologia_utente) VALUES
     ('admin', 'admin@example.com', '282db4a4425f50237e7df29d56988825f15dd8b34fa74af54e650ce0fd8897a82dff0b952017a3a88a62f5f1b0e0e467', 'AMMINISTRATORE'), #admin
     ('tecnicog', 'difgiulia@gmail.com', 'aec1e7153435fb922c594376ca7e0ed24d0e8ad306648ba4a2153165941157d3a2a80649d70780821a4b8b6e5e8bb4a6', 'TECNICO'), #tecnico1
     ('geaviozzi', 'geaviozzi@icloud.com', '3ece874c150039c7740d2d5c74ecf2f0b64c3a6c972bbd1b389ca3db8402bdb5a783084ac59a1015c793f4c24a8fbcb2', 'ORDINANTE'), #passgea
-    ('samanta', 'samanta_dis@hotmail.com', '63a7d1207dab49f5cdc13091e8a87006097ca0c7fecba40b316d8571d415a7d5109e48bdba061a98fa7ff551717fd79a', 'ORDINANTE'),
-    ('tecnicoS', 'samanta_dis@hotmail.com', '277fb18292a23f495c1f5ffd79af834aa2107d47ea2f7db6b7d1ac3098d451a6bbee64f6e041d7b0850791ec3a5cded9', 'TECNICO');
+    ('samanta', 'samanta_dis@hotmail.com', '63a7d1207dab49f5cdc13091e8a87006097ca0c7fecba40b316d8571d415a7d5109e48bdba061a98fa7ff551717fd79a', 'ORDINANTE'), #samanta
+    ('tecnicoS', 'samanta_dis@hotmail.com', '277fb18292a23f495c1f5ffd79af834aa2107d47ea2f7db6b7d1ac3098d451a6bbee64f6e041d7b0850791ec3a5cded9', 'TECNICO'); #tecnicoS
 
 INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) VALUES
-    (NULL, 'IN_ATTESA', '2024-08-06', 3, NULL, 4), /* 1) Giulia -> Portatili */
-    ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 3, 2, 11), /* 2) Gea -> Tecnicog -> Smartphone */
+    (NULL, 'IN_ATTESA', '2024-08-06', 3, NULL, 4), /* 1) geaviozzi -> Portatili */
+    ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 3, 2, 11), /* 2) geaviozzi -> Tecnicog -> Smartphone */
     (NULL, 'RISOLTA', '2023-01-29', 3, 2, 13), /* 3) Samanta -> Tecnicog -> Console videogiochi */
     (NULL, 'ORDINATA', '2024-08-01', 4, 5, 15), /* 4) Samanta -> TecnicoS-> Fotocamera */
     (NULL, 'RISOLTA', '2024-08-01', 4, 5, 15),

@@ -15,12 +15,12 @@ import java.util.logging.Logger;
 
 public class RichiesteTecnico extends BaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException, DataException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response, int user) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Richieste Tecnico");
 
-        //creo un nuovo dao che contenente una lista di richieste non ancora evase (stato: IN_ATTESA)
-        request.setAttribute("richieste", ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiesteInoltrate());
+        //creo un nuovo dao che contenente una lista di richieste non ancora evase (stato: PRESA_IN_CARICO e tecnico=tecnicoId)
+        request.setAttribute("richieste", ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiesteNonEvase(user));
 
         res.activate("richieste_tecnico.ftl.html", request, response);
     }
@@ -34,13 +34,15 @@ public class RichiesteTecnico extends BaseController {
             return;
         }
 
-        action_default(request, response);
+        // Recupero l'ID del tecnico dalla sessione
+        int tecnicoId = (int) session.getAttribute("userid");
+        
+        action_default(request, response, tecnicoId);
 
     } catch (IOException | TemplateManagerException ex) {
         handleError(ex, request, response);
     }   catch (DataException ex) {
             Logger.getLogger(RichiesteTecnico.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
 }
 
@@ -48,6 +50,6 @@ public class RichiesteTecnico extends BaseController {
     //Descrizione servlet
     @Override
     public String getServletInfo() {
-        return "Servlet per la gestione delle richieste non ancora prese in carico da nessun tecnico";
+        return "Servlet per la gestione delle richieste prese in carico dal tecnico ma non ancora evase";
     }
 }

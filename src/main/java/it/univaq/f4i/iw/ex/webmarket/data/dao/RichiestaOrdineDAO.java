@@ -20,6 +20,8 @@ public interface RichiestaOrdineDAO {
 
     List<RichiestaOrdine> getRichiesteInoltrate() throws DataException;
 
+    List<RichiestaOrdine> getRichiesteNonEvase(int tecnico_key) throws DataException;
+
     // Per ogni singolo tecnico
     List<RichiestaOrdine> getRichiesteTecnico(int tecnico_key) throws DataException;
 

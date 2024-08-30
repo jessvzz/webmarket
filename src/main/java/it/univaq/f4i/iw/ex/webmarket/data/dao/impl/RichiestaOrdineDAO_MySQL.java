@@ -24,7 +24,7 @@ import java.sql.Statement;
  */
 public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO {
 
-    private PreparedStatement sRichiestaOrdineByID, sRichiesteByUtente, iRichiestaOrdine, uRichiestaOrdine, sRichiesteInoltrate, sRichiesteTecnico, sRichiesteRisolte;
+    private PreparedStatement sRichiestaOrdineByID, sRichiesteByUtente, iRichiestaOrdine, uRichiestaOrdine, sRichiesteInoltrate, sRichiesteNonEvase, sRichiesteTecnico, sRichiesteRisolte;
 
     public RichiestaOrdineDAO_MySQL(DataLayer d) {
         super(d);
@@ -39,6 +39,12 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             sRichiestaOrdineByID = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE ID = ?");
             sRichiesteByUtente = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE utente = ?");
             sRichiesteInoltrate = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
+            sRichiesteNonEvase = connection.prepareStatement(
+                "SELECT r.ID, r.note, r.stato, r.data, r.codice_richiesta, r.utente, r.tecnico, r.categoria_id " +
+                "FROM richiesta_ordine r " +
+                "WHERE r.stato = ? AND r.tecnico = ? " +
+                "AND NOT EXISTS (SELECT 1 FROM proposta_acquisto p WHERE p.richiesta_id = r.ID)"
+            );
             sRichiesteTecnico = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE tecnico_id = ?");
             sRichiesteRisolte = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
             iRichiestaOrdine = connection.prepareStatement("INSERT INTO richiesta_ordine (note, stato, data, utente, categoria_id) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
@@ -54,6 +60,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             sRichiestaOrdineByID.close();
             sRichiesteByUtente.close();
             sRichiesteInoltrate.close();
+            sRichiesteNonEvase.close();
             sRichiesteTecnico.close();
             sRichiesteRisolte.close();
             iRichiestaOrdine.close();
@@ -183,6 +190,23 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             }
         } catch (SQLException ex) {
             throw new DataException("Unable to load RichiesteOrdine Inoltrate", ex);
+        }
+        return result;
+    }
+
+    @Override
+    public List<RichiestaOrdine> getRichiesteNonEvase(int tecnico_key) throws DataException {
+        List<RichiestaOrdine> result = new ArrayList<>();
+        try {
+            sRichiesteNonEvase.setString(1, StatoRichiesta.PRESA_IN_CARICO.name());
+            sRichiesteNonEvase.setInt(2, tecnico_key);
+            try (ResultSet rs = sRichiesteNonEvase.executeQuery()) {
+                while (rs.next()) {
+                    result.add(getRichiestaOrdine(rs.getInt("ID")));
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to load RichiesteOrdine non evase", ex);
         }
         return result;
     }
