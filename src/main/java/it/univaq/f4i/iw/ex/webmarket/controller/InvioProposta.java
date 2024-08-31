@@ -40,19 +40,37 @@ public class InvioProposta extends BaseController {
         res.activate("invioproposta.ftl.html", request, response);
     }
 
-
     private void action_sendProposta(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
         RichiestaOrdine richiesta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiestaOrdine(n);
-        ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
+
+        // Recupero i dati dal form
+        String produttore = request.getParameter("produttore");
+        String prodotto = request.getParameter("prodotto");
+        String codiceProdotto = request.getParameter("codiceProdotto");
+        float prezzo = Float.parseFloat(request.getParameter("prezzo"));
+        String url = request.getParameter("url");
+        String note = request.getParameter("note");
+
+        // Creo una nuova proposta
+        PropostaAcquisto proposta = new PropostaAcquistoImpl();
+        proposta.setProduttore(produttore);
+        proposta.setProdotto(prodotto);
+        proposta.setCodiceProdotto(codiceProdotto);
+        proposta.setPrezzo(prezzo);
+        proposta.setUrl(url);
+        proposta.setNote(note);
+        proposta.setStatoProposta(StatoProposta.IN_ATTESA);
+        // proposta.setData(new java.util.Date());
+        proposta.setMotivazione(null);
+        proposta.setRichiestaOrdine(richiesta);
+
+        // Salvo la proposta nel database
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
+
+        // Recupero l'email dell'utente
         String email = richiesta.getUtente().getEmail();
 
-        PropostaAcquisto proposta = new PropostaAcquistoImpl();
-
-        proposta.setRichiestaOrdine(richiesta);
-        proposta.setStatoProposta(StatoProposta.IN_ATTESA);
-        ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
-        
-        //gestione email
+        // Configuro le proprietà per l'invio dell'email
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.outlook.com"); 
         props.put("mail.smtp.port", "587");
@@ -64,55 +82,49 @@ public class InvioProposta extends BaseController {
                 return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
             }
         });
-        String text = "Gentile Utente, Le è stata inviata una proposta d'acquisto per la sua richiesta numero " + richiesta.getCodiceRichiesta() +"\n\n In allegato trova i dettagli.";
-        // genero PDF
-        String messaggio = "\n Dettagli dell'ordine effettuato per la richiesta numero: "+ richiesta.getCodiceRichiesta()+"\n\n";
+
+        String text = "Gentile Utente, Le è stata inviata una proposta d'acquisto per la sua richiesta numero " + richiesta.getCodiceRichiesta() + "\n\n In allegato trova i dettagli.";
+        String messaggio = "\n Dettagli dell'ordine effettuato per la richiesta numero: " + richiesta.getCodiceRichiesta() + "\n\n";
         String pdfFilePath = "PropostaRichiesta_" + richiesta.getCodiceRichiesta() + ".pdf";
 
         try {
             EmailSender.createPDF_proposta(messaggio, richiesta, proposta);
-
-           
             EmailSender.sendEmailWithAttachment(session, email, "Notifica Proposta", text, pdfFilePath);
         } catch (DocumentException e) {
             e.printStackTrace();
         }
 
-        response.sendRedirect("detailproposta_tecnico?n=" + n); 
-        
-
+        // Reindirizzo alla pagina di dettaglio della proposta
+        response.sendRedirect("detailproposta_tecnico?n=" + proposta.getKey());
     }
-
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
-    try {
-        HttpSession session = SecurityHelpers.checkSession(request);
-        int n;
-        n = SecurityHelpers.checkNumeric(request.getParameter("n"));
+        try {
+            HttpSession session = SecurityHelpers.checkSession(request);
+            int n = SecurityHelpers.checkNumeric(request.getParameter("n"));
 
-        if (session == null) {
-            response.sendRedirect("login");
-            return;
+            if (session == null) {
+                response.sendRedirect("login");
+                return;
+            }
+
+            String action = request.getParameter("action");
+            if (action != null && action.equals("invioProposta")) {
+                action_sendProposta(request, response, n);
+            } else {
+                action_default(request, response, n);
+            }
+
+        } catch (IOException | TemplateManagerException ex) {
+            handleError(ex, request, response);
+        } catch (DataException ex) {
+            Logger.getLogger(InvioProposta.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        String action = request.getParameter("action");
-        if (action != null && action.equals("invioProposta")) {
-            action_sendProposta(request, response, n);
-        } else {
-            action_default(request, response, n);
-        }
-
-    } catch (IOException | TemplateManagerException ex) {
-        handleError(ex, request, response);
-    } catch (DataException ex) {
-        Logger.getLogger(InvioProposta.class.getName()).log(Level.SEVERE, null, ex);
     }
-}
 
     @Override
     public String getServletInfo() {
         return "Servlet per l'invio di una nuova proposta d'acquisto";
     }
-
 }

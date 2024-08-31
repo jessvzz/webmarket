@@ -15,6 +15,8 @@
 - [x] Finire visualizzazione proposte tecnico (mostrare l'username dell'utente)
 - [ ] Implementare la ricerca in proposte, richieste e storico
 - [ ] Implementare il filtro in proposte, richieste e storico
+- [ ] Rivedere PropostaAcquisto_DAO, mancano data (si può risolvere con la data di default) ma sopratuttto codiceProdotto
+- [ ] Risolvere l'errore del trim
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
