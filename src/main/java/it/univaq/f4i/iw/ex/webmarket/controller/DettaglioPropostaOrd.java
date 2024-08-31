@@ -74,7 +74,7 @@ public class DettaglioPropostaOrd extends BaseController {
             EmailSender.createPDF(messaggio, proposta);
 
            
-            EmailSender.sendEmailWithAttachment(session, email, "Notifica Ordine", text, pdfFilePath);
+            EmailSender.sendEmailWithAttachment(session, email, "Notifica Proposta", text, pdfFilePath);
         } catch (DocumentException e) {
             e.printStackTrace();
         }

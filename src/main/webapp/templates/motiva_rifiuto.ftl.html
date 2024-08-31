@@ -1,13 +1,14 @@
 <div class="container-beige">
-    <h2 class="form-title">Gentile Cliente, inserisca la motivazione del rifiuto per l'ordine #codiceOrdine</h2>
+    <h2 class="form-title">Gentile Cliente, inserisca la motivazione del rifiuto per l'ordine ${proposta.codice}</h2>
     <div class="form-container">
-    <form method="POST" action="motivarifiuto">
+    <form method="POST" action="">
+        <input type="hidden" name="action" value="rifiutaProposta">
 
         <div class="motivaione-selection">
             <label class="white-label" for="motivo">Rifiutato per:</label>
             <div class="role-buttons">
                 <input type="radio" id="role-ordinante" name="role" value="ORDINANTE" checked>
-                <label for="role-ordinante" class="lblue-button">Non Conformità</label>
+                <label for="role-ordinante" class="lblue-button ">Non Conformità</label>
 
                 <input type="radio" id="role-tecnico" name="role" value="TECNICO">
                 <label for="role-tecnico" class="lblue-button">Malfunzionamento</label>
@@ -15,11 +16,14 @@
         </div>
         <div class="form-group">
             <label for="note">Note aggiuntive:</label>
-            <input type="note" id="note" name="note" placeholder="note">
+            <textarea id="note" name="note"></textarea>
         </div>
        
         <div class="form-buttons">
-            <a href="homepageordinante">
+            <#if (errore)??>
+            <p style="color: red"> ${errore}</p>
+            </#if>
+            <a href="dettaglio_proposta_ord?n=${proposta.key}">
             <button type="button" class="purple-button">INDIETRO</button>
             </a>
             <button type="submit" class="orange-button">SALVA</button>
