@@ -86,6 +86,7 @@ public class EmailSender {
             Chunk greetingChunk = new Chunk(messaggio, font);
             document.add(greetingChunk);
 
+            System.out.println("prezzo: "+proposta.getPrezzo());
             Paragraph details = new Paragraph();
             details.add(new Chunk("Codice Proposta: ", bold));
             details.add(new Chunk(proposta.getCodice() + "\n", font));

@@ -47,7 +47,7 @@
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome prodotto">URL:</label>
-                    <div class="grey-row"><a href="${proposta.url}" title="${proposta.url}">${proposta.url}</a></div>
+                    <div class="grey-row"><a href="${proposta.url}" title="${proposta.url}">Visualizza</a></div>
                 </div>
             </div>
             <div class="row-tecnico">
@@ -60,15 +60,22 @@
 
 </div>
 <script src="scripts/dettaglio_proposta_ord.js"></script>
-        <a href="successo_ordine">
-        <button class="green-button">ACCETTA</button> </a>
+    <#if proposta.getStatoProposta() == "IN_ATTESA">
+        <form action="" method="post">
+        <input type="hidden" name="action" value="accettaProposta">
+        <button class="green-button">ACCETTA</button>
+        </form>
+    </#if>
      <!-- <button type="submit" class="green-button">ACCETTA</button> -->
         </div>
+        <#if proposta.getStatoProposta() == "IN_ATTESA">
+
         <div>
-            <a href ="motiva_rifiuto">
+            <a href ="motiva_rifiuto?n=${proposta.key}">
              <!-- <button type="submit" class="orange-button">RIFIUTA</button> -->
              <button class="orange-button">RIFIUTA</button>
             </a>
             </div>
-    
+        </#if>
+
 </div>

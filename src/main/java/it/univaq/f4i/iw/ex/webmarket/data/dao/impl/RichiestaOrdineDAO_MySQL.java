@@ -84,7 +84,11 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             richiesta.setStato(StatoRichiesta.valueOf(rs.getString("stato")));
             richiesta.setData(rs.getDate("data"));
             richiesta.setCodiceRichiesta(rs.getString("codice_richiesta"));
-            // Impostazione di tecnico non implementata qui, potrebbe essere fatta attraverso ulteriori query
+            
+            int tecnicoId = rs.getInt("tecnico");
+            Utente tecnico = ((ApplicationDataLayer) getDataLayer()).getUtenteDAO().getUtente(tecnicoId);
+            richiesta.setTecnico(tecnico);
+            
             int categoriaId = rs.getInt("categoria_id");
             Categoria categoria = ((ApplicationDataLayer) getDataLayer()).getCategoriaDAO().getCategoria(categoriaId);
             richiesta.setCategoria(categoria);
