@@ -27,10 +27,17 @@
                 <div class="grey-row">${richiesta.categoria.nome}</div>
             </div>
         </div>
-        <div class="row-tecnico">
+        <!-- <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="stato">Stato:</label>
                 <div class="grey-row">${richiesta.stato}</div>
+            </div>
+        </div> -->
+         
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label for="data">Data:</label>
+                <div class="grey-row">${richiesta.data}</div>
             </div>
         </div>
         <div class="row-tecnico">
@@ -42,6 +49,7 @@
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="proposte">Proposte:</label>
+                <div class="grey-row">
                 <#if proposte??>
                
                 <#list proposte as proposta>
@@ -55,6 +63,7 @@
                     Nessuna proposta disponibile.
                 </div>
             </#if>
+        </div>
             </div>
         </div>
     </div>
