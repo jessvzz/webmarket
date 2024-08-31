@@ -36,7 +36,7 @@
             <div class="card-row-content">
                 <p class="card-row-text">ID: ${ordine.key}</p>
             </div>
-            <div class="card-row-content">
+            <div class="card-row-content" stato="${ordine.getStato()}">
                 <p class="card-row-text">Stato: ${ordine.stato}</p>
             </div>
             <div class="card-row-content">
@@ -51,3 +51,4 @@
       </#if>   
 
 </div>
+<script src="scripts/ordini.js"></script>
