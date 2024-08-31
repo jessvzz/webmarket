@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Giulia Di Flamminio
+ * @author Giulia Di Flamminio & Gea Viozzi
  */
 public class DetailPropostaTecnico extends BaseController {
 
@@ -69,7 +69,7 @@ public class DetailPropostaTecnico extends BaseController {
         String pdfFilePath = "OrdineProposta_" + proposta.getCodice() + ".pdf";
 
         try {
-            EmailSender.createPDF(messaggio, proposta);
+            EmailSender.createPDF_ordine(messaggio, proposta);
 
            
             EmailSender.sendEmailWithAttachment(session, email, "Notifica Ordine", text, pdfFilePath);
@@ -109,15 +109,9 @@ public class DetailPropostaTecnico extends BaseController {
         }
 }
 
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
-        return "Main Newspaper servlet";
-    }// </editor-fold>
+        return "Servlet per la visualizzazione di una proposta inviata";
+    }
 
 }

@@ -71,7 +71,7 @@ public class DettaglioPropostaOrd extends BaseController {
         String pdfFilePath = "OrdineProposta_" + proposta.getCodice() + ".pdf";
 
         try {
-            EmailSender.createPDF(messaggio, proposta);
+            EmailSender.createPDF_ordine(messaggio, proposta);
 
            
             EmailSender.sendEmailWithAttachment(session, email, "Notifica Proposta", text, pdfFilePath);

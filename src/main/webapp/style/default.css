@@ -1085,6 +1085,10 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     background-color: #98D8A2;
 }
 
+.hidden {
+    display: none;
+}
+
 /* Detail proposta tecnico */
 .container-proposta {
     display: flex;

@@ -62,14 +62,9 @@ public class DetailRichiestaTecnico extends BaseController {
 }
 
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
-        return "Main Newspaper servlet";
-    }// </editor-fold>
+        return "Servlet per la visualizzazione dei dettagli di una richiesta da evadere";
+    }
 
 }

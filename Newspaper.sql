@@ -94,7 +94,7 @@ CREATE TABLE proposta_acquisto (
     codice_prodotto varchar(50) NOT NULL,
     prezzo float NOT NULL,
     URL text NOT NULL,
-    note varchar(255) NOT NULL,
+    note varchar(255),
     stato ENUM('ACCETTATO','RIFIUTATO','IN_ATTESA','ORDINATO') NOT NULL,
     data DATE,
     motivazione text DEFAULT NULL,
