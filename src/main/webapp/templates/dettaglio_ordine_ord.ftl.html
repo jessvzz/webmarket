@@ -1,61 +1,67 @@
 <div class="container-beige">
     <div class="nav-container">
-        <div class="home-card" style="background-color:  #5D54BE;">
-            <a href="homepageordinante">
+            <div class="home-card" style="background-color: #5D54BE;">
+                <a href="homepageordinante"></a>
                 <img src="images/home-svg.svg" alt="icona home" class="home-icon">
-            </a>
-        </div>
-        <a href="ordini">
-            <h3 style="color: #5D54BE; margin-left: 10px;">> Ordini</h3>
-        </a>
-        <h3 style="color:  #5D54BE; margin-left: 10px;">> Ordine #${ordine.key}</h3> 
+                </a>
+            </div>
+                 <a href="ordini">
+                 <h3 style="color: #5D54BE; margin-left: 10px;">> Ordini</h3>
+                </a>
+                 <h3 style="color:  #5D54BE; margin-left: 10px;">> Ordine #${ordine.key}</h3> 
     </div>
-  
-    
+
     <div class="container-proposta">
-        <div class="container-info-proposta">
-            <div class="badge-statoOrdini" stato="${ordine.getStato()}">
-                ${ordine.getStato()} </div> 
+             <div class="container-info-proposta">
+                <div class="badge-statoOrdini" stato="${ordine.getStato()}">
+                   ${ordine.getStato()} 
+                </div> 
+             </div>
+           <br>
 
-        </div>
-        <script src="scripts/dettaglio_ordine_ord.js"></script> 
-         <br>
-
-         <div class="container-skyblue-proposta">
+        <div class="container-skyblue-proposta">
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="proposta">Data Ordine:</label>
                     <div class="grey-row"> 
-                      
-                         ${ordine.data}
-
-        
+                        ${ordine.data}
                     </div>
                 </div>
             </div>
 
-            <div class="row-tecnico">
-              <div class="form-group-tecnico">
-                 <label for="proposta">Descrizione Proposta:</label>
-                 <div class="grey-row"> 
-                   Produttore: ${ordine.getProposta().produttore}
-                   <br>
-                    <br>
-                    Prodotto: ${ordine.getProposta().prodotto}
-                    <br>
-                    <br>
-                    Prezzo:
-                    ${ordine.getProposta().prezzo}
-                    <br>
-                    <br>
-                    Note: ${ordine.getProposta().note}
-                
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="proposta">Descrizione Proposta:</label>
+                        <div class="grey-row"> 
+                            Produttore: ${ordine.getProposta().produttore}
+                            <br>
+                            <br>
+                            Prodotto: ${ordine.getProposta().prodotto}
+                            <br>
+                            <br>
+                            Prezzo: ${ordine.getProposta().prezzo}
+                            <br>
+                            <br>
+                            Note: ${ordine.getProposta().note}
+                        </div>
+                    </div>
                 </div>
-             </div>
-           </div>
-
-
-
-
         </div>
+        <script src="scripts/dettaglio_ordine_ord.js"></script> 
+            
+            <#if ordine.getStato() == "IN_ATTESA">
+                <form action="" method="post">
+                    <input type="hidden" name="action" value="accettaOrdine">
+                    <button class="green-button">ACCETTA</button>
+                </form>
+            </#if>
+            <#if ordine.getStato() == "IN_ATTESA">
+                <div>
+                    <!-- <a href="rifiuto_ordine?n=${ordine.key}"> -->
+                        <button class="orange-button">RIFIUTA</button>
+                    </a>
+                </div>
+            </#if>
+
     </div>
+</div>
