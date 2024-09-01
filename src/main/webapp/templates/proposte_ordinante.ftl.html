@@ -28,7 +28,7 @@
         <#list proposte as proposta>
 
         <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
-         <div class="card-row-salm max-width-card">
+         <div id="proposta-container" class="card-row-salm max-width-card" data-stato="${proposta.getStatoProposta()}">
             <div class="card-row-content">
                 <p class="card-row-text">Codice: ${proposta.codice}</p>
             </div>
@@ -45,7 +45,7 @@
         </a>
         </#list>
         </div>
-        
+         </#if>
 <script src="scripts/proposte_ord.js"></script>
-       </#if>
+      
 </div>

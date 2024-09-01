@@ -30,4 +30,20 @@ document.addEventListener("DOMContentLoaded", function() {
         const statoProposta = proposta.getAttribute('stato');
         proposta.outerHTML = cambiaStatoProposta(statoProposta);
     });
+    
+    
+    
+    const propostaContainers = document.querySelectorAll("#proposta-container");
+
+    propostaContainers.forEach(container => {
+        const stato = container.getAttribute("data-stato");
+
+        if (stato === "IN_ATTESA") {
+            container.style.backgroundColor = "#e78e52";
+        } else {
+            container.style.backgroundColor = "#edb995";
+        }
+    });
 });
+
+

@@ -26,6 +26,7 @@ public class ProposteOrdinante extends BaseController {
         res.activate("proposte_ordinante.ftl.html", request, response);
     }
 
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {

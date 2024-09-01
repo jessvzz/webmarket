@@ -30,4 +30,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const statoOrdine = ordine.getAttribute('stato');
         ordine.outerHTML = cambiaStatoOrdini(statoOrdine);
     });
+    
+    
+    const ordiniContainers = document.querySelectorAll("#ordine-container");
+
+    ordiniContainers.forEach(container => {
+        const stato = container.getAttribute("data-stato");
+
+        if (stato === "IN_ATTESA") {
+            container.style.backgroundColor = "#5D54BE";
+        } else {
+            container.style.backgroundColor = "#9892d1";
+        }
+    });
 });
