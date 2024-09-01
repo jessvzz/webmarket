@@ -26,10 +26,24 @@
     <#if (proposte?size>0)>
 
     <div class="rows-container">
+        <div class="card-row-transparent">
+                <div class="card-row-content">
+                    <p class="card-row-text">Codice</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">Utente</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">Data</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">Sato</p>
+                </div>
+            </div>
         <#list proposte as proposta>
-
+        
         <a href="detailproposta_tecnico?n=${proposta.key}" class="a-cards">
-            <div class="card-row-skyblue">
+            <div class="card-row-skyblue" id="proposta-container" data-stato="${proposta.getStatoProposta()}">
                 <div class="card-row-content">
                     <p class="card-row-text">${proposta.codice}</p>
                 </div>

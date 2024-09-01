@@ -44,4 +44,14 @@ document.addEventListener("DOMContentLoaded", function() {
         let p = 'small-badge';
         proposta.outerHTML = getStatoProposta(statoProposta, p);
     });
+    
+    const propostaContainers = document.querySelectorAll("#proposta-container");
+
+    propostaContainers.forEach(container => {
+        const stato = container.getAttribute("data-stato");
+
+        if (stato === "ACCETTATO") {
+            container.style.backgroundColor = "#67c4f1";
+        }
+    });
 });

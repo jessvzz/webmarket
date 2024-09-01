@@ -850,7 +850,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     justify-content: center;
 }
 
-.card-row-purple, .card-row-skyblue,.card-row-salm, .card-row-orange, .card-row-pink, .card-row-notif {
+.card-row-purple, .card-row-skyblue,.card-row-salm, .card-row-orange, .card-row-pink, .card-row-notif{
     width: 90%;
     height: auto;
     border-radius: 10px;
@@ -865,12 +865,30 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     cursor: pointer;
 }
 
+.card-row-transparent {
+    width: 90%;
+    height: auto;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    background-color: transparent;
+
+}
+
+
+
 .card-row-purple {
     background-color: #5D54BE;
 }
 
 .card-row-skyblue {
-    background-color: #90D5FE;
+    background-color: #ddf2ff;
 }
 
 .card-row-salm {
