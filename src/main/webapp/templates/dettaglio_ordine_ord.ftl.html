@@ -8,32 +8,44 @@
         <a href="ordini">
             <h3 style="color: #5D54BE; margin-left: 10px;">> Ordini</h3>
         </a>
-        <h3 style="color:  #5D54BE; margin-left: 10px;">> Ordine #codice</h3> <!-- TODO: Codice dinamico-->
+        <h3 style="color:  #5D54BE; margin-left: 10px;">> Ordine #${ordine.key}</h3> 
     </div>
-    <h1 class="hi-text" style="text-align: left;">#codiceOrdine</h1> <!-- TODO: Dinamico-->
-    <br>
-    <div class="container-richieste-storico">
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="stato">Stato:</label>
-                <div class="green-storico">stato</div>
-            </div>
+  
+    
+    <div class="container-proposta">
+        <div class="container-info-proposta">
+            <h1 class="hi-text" style="text-align: left;">ID #${ordine.key}</h1> 
+            <div class="badge-stato" stato="${ordine.getStato()}">
+                ${ordine.getStato()} </div> 
+
         </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="categoria">Categoria:</label>
-                <div class="purple-richiesta-storico" style="width: auto;">categoria</div>
-            </div>
-        </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="proposta">Proposta:</label>
-                <div class="green-proposta">
-                    <a href="dettaglio_proposta_ord"> 
-                        <p class="card-title-light">Proposta</p>
-                    </a>
-                </div>
-            </div>
+
+<br>
+
+<div class="container-skyblue-proposta">
+
+     
+    <div class="row-tecnico">
+        <div class="form-group-tecnico">
+            <label for="stato">Stato:</label>
+            <div class="grey-row">${ordine.getStato()}</div>
         </div>
     </div>
+    <div class="row-tecnico">
+        <div class="form-group-tecnico">
+            <label for="proposta">Proposta:</label>
+            <div class="grey-row"> Prodotto: ${ordine.getProposta().prodotto}
+               <br>
+                Prezzo:
+                ${ordine.getProposta().prezzo}
+            </div>
+        </div>
+    </div>
+
+
+
+
 </div>
+</div>
+</div>
+<script src="scripts/dettaglio_ordine_ord.js"></script> 

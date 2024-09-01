@@ -9,6 +9,8 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +18,13 @@ import javax.servlet.http.HttpSession;
 
 public class DettaglioOrdineOrd extends BaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response,int user) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Dettaglio ordine ordinante");
+        int ordineId = Integer.parseInt(request.getParameter("n"));
+        // Recupero l'ordine dal database utilizzando il DAO
+        request.setAttribute("ordine", ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdine(ordineId));
+        System.out.println(ordineId);
         res.activate("dettaglio_ordine_ord.ftl.html", request, response);
     }
 
@@ -30,12 +36,16 @@ public class DettaglioOrdineOrd extends BaseController {
             response.sendRedirect("login");
             return;
         }
-
+        // Recupero l'ID dell'utente dalla sessione
+        int userId = (int) session.getAttribute("userid");
         String action = request.getParameter("action");
-        action_default(request, response);
+        action_default(request, response, userId);
 
-    } catch (IOException | TemplateManagerException /* | DataException */ ex) {
+    } catch (IOException | TemplateManagerException  ex) {
         handleError(ex, request, response);
+    }
+    catch (DataException ex) {
+        Logger.getLogger(Ordini.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
 

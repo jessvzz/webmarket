@@ -17,9 +17,12 @@ function cambiaStatoDettaglioOrdine(statoOrdine) {
         default:            
         backgroundColor = "#FFFFFF";
 }
+
+console.log("Background color: " + backgroundColor); // Aggiunto per debug
+
 return `
 
-<div class="badge-stato" style="background-color: ${backgroundColor};">
+<div class="badge-stato" style="background-color: ${backgroundColor}!important;">
 ${statoOrdine}
 </div> 
 `;
@@ -27,9 +30,11 @@ ${statoOrdine}
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const ordine = document.querySelector('.badge-stato[stato]');
+    const ordine = document.querySelector('.grey-row[stato]');
     if (ordine) {
         const statoOrdine = ordine.getAttribute('stato');
+        console.log('Stato ordine:', statoOrdine); // Verifica il valore
+        console.log('Background color:', cambiaStatoDettaglioOrdine(statoOrdine));
         ordine.outerHTML = cambiaStatoDettaglioOrdine(statoOrdine);
     }
 });
