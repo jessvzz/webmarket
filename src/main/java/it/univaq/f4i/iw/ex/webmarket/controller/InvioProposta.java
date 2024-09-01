@@ -83,12 +83,13 @@ public class InvioProposta extends BaseController {
             }
         });
 
+        String tipo = "PropostaRichiesta_";
         String text = "Gentile Utente, Le è stata inviata una proposta d'acquisto per la sua richiesta numero " + richiesta.getCodiceRichiesta() + "\n\n In allegato trova i dettagli.";
         String messaggio = "\n Dettagli dell'ordine effettuato per la richiesta numero: " + richiesta.getCodiceRichiesta() + "\n\n";
-        String pdfFilePath = "PropostaRichiesta_" + richiesta.getCodiceRichiesta() + ".pdf";
+        String pdfFilePath = "PropostaRichiesta_" + proposta.getCodice() + ".pdf";
 
         try {
-            EmailSender.createPDF_proposta(messaggio, richiesta, proposta);
+            EmailSender.createPDF(tipo, messaggio, proposta);
             EmailSender.sendEmailWithAttachment(session, email, "Notifica Proposta", text, pdfFilePath);
         } catch (DocumentException e) {
             e.printStackTrace();
