@@ -107,6 +107,7 @@ CREATE TABLE proposta_acquisto (
 
 CREATE TABLE ordine (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    data DATE,
     stato ENUM('IN_ATTESA','ACCETTATO','RESPINTO_NON_CONFORME','RESPINTO_NON_FUNZIONANTE') NOT NULL,
     proposta_id int(11) NOT NULL,
     CONSTRAINT id_proposta FOREIGN KEY (proposta_id)
@@ -392,6 +393,6 @@ INSERT INTO proposta_acquisto (produttore, prodotto, codice_prodotto, prezzo, UR
     ('Canon', 'Canon EOS 2000D + EF-S 18-55 mm DC III', 'AHloaLmj9R', 475.98, 'https://www.amazon.it/Canon-Camera-2000d-55-III-2728-C002/dp/B07BMV268V/ref=asc_df_B07BMV268V/?tag=googshopit-21&linkCode=df0&hvadid=700886612843&hvpos=&hvnetw=g&hvrand=843493562612396069&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1008064&hvtargid=pla-785247369067&mcid=f5094b4c6126324c8ad3252f06f8ff80&gad_source=1&th=1', 'Accessori non inclusi, visita il sito per ulteriori dettagli.', 'ORDINATO', '2024-08-24', NULL, 4), #4
     ('Lenovo', 'Lenovo Yoga Pro 7', 'JlkFpEXqQT', 899.99, 'https://www.unieuro.it/online/Notebook/Yoga-Pro-7-Ultrathin-14-Intel-i7-16GB-512GB-pidLNV82Y7005HIX?gad_source=1&gclid=CjwKCAjw8rW2BhAgEiwAoRO5rFLPrUeSd6sncIFHfDVBbb3RbqsE0UHsvas5IlSnL1CQsTKodJ9OCRoCAnIQAvD_BwE&gclsrc=aw.ds', 'Prezzo consigliato 1.499,00. Non farti perdere questa occasione.', 'IN_ATTESA', '2023-08-23', NULL, 7) ; #5
 
-INSERT INTO ordine (stato, proposta_id) VALUES
-    ('ACCETTATO' , 3), #1
-    ('ACCETTATO', 5); #2
+INSERT INTO ordine (stato, data, proposta_id) VALUES
+    ('ACCETTATO' , '2023-09-01', 3), #1
+    ('ACCETTATO', '2023-09-01', 5); #2

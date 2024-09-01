@@ -16,10 +16,10 @@
         <p class="filter-text">Filtra per stato:</p>
         <select name="status" id="status" class="filter-select">
             <option value="tutti">Tutti</option>
-            <option value="in_carico">In Carico</option>
-            <option value="risolta">Risolta</option>
-            <option value="in_attesa">In Attesa</option>
-            <option value="ordinato">Ordinato</option>
+            <option value="PRESA_IN_CARICO">In Carico</option>
+            <option value="RISOLTA">Risolta</option>
+            <option value="IN_ATTESA">In Attesa</option>
+            <option value="ORDINATA">Ordinata</option>
         </select>
     </div>
 
@@ -51,8 +51,9 @@
         </#list>
         
         </div>
-                
-<script src="scripts/richieste_ord.js"></script>
-       </#if>
+        <#else>
+        <p id="no-results" style="display:none; color: rgb(68, 68, 66);">Nessun risultato trovato.</p>
 
+       </#if>
+       <script src="scripts/richieste_ord.js"></script>
 </div>

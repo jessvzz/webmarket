@@ -1,10 +1,8 @@
 package it.univaq.f4i.iw.ex.webmarket.data.model.impl;
-
 import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
-
-
+import java.sql.Date;
 
 // Implementazione concreta dell'interfaccia Ordine
 
@@ -12,6 +10,7 @@ public class OrdineImpl extends DataItemImpl<Integer> implements Ordine {
     private int id;
     private StatoOrdine stato;
     private PropostaAcquisto propostaAcquisto;
+    private Date data;
 
     // Costruttori
 
@@ -57,5 +56,16 @@ public class OrdineImpl extends DataItemImpl<Integer> implements Ordine {
     @Override
     public void setProposta(PropostaAcquisto propostaAcquisto) {
         this.propostaAcquisto = propostaAcquisto;
+    }
+
+    @Override
+    public Date getData() {
+        return data;
+       
+    }
+
+    @Override
+    public void setData(Date data) {
+      this.data=data;
     }
 }

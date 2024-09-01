@@ -1,5 +1,4 @@
 package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
-
 import it.univaq.f4i.iw.ex.webmarket.data.dao.OrdineDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.PropostaAcquistoDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
@@ -10,6 +9,7 @@ import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +32,8 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             sOrdiniByUtente = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ?  ORDER BY CASE WHEN ro.stato = 'IN_ATTESA' THEN 1 ELSE 2 END");
             sOrdiniByTecnico = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ?");
             sAllOrdini = connection.prepareStatement("SELECT * FROM ordine");
-            iOrdine = connection.prepareStatement("INSERT INTO ordine (stato, proposta_id) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? WHERE ID=?");
+            iOrdine = connection.prepareStatement("INSERT INTO ordine (stato, proposta_id, data) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=? WHERE ID=?");
             dOrdine = connection.prepareStatement("DELETE FROM ordine WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing ordine data layer", ex);
@@ -65,15 +65,12 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
     private OrdineProxy createOrdine(ResultSet rs) throws DataException {
         try {
             OrdineProxy o = (OrdineProxy) createOrdine();
-                    // Impostiamo l'ID dell'ordine recuperato dal ResultSet
-                  int id = rs.getInt("ID");
-                 o.setKey(id);
-            // o.setKey(rs.getInt("ID"));
-            System.out.println("ID dell'ordine recuperato: " + id); // Debug: Mostra l'ID recuperato
-        
-            o.setStato(StatoOrdine.valueOf(rs.getString("stato")));
+             int id = rs.getInt("ID");
+             o.setKey(id);
+             o.setStato(StatoOrdine.valueOf(rs.getString("stato")));
               PropostaAcquistoDAO propostaAcquistoDAO = (PropostaAcquistoDAO) dataLayer.getDAO(PropostaAcquisto.class);
              o.setProposta(propostaAcquistoDAO.getPropostaAcquisto(rs.getInt("proposta_id")));
+             o.setData(rs.getDate("data"));
             return o;
         } catch (SQLException ex) {
             throw new DataException("Unable to create ordine object from ResultSet", ex);
@@ -157,12 +154,14 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
                  // Aggiorna l'ordine esistente
                 uOrdine.setString(1, ordine.getStato().toString());
                 uOrdine.setInt(2, ordine.getProposta().getId());
-                uOrdine.setInt(3, ordine.getKey());
+                uOrdine.setDate(3, new java.sql.Date(ordine.getData().getTime()));
+                uOrdine.setInt(4, ordine.getKey());
                 uOrdine.executeUpdate();
             } else {
                 // Inserisce un nuovo ordine nel database
                 iOrdine.setString(1, ordine.getStato().toString());
                 iOrdine.setInt(2, ordine.getProposta().getKey());
+                iOrdine.setDate(3, new java.sql.Date(ordine.getData().getTime()));
                 if (iOrdine.executeUpdate() == 1) {
                     try (ResultSet keys = iOrdine.getGeneratedKeys()) {
                         if (keys.next()) {
