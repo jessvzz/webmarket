@@ -1,16 +1,9 @@
 <div class="container-beige">
-    
-    <div class="nav-container">
-        <div class="home-card" style="background-color: #F67956">
-            <a href="homepageordinante">
-                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
-            </a>
-        </div>
-        <h3 style="color: #F67956; margin-left: 10px;">> Profilo</h3> 
-    </div>
+    <h2 class="form-title"> Cambio Password </h2>
+
 
     <!-- Sezione che permette all'ordinante di cambiare password -->
-    <div class="form-container-orange">
+    <!-- <div class="form-container-orange">
         <div class="form-title">Cambia Password</div>
         <form>
             <div class="form-group">
@@ -26,7 +19,37 @@
                 <button type="reset" class="purple-button">Annulla</button>
             </div>
         </form>
+    </div> -->
+    <div class="form-container">
+        <form method="POST" action="gestione_profilo_ordinante">
+            <input type="hidden" name="action" value="updateProfile">            
+            
+
+
+            <div class="form-group">
+                <label for="current-password">Password attuale:</label>
+                <input type="password" id="current-password" name="current-password" placeholder="Password attuale" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="new-password">Nuova password:</label>
+                <input type="password" id="new-password" name="new-password" placeholder="Nuova password">
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password">Ripeti nuova password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Ripeti nuova password">
+            </div>
+            
+            <div class="form-buttons">
+                <a href="homepageordinante">
+                    <button type="button" class="purple-button">INDIETRO</button>
+                </a>
+                <button type="submit" class="orange-button">SALVA</button>
+            </div>
+        </form>
     </div>
+    
     
 </div>
 
