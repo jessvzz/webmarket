@@ -14,38 +14,48 @@
     
     <div class="container-proposta">
         <div class="container-info-proposta">
-            <h1 class="hi-text" style="text-align: left;">ID #${ordine.key}</h1> 
-            <div class="badge-stato" stato="${ordine.getStato()}">
+            <div class="badge-statoOrdini" stato="${ordine.getStato()}">
                 ${ordine.getStato()} </div> 
 
         </div>
+        <script src="scripts/dettaglio_ordine_ord.js"></script> 
+         <br>
 
-<br>
+         <div class="container-skyblue-proposta">
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label for="proposta">Data Ordine:</label>
+                    <div class="grey-row"> 
+                      
+                         ${ordine.data}
 
-<div class="container-skyblue-proposta">
-
-     
-    <div class="row-tecnico">
-        <div class="form-group-tecnico">
-            <label for="stato">Stato:</label>
-            <div class="grey-row">${ordine.getStato()}</div>
-        </div>
-    </div>
-    <div class="row-tecnico">
-        <div class="form-group-tecnico">
-            <label for="proposta">Proposta:</label>
-            <div class="grey-row"> Prodotto: ${ordine.getProposta().prodotto}
-               <br>
-                Prezzo:
-                ${ordine.getProposta().prezzo}
+        
+                    </div>
+                </div>
             </div>
+
+            <div class="row-tecnico">
+              <div class="form-group-tecnico">
+                 <label for="proposta">Descrizione Proposta:</label>
+                 <div class="grey-row"> 
+                   Produttore: ${ordine.getProposta().produttore}
+                   <br>
+                    <br>
+                    Prodotto: ${ordine.getProposta().prodotto}
+                    <br>
+                    <br>
+                    Prezzo:
+                    ${ordine.getProposta().prezzo}
+                    <br>
+                    <br>
+                    Note: ${ordine.getProposta().note}
+                
+                </div>
+             </div>
+           </div>
+
+
+
+
         </div>
     </div>
-
-
-
-
-</div>
-</div>
-</div>
-<script src="scripts/dettaglio_ordine_ord.js"></script> 

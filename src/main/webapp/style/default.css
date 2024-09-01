@@ -1346,6 +1346,17 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 /* utili */
 
+.badge-statoOrdine {
+
+    width: 10%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    color: black;
+    text-align: center;
+}
+
 .container-salm-proposta{
     width: 80%;
     padding: 20px;
@@ -1476,7 +1487,9 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     .badge-stato {
         width: 100%;
     }
-
+    .badge-statoOrdini {
+        width: 100%;
+    }
     .textfield-grey {
         width: auto;
     }
