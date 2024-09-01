@@ -2,7 +2,7 @@ package it.univaq.f4i.iw.ex.webmarket.data.model;
 
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
 import it.univaq.f4i.iw.framework.data.DataItem;
-import java.util.Date;
+import java.sql.Date;
 
 
 
@@ -30,9 +30,9 @@ public interface PropostaAcquisto extends DataItem<Integer> {
 
     void setCodiceProdotto(String codiceProdotto);    
     
-    double getPrezzo();
+    float getPrezzo();
 
-    void setPrezzo(double prezzo);
+    void setPrezzo(float prezzo);
 
     
     String getUrl();

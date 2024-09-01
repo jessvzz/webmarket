@@ -15,54 +15,54 @@
     </div>
     <div class="container-proposta">
         <div class="container-info-proposta">
-            <h1 class="hi-text">#${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1> <!-- TODO: Dinamico-->
+            <h1 class="hi-text">#${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
         </div>
         <div class="container-purple-proposta" style="background-color: #5D54BE;">
-            <div class="row-tecnico">
-                <div class="form-group-tecnico">
-                    <label for="nome produttore">Nome produttore:</label>
-                    <input type="text" id="produttore" name="produttore" class="textfield-grey" placeholder="Inserisci nome produttore">
+            <form action="" method="post">
+                <input type="hidden" name="action" value="invioProposta">
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="nome produttore">Nome produttore:</label>
+                        <input type="text" id="produttore" name="produttore" class="textfield-grey" placeholder="Inserisci nome produttore">
+                    </div>
                 </div>
-            </div>
-            <div class="row-tecnico">
-                <div class="form-group-tecnico">
-                    <label for="nome prodotto">Nome prodotto:</label>
-                    <input type="text" id="prodotto" name="prodotto" class="textfield-grey" placeholder="Inserisci nome prodotto">
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="nome prodotto">Nome prodotto:</label>
+                        <input type="text" id="prodotto" name="prodotto" class="textfield-grey" placeholder="Inserisci nome prodotto">
+                    </div>
                 </div>
-            </div>
-            <div class="row-tecnico">
-                <div class="form-group-tecnico">
-                    <label for="nome prodotto">Codice prodotto:</label>
-                    <input type="text" id="codiceProdotto" name="codiceProdotto" class="textfield-grey" placeholder="Inserisci codice prodotto">
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="nome prodotto">Codice prodotto:</label>
+                        <input type="text" id="codiceProdotto" name="codiceProdotto" class="textfield-grey" placeholder="Inserisci codice prodotto">
+                    </div>
                 </div>
-            </div>
-            <div class="row-tecnico">
-                <div class="form-group-tecnico">
-                    <label for="nome prodotto">Prezzo:</label>
-                    <input type="text" id="prezzo" name="prezzo" class="textfield-grey" placeholder="Inserisci prezzo">
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="nome prodotto">Prezzo:</label>
+                        <input type="text" id="prezzo" name="prezzo" class="textfield-grey" placeholder="Inserisci prezzo">
+                    </div>
                 </div>
-            </div>
-            <div class="row-tecnico">
-                <div class="form-group-tecnico">
-                    <label for="nome prodotto">URL:</label>
-                    <input type="text" id="url" name="url" class="textfield-grey" placeholder="Inserisci URL">
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="nome prodotto">URL:</label>
+                        <input type="text" id="url" name="url" class="textfield-grey" placeholder="Inserisci URL">
+                    </div>
                 </div>
-            </div>
-            <div class="row-tecnico">
-                <div class="form-group-tecnico">
-                    <label for="nome prodotto">Note:</label>
-                    <input type="text" id="note" name="note" class="textfield-grey" placeholder="Inserisci note">
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="nome prodotto">Note:</label>
+                        <input type="text" id="note" name="note" class="textfield-grey" placeholder="Inserisci note">
+                    </div>
                 </div>
-            </div>
-            <br>
-            <div class="row-tecnico">
-                <div class="form-group-tecnico" style="justify-content: center;">
-                    <form action="" method="post">
-                        <input type="hidden" name="action" value="invioProposta">
+                <br>
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico" style="justify-content: center;">
                         <button id="btn-invio" type="submit" class="btn-verde hidden" name="btn-invio">Invia proposta</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <br>

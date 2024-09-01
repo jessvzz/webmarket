@@ -5,7 +5,7 @@ import it.univaq.f4i.iw.ex.webmarket.data.model.impl.PropostaAcquistoImpl;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
-import java.util.Date;
+import java.sql.Date;
 
 public class PropostaAcquistoProxy extends PropostaAcquistoImpl implements DataItemProxy {
 

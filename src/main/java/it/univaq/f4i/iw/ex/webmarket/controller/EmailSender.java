@@ -13,8 +13,8 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
-import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -88,7 +88,7 @@ public class EmailSender {
             Chunk greetingChunk = new Chunk(messaggio, font);
             document.add(greetingChunk);
 
-            System.out.println("prezzo: "+proposta.getPrezzo());
+            System.out.println("prezzo: €"+proposta.getPrezzo());
             Paragraph details = new Paragraph();
             details.add(new Chunk("Codice Proposta: ", bold));
             details.add(new Chunk(proposta.getCodice() + "\n", font));
@@ -99,6 +99,7 @@ public class EmailSender {
             details.add(new Chunk("Codice Prodotto: ", bold));
             details.add(new Chunk(proposta.getCodiceProdotto() + "\n", font));
             details.add(new Chunk("Prezzo: ", bold));
+            details.add(new Chunk("€ "));
             details.add(new Chunk(proposta.getPrezzo() + "\n", font));
             details.add(new Chunk("URL: ", bold));
             details.add(new Chunk(proposta.getUrl() + "\n", font));

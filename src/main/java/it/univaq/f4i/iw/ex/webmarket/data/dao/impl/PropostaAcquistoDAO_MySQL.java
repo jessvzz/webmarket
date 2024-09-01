@@ -10,6 +10,8 @@ import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.sql.Statement;
+import java.time.LocalDate;
 
 
 public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDAO {
@@ -42,8 +45,8 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             sProposteByUtente = connection.prepareStatement("SELECT pa.* FROM proposta_acquisto pa JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ? ORDER BY CASE WHEN pa.stato = 'IN_ATTESA' THEN 1 ELSE 2 END");
             // sProposteByOrdine = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ordine_id = ?");
             
-            iProposta = connection.prepareStatement("INSERT INTO proposta_acquisto (produttore, prodotto, codice, prezzo, URL, note, stato, motivazione, richiesta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, prezzo=?, URL=?, note=?, stato=?, motivazione=?, richiesta_id=? WHERE ID=?");
+            iProposta = connection.prepareStatement("INSERT INTO proposta_acquisto (produttore, prodotto, codice, codice_prodotto, prezzo, URL, note, stato, data, motivazione, richiesta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, codice_prodotto=?, prezzo=?, URL=?, note=?, stato=?, data=?, motivazione=?, richiesta_id=? WHERE ID=?");
             uInviaProposta = connection.prepareStatement("UPDATE proposta_acquisto SET stato=? WHERE ID=?");
             dProposta = connection.prepareStatement("DELETE FROM proposta_acquisto WHERE ID=?");
         } catch (SQLException ex) {
@@ -161,25 +164,29 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
                 uProposta.setString(1, proposta.getProduttore());
                 uProposta.setString(2, proposta.getProdotto());
                 uProposta.setString(3, proposta.getCodice());
-                uProposta.setDouble(4, proposta.getPrezzo());
-                uProposta.setString(5, proposta.getUrl());
-                uProposta.setString(6, proposta.getNote());
-                uProposta.setString(7, proposta.getStatoProposta().toString());
-                uProposta.setString(8, proposta.getMotivazione());
-                uProposta.setInt(9, proposta.getRichiestaOrdine().getKey());
-                uProposta.setInt(10, proposta.getKey());
+                uProposta.setString(4, proposta.getCodiceProdotto());
+                uProposta.setDouble(5, proposta.getPrezzo());
+                uProposta.setString(6, proposta.getUrl());
+                uProposta.setString(7, proposta.getNote());
+                uProposta.setString(8, proposta.getStatoProposta().toString());
+                uProposta.setDate(9, Date.valueOf(LocalDate.now()));
+                uProposta.setString(10, proposta.getMotivazione());
+                uProposta.setInt(11, proposta.getRichiestaOrdine().getKey());
+                uProposta.setInt(12, proposta.getKey());
                 uProposta.executeUpdate();
             } else {
                 // Inserisce una nuova proposta d'acquisto nel database
                 iProposta.setString(1, proposta.getProduttore());
                 iProposta.setString(2, proposta.getProdotto());
                 iProposta.setString(3, proposta.getCodice());
-                iProposta.setDouble(4, proposta.getPrezzo());
-                iProposta.setString(5, proposta.getUrl());
-                iProposta.setString(6, proposta.getNote());
-                iProposta.setString(7, proposta.getStatoProposta().toString());
-                iProposta.setString(8, proposta.getMotivazione());
-                iProposta.setInt(9, proposta.getRichiestaOrdine().getId());
+                iProposta.setString(4, proposta.getCodiceProdotto());
+                iProposta.setDouble(5, proposta.getPrezzo());
+                iProposta.setString(6, proposta.getUrl());
+                iProposta.setString(7, proposta.getNote());
+                iProposta.setString(8, proposta.getStatoProposta().toString());
+                iProposta.setDate(9, Date.valueOf(LocalDate.now()));
+                iProposta.setString(10, proposta.getMotivazione());
+                iProposta.setInt(11, proposta.getRichiestaOrdine().getKey());
                 if (iProposta.executeUpdate() == 1) {
                     try (ResultSet keys = iProposta.getGeneratedKeys()) {
                         if (keys.next()) {

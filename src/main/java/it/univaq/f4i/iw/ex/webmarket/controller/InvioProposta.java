@@ -49,7 +49,12 @@ public class InvioProposta extends BaseController {
         String codiceProdotto = request.getParameter("codiceProdotto");
         float prezzo = Float.parseFloat(request.getParameter("prezzo"));
         String url = request.getParameter("url");
-        String note = request.getParameter("note");
+        String note;
+        if (request.getParameter("note").isEmpty()) {
+            note = null;
+        } else {
+            note = request.getParameter("note");
+        }
 
         // Creo una nuova proposta
         PropostaAcquisto proposta = new PropostaAcquistoImpl();
@@ -60,7 +65,6 @@ public class InvioProposta extends BaseController {
         proposta.setUrl(url);
         proposta.setNote(note);
         proposta.setStatoProposta(StatoProposta.IN_ATTESA);
-        // proposta.setData(new java.util.Date());
         proposta.setMotivazione(null);
         proposta.setRichiestaOrdine(richiesta);
 
@@ -84,9 +88,11 @@ public class InvioProposta extends BaseController {
         });
 
         String tipo = "PropostaRichiesta_";
-        String text = "Gentile Utente, Le è stata inviata una proposta d'acquisto per la sua richiesta numero " + richiesta.getCodiceRichiesta() + "\n\n In allegato trova i dettagli.";
-        String messaggio = "\n Dettagli dell'ordine effettuato per la richiesta numero: " + richiesta.getCodiceRichiesta() + "\n\n";
+        String text = "Gentile Utente, Le è stata inviata una proposta d'acquisto per la sua richiesta numero " + richiesta.getCodiceRichiesta() + ".\n\n In allegato trova i dettagli.\n\nCordiali Saluti,\n\nIl team di WebMarket";
+                        
+        String messaggio = "Dettagli dell'ordine effettuato per la richiesta numero: " + richiesta.getCodiceRichiesta() + "\n\n";
         String pdfFilePath = "PropostaRichiesta_" + proposta.getCodice() + ".pdf";
+        System.out.println("PROPOSTA:" + proposta.getCodice());
 
         try {
             EmailSender.createPDF(tipo, messaggio, proposta);

@@ -83,7 +83,7 @@ public class RichiestaInAttesa extends BaseController{
 
         String subject = "Richiesta presa in carico";
         String body = "Gentile utente, \n\n" +
-                      "La informiaro che la richiesta numero"+ codice +"è stata presa in carico. \n"+
+                      "La informiamo che la richiesta numero "+ codice +"è stata presa in carico. \n"+
                       "Cordiali Saluti, \n" +
                       "Il team di WebMarket";
         

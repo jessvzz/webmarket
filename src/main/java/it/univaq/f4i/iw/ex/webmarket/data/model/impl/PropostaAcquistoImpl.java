@@ -3,7 +3,7 @@ package it.univaq.f4i.iw.ex.webmarket.data.model.impl;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
-import java.util.Date;
+import java.sql.Date;
 
 
 
@@ -13,7 +13,7 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
     private String prodotto;
     private String codiceProdotto;
     private String codice;
-    private double prezzo;
+    private float prezzo;
     private String url;
     private String note;
     private StatoProposta stato;
@@ -103,12 +103,12 @@ public class PropostaAcquistoImpl extends DataItemImpl<Integer> implements Propo
     }
 
     @Override
-    public double getPrezzo() {
+    public float getPrezzo() {
         return prezzo;
     }
 
     @Override
-    public void setPrezzo(double prezzo) {
+    public void setPrezzo(float prezzo) {
         this.prezzo = prezzo;
     }
 
