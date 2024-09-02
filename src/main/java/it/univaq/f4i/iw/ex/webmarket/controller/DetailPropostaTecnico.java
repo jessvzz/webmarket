@@ -15,6 +15,8 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +51,7 @@ public class DetailPropostaTecnico extends BaseController {
         Ordine ordine = new OrdineImpl();
         ordine.setProposta(proposta);
         ordine.setStato(StatoOrdine.IN_ATTESA);
+        ordine.setData(new Date(System.currentTimeMillis()));
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordine);
         
         //gestione email

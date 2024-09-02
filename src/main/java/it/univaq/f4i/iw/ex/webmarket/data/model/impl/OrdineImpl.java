@@ -19,13 +19,15 @@ public class OrdineImpl extends DataItemImpl<Integer> implements Ordine {
         super();
         stato = null;
         propostaAcquisto = null;
+        data = null;
     }
 
     // Costruttore per inizializzare l'Ordine con valori specificati
-    public OrdineImpl(int id, StatoOrdine stato, PropostaAcquisto propostaAcquisto) {
+    public OrdineImpl(int id, StatoOrdine stato, PropostaAcquisto propostaAcquisto, Date data) {
         this.id = id;
         this.stato = stato;
         this.propostaAcquisto = propostaAcquisto;
+        this.data = data;
     }
 
     @Override
