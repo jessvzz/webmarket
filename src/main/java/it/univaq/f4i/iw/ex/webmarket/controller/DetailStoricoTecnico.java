@@ -4,10 +4,12 @@ import com.itextpdf.text.DocumentException;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
+import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.OrdineImpl;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -44,13 +46,34 @@ public class DetailStoricoTecnico extends BaseController {
     }
 
      private void action_sendOrdine(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
-        Ordine ordine = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdine(n);
-        
-        String email = ordine.getProposta().getRichiestaOrdine().getUtente().getEmail();
+        Ordine ordineVecchio = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdine(n);
 
-        ordine.setStato(StatoOrdine.IN_ATTESA);
-        ordine.setData(new Date(System.currentTimeMillis()));
-        ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordine);
+        PropostaAcquisto proposta = ordineVecchio.getProposta();
+        proposta.setStatoProposta(StatoProposta.ORDINATO);
+        String email = proposta.getRichiestaOrdine().getUtente().getEmail();
+        
+        //Update stato vecchio ordine
+        ordineVecchio.setStato(StatoOrdine.RIFIUTATO);
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordineVecchio);
+
+        
+        //creazione nuovo ordine
+        Ordine ordineNuovo = new OrdineImpl();
+        ordineNuovo.setProposta(proposta);
+        ordineNuovo.setStato(StatoOrdine.IN_ATTESA);
+        ordineNuovo.setData(new Date(System.currentTimeMillis()));
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordineNuovo);
+
+
+        //update proposta
+        proposta.setStatoProposta(StatoProposta.ORDINATO);
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
+
+        //update richiesta
+        RichiestaOrdine richiesta = proposta.getRichiestaOrdine();
+        richiesta.setStato(StatoRichiesta.ORDINATA);
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
+
         
         //gestione email
         Properties props = new Properties();
@@ -64,14 +87,14 @@ public class DetailStoricoTecnico extends BaseController {
                 return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
             }
         });
-        String text = "Gentile Utente, la informiamo che è stato effettuato un nuovo ordine per la sua proposta numero " + ordine.getProposta().getCodice() +"\n\n In allegato trova i dettagli del suo ordine.";
+        String text = "Gentile Utente, la informiamo che è stato effettuato un nuovo ordine per la sua proposta numero " + proposta.getCodice() +"\n\n In allegato trova i dettagli del suo ordine.";
         // genero PDF
         String tipo = "OrdineProposta_";
-        String messaggio = "\n Dettagli dell'ordine effettuato per la proposta numero: "+ ordine.getProposta().getCodice()+"\n\n";
-        String pdfFilePath = "OrdineProposta_" + ordine.getProposta().getCodice() + ".pdf";
+        String messaggio = "\n Dettagli dell'ordine effettuato per la proposta numero: "+ proposta.getCodice()+"\n\n";
+        String pdfFilePath = "OrdineProposta_" + proposta.getCodice() + ".pdf";
 
         try {
-            EmailSender.createPDF(tipo, messaggio, ordine.getProposta());
+            EmailSender.createPDF(tipo, messaggio, proposta);
 
            
             EmailSender.sendEmailWithAttachment(session, email, "Notifica Ordine", text, pdfFilePath);
@@ -118,7 +141,7 @@ public class DetailStoricoTecnico extends BaseController {
      */
     @Override
     public String getServletInfo() {
-        return "Main Newspaper servlet";
+        return "Detail storico servlet";
     }// </editor-fold>
 
 }

@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
         case 'IN_ATTESA':
             statoBadge.classList.add('grey-storico');
             break;
+        case 'RIFIUTATO':
+            statoBadge.classList.add('grey-storico');
+            break;
         case 'ACCETTATO':
             statoBadge.classList.add('green-storico');
             break;

@@ -108,7 +108,7 @@ CREATE TABLE proposta_acquisto (
 CREATE TABLE ordine (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     data DATE,
-    stato ENUM('IN_ATTESA','ACCETTATO','RESPINTO_NON_CONFORME','RESPINTO_NON_FUNZIONANTE') NOT NULL,
+    stato ENUM('IN_ATTESA','ACCETTATO','RESPINTO_NON_CONFORME','RESPINTO_NON_FUNZIONANTE', 'RIFIUTATO') NOT NULL,
     proposta_id int(11) NOT NULL,
     CONSTRAINT id_proposta FOREIGN KEY (proposta_id)
         REFERENCES proposta_acquisto(ID)
@@ -394,5 +394,5 @@ INSERT INTO proposta_acquisto (produttore, prodotto, codice_prodotto, prezzo, UR
     ('Lenovo', 'Lenovo Yoga Pro 7', 'JlkFpEXqQT', 899.99, 'https://www.unieuro.it/online/Notebook/Yoga-Pro-7-Ultrathin-14-Intel-i7-16GB-512GB-pidLNV82Y7005HIX?gad_source=1&gclid=CjwKCAjw8rW2BhAgEiwAoRO5rFLPrUeSd6sncIFHfDVBbb3RbqsE0UHsvas5IlSnL1CQsTKodJ9OCRoCAnIQAvD_BwE&gclsrc=aw.ds', 'Prezzo consigliato 1.499,00. Non farti perdere questa occasione.', 'IN_ATTESA', '2023-08-23', NULL, 7) ; #5
 
 INSERT INTO ordine (stato, data, proposta_id) VALUES
-    ('ACCETTATO' , '2023-09-01', 3), #1
+    ('RESPINTO_NON_CONFORME' , '2023-09-01', 3), #1
     ('ACCETTATO', '2023-09-01', 5); #2
