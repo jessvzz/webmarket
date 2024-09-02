@@ -28,5 +28,7 @@ public interface RichiestaOrdineDAO {
     List<RichiestaOrdine> getRichiesteRisolte() throws DataException;
 
     void deleteRichiestaOrdine(int richiesta_key) throws DataException;
+    
+    boolean esisteRichiestaInAttesa() throws DataException;
 
 }

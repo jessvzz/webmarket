@@ -18,13 +18,15 @@ import java.util.List;
 
 
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Implementazione di RichiestaOrdineDAO per MySQL.
  */
 public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO {
 
-    private PreparedStatement sRichiestaOrdineByID, sRichiesteByUtente, iRichiestaOrdine, uRichiestaOrdine, sRichiesteInoltrate, sRichiesteNonEvase, sRichiesteTecnico, sRichiesteRisolte;
+    private PreparedStatement sRichiestaOrdineByID, sRichiesteByUtente, iRichiestaOrdine, uRichiestaOrdine, sRichiesteInoltrate, sRichiesteNonEvase, sRichiesteTecnico, sRichiesteRisolte, esisteRichiestaInAttesa;
 
     public RichiestaOrdineDAO_MySQL(DataLayer d) {
         super(d);
@@ -49,6 +51,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             sRichiesteRisolte = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
             iRichiestaOrdine = connection.prepareStatement("INSERT INTO richiesta_ordine (note, stato, data, utente, categoria_id) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uRichiestaOrdine = connection.prepareStatement("UPDATE richiesta_ordine SET note=?, stato=?, data=?, codice_richiesta=?, utente=?, tecnico=?, categoria_id=? WHERE ID=?");
+            esisteRichiestaInAttesa = connection.prepareStatement("SELECT EXISTS( SELECT 1 FROM richiesta_ordine WHERE stato = 'IN_ATTESA') AS esiste_richiesta_in_attesa;");
         } catch (SQLException ex) {
             throw new DataException("Error initializing RichiestaOrdine data layer", ex);
         }
@@ -275,4 +278,19 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         throw new DataException("Unable to delete RichiestaOrdine", ex);
     }
 }
+    
+    @Override
+    public boolean esisteRichiestaInAttesa() throws DataException {
+        try {
+            try (ResultSet rs = esisteRichiestaInAttesa.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean("esiste_richiesta_in_attesa");
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Unable to check if there are requests in 'IN_ATTESA' state", ex);
+        }
+        return false;
+    }
+
 }

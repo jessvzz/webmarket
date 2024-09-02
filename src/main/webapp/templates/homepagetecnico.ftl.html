@@ -2,11 +2,23 @@
     <h1 class="hi-text" style="text-align: left;">Ciao, ${user.username}</h1>
     <br>
     <div class="three-buttons-container">
-        <div class="card-purple">
+        <div class="card-purple" style="position: relative;">
             <a href="richieste_tecnico">
                 <img src="images/richieste-svg.svg" alt="icona richieste non evase" class="icon">
                 <p class="card-title-light">Richieste non evase</p>
             </a>
+            <#if richieste_prese_in_carico?? && richieste_prese_in_carico == true>
+                <span style="
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    width: 15px;
+                    height: 15px;
+                    background-color: red;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                "></span>
+                </#if>
         </div>
         <div class="card-skyblue ">
             <a href="proposte_tecnico">
@@ -21,12 +33,14 @@
             </a>
         </div>
     </div>
+    <#if richieste_in_attesa?? && richieste_in_attesa == true>
     <div class="notifications-container">
         <div class="card-notif-pulse">
             <a href="notifiche_tecnico" class="a-cards">
                 <img src="images/notifications-svg.svg" alt="icona notifiche" class="img-notif">
-                <p class="card-title-notifications">Notifiche</p>
+                <p class="card-title-notifications">Nuove Richieste</p>
             </a>
         </div>
     </div>
+    </#if>
 </div>

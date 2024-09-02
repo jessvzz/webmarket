@@ -5,6 +5,7 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
+import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
@@ -23,9 +24,17 @@ import javax.servlet.http.HttpSession;
  */
 public class TecnicoHomepage extends BaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response, int userId) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Tecnico Dashboard");
+        boolean p = ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().esisteRichiestaInAttesa();
+       
+        request.setAttribute("richieste_in_attesa", p);
+        
+        boolean richiestePreseInCarico = !((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiesteNonEvase(userId).isEmpty();
+        request.setAttribute("richieste_prese_in_carico", richiestePreseInCarico);
+
+
         res.activate("homepagetecnico.ftl.html", request, response);
     }
 
@@ -50,7 +59,7 @@ public class TecnicoHomepage extends BaseController {
             request.setAttribute("user", u);
         }
 
-        action_default(request, response);
+        action_default(request, response, userId);
 
     } catch (IOException | TemplateManagerException | DataException ex) {
         handleError(ex, request, response);
