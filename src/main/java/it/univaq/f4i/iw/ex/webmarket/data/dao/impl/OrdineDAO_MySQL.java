@@ -153,7 +153,8 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
                 }
                  // Aggiorna l'ordine esistente
                 uOrdine.setString(1, ordine.getStato().toString());
-                uOrdine.setInt(2, ordine.getProposta().getId());
+                // uOrdine.setInt(2, ordine.getProposta().getId());
+                uOrdine.setInt(2, ordine.getProposta().getKey());
                 uOrdine.setDate(3, new java.sql.Date(ordine.getData().getTime()));
                 uOrdine.setInt(4, ordine.getKey());
                 uOrdine.executeUpdate();

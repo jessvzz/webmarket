@@ -71,6 +71,7 @@
              /notifiche_tecnico,
              /proposte_ordinante,
             /richiesta_inattesa,
+            /rifiuto_ordine
         </param-value>
     </context-param>
     <context-param>
@@ -197,6 +198,10 @@
     <servlet>
         <servlet-name>RichiestaInAttesa</servlet-name>
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.RichiestaInAttesa</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>RifiutoOrdine</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.RifiutoOrdine</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>login</servlet-name>
@@ -334,6 +339,10 @@
     <servlet-mapping>
         <servlet-name>RichiestaInAttesa</servlet-name>
         <url-pattern>/richiesta_inattesa</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>RifiutoOrdine</servlet-name>
+        <url-pattern>/rifiuto_ordine</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

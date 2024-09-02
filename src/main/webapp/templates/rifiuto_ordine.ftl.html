@@ -1,0 +1,32 @@
+<div class="container-beige">
+    <h2 class="form-title">Gentile Cliente, inserisca la motivazione del rifiuto per l'ordine del ${ordine.data}</h2>
+    <div class="form-container">
+    <form method="POST" action="rifiuto_ordine?action=rifiutaOrdine">
+        <input type="hidden" name="n" value="${ordine.key}">
+
+        <!-- <div class="rifiuto-buttons">
+            <input type="radio" id="nonconforme" name="rifiuto" value="RESPINTO_NON_CONFORME" checked>
+            <label for="respinto-non-conforme" class="rorange-button">  NON CONFORME </label>
+
+            <input type="radio" id="nonfunzionante" name="rifiuto" value="RESPINTO_NON_FUNZIONANTE">
+            <label for="rifiuto-non-funzionante" class="rorange-button">NON FUNZIONANTE</label>
+        </div> -->
+        <div class="rifiuto-buttons">
+        <button type="submit" name="azione" value="RESPINTO_NON_CONFORME" class="rorange-button">Rifiutato perché non conforme</button>
+        <button type="submit" name="azione" value="RESPINTO_NON_FUNZIONANTE" class="rorange-button">Rifiutato perché non funzionante</button>
+        </div>
+        <div class="form-buttons">
+            <#if (errore)??>
+            <p style="color: red"> ${errore}</p>
+            </#if>
+            <a href="dettaglio_ordine_ord?n=${ordine.key}">
+            <button type="button" class="purple-button">INDIETRO</button>
+            </a>
+            <button type="submit" class="orange-button">SALVA</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+
+

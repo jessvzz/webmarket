@@ -1507,3 +1507,48 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
         border-right: none;
     }
 }
+
+.rifiuto-buttons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.rifiuto-buttons input[type="radio"] {
+    display: none; 
+}
+
+
+.rifiuto-buttons input[type="radio"]:checked + label {
+    background-color: #f1b751;
+}
+
+.rorange-button {
+    background-color: #e5a056;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    flex: 1;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+    font-size:14px;
+}
+
+.rorange-button:hover, .icon-button:hover {
+    background-color: #e88e3b;
+}
+
+.rorange-select {
+    padding: 10px;
+    border: none;
+    border-radius: 17px;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #e77d2687;
+    color: white;
+    cursor: pointer;
+}
