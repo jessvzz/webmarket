@@ -3,8 +3,10 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 import com.itextpdf.text.DocumentException;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
+import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -49,6 +51,12 @@ public class MotivaRifiuto extends BaseController {
         proposta.setMotivazione(motivazione);
         
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
+        
+        
+        //cambio stato richiesta
+        RichiestaOrdine richiesta = proposta.getRichiestaOrdine();
+        richiesta.setStato(StatoRichiesta.PRESA_IN_CARICO);
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
         
         String email = proposta.getRichiestaOrdine().getTecnico().getEmail();
         String username = proposta.getRichiestaOrdine().getTecnico().getUsername();
