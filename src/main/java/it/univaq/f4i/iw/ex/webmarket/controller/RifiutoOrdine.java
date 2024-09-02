@@ -29,6 +29,7 @@ public class RifiutoOrdine extends BaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         Ordine ordine = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdine(n);
+
         request.setAttribute("ordine", ordine);
         
         request.setAttribute("page_title", "Motivazione rifiuto ordine");
@@ -92,7 +93,7 @@ public class RifiutoOrdine extends BaseController {
 EmailSender.sendEmail(session, email, "Notifica Rifiuto Ordine", text);
 
 // Reindirizza alla pagina del dettaglio ordine
-response.sendRedirect("dettaglio_ordine?n=" + n); 
+response.sendRedirect("dettaglio_ordine_ord?n=" + n); 
 }
     
     
