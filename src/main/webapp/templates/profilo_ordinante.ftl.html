@@ -21,7 +21,7 @@
         </form>
     </div> -->
     <div class="form-container">
-        <form method="POST" action="gestione_profilo_ordinante">
+        <form method="POST" action="">
             <input type="hidden" name="action" value="updateProfile">            
             
 
@@ -33,18 +33,21 @@
             
             <div class="form-group">
                 <label for="new-password">Nuova password:</label>
-                <input type="password" id="new-password" name="new-password" placeholder="Nuova password">
+                <input type="password" id="new-password" name="new-password" placeholder="Nuova password" required>
             </div>
             
             <div class="form-group">
                 <label for="confirm-password">Ripeti nuova password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Ripeti nuova password">
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Ripeti nuova password" required>
             </div>
             
             <div class="form-buttons">
                 <a href="homepageordinante">
                     <button type="button" class="purple-button">INDIETRO</button>
                 </a>
+                 <#if (errore)??>
+                    <p style="color: red"> ${errore}</p>
+                    </#if>
                 <button type="submit" class="orange-button">SALVA</button>
             </div>
         </form>

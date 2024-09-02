@@ -170,8 +170,9 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 uUser.setString(2, user.getPassword());
                 uUser.setString(3, user.getTipologiaUtente().name());
                 uUser.setString(4, user.getUsername());
-
-                //uUser.setInt(3, user.getKey());
+                uUser.setInt(5, user.getKey());
+                uUser.executeUpdate();
+                
 
             } else { //insert
                 iUser.setString(1, user.getEmail());

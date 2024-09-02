@@ -38,6 +38,7 @@ public class GestioneUtenti extends BaseController {
         res.activate("gestione_utenti.ftl.html", request, response);
     }
 
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {
