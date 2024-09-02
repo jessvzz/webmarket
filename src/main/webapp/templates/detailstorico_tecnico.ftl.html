@@ -10,7 +10,7 @@
         </a>
         <h3 style="color: #F67956; margin-left: 10px;">> Ordine del ${ordine.data}</h3> 
     </div>
-    <h1 class="hi-text" style="text-align: left;"> Richiesta # ${ordine.getProposta().codice} -  ${ordine.getProposta().richiestaOrdine.utente.username}</h1> 
+    <h1 class="hi-text" style="text-align: left;"> Porposta # ${ordine.getProposta().codice} -  ${ordine.getProposta().richiestaOrdine.utente.username}</h1> 
     <br>
     <div class="container-richieste-storico">
         <div class="row-tecnico">
@@ -22,34 +22,36 @@
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="stato">Stato:</label>
-                <div class="green-storico">${ordine.stato}</div>
+                <div id="statoBadge" class="green-storico">${ordine.stato}</div> <!-- TODO: rendi dinamico -->
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="caratteristiche">Caratteristiche:</label>
-                <div class="skyblue-richiesta-storico">caratteristiche</div>
+                <label for="richiesta">Vai alla richiesta</label>
+                <a href="detailrichiesta_tecnico?n=${ordine.getProposta().richiestaOrdine.key}">
+                <div class="darkblue-richiesta-storico" name="richiesta">Richiesta #${ordine.getProposta().richiestaOrdine.codiceRichiesta}</div>
+                </a>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="note">Note:</label>
-                <div class="orange-richiesta-storico">Note</div>
+                <label for="proposta">Vai alla Proposta</label>
+                <a href="detailproposta_tecnico?n=${ordine.getProposta().key}">
+                <div name="proposta" class="darkblue-richiesta-storico">Proposta #${ordine.getProposta().codice}</div>
+                </a>
             </div>
         </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="motivazione">Proposte d'acquisto:</label>
-                <div class="pink-richiesta-storico2">
-                    <a href="detailproposta_tecnico">#proposta1</a>
-                </div>
-                <div class="pink-richiesta-storico2">
-                    <a href="detailproposta_tecnico">#proposta2</a>
-                </div>
-                <div class="pink-richiesta-storico2">
-                    <a href="detailproposta_tecnico">#proposta3</a>
-                </div>
-            </div>
-        </div>
+        
     </div>
+    <div class="form-group-tecnico" style="justify-content: center;">
+                    <#if ordine.stato == "RESPINTO_NON_CONFORME" || ordine.stato == "RESPINTO_NON_FUNZIONANTE">
+                    <form action="" method="post">
+                        <input type="hidden" name="action" value="reinviaOrdine">
+                        <button type="submit" class="btn-verde">Re-invia ordine</button>
+                    </form>
+                </#if>
+                </div>
+    
 </div>
+
+<script src="scripts/detailstorico_tecnico.js"></script>

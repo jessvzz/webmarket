@@ -1030,6 +1030,16 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     color: white;
 }
 
+.darkblue-richiesta-storico{
+    background-color: #2F6690;
+    width: auto;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    color: white;
+}
+
 .skyblue-richiesta-storico1 {
     background-color:  #0D99FF;
     width: auto;
@@ -1075,6 +1085,26 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .green-storico {
     background-color: #AFF4C6;
+    width: auto;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    color: black;
+}
+
+.orange-storico{
+    background-color: #ff6b35;
+    width: auto;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    color: black;
+}
+
+.grey-storico {
+    background-color: #979dac;
     width: auto;
     padding: 10px;
     border-radius: 5px;
