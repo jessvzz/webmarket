@@ -5,6 +5,7 @@ import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -42,9 +43,12 @@ public class DettaglioOrdineOrd extends BaseController {
     private void action_accettaOrdine(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException,DataException {
         int n;
         n = SecurityHelpers.checkNumeric(request.getParameter("n"));
+       
         Ordine ordine = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdine(n);
         ordine.setStato(StatoOrdine.ACCETTATO);
-        System.out.println("Ordine accettato"+ ordine.getStato());
+        ordine.getProposta().getRichiestaOrdine().setStato((StatoRichiesta.RISOLTA));
+
+        System.out.println("Ordine accettato"+ ordine.getStato() + "e richiesta risolta" + ordine.getProposta().getRichiestaOrdine().getStato());
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordine);
         String email = ordine.getProposta().getRichiestaOrdine().getTecnico().getEmail();
         String username = ordine.getProposta().getRichiestaOrdine().getTecnico().getUsername();
