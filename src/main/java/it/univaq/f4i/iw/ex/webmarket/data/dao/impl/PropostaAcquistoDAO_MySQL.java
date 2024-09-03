@@ -25,7 +25,7 @@ import java.time.LocalDate;
 public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDAO {
 
     // Query SQL precompilate
-    private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente,sProposteByTecnico,sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta, proposteDaNotificare;
+    private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente,sProposteByTecnico,sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta, proposteDaNotificare, proposteDaNotificareOrd;
 
     public PropostaAcquistoDAO_MySQL(DataLayer d) {
         super(d);
@@ -56,6 +56,14 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             "    JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID " +
             "    WHERE (pa.stato = 'ACCETTATO' OR pa.stato = 'RIFIUTATO') " +
             "    AND ro.tecnico = ?" +
+            ") AS notifica_proposta;");
+            
+            proposteDaNotificareOrd = connection.prepareStatement( "SELECT EXISTS(" +
+            "    SELECT 1 " +
+            "    FROM proposta_acquisto pa " +
+            "    JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID " +
+            "    WHERE (pa.stato = 'IN_ATTESA') " +
+            "    AND ro.utente = ?" +
             ") AS notifica_proposta;");
         } catch (SQLException ex) {
             throw new DataException("Errore durante l'inizializzazione del data layer per le proposte d'acquisto", ex);
@@ -278,6 +286,22 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             proposteDaNotificare.setInt(1, tecnicoId);
 
             try (ResultSet rs = proposteDaNotificare.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean("notifica_proposta");
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Non sia riusciti a controllare se ci sono porposte accettate o rifiutate", ex);
+        }
+        return false;
+    }
+    
+    @Override
+    public boolean notificaProposteOrd(int ordinanteId) throws DataException {
+        try {
+            proposteDaNotificareOrd.setInt(1, ordinanteId);
+
+            try (ResultSet rs = proposteDaNotificareOrd.executeQuery()) {
                 if (rs.next()) {
                     return rs.getBoolean("notifica_proposta");
                 }

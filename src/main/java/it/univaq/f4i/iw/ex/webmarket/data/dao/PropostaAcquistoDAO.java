@@ -27,4 +27,6 @@ public interface PropostaAcquistoDAO {
     void inviaPropostaAcquisto(PropostaAcquisto proposta) throws DataException;
     
     boolean notificaProposte(int tecnicoId) throws DataException;
+    
+    boolean notificaProposteOrd(int ordinanteId) throws DataException;
 }

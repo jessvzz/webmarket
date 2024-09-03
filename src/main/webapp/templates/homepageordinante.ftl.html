@@ -16,11 +16,14 @@
     <!-- Sezione Principale con le Card -->
     <div class="three-buttons-container">
 
-        <div class="card-salm">
+        <div class="card-salm" style="position: relative;">
             <a href="proposte_ordinante">
                 <img src="images/proposte-svg.svg" alt="Icona Proposte" class="icon">
                 <p class="card-title-dark">Proposte</p>
             </a>
+            <#if proposte?? && proposte == true>
+                <span  class="pallino-rosso"></span>
+                </#if>
         </div>
 
         
@@ -43,6 +46,9 @@
                 <img src="images/ordini.svg" alt="Icona Ordini" class="icon">
                 <p class="card-title-light">Ordini</p>
             </a>
+            <#if ordini?? && ordini == true>
+                <span  class="pallino-rosso"></span>
+                </#if>
         </div>
     </div>
 </div>

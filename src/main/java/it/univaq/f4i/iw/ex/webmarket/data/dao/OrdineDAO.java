@@ -31,4 +31,6 @@ public interface OrdineDAO {
     void deleteOrdine(int ordine_key) throws DataException;
 
     boolean notificaOrdine(int tecnicoId) throws DataException ;
+    
+    boolean notificaOrdineOrd(int utenteId) throws DataException;
 }

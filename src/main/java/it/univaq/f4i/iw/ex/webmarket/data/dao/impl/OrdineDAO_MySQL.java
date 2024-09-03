@@ -17,7 +17,7 @@ import java.util.List;
 // Implementazione MySQL dell'interfaccia OrdineDAO
 public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
     // Query SQL precompilate
-    private PreparedStatement sOrdineByID, sOrdiniByUtente, sOrdiniByTecnico, sAllOrdini, iOrdine, uOrdine, dOrdine, ordiniDaNotificare;
+    private PreparedStatement sOrdineByID, sOrdiniByUtente, sOrdiniByTecnico, sAllOrdini, iOrdine, uOrdine, dOrdine, ordiniDaNotificare, ordiniDaNotificareOrd;
 
     public OrdineDAO_MySQL(DataLayer d) {
         super(d);
@@ -36,6 +36,7 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=? WHERE ID=?");
             dOrdine = connection.prepareStatement("DELETE FROM ordine WHERE ID=?");
             ordiniDaNotificare = connection.prepareStatement( "SELECT EXISTS( SELECT 1 FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE (o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE') AND ro.tecnico = ?) AS notifica_ordine;");
+            ordiniDaNotificareOrd = connection.prepareStatement( "SELECT EXISTS( SELECT 1 FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE (o.stato = 'IN_ATTESA') AND ro.utente = ?) AS notifica_ordine;");
 
         } catch (SQLException ex) {
             throw new DataException("Error initializing ordine data layer", ex);
@@ -202,6 +203,22 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         try {
             ordiniDaNotificare.setInt(1, tecnicoId);
             try (ResultSet rs = ordiniDaNotificare.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean("notifica_ordine");
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Non sia riusciti a controllare se ci sono ordini respinti", ex);
+        }
+        return false;
+    }
+    
+     @Override
+    public boolean notificaOrdineOrd(int utenteId) throws DataException {
+
+        try {
+            ordiniDaNotificareOrd.setInt(1, utenteId);
+            try (ResultSet rs = ordiniDaNotificareOrd.executeQuery()) {
                 if (rs.next()) {
                     return rs.getBoolean("notifica_ordine");
                 }

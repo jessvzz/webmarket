@@ -20,7 +20,14 @@ public class OrdinanteHomepage extends BaseController {
         request.setAttribute("page_title", "Ordinante Dashboard");
         
         //notifiche per proposte
+        boolean proposte = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().notificaProposteOrd(userId);
+        System.out.println(proposte);
+        request.setAttribute("proposte", proposte);
         
+        //notifiche per ordini 
+        boolean ordini = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().notificaOrdineOrd(userId);
+        request.setAttribute("ordini", ordini);
+
         
         res.activate("homepageordinante.ftl.html", request, response);
     }
