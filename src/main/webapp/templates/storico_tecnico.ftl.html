@@ -36,7 +36,7 @@
             </div>
         </div>
         <#list ordini as ordine>
-        <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards">
+        <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards" data-stato="${ordine.stato}">
             <div class="card-row-orange">
                 <div class="card-row-content">
                     <p class="card-row-text">${ordine.proposta.codice}</p>

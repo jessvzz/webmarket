@@ -10,6 +10,12 @@ function getStatoOrdine(statoOrdine) {
         case "RESPINTO_NON_FUNZIONANTE":
             backgroundColor = "#E4CCFF";
             break;
+        case "IN_ATTESA":
+            backgroundColor = "#FFEECC";
+            break;
+        case "RIFIUTATO":
+            backgroundColor = "#f76a6a";
+            break;
         default:
             backgroundColor = "#FFFFFF";
     }
@@ -18,6 +24,22 @@ function getStatoOrdine(statoOrdine) {
             <p class="card-row-text">${statoOrdine}</p>
         </div>
     `;
+}
+
+function sortOrdini(ordini) {
+    return Array.from(ordini).sort((a, b) => {
+        const statoA = a.getAttribute('data-stato');
+        const statoB = b.getAttribute('data-stato');
+        const priority = {
+            "RESPINTO_NON_CONFORME": 1,
+            "RESPINTO_NON_FUNZIONANTE": 1,
+            "ACCETTATO": 2,
+            "RIFIUTATO": 2,
+            "IN_ATTESA": 3
+        };
+
+        return priority[statoA] - priority[statoB];
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function() {
