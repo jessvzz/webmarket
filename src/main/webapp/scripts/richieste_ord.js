@@ -25,18 +25,25 @@ return `
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("Il DOM è caricato!");
+
     const richieste = document.querySelectorAll('.card-row-content[stato]');
+    console.log("Numero di richieste trovate:", richieste.length);
+
     richieste.forEach(richiesta => {
         const statoRichiesta = richiesta.getAttribute('stato');
+        console.log("Stato della richiesta corrente:", statoRichiesta);
         richiesta.outerHTML = cambiaStatoRichiesta(statoRichiesta);
     });
 
-    const richiestaContainers = document.querySelectorAll("#richiesta-container");
+    const richiestaContainers = document.querySelectorAll(".card-row-skyblue");
 
     richiestaContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");
 
-        if (stato === "IN_ATTESA") {
+        if (stato === "IN_ATTESA") { 
+            console.log("è nell'if di stato==In attesa!");
+
             container.style.backgroundColor = "#73c8fa";
         } else {
             container.style.backgroundColor = "#90D5FE";
@@ -44,4 +51,17 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
+    // Implementazione del filtro per lo stato
+    const filterSelect = document.getElementById("status");
+    filterSelect.addEventListener("change", function() {
+        const selectedValue = this.value;
+        richiestaContainers.forEach(container => {
+            const stato = container.getAttribute("data-stato");
+            if (selectedValue === "tutti" || stato === selectedValue) {
+                container.style.display = "block";
+            } else {
+                container.style.display = "none";
+            }
+        });
+});
 });
