@@ -32,6 +32,7 @@ public class AdminHomepage extends BaseController {
             return;
         }
         
+        
         // trovo user
         int userId = (int) session.getAttribute("userid");
         Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtente(userId);
@@ -39,7 +40,7 @@ public class AdminHomepage extends BaseController {
         if (u != null) {
             request.setAttribute("user", u);
         }
-
+        
         action_default(request, response);
 
     } catch (IOException | TemplateManagerException | DataException ex) {

@@ -41,36 +41,42 @@
         <param-name>security.protect.patterns</param-name>
         <!-- qui configuriamo i pattern delle URL da proteggere -->
         <param-value>
-            /homepageordinante,
-             /homepagetecnico,
-             /homepageadmin,
+            
+            <!-- admin -->
+            /homepageadmin,
              /gestioneutenti,
              /gestionecategorie,
              /categoria,
              /modificacategoria,
              /aggiungicategoria,
+             /gestisci_caratteristiche,
+
+             <!-- tecnico -->
+             /homepagetecnico,
              /richieste_tecnico,
              /proposte_tecnico,
              /storico_tecnico,
+             /detailrichiesta_tecnico,
+             /detailstorico_tecnico,
+             /detailproposta_tecnico,
+             /invioproposta,
+             /notifiche_tecnico,
+             /richiesta_inattesa,
+
+             
+             <!--ordinante-->
+             /homepageordinante,
              /richieste_ordinante,
              /ordini,
              /nuova_richiesta,
              /nuova_richiesta_caratteristiche, 
-             /gestisci_caratteristiche,
              /notifiche_ordinante,
              /profilo_ordinante,
-             /detailrichiesta_tecnico,
-             /detailstorico_tecnico,
              /dettaglio_richiesta_ord,
              /dettaglio_ordine_ord,
-             /dettaglio_proposta_ord,
-             /successo_ordine,
+             /dettaglio_proposta_ord,             
              /motiva_rifiuto,
-             /detailproposta_tecnico,
-             /invioproposta,
-             /notifiche_tecnico,
              /proposte_ordinante,
-            /richiesta_inattesa,
             /rifiuto_ordine
         </param-value>
     </context-param>

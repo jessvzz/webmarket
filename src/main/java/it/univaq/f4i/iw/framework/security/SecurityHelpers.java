@@ -1,5 +1,6 @@
 package it.univaq.f4i.iw.framework.security;
 
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -106,13 +107,15 @@ public class SecurityHelpers {
         }
     }
 
-    public static HttpSession createSession(HttpServletRequest request, String username, int userid) {
+    public static HttpSession createSession(HttpServletRequest request, String username, int userid, TipologiaUtente tipo) {
         //se una sessione è già attiva, rimuoviamola e creiamone una nuova
         //if a session already exists, remove it and recreate a new one
         disposeSession(request);
         HttpSession s = request.getSession(true);
         s.setAttribute("username", username);
         s.setAttribute("userid", userid);
+        s.setAttribute("tipo", tipo.toString());
+        
         //
         s.setAttribute("ip", request.getRemoteHost());
         //

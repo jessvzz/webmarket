@@ -2,6 +2,7 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -46,7 +47,7 @@ public class Login extends BaseController {
                 
                     //se la validazione ha successo
                     //if the identity validation succeeds
-                    SecurityHelpers.createSession(request, username, u.getKey());
+                    SecurityHelpers.createSession(request, username, u.getKey(), u.getTipologiaUtente());
                     //se è stato trasmesso un URL di origine, torniamo a quell'indirizzo
                     //if an origin URL has been transmitted, return to it
                     String redirectPage;
@@ -109,4 +110,5 @@ public class Login extends BaseController {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }
