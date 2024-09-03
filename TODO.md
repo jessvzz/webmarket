@@ -27,15 +27,11 @@
 - [x] aggiusta modifica categoria
 
 ## Samanta:
-- [ ]: fix errore in Dettaglio Proposta.
-- [ ]: fix parte delle proposte in dettaglio richiesta
-- [ ]: penso di togliere il link della proposta dal dettaglio ordine.
+- [ ]:nelle PROPOSTE dell'ordinante non riesco a filtrare e non riesco a fare il sort delle proposte per visualizzare in alto quelle IN ATTESA. per come è adesso il codice, rimane solo selezionata la proposta in stato d'attesa.
+-[ ]: in RICHIESTE non capisco perchè la stessa funzione utilizzata per le proposte non mi evidenzia le richieste in attesa.
+-[ ]: implementare tutti i filtri
+-[ ]: ALERT per "andata a buon fine!"
 
-- [ ]: richiesta risolta e richiesta ordinata, capire come disambiguare.
-- [ ]: fixare in "dettaglio richiesta" la presenza delle proposte 
-- [ ]: aggiungiamo il campo DATA alla tabella Ordine?
-- [ ] può l'utente modificare la sua richiesta una volta inoltrata e non ancora presa in carico?
-- [ ] capire quando effettivamente l'ordinante può "chiudere" la richiesta dato che ho assunto possa farlo nel  momento in cui accetta sia proposta che ordine consegnato.
 
 # ALTRO
 - [Figma dell'admin](https://www.figma.com/file/c6hYZIz2AJhbynd5b2UdG1?node-id=0-1&t=uapcU6HHGd49wdL5-0&type=whiteboard)

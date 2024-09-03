@@ -30,4 +30,18 @@ document.addEventListener("DOMContentLoaded", function() {
         const statoRichiesta = richiesta.getAttribute('stato');
         richiesta.outerHTML = cambiaStatoRichiesta(statoRichiesta);
     });
+
+    const richiestaContainers = document.querySelectorAll("#richiesta-container");
+
+    richiestaContainers.forEach(container => {
+        const stato = container.getAttribute("data-stato");
+
+        if (stato === "IN_ATTESA") {
+            container.style.backgroundColor = "#73c8fa";
+        } else {
+            container.style.backgroundColor = "#90D5FE";
+        }
+    });
+
+
 });
