@@ -17,7 +17,7 @@ import java.util.List;
 // Implementazione MySQL dell'interfaccia OrdineDAO
 public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
     // Query SQL precompilate
-    private PreparedStatement sOrdineByID, sOrdiniByUtente, sOrdiniByTecnico, sAllOrdini, iOrdine, uOrdine, dOrdine, ordiniDaNotificare;
+    private PreparedStatement sOrdineByID, sOrdiniByUtente, sOrdiniByTecnico, sAllOrdini, iOrdine, uOrdine, dOrdine;
 
     public OrdineDAO_MySQL(DataLayer d) {
         super(d);
@@ -35,7 +35,6 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             iOrdine = connection.prepareStatement("INSERT INTO ordine (stato, proposta_id, data) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=? WHERE ID=?");
             dOrdine = connection.prepareStatement("DELETE FROM ordine WHERE ID=?");
-            ordiniDaNotificare = connection.prepareStatement("SELECT EXISTS( SELECT 1 FROM ordine WHERE stato = 'RESPINTO_NON_CONFORME' OR stato = 'RESPINTO_NON_FUNZIONANTE') AS notifica_ordine;");
 
         } catch (SQLException ex) {
             throw new DataException("Error initializing ordine data layer", ex);
@@ -196,17 +195,5 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         }
     }
     
-    @Override
-    public boolean notificaOrdine() throws DataException {
-        try {
-            try (ResultSet rs = ordiniDaNotificare.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getBoolean("notifica_ordine");
-                }
-            }
-        } catch (SQLException ex) {
-            throw new DataException("Non sia riusciti a controllare se ci sono ordini respinti", ex);
-        }
-        return false;
-    }
+    
 }
