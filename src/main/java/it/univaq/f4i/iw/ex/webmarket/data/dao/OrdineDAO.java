@@ -2,6 +2,7 @@ package it.univaq.f4i.iw.ex.webmarket.data.dao;
 
 import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
 import it.univaq.f4i.iw.framework.data.DataException;
+import java.sql.SQLException;
 import java.util.List;
 
 // Interfaccia DAO per gestire le operazioni sul database relative agli Ordini
@@ -29,5 +30,5 @@ public interface OrdineDAO {
      // Elimina un Ordine per chiave
     void deleteOrdine(int ordine_key) throws DataException;
 
-    boolean notificaOrdine() throws DataException;
+    boolean notificaOrdine(int tecnicoId) throws DataException ;
 }

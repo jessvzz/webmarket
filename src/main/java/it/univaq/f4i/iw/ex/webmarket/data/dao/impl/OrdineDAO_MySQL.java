@@ -35,7 +35,7 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             iOrdine = connection.prepareStatement("INSERT INTO ordine (stato, proposta_id, data) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=? WHERE ID=?");
             dOrdine = connection.prepareStatement("DELETE FROM ordine WHERE ID=?");
-            ordiniDaNotificare = connection.prepareStatement("SELECT EXISTS( SELECT 1 FROM ordine WHERE stato = 'RESPINTO_NON_CONFORME' OR stato = 'RESPINTO_NON_FUNZIONANTE') AS notifica_ordine;");
+            ordiniDaNotificare = connection.prepareStatement( "SELECT EXISTS( SELECT 1 FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE (o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE') AND ro.tecnico = ?) AS notifica_ordine;");
 
         } catch (SQLException ex) {
             throw new DataException("Error initializing ordine data layer", ex);
@@ -196,9 +196,11 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         }
     }
     
-    @Override
-    public boolean notificaOrdine() throws DataException {
+     @Override
+    public boolean notificaOrdine(int tecnicoId) throws DataException {
+
         try {
+            ordiniDaNotificare.setInt(1, tecnicoId);
             try (ResultSet rs = ordiniDaNotificare.executeQuery()) {
                 if (rs.next()) {
                     return rs.getBoolean("notifica_ordine");

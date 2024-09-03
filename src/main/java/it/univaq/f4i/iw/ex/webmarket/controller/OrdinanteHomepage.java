@@ -15,9 +15,13 @@ import javax.servlet.http.HttpSession;
 
 public class OrdinanteHomepage extends BaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response, int userId) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Ordinante Dashboard");
+        
+        //notifiche per proposte
+        
+        
         res.activate("homepageordinante.ftl.html", request, response);
     }
 
@@ -41,7 +45,7 @@ public class OrdinanteHomepage extends BaseController {
                         request.setAttribute("user", u);
          }
         
-         action_default(request, response);
+         action_default(request, response, userId);
 
          }
         
