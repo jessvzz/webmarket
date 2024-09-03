@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (stato === "IN_ATTESA") { 
             console.log("è nell'if di stato==In attesa!");
 
-            container.style.backgroundColor = "#73c8fa";
+            container.style.backgroundColor = "#1685c7";
         } else {
             container.style.backgroundColor = "#90D5FE";
         }
