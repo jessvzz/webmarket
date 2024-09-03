@@ -17,7 +17,7 @@ import java.util.List;
 // Implementazione MySQL dell'interfaccia OrdineDAO
 public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
     // Query SQL precompilate
-    private PreparedStatement sOrdineByID, sOrdiniByUtente, sOrdiniByTecnico, sAllOrdini, iOrdine, uOrdine, dOrdine;
+    private PreparedStatement sOrdineByID, sOrdiniByUtente, sOrdiniByTecnico, sAllOrdini, iOrdine, uOrdine, dOrdine, ordiniDaNotificare;
 
     public OrdineDAO_MySQL(DataLayer d) {
         super(d);
@@ -29,12 +29,14 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             super.init();
             // Inizializzazione delle prepared statements con le query SQL
             sOrdineByID = connection.prepareStatement("SELECT * FROM ordine WHERE ID = ?");
-            sOrdiniByUtente = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ?  ORDER BY CASE WHEN ro.stato = 'IN_ATTESA' THEN 1 ELSE 2 END");
-            sOrdiniByTecnico = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ?");
+            sOrdiniByUtente = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ?  ORDER BY CASE WHEN o.stato = 'IN_ATTESA' THEN 1 ELSE 2 END");
+            sOrdiniByTecnico = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ? ORDER BY CASE WHEN o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE' THEN 1 ELSE 2 END");
             sAllOrdini = connection.prepareStatement("SELECT * FROM ordine");
             iOrdine = connection.prepareStatement("INSERT INTO ordine (stato, proposta_id, data) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=? WHERE ID=?");
             dOrdine = connection.prepareStatement("DELETE FROM ordine WHERE ID=?");
+            ordiniDaNotificare = connection.prepareStatement("SELECT EXISTS( SELECT 1 FROM ordine WHERE stato = 'RESPINTO_NON_CONFORME' OR stato = 'RESPINTO_NON_FUNZIONANTE') AS notifica_ordine;");
+
         } catch (SQLException ex) {
             throw new DataException("Error initializing ordine data layer", ex);
         }
@@ -192,5 +194,19 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         } catch (SQLException ex) {
             throw new DataException("Unable to delete ordine", ex);
         }
+    }
+    
+    @Override
+    public boolean notificaOrdine() throws DataException {
+        try {
+            try (ResultSet rs = ordiniDaNotificare.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean("notifica_ordine");
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Non sia riusciti a controllare se ci sono ordini respinti", ex);
+        }
+        return false;
     }
 }

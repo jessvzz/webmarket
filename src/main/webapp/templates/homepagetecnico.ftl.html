@@ -8,29 +8,26 @@
                 <p class="card-title-light">Richieste non evase</p>
             </a>
             <#if richieste_prese_in_carico?? && richieste_prese_in_carico == true>
-                <span style="
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    width: 15px;
-                    height: 15px;
-                    background-color: red;
-                    border-radius: 50%;
-                    border: 2px solid white;
-                "></span>
+                <span  class="pallino-rosso"></span>
                 </#if>
         </div>
-        <div class="card-skyblue ">
+        <div class="card-skyblue " style="position: relative;">
             <a href="proposte_tecnico">
                 <img src="images/proposte-svg.svg" alt="icona proposte inviate" class="icon">
                 <p class="card-title-dark">Proposte inviate</p>
             </a>
+            <#if proposte?? && proposte == true>
+                <span  class="pallino-rosso"></span>
+                </#if>
         </div>
-        <div class="card-orange">
+        <div class="card-orange" style="position: relative;">
             <a href="storico_tecnico">
                 <img src="images/storico-svg.svg" alt="icona storico" class="icon">
                 <p class="card-title-light">Storico ordini</p>
             </a>
+            <#if ordini?? && ordini == true>
+                <span  class="pallino-rosso"></span>
+                </#if>
         </div>
     </div>
     <#if richieste_in_attesa?? && richieste_in_attesa == true>

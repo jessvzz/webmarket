@@ -27,12 +27,19 @@ public class TecnicoHomepage extends BaseController {
     private void action_default(HttpServletRequest request, HttpServletResponse response, int userId) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Tecnico Dashboard");
-        boolean p = ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().esisteRichiestaInAttesa();
-       
-        request.setAttribute("richieste_in_attesa", p);
+        
+        boolean r = ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().esisteRichiestaInAttesa();
+        request.setAttribute("richieste_in_attesa", r);
+        
         
         boolean richiestePreseInCarico = !((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiesteNonEvase(userId).isEmpty();
         request.setAttribute("richieste_prese_in_carico", richiestePreseInCarico);
+        
+        boolean proposte = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().notificaProposte();
+        request.setAttribute("proposte", proposte);
+        
+        boolean ordini = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().notificaOrdine();
+        request.setAttribute("ordini", ordini);
 
 
         res.activate("homepagetecnico.ftl.html", request, response);

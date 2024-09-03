@@ -25,4 +25,6 @@ public interface PropostaAcquistoDAO {
     void storePropostaAcquisto(PropostaAcquisto proposta) throws DataException;
 
     void inviaPropostaAcquisto(PropostaAcquisto proposta) throws DataException;
+    
+    boolean notificaProposte() throws DataException;
 }

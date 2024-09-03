@@ -25,7 +25,7 @@ import java.time.LocalDate;
 public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDAO {
 
     // Query SQL precompilate
-    private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente,sProposteByTecnico,sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta;
+    private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente,sProposteByTecnico,sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta, proposteDaNotificare;
 
     public PropostaAcquistoDAO_MySQL(DataLayer d) {
         super(d);
@@ -42,13 +42,14 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             sAllProposte = connection.prepareStatement("SELECT * FROM proposta_acquisto");
 
             sProposteByTecnico = connection.prepareStatement("SELECT pa.* FROM proposta_acquisto pa JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ? ORDER BY CASE WHEN pa.stato = 'ACCETTATO' THEN 1 ELSE 2 END");
-            sProposteByUtente = connection.prepareStatement("SELECT pa.* FROM proposta_acquisto pa JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ? ORDER BY CASE WHEN pa.stato = 'IN_ATTESA' THEN 1 ELSE 2 END");
+            sProposteByUtente = connection.prepareStatement("SELECT pa.* FROM proposta_acquisto pa JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ? ORDER BY CASE WHEN pa.stato = 'IN_ATTESA' THEN 2 ELSE 1 END");
             // sProposteByOrdine = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ordine_id = ?");
             
             iProposta = connection.prepareStatement("INSERT INTO proposta_acquisto (produttore, prodotto, codice, codice_prodotto, prezzo, URL, note, stato, data, motivazione, richiesta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, codice_prodotto=?, prezzo=?, URL=?, note=?, stato=?, data=?, motivazione=?, richiesta_id=? WHERE ID=?");
             uInviaProposta = connection.prepareStatement("UPDATE proposta_acquisto SET stato=? WHERE ID=?");
             dProposta = connection.prepareStatement("DELETE FROM proposta_acquisto WHERE ID=?");
+            proposteDaNotificare = connection.prepareStatement("SELECT EXISTS( SELECT 1 FROM proposta_acquisto WHERE stato = 'ACCETTATO' OR stato = 'RIFIUTATO') AS notifica_proposta;");
         } catch (SQLException ex) {
             throw new DataException("Errore durante l'inizializzazione del data layer per le proposte d'acquisto", ex);
         }
@@ -263,4 +264,18 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         }
         return proposte;
         }
+    
+    @Override
+    public boolean notificaProposte() throws DataException {
+        try {
+            try (ResultSet rs = proposteDaNotificare.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean("notifica_proposta");
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Non sia riusciti a controllare se ci sono porposte accettate o rifiutate", ex);
+        }
+        return false;
+    }
 }

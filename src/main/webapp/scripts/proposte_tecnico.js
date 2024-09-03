@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
     propostaContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");
 
-        if (stato === "ACCETTATO") {
+        if (stato === "ACCETTATO" || stato === "RIFIUTATO") {
             container.style.backgroundColor = "#67c4f1";
         }
     });
