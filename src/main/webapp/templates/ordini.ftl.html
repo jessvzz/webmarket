@@ -12,13 +12,16 @@
         <input type="text" placeholder="Cerca..." class="search-input">
         <button class="search-button">Vai</button>
     </div>
+
     <div class="filter-container">
-        <p class="filter-text">Filtra per stato:</p>
+        <label for="category" class="filter-text">Filtra per stato:</label>
         <select name="category" id="category" class="filter-select">
-            <option value="tutti">Tutti</option>
+            <option value="TUTTI">TUTTI</option>
             <option value="ACCETTATO">ACCETTATO</option>
+            <option value="IN_ATTESA">IN_ATTESA</option>
             <option value="RESPINTO_NON_CONFORME">RESPINTO_NON_CONFORME</option>
             <option value="RESPINTO_NON_FUNZIONANTE">RESPINTO_NON_FUNZIONANTE</option>
+            <option value="RIFIUTATO">RIFIUTATO</option>
         </select>
     </div>
 

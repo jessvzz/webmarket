@@ -14,6 +14,11 @@ function cambiaStatoOrdini(statoOrdine) {
         case 'ACCETTATO':
             backgroundColor = '#adff2f'; // green
             break;
+        case 'RIFIUTATO':
+                backgroundColor = '#de533e'; 
+                break;
+
+
         default:            
         backgroundColor = "#FFFFFF";
 }
@@ -26,21 +31,36 @@ return `
 
 document.addEventListener("DOMContentLoaded", function() {
     const ordini = document.querySelectorAll('.card-row-content[stato]');
+
+    const ordiniContainers = document.querySelectorAll("#ordine-container");
+
     ordini.forEach(ordine => {
         const statoOrdine = ordine.getAttribute('stato');
         ordine.outerHTML = cambiaStatoOrdini(statoOrdine);
     });
     
     
-    const ordiniContainers = document.querySelectorAll("#ordine-container");
-
-    ordiniContainers.forEach(container => {
+       ordiniContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");
-
-        if (stato === "IN_ATTESA") {
-            container.style.backgroundColor = "#5D54BE";
-        } else {
-            container.style.backgroundColor = "#9892d1";
-        }
+        container.style.backgroundColor = stato === "IN_ATTESA" ? "#5D54BE" : "#9892d1";
     });
+
+    const filterSelect = document.getElementById("category");
+    console.log(filterSelect); // Verifica che l'elemento select sia trovato
+    console.log(ordiniContainers); // Verifica che gli ordini siano trovati
+    // const ordiniContainers = document.querySelectorAll(".card-row-purple");
+
+    filterSelect.addEventListener("change", function() {
+     const selectedValue = this.value;
+
+     ordiniContainers.forEach(container => {
+         const stato = container.getAttribute("data-stato");
+
+         if ( selectedValue === "TUTTI" || stato === selectedValue) {
+             container.style.display = "block";
+         } else {
+             container.style.display = "none";
+         }
+     });
+ });
 });
