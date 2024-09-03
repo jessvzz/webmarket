@@ -25,8 +25,46 @@ function getStatoProposta(statoProposta, p) {
          return  `<div class="badge-stato" style="background-color: ${backgroundColor};">${statoProposta}</div>`;
 
      }
-    
 }
+
+function sortProposte(proposte) {
+    return Array.from(proposte).sort((a, b) => {
+        const statoA = a.getAttribute('data-stato');
+        const statoB = b.getAttribute('data-stato');
+        const priority = {
+            "ACCETTATO": 1,
+            "RIFIUTATO": 1,
+            "IN_ATTESA": 2,
+            "ORDINATO": 2
+        };
+
+        return priority[statoA] - priority[statoB];
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const propostaContainers = document.querySelectorAll("#proposta-container");
+    const sortedProposte = sortProposte(propostaContainers);
+
+    const rowsContainer = document.querySelector(".rows-container");
+    rowsContainer.innerHTML = '';
+
+    sortedProposte.forEach(container => {
+        rowsContainer.appendChild(container);
+        const stato = container.getAttribute("data-stato");
+
+        if (stato === "ACCETTATO" || stato === "RIFIUTATO") {
+            container.style.backgroundColor = "#67c4f1";
+            container.addEventListener("mouseover", function() {
+                container.style.backgroundColor = "#31a8e3";
+            });
+
+            container.addEventListener("mouseout", function() {
+                container.style.backgroundColor = "#67c4f1";
+            });
+        }
+    });
+});
 
 document.addEventListener("DOMContentLoaded", function() {
     const proposte = document.querySelectorAll('.card-row-content[stato]');

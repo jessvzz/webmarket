@@ -88,7 +88,7 @@ public class InvioProposta extends BaseController {
         });
 
         String tipo = "PropostaRichiesta_";
-        String text = "Gentile Utente, Le è stata inviata una proposta d'acquisto per la sua richiesta numero " + richiesta.getCodiceRichiesta() + ".\n\n In allegato trova i dettagli.\n\nCordiali Saluti,\n\nIl team di WebMarket";
+        String text = "Gentile Utente, Le è stata inviata una proposta d'acquisto per la sua richiesta numero " + richiesta.getCodiceRichiesta() + ". In allegato trova i dettagli.\n\nCordiali Saluti,\nIl team di WebMarket";
                         
         String messaggio = "Dettagli dell'ordine effettuato per la richiesta numero: " + richiesta.getCodiceRichiesta() + "\n\n";
         String pdfFilePath = "PropostaRichiesta_" + proposta.getCodice() + ".pdf";
