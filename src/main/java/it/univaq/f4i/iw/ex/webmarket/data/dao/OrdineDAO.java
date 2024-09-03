@@ -29,4 +29,5 @@ public interface OrdineDAO {
      // Elimina un Ordine per chiave
     void deleteOrdine(int ordine_key) throws DataException;
 
+    boolean notificaOrdine() throws DataException;
 }

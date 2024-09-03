@@ -25,7 +25,7 @@ import java.time.LocalDate;
 public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDAO {
 
     // Query SQL precompilate
-    private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente,sProposteByTecnico,sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta;
+    private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente,sProposteByTecnico,sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta, proposteDaNotificare;
 
     public PropostaAcquistoDAO_MySQL(DataLayer d) {
         super(d);
@@ -49,6 +49,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, codice_prodotto=?, prezzo=?, URL=?, note=?, stato=?, data=?, motivazione=?, richiesta_id=? WHERE ID=?");
             uInviaProposta = connection.prepareStatement("UPDATE proposta_acquisto SET stato=? WHERE ID=?");
             dProposta = connection.prepareStatement("DELETE FROM proposta_acquisto WHERE ID=?");
+            proposteDaNotificare = connection.prepareStatement("SELECT EXISTS( SELECT 1 FROM proposta_acquisto WHERE stato = 'ACCETTATO' OR stato = 'RIFIUTATO') AS notifica_proposta;");
         } catch (SQLException ex) {
             throw new DataException("Errore durante l'inizializzazione del data layer per le proposte d'acquisto", ex);
         }
@@ -263,5 +264,18 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         }
         return proposte;
         }
-
+    
+    @Override
+    public boolean notificaProposte() throws DataException {
+        try {
+            try (ResultSet rs = proposteDaNotificare.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean("notifica_proposta");
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DataException("Non sia riusciti a controllare se ci sono porposte accettate o rifiutate", ex);
+        }
+        return false;
+    }
 }

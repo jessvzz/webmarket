@@ -35,10 +35,10 @@ public class TecnicoHomepage extends BaseController {
         boolean richiestePreseInCarico = !((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiesteNonEvase(userId).isEmpty();
         request.setAttribute("richieste_prese_in_carico", richiestePreseInCarico);
         
-        boolean proposte = !((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getProposteByTecnico(userId).isEmpty();
+        boolean proposte = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().notificaProposte();
         request.setAttribute("proposte", proposte);
         
-        boolean ordini = !((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdiniByTecnico(userId).isEmpty();
+        boolean ordini = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().notificaOrdine();
         request.setAttribute("ordini", ordini);
 
 
