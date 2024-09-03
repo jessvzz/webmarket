@@ -26,9 +26,38 @@ public class SecurityHelpers {
     //If the session exists and is valid, it is returned, otherwise
     //the session is invalidated and the method returns null
     public static HttpSession checkSession(HttpServletRequest r) {
-        return checkSession(r, false);
+        HttpSession session = checkSession(r, false);
+    
+        if (session != null) {
+            String tipo = (String) session.getAttribute("tipo");
+            String requestedPage = r.getRequestURI();
+
+            if (!isPageAllowedForUserType(requestedPage, tipo)) {
+                session.invalidate();  // Invalido la sessione se l'utente non ha accesso alla pagina
+                return null;
+            }
+        }
+
+        return session;
     }
 
+    //penso di averle messe tutte ma mi si intrecciano un po' gli occhi
+    public static boolean isPageAllowedForUserType(String requestedPage, String tipo) {
+        System.out.println("is PageAllowed viene chiamato");
+        System.out.println("requested page is: " + requestedPage);
+        switch (tipo) {
+        case "AMMINISTRATORE":
+            return requestedPage.matches("^/WebMarket/(homepageadmin|gestioneutenti|gestionecategorie|categoria|modificacategoria|aggiungicategoria|gestisci_caratteristiche).*$");
+        case "TECNICO":
+            return requestedPage.matches("^/WebMarket/(homepagetecnico|richieste_tecnico|proposte_tecnico|storico_tecnico|detailrichiesta_tecnico|detailstorico_tecnico|detailproposta_tecnico|invioproposta|notifiche_tecnico|richiesta_inattesa).*$");
+        case "ORDINANTE":
+            return requestedPage.matches("^/WebMarket/(homepageordinante|richieste_ordinante|ordini|nuova_richiesta|nuova_richiesta_caratteristiche|notifiche_ordinante|profilo_ordinante|dettaglio_richiesta_ord|dettaglio_ordine_ord|dettaglio_proposta_ord|motiva_rifiuto|proposte_ordinante|rifiuto_ordine).*$");
+        default:
+            return false;
+    }
+
+}
+    
     public static HttpSession checkSession(HttpServletRequest r, boolean loginAgeCheck) {
         boolean check = true;
 

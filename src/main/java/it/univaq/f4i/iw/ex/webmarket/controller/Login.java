@@ -48,6 +48,8 @@ public class Login extends BaseController {
                     //se la validazione ha successo
                     //if the identity validation succeeds
                     SecurityHelpers.createSession(request, username, u.getKey(), u.getTipologiaUtente());
+                    
+                    
                     //se è stato trasmesso un URL di origine, torniamo a quell'indirizzo
                     //if an origin URL has been transmitted, return to it
                     String redirectPage;
@@ -59,8 +61,10 @@ public class Login extends BaseController {
                         default -> "login";
                     };
                     
-                    if (request.getParameter("referrer") != null) {
-                        response.sendRedirect(request.getParameter("referrer"));
+                    System.out.println("Il tipo dell'utente e'" + u.getTipologiaUtente().toString());
+                    String referrer = request.getParameter("referrer");
+                if (referrer != null && SecurityHelpers.isPageAllowedForUserType(referrer, u.getTipologiaUtente().toString())) {
+                        response.sendRedirect(referrer);
 
                     } else {
                         response.sendRedirect(redirectPage);
