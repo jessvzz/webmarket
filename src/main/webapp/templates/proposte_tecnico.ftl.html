@@ -24,26 +24,28 @@
     
     <!-- Sezione che mostra le richieste non evase -->
     <#if (proposte?size>0)>
-
-    <div class="rows-container">
+    <div class="rows-legenda">
         <div class="card-row-transparent">
-                <div class="card-row-content">
-                    <p class="card-row-text">Codice</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Utente</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Data</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Stato</p>
-                </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Codice</p>
             </div>
-        <#list proposte as proposta>
+            <div class="card-row-content">
+                <p class="card-row-text">Utente</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Data</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Stato</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <#list proposte as proposta>
         
-        <a href="detailproposta_tecnico?n=${proposta.key}" class="a-cards">
-            <div class="card-row-skyblue" id="proposta-container" data-stato="${proposta.getStatoProposta()}">
+    <div class="rows-container">
+        <div class="card-row-skyblue" id="proposta-container" data-stato="${proposta.getStatoProposta()}">
+            <a href="detailproposta_tecnico?n=${proposta.key}" class="a-cards">
                 <div class="card-row-content">
                     <p class="card-row-text">${proposta.codice}</p>
                 </div>
@@ -56,8 +58,8 @@
                 <div class="card-row-content" stato="${proposta.getStatoProposta()}">
                     <p class="card-row-text">${proposta.getStatoProposta()}</p>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
         </#list>
     </div>
     </#if>

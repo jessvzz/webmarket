@@ -841,7 +841,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 /* Elenco contenuti */
-.rows-container {
+.rows-container, .rows-legenda{
     width: 100%;
     height: auto;
     display: flex;
@@ -1506,7 +1506,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
         height: auto;
     }
 
-    .rows-container {
+    .rows-container, .rows-legenda {
         width: 100%;
         height: auto;
         flex-direction: row;
