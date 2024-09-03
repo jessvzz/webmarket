@@ -35,7 +35,7 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
             sCaratteristicheByRichiesta = connection.prepareStatement("SELECT * FROM caratteristica_richiesta WHERE richiesta_id = ?");
             sRichiesteByCaratteristica = connection.prepareStatement("SELECT * FROM caratteristica_richiesta WHERE caratteristica_id = ?");
             iCaratteristicaRichiesta = connection.prepareStatement("INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES(?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            uCaratteristicaRichiesta = connection.prepareStatement("UPDATE caratteristica_richiesta SET richiesta_id=?, caratteristica_id=?, valore=? WHERE ID=?");
+            uCaratteristicaRichiesta = connection.prepareStatement("UPDATE caratteristica_richiesta SET richiesta_id=?, caratteristica_id=?, valore=?, version=? WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing data layer", ex);
         }
@@ -89,6 +89,7 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
             CaratteristicaDAO caratteristicaDAO = (CaratteristicaDAO) dataLayer.getDAO(Caratteristica.class);
             cr.setCaratteristica(caratteristicaDAO.getCaratteristica(rs.getInt("caratteristica_id")));
             cr.setValore(rs.getString("valore"));
+            cr.setVersion(rs.getLong("version"));
             return cr;
         } catch (SQLException ex) {
             throw new DataException("Unable to create CaratteristicaRichiesta from ResultSet", ex);
@@ -186,7 +187,10 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
                 uCaratteristicaRichiesta.setInt(1, caratteristicaRichiesta.getRichiestaOrdine().getKey());
                 uCaratteristicaRichiesta.setInt(2, caratteristicaRichiesta.getCaratteristica().getKey());
                 uCaratteristicaRichiesta.setString(3, caratteristicaRichiesta.getValore());
-                uCaratteristicaRichiesta.setInt(4, caratteristicaRichiesta.getKey());
+                long oldVersion = caratteristicaRichiesta.getVersion();
+                long versione = oldVersion + 1;
+                uCaratteristicaRichiesta.setLong(4, versione);
+                uCaratteristicaRichiesta.setInt(5, caratteristicaRichiesta.getKey());
                 uCaratteristicaRichiesta.executeUpdate();
             } else {
                 iCaratteristicaRichiesta.setInt(1, caratteristicaRichiesta.getRichiestaOrdine().getKey());

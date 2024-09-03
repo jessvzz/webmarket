@@ -32,8 +32,7 @@ public class AdminHomepage extends BaseController {
             return;
         }
         
-        System.out.println("tipo: "+session.getAttribute("tipo"));
-        /*if (!"AMMINISTRATORE".equals(session.getAttribute("tipo"))){
+        /*if(!"AMMINISTRATORE".equals(session.getAttribute("tipo"))){
             response.sendRedirect("login");
             return;
     }*/

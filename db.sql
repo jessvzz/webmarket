@@ -23,6 +23,7 @@ USE `webdb2`;
 CREATE TABLE categoria (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nome varchar(255) UNIQUE NOT NULL,
+    version BIGINT UNSIGNED NOT NULL DEFAULT 1,
     padre int(11) DEFAULT NULL,
     CONSTRAINT categoria_padre FOREIGN KEY (padre)
         REFERENCES categoria(ID)
@@ -33,6 +34,7 @@ CREATE TABLE categoria (
 CREATE TABLE caratteristica (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nome varchar(255) NOT NULL,
+    version BIGINT UNSIGNED NOT NULL DEFAULT 1,
     categoria_id int(11) NOT NULL,
     CONSTRAINT categoria_caratteristica FOREIGN KEY (categoria_id)
         REFERENCES categoria(ID)
@@ -45,7 +47,8 @@ CREATE TABLE utente (
     username varchar(255) UNIQUE NOT NULL,
     email varchar(255) NOT NULL,
     password varchar(255) NOT NULL,
-    tipologia_utente ENUM('ORDINANTE', 'TECNICO', 'AMMINISTRATORE') NOT NULL
+    tipologia_utente ENUM('ORDINANTE', 'TECNICO', 'AMMINISTRATORE') NOT NULL,
+    version BIGINT UNSIGNED NOT NULL DEFAULT 1
 );
 
 CREATE TABLE richiesta_ordine (
@@ -54,6 +57,7 @@ CREATE TABLE richiesta_ordine (
     stato ENUM('IN_ATTESA','PRESA_IN_CARICO','RISOLTA','ORDINATA') NOT NULL,
     data DATE,
     codice_richiesta varchar(255) UNIQUE NOT NULL,
+    version BIGINT UNSIGNED NOT NULL DEFAULT 1,
     utente int(11) NOT NULL,
     tecnico int(11),
     categoria_id int(11) NOT NULL,
@@ -76,6 +80,7 @@ CREATE TABLE caratteristica_richiesta ( /* "compone" */
     richiesta_id int(11) NOT NULL,
     caratteristica_id int(11) NOT NULL,
     valore varchar(200) NOT NULL DEFAULT 'Indifferente',
+    version BIGINT UNSIGNED NOT NULL DEFAULT 1,
     CONSTRAINT id_richiesta FOREIGN KEY (richiesta_id)
         REFERENCES richiesta_ordine(ID)
         ON DELETE CASCADE
@@ -98,6 +103,7 @@ CREATE TABLE proposta_acquisto (
     stato ENUM('ACCETTATO','RIFIUTATO','IN_ATTESA','ORDINATO') NOT NULL,
     data DATE,
     motivazione text DEFAULT NULL,
+    version BIGINT UNSIGNED NOT NULL DEFAULT 1,
     richiesta_id int(11) NOT NULL,
     CONSTRAINT id_richiesta_proposta FOREIGN KEY (richiesta_id)
         REFERENCES richiesta_ordine(ID)
@@ -109,6 +115,7 @@ CREATE TABLE ordine (
     ID int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     data DATE,
     stato ENUM('IN_ATTESA','ACCETTATO','RESPINTO_NON_CONFORME','RESPINTO_NON_FUNZIONANTE', 'RIFIUTATO') NOT NULL,
+    version BIGINT UNSIGNED NOT NULL DEFAULT 1,
     proposta_id int(11) NOT NULL,
     CONSTRAINT id_proposta FOREIGN KEY (proposta_id)
         REFERENCES proposta_acquisto(ID)

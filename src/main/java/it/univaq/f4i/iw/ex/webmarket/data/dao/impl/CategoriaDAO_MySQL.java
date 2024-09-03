@@ -53,7 +53,7 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
 
             iCategoria = connection.prepareStatement("INSERT INTO categoria(nome, padre) VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
-            uCategoria = connection.prepareStatement("UPDATE categoria SET nome=? WHERE ID=?");
+            uCategoria = connection.prepareStatement("UPDATE categoria SET nome=?, version=? WHERE ID=?");
             
             sCategorie = connection.prepareStatement("SELECT nome FROM categoria");
             
@@ -101,6 +101,7 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
             cp.setKey(rs.getInt("ID"));
             cp.setNome(rs.getString("nome"));
             cp.setPadre(rs.getInt("padre"));
+            cp.setVersion(rs.getLong("version"));
             return cp;
         } catch (SQLException ex) {
             throw new DataException("Unable to create Categoria object form ResultSet", ex);
@@ -152,7 +153,10 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
                 }*/
                 System.out.println("Sono qui e la categoria è:" + categoria.getKey() );
                 uCategoria.setString(1, categoria.getNome());
-                uCategoria.setInt(2, categoria.getKey());
+                long oldVersion = categoria.getVersion();
+                long versione = oldVersion + 1;
+                uCategoria.setLong(2, versione);
+                uCategoria.setInt(3, categoria.getKey());
                 uCategoria.executeUpdate();
             } else { //insert
                 iCategoria.setString(1, categoria.getNome());

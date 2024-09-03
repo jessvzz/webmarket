@@ -46,7 +46,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             // sProposteByOrdine = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ordine_id = ?");
             
             iProposta = connection.prepareStatement("INSERT INTO proposta_acquisto (produttore, prodotto, codice, codice_prodotto, prezzo, URL, note, stato, data, motivazione, richiesta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, codice_prodotto=?, prezzo=?, URL=?, note=?, stato=?, data=?, motivazione=?, richiesta_id=? WHERE ID=?");
+            uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, codice_prodotto=?, prezzo=?, URL=?, note=?, stato=?, data=?, motivazione=?, richiesta_id=?, version=? WHERE ID=?");
             uInviaProposta = connection.prepareStatement("UPDATE proposta_acquisto SET stato=? WHERE ID=?");
             dProposta = connection.prepareStatement("DELETE FROM proposta_acquisto WHERE ID=?");
             //ho pianto
@@ -109,6 +109,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             p.setStatoProposta(StatoProposta.valueOf(rs.getString("stato")));
             p.setData(rs.getDate("data"));
             p.setMotivazione(rs.getString("motivazione"));
+            p.setVersion(rs.getLong("version"));
             //Recupera l'oggetto RichiestaOrdine tramite il suo ID
             RichiestaOrdineDAO richiestaOrdineDAO = (RichiestaOrdineDAO) dataLayer.getDAO(RichiestaOrdine.class);
             p.setRichiestaOrdine(richiestaOrdineDAO.getRichiestaOrdine(rs.getInt("richiesta_id")));
@@ -188,7 +189,10 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
                 uProposta.setDate(9, Date.valueOf(LocalDate.now()));
                 uProposta.setString(10, proposta.getMotivazione());
                 uProposta.setInt(11, proposta.getRichiestaOrdine().getKey());
-                uProposta.setInt(12, proposta.getKey());
+                long oldVersion = proposta.getVersion();
+                long versione = oldVersion + 1;
+                uProposta.setLong(12, versione);
+                uProposta.setInt(13, proposta.getKey());
                 uProposta.executeUpdate();
             } else {
                 // Inserisce una nuova proposta d'acquisto nel database

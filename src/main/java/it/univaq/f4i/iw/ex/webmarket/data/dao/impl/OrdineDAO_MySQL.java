@@ -33,7 +33,7 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             sOrdiniByTecnico = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ? ORDER BY CASE WHEN o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE' THEN 1 ELSE 2 END");
             sAllOrdini = connection.prepareStatement("SELECT * FROM ordine");
             iOrdine = connection.prepareStatement("INSERT INTO ordine (stato, proposta_id, data) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=? WHERE ID=?");
+            uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=?, version=? WHERE ID=?");
             dOrdine = connection.prepareStatement("DELETE FROM ordine WHERE ID=?");
             ordiniDaNotificare = connection.prepareStatement( "SELECT EXISTS( SELECT 1 FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE (o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE') AND ro.tecnico = ?) AS notifica_ordine;");
             ordiniDaNotificareOrd = connection.prepareStatement( "SELECT EXISTS( SELECT 1 FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE (o.stato = 'IN_ATTESA') AND ro.utente = ?) AS notifica_ordine;");
@@ -74,6 +74,7 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
               PropostaAcquistoDAO propostaAcquistoDAO = (PropostaAcquistoDAO) dataLayer.getDAO(PropostaAcquisto.class);
              o.setProposta(propostaAcquistoDAO.getPropostaAcquisto(rs.getInt("proposta_id")));
              o.setData(rs.getDate("data"));
+             o.setVersion(rs.getLong("version"));
             return o;
         } catch (SQLException ex) {
             throw new DataException("Unable to create ordine object from ResultSet", ex);
@@ -159,7 +160,10 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
                 // uOrdine.setInt(2, ordine.getProposta().getId());
                 uOrdine.setInt(2, ordine.getProposta().getKey());
                 uOrdine.setDate(3, new java.sql.Date(ordine.getData().getTime()));
-                uOrdine.setInt(4, ordine.getKey());
+                long oldVersion = ordine.getVersion();
+                long versione = oldVersion + 1;
+                uOrdine.setLong(4, versione);
+                uOrdine.setInt(5, ordine.getKey());
                 uOrdine.executeUpdate();
             } else {
                 // Inserisce un nuovo ordine nel database

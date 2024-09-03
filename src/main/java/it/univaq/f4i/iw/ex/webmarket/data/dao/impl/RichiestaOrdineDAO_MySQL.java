@@ -50,7 +50,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             sRichiesteTecnico = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE tecnico_id = ?");
             sRichiesteRisolte = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
             iRichiestaOrdine = connection.prepareStatement("INSERT INTO richiesta_ordine (note, stato, data, utente, categoria_id) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uRichiestaOrdine = connection.prepareStatement("UPDATE richiesta_ordine SET note=?, stato=?, data=?, codice_richiesta=?, utente=?, tecnico=?, categoria_id=? WHERE ID=?");
+            uRichiestaOrdine = connection.prepareStatement("UPDATE richiesta_ordine SET note=?, stato=?, data=?, codice_richiesta=?, utente=?, tecnico=?, categoria_id=?, version=? WHERE ID=?");
             esisteRichiestaInAttesa = connection.prepareStatement("SELECT EXISTS( SELECT 1 FROM richiesta_ordine WHERE stato = 'IN_ATTESA') AS esiste_richiesta_in_attesa;");
         } catch (SQLException ex) {
             throw new DataException("Error initializing RichiestaOrdine data layer", ex);
@@ -87,6 +87,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             richiesta.setStato(StatoRichiesta.valueOf(rs.getString("stato")));
             richiesta.setData(rs.getDate("data"));
             richiesta.setCodiceRichiesta(rs.getString("codice_richiesta"));
+            richiesta.setVersion(rs.getLong("version"));
             
             int tecnicoId = rs.getInt("tecnico");
             Utente tecnico = ((ApplicationDataLayer) getDataLayer()).getUtenteDAO().getUtente(tecnicoId);
@@ -157,7 +158,10 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
                 uRichiestaOrdine.setInt(5, richiesta.getUtente().getKey());
                 uRichiestaOrdine.setInt(6, richiesta.getTecnico().getKey());
                 uRichiestaOrdine.setInt(7, richiesta.getCategoria().getKey());
-                uRichiestaOrdine.setInt(8, richiesta.getKey());
+                long oldVersion = richiesta.getVersion();
+                long versione = oldVersion + 1;
+                uRichiestaOrdine.setLong(8, versione);
+                uRichiestaOrdine.setInt(9, richiesta.getKey());
                 uRichiestaOrdine.executeUpdate();
             } else {
                 iRichiestaOrdine.setString(1, richiesta.getNote());

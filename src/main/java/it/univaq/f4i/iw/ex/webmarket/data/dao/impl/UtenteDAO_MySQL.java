@@ -40,7 +40,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             sUserByEmail = connection.prepareStatement("SELECT ID FROM utente WHERE email = ?");
             sUserByUsername = connection.prepareStatement("SELECT ID FROM utente WHERE username = ?");
             iUser = connection.prepareStatement("INSERT INTO utente (email,password, tipologia_utente, username) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uUser = connection.prepareStatement("UPDATE utente SET email=?,password=?, tipologia_utente=?, username=? WHERE ID=?");
+            uUser = connection.prepareStatement("UPDATE utente SET email=?,password=?, tipologia_utente=?, username=?, version=? WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing newspaper data layer", ex);
         }
@@ -83,7 +83,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             a.setEmail(rs.getString("email"));
             a.setPassword(rs.getString("password"));
             a.setTipologiaUtente(TipologiaUtente.valueOf(rs.getString("tipologia_utente")));
-    
+            a.setVersion(rs.getLong("version"));
             return a;
         } catch (SQLException ex) {
             throw new DataException("Unable to create user object form ResultSet", ex);
@@ -170,7 +170,10 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 uUser.setString(2, user.getPassword());
                 uUser.setString(3, user.getTipologiaUtente().name());
                 uUser.setString(4, user.getUsername());
-                uUser.setInt(5, user.getKey());
+                long oldVersion = user.getVersion();
+                long versione = oldVersion + 1;
+                uUser.setLong(5, versione);
+                uUser.setInt(6, user.getKey());
                 uUser.executeUpdate();
                 
 

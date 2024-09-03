@@ -37,7 +37,7 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
             sCaratteristicheByRichiesta = connection.prepareStatement("SELECT c.* FROM caratteristica c JOIN caratteristica_richiesta cr ON c.ID = cr.caratteristica_id WHERE cr.richiesta_id = ?");
             sCaratteristiche = connection.prepareStatement("SELECT * FROM caratteristica");
             iCaratteristica = connection.prepareStatement("INSERT INTO caratteristica (nome, categoria_id) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uCaratteristica = connection.prepareStatement("UPDATE caratteristica SET nome=?, categoria_id=? WHERE ID=?");
+            uCaratteristica = connection.prepareStatement("UPDATE caratteristica SET nome=?, categoria_id=?, version=? WHERE ID=?");
             dCaratteristica = connection.prepareStatement("DELETE FROM caratteristica WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing caratteristica data layer", ex);
@@ -76,7 +76,7 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
             CaratteristicaProxy c = (CaratteristicaProxy) createCaratteristica();
             c.setKey(rs.getInt("ID"));
             c.setNome(rs.getString("nome"));
-            // c.setCategoria(rs.getInt("categoria_id"));
+            c.setVersion(rs.getLong("version"));
              int categoriaId = rs.getInt("categoria_id");
             Categoria categoria = ((ApplicationDataLayer) getDataLayer()).getCategoriaDAO().getCategoria(categoriaId);
             c.setCategoria(categoria);
@@ -164,6 +164,10 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
                 // Update
                 uCaratteristica.setString(1, caratteristica.getNome());
                 uCaratteristica.setInt(2, caratteristica.getCategoria().getKey());
+                long oldVersion = caratteristica.getVersion();
+                long versione = oldVersion + 1;
+                uCaratteristica.setLong(3, versione);
+                uCaratteristica.setInt(4, caratteristica.getKey());
                 uCaratteristica.executeUpdate();
             } else {
                 // Insert
