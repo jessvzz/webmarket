@@ -16,13 +16,16 @@
             <div class="badge-stato" stato="${proposta.getStatoProposta()}">
                 ${proposta.getStatoProposta()! "Stato non disponibile"}
             </div> 
-<br>
+        <br>
 
-<div class="pink-richiesta-storico2" >  
-    
-<a href = "dettaglio_richiesta_ord?n=${proposta.getRichiestaOrdine().getKey()}"> Codice della Richiesta:    ${proposta.getRichiestaOrdine().getCodiceRichiesta()} </a></div>
-
-
+        </div>
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label for="proposta">Vai alla Richiesta</label>
+                <a href="dettaglio_richiesta_ord?n=${proposta.getRichiestaOrdine().key}">
+                <div name="richiesta" class="darkblue-richiesta-storico">Richiesta #${proposta.getRichiestaOrdine().codiceRichiesta}</div>
+                </a>
+            </div>
         </div>
 
         <div class="container-salm-proposta">
@@ -64,7 +67,10 @@
             </div>
             <br>
         </div>
+
         <script src="scripts/dettaglio_proposta_ord.js"></script>
+
+
         <#if proposta.getStatoProposta() == "IN_ATTESA">
             <form action="" method="post">
                 <input type="hidden" name="action" value="accettaProposta">

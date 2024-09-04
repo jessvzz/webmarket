@@ -16,8 +16,25 @@
                 <div class="badge-statoOrdini" stato="${ordine.getStato()}">
                    ${ordine.getStato()} 
                 </div> 
-             </div>
            <br>
+        </div>
+           <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label for="proposta">Vai alla Proposta</label>
+                <a href="dettaglio_proposta_ord?n=${ordine.getProposta().key}">
+                <div name="proposta" class="darkblue-richiesta-storico">#${ordine.getProposta().codice}</div>
+                </a>
+            </div>
+            </div>
+
+            <!-- <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label for="proposta">Vai alla Richiesta</label>
+                    <a href="dettaglio_richiesta_ord?n=${ordine.getProposta().getRichiestaOrdine().key}">
+                    <div name="richiesta" class="darkblue-richiesta-storico">#${ordine.getProposta().getRichiestaOrdine().codiceRichiesta}</div>
+                    </a>
+                </div>
+                </div> -->
 
         <div class="container-skyblue-proposta">
             <div class="row-tecnico">
