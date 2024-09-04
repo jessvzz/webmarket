@@ -9,19 +9,19 @@
     </div>
     
     <div class="search-container">
-        <input type="text" placeholder="Cerca..." class="search-input">
-        <button class="search-button">Vai</button>
+        <input type="text" placeholder="Cerca..."  id="search" class="search-input">
+
     </div>
 
     <div class="filter-container">
-        <label for="category" class="filter-text">Filtra per stato:</label>
-        <select name="category" id="category" class="filter-select">
-            <option value="TUTTI">TUTTI</option>
-            <option value="ACCETTATO">ACCETTATO</option>
-            <option value="IN_ATTESA">IN_ATTESA</option>
-            <option value="RESPINTO_NON_CONFORME">RESPINTO_NON_CONFORME</option>
-            <option value="RESPINTO_NON_FUNZIONANTE">RESPINTO_NON_FUNZIONANTE</option>
-            <option value="RIFIUTATO">RIFIUTATO</option>
+        <p class="filter-text">Filtra per stato:</label>
+        <select name="status" id="status" class="filter-select">
+            <option value="tutti">Tutti</option>
+            <option value="ACCETTATO">Accettato</option>
+            <option value="IN_ATTESA">In attesa</option>
+            <option value="RESPINTO_NON_CONFORME">Respinto non conforme</option>
+            <option value="RESPINTO_NON_FUNZIONANTE">Respinto non funzionante</option>
+            <option value="RIFIUTATO">Rifiutato</option>
         </select>
     </div>
 
@@ -33,7 +33,7 @@
 
         <#list ordini as ordine>
 
-        <div class="card-row-purple max-width-card" id="ordine-container" data-stato="${ordine.getStato()}">
+        <div  id="ordine-container" class="card-row-purple max-width-card" data-stato="${ordine.getStato()}" data-codice="${ordine.proposta.getCodice()}" >
             <a href="dettaglio_ordine_ord?n=${ordine.key}" class="a-cards"> 
                 <div class="card-row-content">
                     <p class="card-row-text">Data: ${ordine.getData()}</p>

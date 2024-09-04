@@ -47,42 +47,87 @@ function sortOrdini(ordini) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+
     const ordini = document.querySelectorAll('.card-row-content[stato]');
 
-    const ordiniContainers = document.querySelectorAll("#ordine-container");
+    // const ordiniContainers = document.querySelectorAll("#ordine-container");
 
     ordini.forEach(ordine => {
         const statoOrdine = ordine.getAttribute('stato');
         ordine.outerHTML = cambiaStatoOrdini(statoOrdine);
     });
     
-    
-       ordiniContainers.forEach(container => {
+    const ordineContainers = document.querySelectorAll(".card-row-purple");
+
+       ordineContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");
-        container.style.backgroundColor = stato === "IN_ATTESA" ? "#5D54BE" : "#9892d1";
-    });
+    //     container.style.backgroundColor = stato === "IN_ATTESA" ? "#5D54BE" : "#9892d1";
+    // });
+    if (stato === "IN_ATTESA") { 
+          
 
-    const filterSelect = document.getElementById("category");
-    console.log(filterSelect); // Verifica che l'elemento select sia trovato
-    console.log(ordiniContainers); // Verifica che gli ordini siano trovati
-    // const ordiniContainers = document.querySelectorAll(".card-row-purple");
+        container.style.backgroundColor = "#5D54BE";
+    } else {
+        container.style.backgroundColor = "#9892d1";
+    }
+});
 
-    filterSelect.addEventListener("change", function() {
-        const selectedValue = this.value;
+    const searchInput = document.getElementById('search');
+    const filterSelect = document.getElementById("status");
+  
+    const ord = document.querySelectorAll('#ordine-container');
 
-        ordiniContainers.forEach(container => {
-            const stato = container.getAttribute("data-stato");
-            if ( selectedValue === "TUTTI" || stato === selectedValue) {
-                container.style.display = "block";
+
+    function filterOrdini() {
+        
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedStatus = filterSelect.value;
+
+        ord.forEach(function(o) {
+         
+            const codice = o.getAttribute('data-codice').toLowerCase();
+            const stato = o.getAttribute('data-stato');
+             // filtro per codice (proposta)
+            const matchCodice = codice.includes(searchTerm);
+             //filtro per stato (select)
+            const matchStato = (selectedStatus === 'tutti' || stato === selectedStatus);
+            if (matchCodice && matchStato) {
+                o.style.display = '';
             } else {
-                container.style.display = "none";
+                o.style.display = 'none';
             }
         });
-    });
+    }
+        // filtro search
+        searchInput.addEventListener('input', filterOrdini);
 
-    const ords = document.querySelectorAll('.card-row-purple');
-    const sortedProposte = sortOrdini(ords);
+        // filtro select
+        filterSelect.addEventListener('change', filterOrdini);
 
-    const rowsContainer = document.querySelector('.rows-container');
-    sortedProposte.forEach(ord => rowsContainer.appendChild(ord));
-});
+        const ords = document.querySelectorAll('.card-row-purple');
+        const sortedOrdini = sortOrdini(ords);
+
+        const rowsContainer = document.querySelector('.rows-container');
+        sortedOrdini.forEach(ord => rowsContainer.appendChild(ord));
+        });
+
+
+//     filterSelect.addEventListener("change", function() {
+//         const selectedValue = this.value;
+
+//         ordiniContainers.forEach(container => {
+//             const stato = container.getAttribute("data-stato");
+//             if ( selectedValue === "TUTTI" || stato === selectedValue) {
+//                 container.style.display = "block";
+//             } else {
+//                 container.style.display = "none";
+//             }
+//         });
+//     });
+
+//     const ords = document.querySelectorAll('.card-row-purple');
+//     const sortedProposte = sortOrdini(ords);
+
+//     const rowsContainer = document.querySelector('.rows-container');
+//     sortedProposte.forEach(ord => rowsContainer.appendChild(ord));
+// });
