@@ -64,10 +64,16 @@ public class RifiutoOrdine extends BaseController {
         PropostaAcquisto proposta = ordine.getProposta();
         proposta.setStatoProposta(StatoProposta.ACCETTATO);
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
+        
+        //cambio stato richiesta
+        RichiestaOrdine richiesta = ordine.getProposta().getRichiestaOrdine();
+        richiesta.setStato(StatoRichiesta.IN_ATTESA);
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
+
        // Recupera le informazioni dell'utente tecnico
 
-       String email = ordine.getProposta().getRichiestaOrdine().getTecnico().getEmail();
-       String username = ordine.getProposta().getRichiestaOrdine().getTecnico().getUsername();
+       String email = richiesta.getTecnico().getEmail();
+       String username = richiesta.getTecnico().getUsername();
         
             // Prepara e invia l'email di notifica
             Properties props = new Properties();
