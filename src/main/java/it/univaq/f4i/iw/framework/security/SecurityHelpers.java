@@ -43,8 +43,7 @@ public class SecurityHelpers {
 
     //penso di averle messe tutte ma mi si intrecciano un po' gli occhi
     public static boolean isPageAllowedForUserType(String requestedPage, String tipo) {
-        System.out.println("is PageAllowed viene chiamato");
-        System.out.println("requested page is: " + requestedPage);
+        
         switch (tipo) {
         case "AMMINISTRATORE":
             return requestedPage.matches("^/WebMarket/(homepageadmin|gestioneutenti|gestionecategorie|categoria|modificacategoria|aggiungicategoria|gestisci_caratteristiche).*$");

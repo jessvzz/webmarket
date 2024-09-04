@@ -6,11 +6,13 @@ import it.univaq.f4i.iw.ex.webmarket.data.dao.RichiestaOrdineDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
 import it.univaq.f4i.iw.ex.webmarket.data.model.CaratteristicaRichiesta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.CaratteristicaProxy;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.CaratteristicaRichiestaProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 
 // import java.sql.Statement;
 import java.sql.PreparedStatement;
@@ -35,7 +37,7 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
             sCaratteristicheByRichiesta = connection.prepareStatement("SELECT * FROM caratteristica_richiesta WHERE richiesta_id = ?");
             sRichiesteByCaratteristica = connection.prepareStatement("SELECT * FROM caratteristica_richiesta WHERE caratteristica_id = ?");
             iCaratteristicaRichiesta = connection.prepareStatement("INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES(?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            uCaratteristicaRichiesta = connection.prepareStatement("UPDATE caratteristica_richiesta SET richiesta_id=?, caratteristica_id=?, valore=?, version=? WHERE ID=?");
+            uCaratteristicaRichiesta = connection.prepareStatement("UPDATE caratteristica_richiesta SET richiesta_id=?, caratteristica_id=?, valore=?, version=? WHERE ID=? AND version=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing data layer", ex);
         }
@@ -181,7 +183,7 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
     public void storeCaratteristicaRichiesta(CaratteristicaRichiesta caratteristicaRichiesta) throws DataException {
         try {
             if (caratteristicaRichiesta.getKey() != null && caratteristicaRichiesta.getKey() > 0) {
-                if (caratteristicaRichiesta instanceof DataItemProxy && !((DataItemProxy) caratteristicaRichiesta).isModified()) {
+                if (caratteristicaRichiesta instanceof CaratteristicaRichiestaProxy && !((CaratteristicaRichiestaProxy) caratteristicaRichiesta).isModified()) {
                     return;
                 }
                 uCaratteristicaRichiesta.setInt(1, caratteristicaRichiesta.getRichiestaOrdine().getKey());
@@ -191,7 +193,12 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
                 long versione = oldVersion + 1;
                 uCaratteristicaRichiesta.setLong(4, versione);
                 uCaratteristicaRichiesta.setInt(5, caratteristicaRichiesta.getKey());
-                uCaratteristicaRichiesta.executeUpdate();
+                uCaratteristicaRichiesta.setLong(6, oldVersion);
+                if(uCaratteristicaRichiesta.executeUpdate() == 0){
+                    throw new OptimisticLockException(caratteristicaRichiesta);
+                }else {
+                    caratteristicaRichiesta.setVersion(versione);
+                }
             } else {
                 iCaratteristicaRichiesta.setInt(1, caratteristicaRichiesta.getRichiestaOrdine().getKey());
                 iCaratteristicaRichiesta.setInt(2, caratteristicaRichiesta.getCaratteristica().getKey());

@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.itextpdf.text.DocumentException;
+import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 
 public class DettaglioOrdineOrd extends BaseController {
 
@@ -46,7 +47,13 @@ public class DettaglioOrdineOrd extends BaseController {
        
         Ordine ordine = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdine(n);
         ordine.setStato(StatoOrdine.ACCETTATO);
-        ordine.getProposta().getRichiestaOrdine().setStato((StatoRichiesta.RISOLTA));
+        
+        //cambio stato richiesta
+        RichiestaOrdine richiesta = ordine.getProposta().getRichiestaOrdine();
+        richiesta.setStato(StatoRichiesta.RISOLTA);
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
+
+        
 
         System.out.println("Ordine accettato"+ ordine.getStato() + "e richiesta risolta" + ordine.getProposta().getRichiestaOrdine().getStato());
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordine);

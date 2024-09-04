@@ -4,10 +4,12 @@ import com.itextpdf.text.DocumentException;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
+import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.OrdineImpl;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
+import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -44,9 +46,18 @@ public class DetailPropostaTecnico extends BaseController {
   
     private void action_sendOrdine(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
         PropostaAcquisto proposta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(n);
+        
+        //cambio stato proposta
         proposta.setStatoProposta(StatoProposta.ORDINATO);
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
-        String email = proposta.getRichiestaOrdine().getUtente().getEmail();
+        
+        //cambio stato richiesta
+        RichiestaOrdine richiesta = proposta.getRichiestaOrdine();
+        richiesta.setStato(StatoRichiesta.ORDINATA);
+        ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
+        
+        //trovo email utente
+        String email = richiesta.getUtente().getEmail();
 
         Ordine ordine = new OrdineImpl();
         ordine.setProposta(proposta);

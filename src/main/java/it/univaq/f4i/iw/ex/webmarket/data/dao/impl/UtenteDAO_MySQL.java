@@ -8,6 +8,7 @@ import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +41,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             sUserByEmail = connection.prepareStatement("SELECT ID FROM utente WHERE email = ?");
             sUserByUsername = connection.prepareStatement("SELECT ID FROM utente WHERE username = ?");
             iUser = connection.prepareStatement("INSERT INTO utente (email,password, tipologia_utente, username) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            uUser = connection.prepareStatement("UPDATE utente SET email=?,password=?, tipologia_utente=?, username=?, version=? WHERE ID=?");
+            uUser = connection.prepareStatement("UPDATE utente SET email=?,password=?, tipologia_utente=?, username=?, version=? WHERE ID=? AND version=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing newspaper data layer", ex);
         }
@@ -163,7 +164,7 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
             if (user.getKey() != null && user.getKey() > 0) { //update
                 //non facciamo nulla se l'oggetto è un proxy e indica di non aver subito modifiche
                 //do not store the object if it is a proxy and does not indicate any modification
-                if (user instanceof DataItemProxy && !((DataItemProxy) user).isModified()) {
+                if (user instanceof UtenteProxy && !((UtenteProxy) user).isModified()) {
                     return;
                 }
                 uUser.setString(1, user.getEmail());
@@ -174,8 +175,12 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
                 long versione = oldVersion + 1;
                 uUser.setLong(5, versione);
                 uUser.setInt(6, user.getKey());
-                uUser.executeUpdate();
-                
+                uUser.setLong(7, oldVersion);
+                if(uUser.executeUpdate() == 0){
+                    throw new OptimisticLockException(user);
+                }else {
+                    user.setVersion(versione);
+                }
 
             } else { //insert
                 iUser.setString(1, user.getEmail());

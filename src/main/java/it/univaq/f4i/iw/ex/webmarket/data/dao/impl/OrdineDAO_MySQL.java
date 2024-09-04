@@ -9,6 +9,7 @@ import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             sOrdiniByTecnico = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ? ORDER BY CASE WHEN o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE' THEN 1 ELSE 2 END");
             sAllOrdini = connection.prepareStatement("SELECT * FROM ordine");
             iOrdine = connection.prepareStatement("INSERT INTO ordine (stato, proposta_id, data) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=?, version=? WHERE ID=?");
+            uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=?, version=? WHERE ID=? AND version=?");
             dOrdine = connection.prepareStatement("DELETE FROM ordine WHERE ID=?");
             ordiniDaNotificare = connection.prepareStatement( "SELECT EXISTS( SELECT 1 FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE (o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE') AND ro.tecnico = ?) AS notifica_ordine;");
             ordiniDaNotificareOrd = connection.prepareStatement( "SELECT EXISTS( SELECT 1 FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE (o.stato = 'IN_ATTESA') AND ro.utente = ?) AS notifica_ordine;");
@@ -152,9 +153,10 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         try {
             if (ordine.getKey() != null && ordine.getKey() > 0) {
                  // Se l'ordine è un proxy e non è stato modificato, salta l'aggiornamento
-                if (ordine instanceof DataItemProxy && !((DataItemProxy) ordine).isModified()) {
+                if (ordine instanceof OrdineProxy && !((OrdineProxy) ordine).isModified()) {
                     return;
                 }
+               
                  // Aggiorna l'ordine esistente
                 uOrdine.setString(1, ordine.getStato().toString());
                 // uOrdine.setInt(2, ordine.getProposta().getId());
@@ -164,7 +166,12 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
                 long versione = oldVersion + 1;
                 uOrdine.setLong(4, versione);
                 uOrdine.setInt(5, ordine.getKey());
-                uOrdine.executeUpdate();
+                uOrdine.setLong(6, oldVersion);
+                if(uOrdine.executeUpdate() == 0){
+                    throw new OptimisticLockException(ordine);
+                }else {
+                    ordine.setVersion(versione);
+                }
             } else {
                 // Inserisce un nuovo ordine nel database
                 iOrdine.setString(1, ordine.getStato().toString());

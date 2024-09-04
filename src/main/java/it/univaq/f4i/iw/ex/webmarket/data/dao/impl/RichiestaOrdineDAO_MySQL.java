@@ -10,6 +10,7 @@ import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,7 +51,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             sRichiesteTecnico = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE tecnico_id = ?");
             sRichiesteRisolte = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
             iRichiestaOrdine = connection.prepareStatement("INSERT INTO richiesta_ordine (note, stato, data, utente, categoria_id) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uRichiestaOrdine = connection.prepareStatement("UPDATE richiesta_ordine SET note=?, stato=?, data=?, codice_richiesta=?, utente=?, tecnico=?, categoria_id=?, version=? WHERE ID=?");
+            uRichiestaOrdine = connection.prepareStatement("UPDATE richiesta_ordine SET note=?, stato=?, data=?, codice_richiesta=?, utente=?, tecnico=?, categoria_id=?, version=? WHERE ID=? AND version=?");
             esisteRichiestaInAttesa = connection.prepareStatement("SELECT EXISTS( SELECT 1 FROM richiesta_ordine WHERE stato = 'IN_ATTESA') AS esiste_richiesta_in_attesa;");
         } catch (SQLException ex) {
             throw new DataException("Error initializing RichiestaOrdine data layer", ex);
@@ -148,7 +149,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
     public void storeRichiestaOrdine(RichiestaOrdine richiesta) throws DataException {
         try {
             if (richiesta.getKey() != null && richiesta.getKey() > 0) {
-                if (richiesta instanceof DataItemProxy && !((DataItemProxy) richiesta).isModified()) {
+                if (richiesta instanceof RichiestaOrdineProxy && !((RichiestaOrdineProxy) richiesta).isModified()) {
                     return;
                 }
                 uRichiestaOrdine.setString(1, richiesta.getNote());
@@ -162,7 +163,12 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
                 long versione = oldVersion + 1;
                 uRichiestaOrdine.setLong(8, versione);
                 uRichiestaOrdine.setInt(9, richiesta.getKey());
-                uRichiestaOrdine.executeUpdate();
+                uRichiestaOrdine.setLong(10, oldVersion);
+                if(uRichiestaOrdine.executeUpdate() == 0){
+                    throw new OptimisticLockException(richiesta);
+                }else {
+                    richiesta.setVersion(versione);
+                }
             } else {
                 iRichiestaOrdine.setString(1, richiesta.getNote());
                 iRichiestaOrdine.setString(2, richiesta.getStato().name());

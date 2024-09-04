@@ -10,6 +10,7 @@ import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -46,7 +47,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             // sProposteByOrdine = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ordine_id = ?");
             
             iProposta = connection.prepareStatement("INSERT INTO proposta_acquisto (produttore, prodotto, codice, codice_prodotto, prezzo, URL, note, stato, data, motivazione, richiesta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, codice_prodotto=?, prezzo=?, URL=?, note=?, stato=?, data=?, motivazione=?, richiesta_id=?, version=? WHERE ID=?");
+            uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, codice_prodotto=?, prezzo=?, URL=?, note=?, stato=?, data=?, motivazione=?, richiesta_id=?, version=? WHERE ID=? AND version=?");
             uInviaProposta = connection.prepareStatement("UPDATE proposta_acquisto SET stato=? WHERE ID=?");
             dProposta = connection.prepareStatement("DELETE FROM proposta_acquisto WHERE ID=?");
             //ho pianto
@@ -174,7 +175,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         try {
             if (proposta.getKey() != null && proposta.getKey() > 0) {
                 // Se la proposta è un proxy e non è stata modificata, salta l'aggiornamento
-                if (proposta instanceof DataItemProxy && !((DataItemProxy) proposta).isModified()) {
+                if (proposta instanceof PropostaAcquistoProxy && !((PropostaAcquistoProxy) proposta).isModified()) {
                     return;
                 }
                 // Aggiorna la proposta d'acquisto esistente
@@ -193,7 +194,12 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
                 long versione = oldVersion + 1;
                 uProposta.setLong(12, versione);
                 uProposta.setInt(13, proposta.getKey());
-                uProposta.executeUpdate();
+                uProposta.setLong(14, oldVersion);
+                if(uProposta.executeUpdate() == 0){
+                    throw new OptimisticLockException(proposta);
+                }else {
+                    proposta.setVersion(versione);
+                }
             } else {
                 // Inserisce una nuova proposta d'acquisto nel database
                 iProposta.setString(1, proposta.getProduttore());

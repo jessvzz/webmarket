@@ -8,6 +8,7 @@ import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.CaratteristicaProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -37,7 +38,7 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
             sCaratteristicheByRichiesta = connection.prepareStatement("SELECT c.* FROM caratteristica c JOIN caratteristica_richiesta cr ON c.ID = cr.caratteristica_id WHERE cr.richiesta_id = ?");
             sCaratteristiche = connection.prepareStatement("SELECT * FROM caratteristica");
             iCaratteristica = connection.prepareStatement("INSERT INTO caratteristica (nome, categoria_id) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
-            uCaratteristica = connection.prepareStatement("UPDATE caratteristica SET nome=?, categoria_id=?, version=? WHERE ID=?");
+            uCaratteristica = connection.prepareStatement("UPDATE caratteristica SET nome=?, categoria_id=?, version=? WHERE ID=? AND version=?");
             dCaratteristica = connection.prepareStatement("DELETE FROM caratteristica WHERE ID=?");
         } catch (SQLException ex) {
             throw new DataException("Error initializing caratteristica data layer", ex);
@@ -161,6 +162,9 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
     public void storeCaratteratica(Caratteristica caratteristica) throws DataException {
         try {
             if (caratteristica.getKey() != null && caratteristica.getKey() > 0) {
+                if (caratteristica instanceof CaratteristicaProxy && !((CaratteristicaProxy) caratteristica).isModified()) {
+                    return;
+                }
                 // Update
                 uCaratteristica.setString(1, caratteristica.getNome());
                 uCaratteristica.setInt(2, caratteristica.getCategoria().getKey());
@@ -168,7 +172,12 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
                 long versione = oldVersion + 1;
                 uCaratteristica.setLong(3, versione);
                 uCaratteristica.setInt(4, caratteristica.getKey());
-                uCaratteristica.executeUpdate();
+                uCaratteristica.setLong(5, oldVersion);
+                if(uCaratteristica.executeUpdate() == 0){
+                    throw new OptimisticLockException(caratteristica);
+                }else {
+                    caratteristica.setVersion(versione);
+                }
             } else {
                 // Insert
                     iCaratteristica.setString(1, caratteristica.getNome());

@@ -13,6 +13,7 @@ import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
+import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 
 /**
  *
@@ -53,7 +54,7 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
 
             iCategoria = connection.prepareStatement("INSERT INTO categoria(nome, padre) VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
-            uCategoria = connection.prepareStatement("UPDATE categoria SET nome=?, version=? WHERE ID=?");
+            uCategoria = connection.prepareStatement("UPDATE categoria SET nome=?, version=? WHERE ID=? AND version=?");
             
             sCategorie = connection.prepareStatement("SELECT nome FROM categoria");
             
@@ -148,16 +149,21 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
     public void storeCategoria(Categoria categoria) throws DataException {
         try {
             if (categoria.getKey() != null && categoria.getKey() > 0) { //update
-                /*if (categoria instanceof DataItemProxy && !((DataItemProxy) categoria).isModified()) {
+                if (categoria instanceof CategoriaProxy && !((CategoriaProxy) categoria).isModified()) {
                     return;
-                }*/
+                }
                 System.out.println("Sono qui e la categoria è:" + categoria.getKey() );
                 uCategoria.setString(1, categoria.getNome());
                 long oldVersion = categoria.getVersion();
                 long versione = oldVersion + 1;
                 uCategoria.setLong(2, versione);
                 uCategoria.setInt(3, categoria.getKey());
-                uCategoria.executeUpdate();
+                uCategoria.setLong(4, oldVersion);
+                if(uCategoria.executeUpdate() == 0){
+                    throw new OptimisticLockException(categoria);
+                }else {
+                    categoria.setVersion(versione);
+                }
             } else { //insert
                 iCategoria.setString(1, categoria.getNome());
                 iCategoria.setInt(2, categoria.getPadre());
