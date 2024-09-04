@@ -6,7 +6,7 @@
             </a>
         </div>
         <a href="richieste_tecnico">
-            <h3 style="color: #5D54BE; margin-left: 10px;">> Richieste non evase</h3>
+            <h3 style="color: #5D54BE; margin-left: 10px;">> Richieste</h3>
         </a>
         <h3 style="color: #5D54BE; margin-left: 10px;">> Richiesta #${richiesta.codiceRichiesta}</h3>
     </div>
@@ -39,10 +39,13 @@
                 <div class="orange-richiesta-storico">${richiesta.note!'Nessuna nota inserita'}</div>
             </div>
         </div>
+        <#if (source == "richieste")>
         <div class="row-tecnico">
+            
             <a href="invioproposta?n=${richiesta.key}">
                 <button class="btn-verde">Compila proposta</button>
             </a>
         </div>
+        </#if>
     </div>
 </div>

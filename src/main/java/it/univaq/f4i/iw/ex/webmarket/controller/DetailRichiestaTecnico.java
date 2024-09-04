@@ -25,6 +25,10 @@ public class DetailRichiestaTecnico extends BaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response, int user) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
+        
+        String source = request.getParameter("source");
+        request.setAttribute("source", source);
+
         request.setAttribute("page_title", "Detail richiesta");
 
         //Recupero la key passata come parametro
