@@ -78,9 +78,10 @@ public class DettaglioOrdineOrd extends BaseController {
          String tipo = "Ordine_";
          String messaggio = "\n Dettagli dell'ordine effettuato per la proposta numero: "+ ordine.getProposta().getCodice()+"\n\n";
          String pdfFilePath = "Ordine_" + ordine.getProposta().getCodice() + ".pdf";
+         String codice = ordine.getProposta().getCodice(); //Mi serve per la generazione del pdf
 
          try {
-             EmailSender.createPDF(tipo, messaggio, ordine.getProposta());
+             EmailSender.createPDF(tipo, messaggio, ordine.getProposta(), codice);
 
            
              EmailSender.sendEmailWithAttachment(session, email, "Notifica Proposta", text, pdfFilePath);

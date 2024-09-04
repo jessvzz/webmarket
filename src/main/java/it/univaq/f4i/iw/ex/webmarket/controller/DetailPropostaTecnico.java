@@ -83,8 +83,10 @@ public class DetailPropostaTecnico extends BaseController {
         String messaggio = "\n Dettagli dell'ordine effettuato per la proposta numero: "+ proposta.getCodice()+"\n\n";
         String pdfFilePath = "OrdineProposta_" + proposta.getCodice() + ".pdf";
 
+        String codice = proposta.getCodice();
+
         try {
-            EmailSender.createPDF(tipo, messaggio, proposta);
+            EmailSender.createPDF(tipo, messaggio, proposta, codice);
 
            
             EmailSender.sendEmailWithAttachment(session, email, "Notifica Ordine", text, pdfFilePath);

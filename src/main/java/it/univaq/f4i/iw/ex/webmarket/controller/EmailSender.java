@@ -76,10 +76,10 @@ public class EmailSender {
 	    }
 	}
         
-        public static void createPDF(String tipo, String messaggio, PropostaAcquisto proposta) throws FileNotFoundException, DocumentException{
+        public static void createPDF(String tipo, String messaggio, PropostaAcquisto proposta, String codice) throws FileNotFoundException, DocumentException{
            Document document = new Document();
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(tipo + proposta.getCodice() + ".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(tipo + codice + ".pdf"));
             document.open();
 
             Font font = FontFactory.getFont(FontFactory.TIMES, 14, BaseColor.BLACK);
@@ -92,7 +92,7 @@ public class EmailSender {
             System.out.println("prezzo: €"+proposta.getPrezzo());
             Paragraph details = new Paragraph();
             details.add(new Chunk("Codice Proposta: ", bold));
-            details.add(new Chunk(proposta.getCodice() + "\n", font));
+            details.add(new Chunk(codice + "\n", font));
             details.add(new Chunk("Produttore: ", bold));
             details.add(new Chunk(proposta.getProduttore() + "\n", font));
             details.add(new Chunk("Prodotto: ", bold));
