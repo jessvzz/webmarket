@@ -9,8 +9,8 @@
     </div>
     <!-- Sezione per la ricerca e il filtro -->
     <div class="search-container">
-        <input type="text" placeholder="Cerca..." class="search-input">
-        <button class="search-button">Vai</button>
+        <input type="text" placeholder="Cerca..." id="search" class="search-input">
+    
     </div>
     <div class="filter-container">
         <p class="filter-text">Filtra per stato:</p>
@@ -18,7 +18,7 @@
             <option value="tutti">Tutti</option>
             <option value="PRESA_IN_CARICO">In Carico</option>
             <option value="RISOLTA">Risolta</option>
-            <option value="IN_ATTESA">In Attesa</option>
+            <option value="IN_ATTESA">In attesa</option>
             <option value="ORDINATA">Ordinata</option>
         </select>
     </div>
@@ -31,7 +31,7 @@
 
         <#list richieste as richiesta>
 
-        <div id="richiesta-container" class="card-row-skyblue" data-stato="${richiesta.getStato()}">
+        <div id="richiesta-container" class="card-row-skyblue" data-stato="${richiesta.getStato()}" data-codice="${richiesta.codiceRichiesta}">
             <a href="dettaglio_richiesta_ord?n=${richiesta.key}" class="a-cards">
                 <div class="card-row-content">
                     <p class="card-row-text">Codice: ${richiesta.codiceRichiesta}</p>

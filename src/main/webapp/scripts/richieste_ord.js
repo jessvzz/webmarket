@@ -65,25 +65,43 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    const searchInput = document.getElementById('search');
+    const filterSelect = document.getElementById('status');
 
-    // Implementazione del filtro per lo stato
-    const filterSelect = document.getElementById("status");
-    filterSelect.addEventListener("change", function() {
-        const selectedValue = this.value;
-        richiestaContainers.forEach(container => {
-            const stato = container.getAttribute("data-stato");
-            if (selectedValue === "tutti" || stato === selectedValue) {
-                container.style.display = "block";
+    const ric = document.querySelectorAll('#richiesta-container');
+
+
+    function filterRichieste() {
+        
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedStatus = filterSelect.value;
+
+        ric.forEach(function(r) {
+         
+            const codice = r.getAttribute('data-codice').toLowerCase();
+            const stato = r.getAttribute('data-stato');
+             // filtro per codice (ricerca)
+            const matchCodice = codice.includes(searchTerm);
+             //filtro per stato (select)
+            const matchStato = (selectedStatus === 'tutti' || stato === selectedStatus);
+            if (matchCodice && matchStato) {
+                r.style.display = '';
             } else {
-                container.style.display = "none";
+                r.style.display = 'none';
             }
         });
-});
+    }
+    
+            // filtro search
+            searchInput.addEventListener('input', filterRichieste);
 
-    // Riordinamento righe per importanza stato
-    const reqs = document.querySelectorAll('.card-row-skyblue');
-    const sortedRichieste = sortRichieste(reqs);
+            // filtro select
+            filterSelect.addEventListener('change', filterRichieste);
 
-    const rowsContainer = document.querySelector('.rows-container');
-    sortedRichieste.forEach(req => rowsContainer.appendChild(req));
-});
+            const rics = document.querySelectorAll('.card-row-skyblue');
+            const sortedRichieste = sortRichieste(rics);
+
+            const rowsContainer = document.querySelector('.rows-container');
+            sortedRichieste.forEach(ord => rowsContainer.appendChild(ord));
+        });
+
