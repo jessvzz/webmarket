@@ -40,14 +40,12 @@ function sortRichieste(richieste) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("Il DOM è caricato!");
-
-    const richieste = document.querySelectorAll('.card-row-content[stato]');
-    console.log("Numero di richieste trovate:", richieste.length);
+ 
+   const richieste = document.querySelectorAll('.card-row-content[stato]');
 
     richieste.forEach(richiesta => {
         const statoRichiesta = richiesta.getAttribute('stato');
-        console.log("Stato della richiesta corrente:", statoRichiesta);
+      
         richiesta.outerHTML = cambiaStatoRichiesta(statoRichiesta);
     });
 
@@ -57,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const stato = container.getAttribute("data-stato");
 
         if (stato === "IN_ATTESA") { 
-            console.log("è nell'if di stato==In attesa!");
+          
 
             container.style.backgroundColor = "#1685c7";
         } else {
