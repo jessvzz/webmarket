@@ -10,12 +10,19 @@
         </a>
         <h3 style="color: #F67956; margin-left: 10px;">> Dettaglio Proposta #${proposta.codice}</h3> 
     </div>
-    <br>
+    
     <div class="container-proposta">
         <div class="container-info-proposta">
             <div class="badge-stato" stato="${proposta.getStatoProposta()}">
                 ${proposta.getStatoProposta()! "Stato non disponibile"}
             </div> 
+<br>
+
+<div class="pink-richiesta-storico2" >  
+    
+<a href = "dettaglio_richiesta_ord?n=${proposta.getRichiestaOrdine().getKey()}"> Codice della Richiesta:    ${proposta.getRichiestaOrdine().getCodiceRichiesta()} </a></div>
+
+
         </div>
 
         <div class="container-salm-proposta">
