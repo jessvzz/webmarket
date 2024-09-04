@@ -111,23 +111,3 @@ document.addEventListener("DOMContentLoaded", function() {
         sortedOrdini.forEach(ord => rowsContainer.appendChild(ord));
         });
 
-
-//     filterSelect.addEventListener("change", function() {
-//         const selectedValue = this.value;
-
-//         ordiniContainers.forEach(container => {
-//             const stato = container.getAttribute("data-stato");
-//             if ( selectedValue === "TUTTI" || stato === selectedValue) {
-//                 container.style.display = "block";
-//             } else {
-//                 container.style.display = "none";
-//             }
-//         });
-//     });
-
-//     const ords = document.querySelectorAll('.card-row-purple');
-//     const sortedProposte = sortOrdini(ords);
-
-//     const rowsContainer = document.querySelector('.rows-container');
-//     sortedProposte.forEach(ord => rowsContainer.appendChild(ord));
-// });

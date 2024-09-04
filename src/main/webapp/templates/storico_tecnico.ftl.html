@@ -8,46 +8,35 @@
         <h3 style="color: #F67956; margin-left: 10px;">> Storico ordini</h3> 
     </div>
     <div class="search-container">
-        <input type="text" placeholder="Cerca..." class="search-input">
-        <button class="search-button">Vai</button>
+        <input type="text" placeholder="Cerca..." id="search" class="search-input">
+       
     </div>
     <div class="filter-container">
         <p class="filter-text">Filtra per stato:</p>
         <select name="stato" id="stato" class="filter-select">
             <option value="tutti">Tutti</option>
             <option value="ACCETTATO">Accettato</option>
+            <option value="IN_ATTESA">In attesa</option>
             <option value="RESPINTO_NON_CONFORME">Respinto perché non conforme</option>
             <option value="RESPINTO_NON_FUNZIONANTE">Respinto perché non funzionante</option>
+            <option value="RIFIUTATO">Rifiutato</option>
         </select>
     </div>
     <div class="rows-container">
-        <div class="card-row-transparent">
-            <div class="card-row-content">
-                <p class="card-row-text">Proposta #</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Utente</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Data</p>
-            </div>
-            <div class="card-row-content" >
-                <p class="card-row-text">Stato</p>
-            </div>
-        </div>
+
         <#list ordini as ordine>
-        <div class="card-row-orange">
-            <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards" data-stato="${ordine.stato}">
+        <div id="ordine-container" class="card-row-orange" data-stato="${ordine.stato}" data-codice="${ordine.proposta.getCodice()}" >
+            <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards">
                 <div class="card-row-content">
-                    <p class="card-row-text">${ordine.proposta.codice}</p>
+                    <p class="card-row-text">Proposta: ${ordine.proposta.codice}</p>
                 </div>
                 <div class="card-row-content">
-                    <p class="card-row-text">${ordine.proposta.richiestaOrdine.utente.username}</p>
+                    <p class="card-row-text">Utente: ${ordine.proposta.richiestaOrdine.utente.username}</p>
                 </div>
                 <div class="card-row-content">
                     <p class="card-row-text">${ordine.data}</p>
                 </div>
-                <div class="card-row-content" stato="${ordine.stato}">
+                <div class="card-row-content" stato="${ordine.getStato()}">
                     <p class="card-row-text">${ordine.stato}</p>
                 </div>
             </a>
