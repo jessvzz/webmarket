@@ -9,8 +9,8 @@
     </div>
     <!-- Sezione per la ricerca e il filtro -->
     <div class="search-container">
-        <input type="text" placeholder="Cerca..." class="search-input">
-        <button class="search-button">Vai</button>
+        <input type="text" placeholder="Cerca..." id="search" class="search-input">
+        
     </div>
     <div class="filter-container">
         <p class="filter-text">Filtra per stato:</p>
@@ -32,7 +32,7 @@
         <#list proposte as proposta>
 
         <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
-         <div id="proposta-container" class="card-row-salm max-width-card" data-stato="${proposta.getStatoProposta()}">
+         <div id="proposta-container" class="card-row-salm max-width-card" data-stato="${proposta.getStatoProposta()}" data-codice="${proposta.codice}">
             <div class="card-row-content">
                 <p class="card-row-text">Codice: ${proposta.codice}</p>
             </div>
