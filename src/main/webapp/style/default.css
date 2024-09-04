@@ -2,10 +2,9 @@
 body,html {
     padding:0; 
     margin:0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 11pt;
-    background:  #f7f5f5;
-}
+    background: linear-gradient(to bottom right, #ffffff, #BBDEFB);
+    font-family: 'Open Sans', sans-serif;}
 
 textarea{
     padding: 10px;
@@ -19,7 +18,7 @@ textarea{
     margin-bottom: 15px;
 }
 .header-container {
-    background-color: #1E88E5; 
+    background-color: #64B5F6; 
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
@@ -29,8 +28,8 @@ textarea{
     font-weight: bold;
     text-align: center;
     color: white;
-
 }
+
 
 .subtitle {
     font-size: 50%;
@@ -43,14 +42,15 @@ textarea{
 }
 
 #body {
-    background-color: #f7f5f5;
+    background: linear-gradient(to bottom right, #ffffff, #BBDEFB);
+    font-family: 'Open Sans', sans-serif;
 }
 
 #footer {
     height:30px;        
     font-size: 9pt;
     text-align: center;
-    background-color: #1E88E5;
+    background-color: #64B5F6;
     color: white;
 }
 
@@ -187,15 +187,14 @@ select.medium,input.medium {
 }
 
 .form-card {
-            margin: 2rem auto;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 425px;
-            background-color: #FFF;
-            border-radius: 10px;
-            box-shadow: 0 5px 10px 0;
-            padding: .75rem;
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.8); 
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+            backdrop-filter: blur(10px); 
+            text-align: center;
         }
 
         .input-group{
@@ -246,14 +245,11 @@ select.medium,input.medium {
 */
 
 .container-beige {
-    background-color: #f7f5f5; 
     padding: 30px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .container-beige-not-centered{
-    background-color: #f7f5f5;
     padding: 20px;
 }
 .hi-text {
@@ -614,7 +610,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 .title-dark-brown {
     font-size: 24px;
     font-weight: bold;
-    color: #4a3835;
+    color: #6d4c41;
     margin: 10px;
 }
 
