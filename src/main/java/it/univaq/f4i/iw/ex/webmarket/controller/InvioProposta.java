@@ -47,7 +47,14 @@ public class InvioProposta extends BaseController {
         String produttore = request.getParameter("produttore");
         String prodotto = request.getParameter("prodotto");
         String codiceProdotto = request.getParameter("codiceProdotto");
-        float prezzo = Float.parseFloat(request.getParameter("prezzo"));
+        float prezzo;
+        try {
+            prezzo = Float.parseFloat(request.getParameter("prezzo"));
+        } catch (NumberFormatException e) {
+            request.setAttribute("errorMessage", "Il prezzo deve essere un valore numerico valido.");
+            action_default(request, response, n);
+            return;
+        }
         String url = request.getParameter("url");
         String note;
         if (request.getParameter("note").isEmpty()) {

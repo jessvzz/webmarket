@@ -42,6 +42,10 @@
                     <div class="form-group-tecnico">
                         <label for="nome prodotto">Prezzo:</label>
                         <input type="text" id="prezzo" name="prezzo" class="textfield-grey" placeholder="Inserisci prezzo">
+
+                        <#if (errorMessage)??>
+                        <span id="prezzo-error" class="error-message" style="color: red;">${errorMessage}</span>
+                    </#if>
                     </div>
                 </div>
                 <div class="row-tecnico">
