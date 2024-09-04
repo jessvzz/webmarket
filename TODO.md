@@ -17,9 +17,9 @@
 - [x] Rivedere PropostaAcquisto_DAO, mancano data (si può risolvere con la data di default) ma sopratuttto codiceProdotto
 - [x] Risolvere l'errore del trim
 - [ ] Togliere la data della proposta dello storico
-- [ ] Risolvere il problema del codice richiesta nelle email
+- [x] Risolvere il problema del codice richiesta nelle email
 - [x] Sort delle richieste, proposte e ordini ordinante
-- [ ] Impostazioni tecnico
+- [x] Impostazioni tecnico
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
