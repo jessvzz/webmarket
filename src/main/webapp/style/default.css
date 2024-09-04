@@ -4,7 +4,7 @@ body,html {
     margin:0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 11pt;
-    background:  #fff7e6;
+    background:  #f7f5f5;
 }
 
 textarea{
@@ -19,7 +19,7 @@ textarea{
     margin-bottom: 15px;
 }
 .header-container {
-    background-color: #e78e52; 
+    background-color: #1E88E5; 
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
@@ -43,14 +43,14 @@ textarea{
 }
 
 #body {
-    background-color: #fff7e6;
+    background-color: #f7f5f5;
 }
 
 #footer {
     height:30px;        
     font-size: 9pt;
     text-align: center;
-    background-color: #e78e52;
+    background-color: #1E88E5;
     color: white;
 }
 
@@ -213,7 +213,7 @@ select.medium,input.medium {
             z-index: 1;
             background-color: transparent;
             border-bottom: 2px solid #eee;
-            border-bottom-color: #f9aa75;
+            border-bottom-color: #42A5F5;
             font: inherit;
             font-size: 1.125rem;
             padding: .25rem 0;
@@ -226,7 +226,7 @@ select.medium,input.medium {
            background-color: white;
            border-radius: 5px;
            color: black;
-           border: 2px solid #5d64be;
+           border: 2px solid #2196F3;
            transition-duration: 0.4s;
            width: 20%;
            height: 30px;
@@ -235,7 +235,7 @@ select.medium,input.medium {
         }
 
         .form-button:hover {
-          background-color: #5d64be;
+          background-color: #2196F3;
           color: white;
         }
 
@@ -246,14 +246,14 @@ select.medium,input.medium {
 */
 
 .container-beige {
-    background-color: #fff7e6; 
+    background-color: #f7f5f5; 
     padding: 30px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .container-beige-not-centered{
-    background-color: #fff7e6;
+    background-color: #f7f5f5;
     padding: 20px;
 }
 .hi-text {
@@ -383,7 +383,7 @@ select.medium,input.medium {
 }
 
 .card-salm {
-    background-color:#e78e52; 
+    background-color:#1E88E5; 
 }
 
 .card-purple:hover {
@@ -515,7 +515,7 @@ p {
     transition: background-color 0.3s ease;
 }
 .light-orange-button {
-    background-color: #e78e52;
+    background-color: #1E88E5;
     border: none;
     border-radius: 15px;
     padding: 10px 30px;
@@ -660,7 +660,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .breadcrumb span {
     font-size: 18px;
-    color: #e78e52;
+    color: #1E88E5;
     margin-left: 10px;
 }
 
@@ -814,7 +814,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     height: 100%;
     padding: 10px 20px;
     border: none;
-    background-color: #F9AA75;
+    background-color: #42A5F5;
     color: white;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
@@ -916,7 +916,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 .card-row-salm {
-    background-color: #e78e52;
+    background-color: #1E88E5;
 }
 
 .card-row-orange {
@@ -1253,7 +1253,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     display: block;
     width: auto;
     padding: 10px;
-    background-color: #F9AA75;
+    background-color: #42A5F5;
     color: #333;
     text-align: center;
     font-size: 18px;
@@ -1430,7 +1430,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 .container-salm-proposta {
-    background-color: #e78e52;
+    background-color: #1E88E5;
 }
 
 .container-salm-proposta label {
