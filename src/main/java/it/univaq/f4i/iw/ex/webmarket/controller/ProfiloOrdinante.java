@@ -26,8 +26,12 @@ import javax.servlet.http.HttpSession;
 
 public class ProfiloOrdinante extends BaseController {
 
-    private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
+    private void action_default(HttpServletRequest request, HttpServletResponse response, int userId) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
+        Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtente(userId);
+        String tipologia = u.getTipologiaUtente().toString();
+        request.setAttribute("tipologia", tipologia);
+
         request.setAttribute("page_title", "Profilo Ordinante");
         res.activate("profilo_ordinante.ftl.html", request, response);
     }
@@ -41,14 +45,14 @@ public class ProfiloOrdinante extends BaseController {
         //tutti i campi devono essere fatti
         if (current == null || current.trim().isEmpty() || newP == null || newP.trim().isEmpty()||confirm == null || confirm.trim().isEmpty()) {
             request.setAttribute("errore", "Tutti i campi devono essere compilati!");
-            action_default(request, response);
+            action_default(request, response, userId);
             return; 
         }
         
         //password devono coincidere
         if (!newP.equals(confirm)) {
         request.setAttribute("errore", "Le password non coincidono.");
-        action_default(request, response);
+        action_default(request, response, userId);
         return;
         }
         
@@ -57,7 +61,7 @@ public class ProfiloOrdinante extends BaseController {
         //controllo su passwrod corrente
         if (!SecurityHelpers.checkPasswordHashPBKDF2(current, u.getPassword())){
           request.setAttribute("errore", "La password corrente è errata");
-          action_default(request, response);
+          action_default(request, response, userId);
           return;  
         }
         
@@ -90,7 +94,7 @@ public class ProfiloOrdinante extends BaseController {
         if (action != null && action.equals("updateProfile")){
             action_update(request, response, userId);
         }else{
-            action_default(request, response);
+            action_default(request, response, userId);
         }
         
 

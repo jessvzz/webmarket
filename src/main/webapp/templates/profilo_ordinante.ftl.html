@@ -42,9 +42,15 @@
             </div>
             
             <div class="form-buttons">
-                <a href="homepageordinante">
-                    <button type="button" class="purple-button">INDIETRO</button>
-                </a>
+                <#if (tipologia == "ORDINANTE")>
+                    <a href="homepageordinante">
+                        <button type="button" class="purple-button">INDIETRO</button>
+                    </a>
+                <#elseif (tipologia == "TECNICO")>
+                    <a href="homepagetecnico">
+                        <button type="button" class="purple-button">INDIETRO</button>
+                    </a>
+                </#if>
                  <#if (errore)??>
                     <p style="color: red"> ${errore}</p>
                     </#if>
