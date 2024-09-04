@@ -24,10 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Giulia Di Flamminio
- */
 public class ProfiloOrdinante extends BaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {
@@ -69,8 +65,12 @@ public class ProfiloOrdinante extends BaseController {
         u.setPassword(hashedPass);
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().storeUtente(u);
         
-        
-        response.sendRedirect("homepageordinante"); 
+        if (u.getTipologiaUtente().equals(TipologiaUtente.ORDINANTE)) {
+            response.sendRedirect("homepageordinante");
+            
+        } else if (u.getTipologiaUtente().equals(TipologiaUtente.TECNICO)) {
+            response.sendRedirect("homepagetecnico");
+        }
     }
 
     @Override

@@ -49,7 +49,7 @@ public class SecurityHelpers {
             return requestedPage.contains("/homepageadmin") || requestedPage.contains("/gestioneutenti") 
                 || requestedPage.contains("/gestionecategorie")|| requestedPage.contains("/gestisci_caratteristiche")|| requestedPage.contains("categoria");
         case "TECNICO":
-            return requestedPage.contains("tecnico") || requestedPage.contains("/invioproposta")|| requestedPage.contains("/richiesta_inattesa");
+            return requestedPage.contains("tecnico") || requestedPage.contains("/invioproposta")|| requestedPage.contains("/richiesta_inattesa") || requestedPage.contains("/profilo_ordinante");
         case "ORDINANTE":
             return requestedPage.contains("ord") || requestedPage.contains("nuova_richiesta") || requestedPage.contains("/motiva_rifiuto");
         default:
@@ -60,7 +60,7 @@ public class SecurityHelpers {
         case "AMMINISTRATORE":
             return requestedPage.matches("^/WebMarket/(homepageadmin|gestioneutenti|gestionecategorie|categoria|modificacategoria|aggiungicategoria|gestisci_caratteristiche).*$");
         case "TECNICO":
-            return requestedPage.matches("^/WebMarket/(homepagetecnico|richieste_tecnico|proposte_tecnico|storico_tecnico|detailrichiesta_tecnico|detailstorico_tecnico|detailproposta_tecnico|invioproposta|notifiche_tecnico|richiesta_inattesa).*$");
+            return requestedPage.matches("^/WebMarket/(homepagetecnico|richieste_tecnico|proposte_tecnico|storico_tecnico|detailrichiesta_tecnico|detailstorico_tecnico|detailproposta_tecnico|invioproposta|notifiche_tecnico|richiesta_inattesa|profilo_ordinante).*$");
         case "ORDINANTE":
             return requestedPage.matches("^/WebMarket/(homepageordinante|richieste_ordinante|ordini|nuova_richiesta|nuova_richiesta_caratteristiche|notifiche_ordinante|profilo_ordinante|dettaglio_richiesta_ord|dettaglio_ordine_ord|dettaglio_proposta_ord|motiva_rifiuto|proposte_ordinante|rifiuto_ordine).*$");
         default:
