@@ -1,38 +1,39 @@
-<div class="container-beige">
+<div class="container-beige mx-auto p-4">
     <h1 class="hi-text" style="text-align: left;">Ciao, ${user.username}</h1>
     <br>
 
     <!-- Sezione Impostazioni Profilo -->
-    <div class="notifications-container">
+    <div class="notifications-container flex justify-end mt-4">
         <div class="card-notifiche">
-            <a href="cambio_password">
-            <p class="card-text">
-                <img src="images/impostazioni-svg.svg" alt="icona profilo" class="img-prof">Impostazioni</p>
+            <a href="cambio_password" class=" flex items-center space-x-2">
+           
+                <img src="images/impostazioni-svg.svg" alt="icona profilo" class="img-prof"> <p class="card-text text-gray-700 font-medium">Impostazioni</p>
+                </a>
         </div>
     </div>
     
     <div class="three-buttons-container">
-        <div class="card-purple" style="position: relative;">
+        <div class="card-purple relative p-4 flex flex-col items-center" style="position: relative;">
             <a href="richieste_tecnico">
-                <img src="images/richieste-svg.svg" alt="icona richieste non evase" class="icon">
+                <img src="images/richieste-svg.svg" alt="icona richieste non evase" class="icon h-16 w-16 mx-auto">
                 <p class="card-title-light">Richieste non evase</p>
             </a>
             <#if richieste_prese_in_carico?? && richieste_prese_in_carico == true>
                 <span  class="pallino-rosso"></span>
                 </#if>
         </div>
-        <div class="card-skyblue " style="position: relative;">
+        <div class="card-skyblue relative p-4 flex flex-col items-center" style="position: relative;">
             <a href="proposte_tecnico">
-                <img src="images/proposte-svg.svg" alt="icona proposte inviate" class="icon">
+                <img src="images/proposte-svg.svg" alt="icona proposte inviate" class="icon icon h-16 w-16 mx-auto">
                 <p class="card-title-dark">Proposte inviate</p>
             </a>
             <#if proposte?? && proposte == true>
                 <span  class="pallino-rosso"></span>
                 </#if>
         </div>
-        <div class="card-orange" style="position: relative;">
+        <div class="card-orange relative p-4 flex flex-col items-center" style="position: relative;">
             <a href="storico_tecnico">
-                <img src="images/storico-svg.svg" alt="icona storico" class="icon">
+                <img src="images/storico-svg.svg" alt="icona storico" class="icon icon h-16 w-16 mx-auto">
                 <p class="card-title-light">Storico ordini</p>
             </a>
             <#if ordini?? && ordini == true>
