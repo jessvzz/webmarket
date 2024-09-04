@@ -43,7 +43,19 @@ public class SecurityHelpers {
 
     //penso di averle messe tutte ma mi si intrecciano un po' gli occhi
     public static boolean isPageAllowedForUserType(String requestedPage, String tipo) {
-        
+        requestedPage = requestedPage.toLowerCase();  
+    switch (tipo) {
+        case "AMMINISTRATORE":
+            return requestedPage.contains("/homepageadmin") || requestedPage.contains("/gestioneutenti") 
+                || requestedPage.contains("/gestionecategorie")|| requestedPage.contains("/gestisci_caratteristiche")|| requestedPage.contains("categoria");
+        case "TECNICO":
+            return requestedPage.contains("tecnico") || requestedPage.contains("/invioproposta")|| requestedPage.contains("/richiesta_inattesa");
+        case "ORDINANTE":
+            return requestedPage.contains("ord") || requestedPage.contains("nuova_richiesta") || requestedPage.contains("/motiva_rifiuto");
+        default:
+            return false;
+    }
+    /*
         switch (tipo) {
         case "AMMINISTRATORE":
             return requestedPage.matches("^/WebMarket/(homepageadmin|gestioneutenti|gestionecategorie|categoria|modificacategoria|aggiungicategoria|gestisci_caratteristiche).*$");
@@ -53,7 +65,7 @@ public class SecurityHelpers {
             return requestedPage.matches("^/WebMarket/(homepageordinante|richieste_ordinante|ordini|nuova_richiesta|nuova_richiesta_caratteristiche|notifiche_ordinante|profilo_ordinante|dettaglio_richiesta_ord|dettaglio_ordine_ord|dettaglio_proposta_ord|motiva_rifiuto|proposte_ordinante|rifiuto_ordine).*$");
         default:
             return false;
-    }
+    }*/
 
 }
     

@@ -61,12 +61,17 @@ public class Login extends BaseController {
                         default -> "login";
                     };
                     
-                    System.out.println("Il tipo dell'utente e'" + u.getTipologiaUtente().toString());
                     String referrer = request.getParameter("referrer");
+                    System.out.println("Referrer: " + referrer);
+                    System.out.println("User Type: " + u.getTipologiaUtente().toString());
+
                 if (referrer != null && SecurityHelpers.isPageAllowedForUserType(referrer, u.getTipologiaUtente().toString())) {
                         response.sendRedirect(referrer);
 
-                    } else {
+                    } else if (referrer != null) {
+                        System.out.println("Referrer non autorizzato, redirigo alla homepage.");
+                        response.sendRedirect(redirectPage);
+                    }else {
                         response.sendRedirect(redirectPage);
                     }
                     return;
