@@ -31,22 +31,22 @@
 
         <#list proposte as proposta>
 
-        <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
-         <div id="proposta-container" class="card-row-salm max-width-card" data-stato="${proposta.getStatoProposta()}" data-codice="${proposta.codice}">
-            <div class="card-row-content">
-                <p class="card-row-text">Codice: ${proposta.codice}</p>
-            </div>
-
-            <div class="card-row-content">
-                <p class="card-row-text">Data: ${proposta.data}</p>
-            </div> 
-
-            <div class="card-row-content" stato="${proposta.getStatoProposta()}">
-                <p class="card-row-text">${proposta.getStatoProposta()!"Stato non disponibile"}</p>
-            </div>
-         </div>
+        <div id="proposta-container" class="card-row-salm max-width-card" data-stato="${proposta.getStatoProposta()}" data-codice="${proposta.codice}">
+            <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
+                <div class="card-row-content">
+                    <p class="card-row-text">Codice: ${proposta.codice}</p>
+                </div>
+            
+                <div class="card-row-content">
+                    <p class="card-row-text">Data: ${proposta.data}</p>
+                </div> 
+            
+                <div class="card-row-content" stato="${proposta.getStatoProposta()}">
+                    <p class="card-row-text">${proposta.getStatoProposta()!"Stato non disponibile"}</p>
+                </div>
+            </a>
+        </div>
          
-        </a>
         </#list>
         </div>
          </#if>

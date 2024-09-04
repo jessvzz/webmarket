@@ -33,19 +33,19 @@
 
         <#list ordini as ordine>
 
-        <a href="dettaglio_ordine_ord?n=${ordine.key}" class="a-cards"> 
         <div class="card-row-purple max-width-card" id="ordine-container" data-stato="${ordine.getStato()}">
-            <div class="card-row-content">
-                <p class="card-row-text">Data: ${ordine.getData()}</p>
-            </div>
-            <div class="card-row-content" stato="${ordine.getStato()}">
-                <p class="card-row-text">Stato: ${ordine.stato}</p>
-            </div>
-            <div class="card-row-content">
-                <p class="card-row-text">Proposta: ${ordine.proposta.getCodice()}</p>
-            </div>
+            <a href="dettaglio_ordine_ord?n=${ordine.key}" class="a-cards"> 
+                <div class="card-row-content">
+                    <p class="card-row-text">Data: ${ordine.getData()}</p>
+                </div>
+                <div class="card-row-content" stato="${ordine.getStato()}">
+                    <p class="card-row-text">Stato: ${ordine.stato}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">Proposta: ${ordine.proposta.getCodice()}</p>
+                </div>
+            </a>
         </div>
-     </a>
         </#list>     
     </div>
         <#else>

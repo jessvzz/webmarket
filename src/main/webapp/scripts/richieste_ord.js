@@ -3,16 +3,16 @@ function cambiaStatoRichiesta(statoRichiesta) {
 
     switch (statoRichiesta) {
         case 'IN_ATTESA':
-            backgroundColor = '#ff6347'; // red
+            backgroundColor = '#ff6347';
             break;
         case 'PRESA_IN_CARICO':
-            backgroundColor = '#ff7f50'; // orange
+            backgroundColor = '#ff7f50';
             break;
         case 'RISOLTA':
-            backgroundColor = '#ffd700'; // yellow
+            backgroundColor = '#ffd700';
             break;
         case 'ORDINATA':
-            backgroundColor = '#adff2f'; // green
+            backgroundColor = '#adff2f';
             break;
         default:            
         backgroundColor = "#FFFFFF";
@@ -22,6 +22,21 @@ return `
         <p class="card-row-text">${statoRichiesta}</p>
     </div>
 `;
+}
+
+function sortRichieste(richieste) {
+    return Array.from(richieste).sort((a, b) => {
+        const statoA = a.getAttribute('data-stato');
+        const statoB = b.getAttribute('data-stato');
+        const priority = {
+            "IN_ATTESA": 1,
+            "ORDINATA": 2,
+            "PRESA_IN_CARICO": 3,
+            "RISOLTA": 4
+        };
+
+        return priority[statoA] - priority[statoB];
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -64,4 +79,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 });
+
+    // Riordinamento righe per importanza stato
+    const reqs = document.querySelectorAll('.card-row-skyblue');
+    const sortedRichieste = sortRichieste(reqs);
+
+    const rowsContainer = document.querySelector('.rows-container');
+    sortedRichieste.forEach(req => rowsContainer.appendChild(req));
 });

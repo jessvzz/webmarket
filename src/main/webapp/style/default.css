@@ -263,6 +263,10 @@ select.medium,input.medium {
     margin-bottom: 10px;
 }
 
+.no-wrap {
+    white-space: nowrap;
+}
+
 .subtitle {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 18px;

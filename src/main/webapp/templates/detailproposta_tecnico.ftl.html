@@ -8,11 +8,15 @@
         <a href="proposte_tecnico">
             <h3 style="color: #0D99FF; margin-left: 10px;">> Proposte inviate</h3>
         </a>
-        <h3 style="color: #0D99FF; margin-left: 10px;">> Proposta #${proposta.richiestaOrdine.codiceRichiesta}</h3> 
+        <h3 style="color: #0D99FF; margin-left: 10px;">> Proposta #${proposta.codice}</h3> 
     </div>
     <div class="container-proposta">
         <div class="container-info-proposta">
-            <h1 class="hi-text"> Richiesta #${proposta.richiestaOrdine.codiceRichiesta} - ${proposta.richiestaOrdine.utente.username}</h1>
+            <h1 class="hi-text no-wrap">Proposta relativa a richiesta 
+                <a href="detailrichiesta_tecnico?n=${proposta.richiestaOrdine.key}" style="text-decoration: underline; display: inline;">
+                    #${proposta.richiestaOrdine.codiceRichiesta}
+                </a> - ${proposta.richiestaOrdine.utente.username}
+            </h1>
             <div class="badge-stato" stato="${proposta.getStatoProposta()}">${proposta.getStatoProposta()}</div>
         </div>
         <div class="container-skyblue-proposta">
@@ -31,13 +35,13 @@
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome prodotto">Codice prodotto:</label>
-                    <div class="grey-row">${proposta.codice}</div>
+                    <div class="grey-row">${proposta.codiceProdotto}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="nome prodotto">Prezzo:</label>
-                    <div class="grey-row">${proposta.prezzo}</div>
+                    <div class="grey-row">€${proposta.prezzo}</div>
                 </div>
             </div>
             <div class="row-tecnico">

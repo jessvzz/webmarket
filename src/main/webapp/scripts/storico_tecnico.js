@@ -48,4 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const statoOrdine = ordine.getAttribute('stato');
         ordine.outerHTML = getStatoOrdine(statoOrdine);
     });
+
+    const ords = document.querySelectorAll('.card-row-orange');
+    const sortedOrdini = sortOrdini(ords);
+
+    const rowsContainer = document.querySelector('.rows-container');
+    sortedOrdini.forEach(ord => rowsContainer.appendChild(ord));
 });

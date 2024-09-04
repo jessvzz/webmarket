@@ -29,6 +29,23 @@ return `
 `;
 }
 
+
+function sortOrdini(ordini) {
+    return Array.from(ordini).sort((a, b) => {
+        const statoA = a.getAttribute('data-stato');
+        const statoB = b.getAttribute('data-stato');
+        const priority = {
+            "IN_ATTESA": 1,
+            "RESPINTO_NON_CONFORME": 2,
+            "RESPINTO_NON_FUNZIONANTE": 2,
+            "ACCETTATO": 3,
+            "RIFIUTATO": 3
+        };
+
+        return priority[statoA] - priority[statoB];
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const ordini = document.querySelectorAll('.card-row-content[stato]');
 
@@ -51,16 +68,21 @@ document.addEventListener("DOMContentLoaded", function() {
     // const ordiniContainers = document.querySelectorAll(".card-row-purple");
 
     filterSelect.addEventListener("change", function() {
-     const selectedValue = this.value;
+        const selectedValue = this.value;
 
-     ordiniContainers.forEach(container => {
-         const stato = container.getAttribute("data-stato");
+        ordiniContainers.forEach(container => {
+            const stato = container.getAttribute("data-stato");
+            if ( selectedValue === "TUTTI" || stato === selectedValue) {
+                container.style.display = "block";
+            } else {
+                container.style.display = "none";
+            }
+        });
+    });
 
-         if ( selectedValue === "TUTTI" || stato === selectedValue) {
-             container.style.display = "block";
-         } else {
-             container.style.display = "none";
-         }
-     });
- });
+    const ords = document.querySelectorAll('.card-row-purple');
+    const sortedProposte = sortOrdini(ords);
+
+    const rowsContainer = document.querySelector('.rows-container');
+    sortedProposte.forEach(ord => rowsContainer.appendChild(ord));
 });
