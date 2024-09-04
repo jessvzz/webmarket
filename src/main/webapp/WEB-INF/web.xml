@@ -71,7 +71,7 @@
              /nuova_richiesta,
              /nuova_richiesta_caratteristiche, 
              /notifiche_ordinante,
-             /profilo_ordinante,
+             /cambio_password,
              /dettaglio_richiesta_ord,
              /dettaglio_ordine_ord,
              /dettaglio_proposta_ord,             
@@ -154,8 +154,8 @@
         <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.NotificheOrdinante</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ProfiloOrdinante</servlet-name>
-        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.ProfiloOrdinante</servlet-class>
+        <servlet-name>CambioPassword</servlet-name>
+        <servlet-class>it.univaq.f4i.iw.ex.webmarket.controller.CambioPassword</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DetailRichiestaTecnico</servlet-name>
@@ -295,8 +295,8 @@
         <url-pattern>/notifiche_ordinante</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ProfiloOrdinante</servlet-name>
-        <url-pattern>/profilo_ordinante</url-pattern>
+        <servlet-name>CambioPassword</servlet-name>
+        <url-pattern>/cambio_password</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DetailRichiestaTecnico</servlet-name>
