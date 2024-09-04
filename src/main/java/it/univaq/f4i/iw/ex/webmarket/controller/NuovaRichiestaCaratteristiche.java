@@ -120,8 +120,7 @@ public class NuovaRichiestaCaratteristiche extends BaseController{
                 .getCaratteristicaRichiestaDAO().storeCaratteristicaRichiesta(caratteristicaRichiesta);
             
         }
-        String redirectURL = "homepageordinante";
-        response.sendRedirect(redirectURL);
+        response.sendRedirect("richieste_ordinante");
     }
 
     @Override
