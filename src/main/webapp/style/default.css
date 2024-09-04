@@ -617,9 +617,28 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .categories {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
 }
+
+.category-item{
+    width: 100%;
+}
+/*
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.category-item{
+    flex: 1 1 150px;
+    display: block;
+}
+
+
+*/
+
 
 .breadcrumb {
     display: flex;
@@ -644,6 +663,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 .category-details {
     margin-top: 20px;
 }
+
 
 .icon-button {
     background-color: #aad4fc;

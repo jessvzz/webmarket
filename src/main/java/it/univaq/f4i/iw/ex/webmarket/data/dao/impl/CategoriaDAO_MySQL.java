@@ -155,6 +155,7 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
                 System.out.println("Sono qui e la categoria è:" + categoria.getKey() );
                 uCategoria.setString(1, categoria.getNome());
                 long oldVersion = categoria.getVersion();
+                System.out.println("la versione è: "+oldVersion);
                 long versione = oldVersion + 1;
                 uCategoria.setLong(2, versione);
                 uCategoria.setInt(3, categoria.getKey());

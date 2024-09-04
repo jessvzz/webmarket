@@ -74,10 +74,11 @@ public class AggiungiCategoria extends BaseController{
 
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().storeCategoria(categoria);
 
-        request.setAttribute("success", "Categoria creata con successo");
-              
-        action_default(request, response);
-    }
+        int categoriaId = categoria.getKey();
+
+        String redirectUrl = "categoria?n=" + categoriaId;
+        response.sendRedirect(redirectUrl);
+        }
 
     /**
      * Returns a short description of the servlet.

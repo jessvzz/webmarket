@@ -5,6 +5,7 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
 
+import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -102,7 +103,9 @@ public class EmailSender {
             details.add(new Chunk("€ "));
             details.add(new Chunk(proposta.getPrezzo() + "\n", font));
             details.add(new Chunk("URL: ", bold));
-            details.add(new Chunk(proposta.getUrl() + "\n", font));
+            Anchor anchor = new Anchor(proposta.getUrl(), font);
+            anchor.setReference(proposta.getUrl());
+            details.add(anchor);
 
             document.add(details);
             

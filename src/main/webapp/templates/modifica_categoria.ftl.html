@@ -2,11 +2,11 @@
     <h2 class="title-dark-brown">
             Modifica la categoria
     </h2>
-    <form action="modificacategoria?n=${categoria.key}" method="post" class="form-container-orange">
+    <form action="" method="post" class="form-container-orange">
     <input type="hidden" name="action" value="updateCategory">
         <div class="form-group">
             <label for="category-name">Nome:</label>
-            <input type="text" id="category-name" name="category-name" value="${categoria.nome}">
+            <input type="text" id="category-name" name="category-name" value="${categoria.nome}" required>
         </div>
      
         <div class="form-buttons">

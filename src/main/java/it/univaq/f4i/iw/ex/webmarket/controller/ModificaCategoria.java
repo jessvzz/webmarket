@@ -47,9 +47,10 @@ public class ModificaCategoria extends BaseController{
         String name = request.getParameter("category-name");
         
         System.out.println("da qui ho questo nome: "+name+", e questa n: "+n);
-        Categoria categoria = new CategoriaImpl();
-        categoria.setNome(name);
-        categoria.setKey(n);
+        
+        Categoria categoria = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategoria(n);
+        categoria.setNome(name);        
+
 
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().storeCategoria(categoria);
 
