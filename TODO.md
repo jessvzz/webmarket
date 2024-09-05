@@ -32,10 +32,14 @@
 - [x] aggiusta modifica categoria
 
 ## Samanta:
-- [ ]:inserisci campo categoria per la pagina Proposte Ordinante
--[ ]: in RICHIESTE inserisci in js la parte dell'hover e aggiungi responsive , bold delle label ecc
--[ ]: modifica layout bottoni di accetta e rifiuta proposta
+- [x]:inserisci campo categoria per la pagina Proposte Ordinante
+- [ ]: capire che problemi tiene richieste_ordinante.ftl.html
+- [ ]: modifica layout bottoni di accetta e rifiuta proposta
 
+
+****
+Pulsante notifiche tecnico lo vedo "troncato" in basso
+****
 - [ ]:nelle PROPOSTE dell'ordinante non riesco a filtrare e non riesco a fare il sort delle proposte per visualizzare in alto quelle IN ATTESA. per come è adesso il codice, rimane solo selezionata la proposta in stato d'attesa.
 -[ ]: in RICHIESTE non capisco perchè la stessa funzione utilizzata per le proposte non mi evidenzia le richieste in attesa.
 -[ ]: implementare tutti i filtri

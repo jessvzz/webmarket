@@ -1,14 +1,14 @@
-<div class="container-beige">
+<div class="container-beige px-4 md:px-8 lg:px-16 py-6 bg-gray-50">
     <div class="nav-container flex items-center space-x-2">
         <div class="home-card flex justify-center items-center" style="background-color:#e78e52">
             <a href="homepageordinante" >
-                <img src="images/home-svg.svg" alt="icona home" class="home-icon ">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon w-8 h-8 ">
             </a>
         </div>
-        <h3 style="color:#e78e52; margin-left: 10px;">> Proposte Ricevute</h3> 
+        <h3 style="color:#e78e52; margin-left: 10px;" class="font-semibold">> Proposte Ricevute</h3> 
     </div>
     <!-- Sezione per la ricerca e il filtro -->
-    <div class="search-container">
+    <div class="search-container  flex flex-col items-end space-y-4 mb-4">
         <input type="text" placeholder="Cerca per codice..." id="search" class="search-input">
         
     </div>
@@ -27,29 +27,31 @@
      
         <#if (proposte?size>0)>
 
-       <div class="rows-container">
+       <div class="rows-container  mt-6">
 
-        <#list proposte as proposta>
+            <#list proposte as proposta>
 
-        <div id="proposta-container" class="card-row-salm max-width-card" data-stato="${proposta.getStatoProposta()}" data-codice="${proposta.codice}">
-            <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
-                <div class="card-row-content">
-                    <p class="card-row-text">Codice: ${proposta.codice}</p>
-                </div>
-            
-                <div class="card-row-content">
-                    <p class="card-row-text">Data: ${proposta.data}</p>
-                </div> 
-            
-                <div class="card-row-content" stato="${proposta.getStatoProposta()}">
-                    <p class="card-row-text">${proposta.getStatoProposta()!"Stato non disponibile"}</p>
-                </div>
-            </a>
-        </div>
+            <div id="proposta-container" class="card-row-salm max-width-card  border rounded" data-stato="${proposta.getStatoProposta()}" data-codice="${proposta.codice}">
+                    <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
+                        <div class="card-row-content mb-2">
+                            <p class="card-row-text">Codice: ${proposta.codice}</p>
+                        </div>
+                        <div class="card-row-content mb-2">
+                            <p class="card-row-text">Categoria: ${proposta.getRichiestaOrdine().categoria.nome}</p>
+                        </div> 
+                        <div class="card-row-content mb-2">
+                            <p class="card-row-text">Data: ${proposta.data}</p>
+                        </div> 
+                    
+                        <div class="card-row-content mb-2" stato="${proposta.getStatoProposta()}">
+                            <p class="card-row-text">${proposta.getStatoProposta()!"Stato non disponibile"}</p>
+                        </div>
+                    </a>
+            </div>
          
-        </#list>
+             </#list>
         </div>
-         </#if>
-<script src="scripts/proposte_ord.js"></script>
+              </#if>
+    <script src="scripts/proposte_ord.js"></script>
       
 </div>
