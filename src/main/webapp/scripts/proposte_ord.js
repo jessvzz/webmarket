@@ -55,8 +55,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (stato === "IN_ATTESA") {
             container.style.backgroundColor = "#e78e52";
+            container.addEventListener('mouseenter', () => {
+                
+                //per l'hover
+                container.style.backgroundColor = "#ff9966"; 
+            });
+
+            container.addEventListener('mouseleave', () => {
+                container.style.backgroundColor = "#e78e52"; 
+            });
         } else {
             container.style.backgroundColor = "#edb995";
+            container.addEventListener('mouseenter', () => {
+                container.style.backgroundColor = "#e78e52"; 
+            });
+
+            container.addEventListener('mouseleave', () => {
+                container.style.backgroundColor = "#edb995"; 
+            });
         }
     });
     

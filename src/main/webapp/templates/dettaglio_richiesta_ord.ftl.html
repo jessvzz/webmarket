@@ -24,36 +24,36 @@
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="categoria">Categoria:</label>
-                <div class="grey-row">${richiesta.categoria.nome}</div>
+                <div class="grey-row flex flex-wrap justify-center gap-4">${richiesta.categoria.nome}</div>
             </div>
         </div>
          
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="data">Data:</label>
-                <div class="grey-row">${richiesta.data}</div>
+                <div class="grey-row flex flex-wrap justify-center gap-4">${richiesta.data}</div>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="note">Note:</label>
-                <div class="grey-row">${richiesta.note!'Nessuna nota inserita'}</div>
+                <div class="grey-row flex flex-wrap justify-center gap-4">${richiesta.note!'Nessuna nota inserita'}</div>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="proposte">Proposte:</label>
-                <div class="grey-row">
+                <div class="proposte-container flex flex-wrap justify-center gap-4" id="proposte">
                 <#if proposte??>
                
                 <#list proposte as proposta>
-                    <div class="pink-richiesta-storico2">
+                    <div class="proposta-card">
                         <a href="dettaglio_proposta_ord?n=${proposta.key}"> ${proposta.codice}</a>
                     </div>
                 </#list>
                 </#if>
             <#if proposte?size = 0 >
-                <div class="pink-richiesta-storico2">
+                <div class="proposta-card empty">
                     Nessuna proposta disponibile.
                 </div>
             </#if>
