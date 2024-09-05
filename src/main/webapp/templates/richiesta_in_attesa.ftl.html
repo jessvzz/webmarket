@@ -14,7 +14,7 @@
     <br>
     <form action="" method="post" class="form-container-orange">
         <input type="hidden" name="action" value="prendiInCarico">
-    <div class="container-richieste-storico">
+    <div class="container-richieste-storico p-4 w-full">
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="categoria">Categoria:</label>
@@ -26,7 +26,7 @@
                 <label for="caratteristiche">Caratteristiche:</label>
                 <#if (caratteristiche?size>0)>
                 
-                <div class="skyblue-richiesta-storico">
+                <div class="skyblue-richiesta-storico break-words">
                     <#list caratteristiche as car>
                     ${car.caratteristica.nome} : ${car.valore} <br>
                     </#list>
@@ -38,7 +38,7 @@
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="note">Note:</label>
-                <div class="orange-richiesta-storico">${richiesta.note!'Nessuna nota inserita'}</div>
+                <div class="skyblue-richiesta-storico break-words">${richiesta.note!'Nessuna nota inserita'}</div>
             </div>
         </div>
         <div class="row-tecnico">

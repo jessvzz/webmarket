@@ -1076,7 +1076,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     width: 70%;
     max-width: 100%;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     font-size: 16px;
     border: none;
     color: white;
@@ -1115,13 +1115,12 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .skyblue-richiesta-storico {
     background-color: #90D5FE;
-    height: 80px;
     color: black;
 }
 
 .orange-richiesta-storico {
     background-color: #F67956;
-    height: 60px;
+    
     color: white;
 }
 
