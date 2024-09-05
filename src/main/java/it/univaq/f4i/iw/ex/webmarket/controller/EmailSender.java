@@ -94,6 +94,7 @@ public class EmailSender {
             Font subHeaderFont = FontFactory.getFont(FontFactory.TIMES_BOLD, 18, BaseColor.BLACK);
             Font font = FontFactory.getFont(FontFactory.TIMES, 14, BaseColor.BLACK);
             Font bold = FontFactory.getFont(FontFactory.TIMES_BOLD, 14, BaseColor.BLACK);
+            Font bluFont = FontFactory.getFont(FontFactory.TIMES_BOLD, 14, BaseColor.BLUE);
             
             //header
             Paragraph header = new Paragraph("WebMarket Univaq", headerFont);
@@ -132,6 +133,17 @@ public class EmailSender {
             
 
             document.add(table);
+            
+            document.add(new Paragraph("\n"));
+            
+            //link 
+            Paragraph linkParagraph = new Paragraph();
+            linkParagraph.add(new Chunk("Per visualizzare il sito web di riferimento ", font));
+            Anchor link = new Anchor("clicca qui", bluFont);
+            link.setReference(proposta.getUrl());
+            linkParagraph.add(link);
+            linkParagraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(linkParagraph);
             
             document.close();
             System.out.println("PDF generato con successo!");
