@@ -1,4 +1,4 @@
-<div class="container-beige">
+<div class="container-beige  mx-auto p-4 md:p-6 lg:p-8">
     <div class="nav-container flex items-center space-x-2">
         <div class="home-card flex justify-center items-center" style="background-color: #F67956;">
             <a href="homepageordinante">
@@ -6,62 +6,63 @@
             </a>
         </div>
         <a href="proposte_ordinante">
-            <h3 style="color: #F67956; margin-left: 10px;">> Proposte</h3>
+            <h3 class="text-lg ml-2 font-semibold" style="color: #F67956; margin-left: 10px;">> Proposte</h3>
         </a>
-        <h3 style="color: #F67956; margin-left: 10px;">> Dettaglio Proposta #${proposta.codice}</h3> 
+        <h3 class="text-lg ml-2 font-semibold" style="color: #F67956; margin-left: 10px;">> Dettaglio Proposta #${proposta.codice}</h3> 
     </div>
     
     <div class="container-proposta">
         <div class="container-info-proposta">
-            <div class="badge-stato" stato="${proposta.getStatoProposta()}">
+            <div class="badge-stato rounded-full px-4 py-2 font-semibold text-sm" stato="${proposta.getStatoProposta()}" style="display: inline-block; font-weight: bold;">
                 ${proposta.getStatoProposta()! "Stato non disponibile"}
             </div> 
         <br>
 
         </div>
-        <div class="row-tecnico">
-            <div class="form-group-tecnico">
-                <label for="proposta">Vai alla Richiesta</label>
+
+
+            <div class="form-group-tecnico flex item-center">
+                <label for="richiesta" class="text-gray-700 italic mr-2">Vai alla Richiesta</label>
                 <a href="dettaglio_richiesta_ord?n=${proposta.getRichiestaOrdine().key}">
                 <div name="richiesta" class="darkblue-richiesta-storico">Richiesta #${proposta.getRichiestaOrdine().codiceRichiesta}</div>
                 </a>
             </div>
-        </div>
+    
 
-        <div class="container-salm-proposta">
+        <div class="container-salm-proposta p-4">
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome produttore">Nome produttore:</label>
+                    <label for="nome produttore" class="block text-gray-700 font-bold">Nome produttore:</label>
                     <div class="grey-row">${proposta.produttore!"Produttore non disponibile"}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">Nome prodotto:</label>
+                    <label for="nome prodotto" class="block text-gray-700 font-bold">Nome prodotto:</label>
                     <div class="grey-row">${proposta.prodotto}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">Codice prodotto:</label>
+                    <label for="codice prodotto" class="block text-gray-700 font-bold">Codice prodotto:</label>
                     <div class="grey-row">${proposta.codiceProdotto}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">Prezzo:</label>
+                    <label for="nome prezzo" class="block text-gray-700 font-bold">Prezzo:</label>
                     <div class="grey-row">€${proposta.prezzo}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">URL:</label>
+                    <label for="url" class="block text-gray-700 font-bold">URL:</label>
                     <div class="grey-row"><a href="${proposta.url}" title="${proposta.url}">Visualizza</a></div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">Note:</label>
+                    <label for="note"class="block text-gray-700 font-bold">Note:</label>
                     <div class="grey-row"><i>${proposta.note!'Nessuna nota inserita'}</i></div>
                 </div>
             </div>
@@ -72,15 +73,18 @@
 
 
         <#if proposta.getStatoProposta() == "IN_ATTESA">
-            <form action="" method="post">
+        <div class="flex space-x-4">
+            <form action="" method="post" class="mb-2">
                 <input type="hidden" name="action" value="accettaProposta">
-                <button class="green-button">ACCETTA</button>
+                <!-- <button class="green-button">ACCETTA</button> -->
+                <button type="submit"  class="green-button  hover:bg-green-600 text-white px-4 py-2 rounded-md">ACCETTA</button>
             </form>
         </#if>
         <#if proposta.getStatoProposta() == "IN_ATTESA">
             <div>
                 <a href="motiva_rifiuto?n=${proposta.key}">
-                    <button class="orange-button">RIFIUTA</button>
+                    <!-- <button class="orange-button">RIFIUTA</button> -->
+                    <button class="orange-button hover:bg-orange-600 text-white px-4 py-2 rounded-md">RIFIUTA</button>
                 </a>
             </div>
         </#if>
