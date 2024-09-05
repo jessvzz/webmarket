@@ -9,42 +9,41 @@
     </div>
     <#if (richieste?size>0)>
     <div class="search-container">
-        <input type="text" placeholder="Cerca..." class="search-input">
-        <button class="search-button">Vai</button>
+        <input type="text" placeholder="Cerca tramite codice..." class="search-input" id="search-input">
     </div>
     <div class="filter-container">
         <p class="filter-text">Filtra per categoria:</p>
         <select name="category" id="category" class="filter-select">
-            <!-- TODO: Rendere dinamiche le categorie -->
             <option value="tutte">Tutte</option>
-            <option value="cat1">1</option>
-            <option value="cat2">2</option>
-            <option value="cat3">3</option>
+            <#list categorie as categoria>
+                <#if categoria.nome != "root">
+                    <option value="${categoria.nome}">${categoria.nome}</option>
+                </#if>
+            </#list>
         </select>
     </div>
 
-<!-- Sezione che mostra le richieste non evase -->
+    <!-- Sezione che mostra le richieste non evase -->
 
     <div class="rows-container">
         <div class="card-row-transparent">
-                <div class="card-row-content">
-                    <p class="card-row-text">Codice</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Utente</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Categoria</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">Data</p>
-                </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Codice</p>
             </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Utente</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Categoria</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Data</p>
+            </div>
+        </div>
         <!-- TODO: Rendere dinamiche le righe mostrate -->
         <#list richieste as richiesta>
-
         <a href="detailrichiesta_tecnico?n=${richiesta.key}&source=richieste" class="a-cards">
-            <div class="card-row-purple">
+            <div class="card-row-purple" data-codice="${richiesta.codiceRichiesta}" data-categoria="${richiesta.categoria.nome}">
                 <div class="card-row-content">
                     <p class="card-row-text">${richiesta.codiceRichiesta}</p>
                 </div>
@@ -65,3 +64,5 @@
         <h1 class="hi-text" style="text-align: left;">Non ci sono richieste non ancora evase</h1>
     </#if>
 </div>
+
+<script src="scripts/richieste_tecnico.js"></script>
