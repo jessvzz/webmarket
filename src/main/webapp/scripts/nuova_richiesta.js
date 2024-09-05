@@ -26,7 +26,7 @@ function loadSubCategories(parentCategoryId) {
                 });
                 // nuovo select per le sottocategorie
                 let subCategorySelect = document.createElement("select");
-                subCategorySelect.className = "filter-select orange";
+                subCategorySelect.classList.add('standard-select', 'mb-4');
                 subCategorySelect.setAttribute("onchange", "loadSubCategories(this.value)");
 
                 let defaultOption = document.createElement("option");

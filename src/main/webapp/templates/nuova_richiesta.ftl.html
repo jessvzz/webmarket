@@ -19,10 +19,10 @@
 
     <input type="hidden" id="chosen-category" name="chosen-category">
 
-    <div class="category-container">
-        <h4>Scegli la categoria del prodotto che desideri acquistare</h4>
+    <div class="category-container flex flex-col items-center justify-center">
+        <h4 class="mb-4 text-center">Scegli la categoria del prodotto che desideri acquistare</h4>
         <#if (categorie?size>0)>
-        <select name="category" id="category" class="filter-select orange" onchange="loadSubCategories(this.value)">
+        <select name="category" id="category" class="standard-select  mb-6" onchange="loadSubCategories(this.value)">
            <option value="" selected disabled>Seleziona una Categoria</option>
            <#list categorie as cat>
 
@@ -31,7 +31,9 @@
         </select>
         </#if>
     </div>
-    <div id="subcategories-container"></div>
+    <div id="subcategories-container" class="flex flex-col items-center justify-center gap-4">
+        
+    </div>
     
       <div class="form-buttons">
             <a href="homepageordinante">

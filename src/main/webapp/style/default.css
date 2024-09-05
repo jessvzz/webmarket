@@ -860,6 +860,25 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
   color: #333;
 }
 
+.standard-select {
+    display: inline-block;
+    position: relative;
+    width: 25%;
+    height: 30px;
+    border-radius: 12px;
+}
+
+.standard-select::after {
+  content: '▼';
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #333;
+}
+
 /* Elenco contenuti */
 .rows-container, .rows-legenda{
     width: 100%;
