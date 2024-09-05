@@ -1,48 +1,51 @@
-<div class="container-beige">
-    <div class="nav-container">
-        <div class="home-card" style="background-color: #5D54BE;">
+<div class="container-beige px-4 md:px-8 lg:px-16 py-6 bg-gray-50">
+    <div class="nav-container flex items-center space-x-4 mb-6">
+        <div class="home-card bg-indigo-600 p-2">
             <a href="homepageordinante">
-                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon w-8 h-8">
             </a>
         </div>
-        <h3 style="color: #5D54BE; margin-left: 10px;">> Ordini</h3> 
+        <h3 class="text-indigo-600 text-lg ml-2 font-semibold">> Ordini</h3> 
     </div>
     
-    <div class="search-container">
-        <input type="text" placeholder="Cerca..."  id="search" class="search-input">
+    <!-- <div class="search-container"> <input type="text" placeholder="Cerca..."  id="search" class="search-input"> </div> -->
 
+    <div class="search-filter-container flex flex-col items-end space-y-4 mb-4">
+        <!-- Search Input -->
+        <div class="w-full md:w-auto">
+            <input type="text" placeholder="Cerca..." id="search" class="search-input border rounded p-2 w-full md:w-64">
+        </div>
+        <!-- Filter Select -->  
+        <div class="w-full md:w-auto">
+            <label for="status" class="filter-text text-sm text-gray-600 mr-2">Filtra per stato:</label>
+                <select name="status" id="status" class="filter-select border rounded p-2 bg-white text-gray-600 w-full md:w-auto">
+                    <option value="tutti">Tutti</option>
+                    <option value="ACCETTATO">Accettato</option>
+                    <option value="IN_ATTESA">In attesa</option>
+                    <option value="RESPINTO_NON_CONFORME">Respinto non conforme</option>
+                    <option value="RESPINTO_NON_FUNZIONANTE">Respinto non funzionante</option>
+                    <option value="RIFIUTATO">Rifiutato</option>
+                </select>
+        </div>
     </div>
 
-    <div class="filter-container">
-        <p class="filter-text">Filtra per stato:</label>
-        <select name="status" id="status" class="filter-select">
-            <option value="tutti">Tutti</option>
-            <option value="ACCETTATO">Accettato</option>
-            <option value="IN_ATTESA">In attesa</option>
-            <option value="RESPINTO_NON_CONFORME">Respinto non conforme</option>
-            <option value="RESPINTO_NON_FUNZIONANTE">Respinto non funzionante</option>
-            <option value="RIFIUTATO">Rifiutato</option>
-        </select>
-    </div>
-
-  
     <!-- Sezione che mostra gli ordini effettuati -->
       <#if (ordini?? && ordini?size > 0)>
 
-    <div class="rows-container">
+    <div class="rows-container mt-6">
 
         <#list ordini as ordine>
 
-        <div  id="ordine-container" class="card-row-purple max-width-card" data-stato="${ordine.getStato()}" data-codice="${ordine.proposta.getCodice()}" >
+        <div  id="ordine-container" class="card-row-purple border rounded max-width-card" data-stato="${ordine.getStato()}" data-codice="${ordine.proposta.getCodice()}" >
             <a href="dettaglio_ordine_ord?n=${ordine.key}" class="a-cards"> 
-                <div class="card-row-content">
-                    <p class="card-row-text">Data: ${ordine.getData()}</p>
+                <div class="card-row-content  mb-2">
+                    <p class="card-row-text font-semibold">Data: ${ordine.getData()}</p>
                 </div>
                 <div class="card-row-content" stato="${ordine.getStato()}">
                     <p class="card-row-text">Stato: ${ordine.stato}</p>
                 </div>
                 <div class="card-row-content">
-                    <p class="card-row-text">Proposta: ${ordine.proposta.getCodice()}</p>
+                    <p class="card-row-text font-semibold">Proposta: ${ordine.proposta.getCodice()}</p>
                 </div>
             </a>
         </div>

@@ -20,7 +20,7 @@ function cambiaStatoDettaglioOrdine(statoOrdine) {
 
 
 return `
-<div class="badge-statoOrdini" style="background-color: ${backgroundColor};">
+<div class="badge-statoOrdini rounded-full px-4 py-2 font-semibold text-sm" style="background-color: ${backgroundColor};">
   ${statoOrdine}  
 </div> 
 `;
