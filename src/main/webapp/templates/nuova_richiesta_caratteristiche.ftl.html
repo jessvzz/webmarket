@@ -2,13 +2,13 @@
     <form method="POST" action="" id="characteristics-form" class="characteristics-container orange space-y-4">
         <input type="hidden" name="action" value="createRichiesta">
    
-        <h4>Caratteristiche</h4>
-        <p>Se hai preferenze, inserisci i valori delle caratteristiche, altrimenti se ti è indifferente spunta la checkbox</p>
+        <h4 class="title-black">Caratteristiche</h4>
+        <p class="margin-10">Se hai preferenze, inserisci i valori delle caratteristiche, altrimenti se ti è indifferente spunta la checkbox</p>
 
         <#if (caratteristiche?size>0)>
         <#list caratteristiche as caratteristica>
         <div class="characteristics-row flex flex-wrap items-center space-y-2 md:space-y-0 md:flex-row md:space-x-4">
-            <label for="caratteristica${caratteristica.key}" class="w-full md:w-1/3">${caratteristica.nome}:</label>
+            <label for="caratteristica${caratteristica.key}" class="margin-10 w-full md:w-1/3">${caratteristica.nome}:</label>
             <input type="text" id="caratteristica${caratteristica.key}" name="caratteristica${caratteristica.key}" placeholder="Inserisci ${caratteristica.nome}" class="flex-1 border rounded p-2">
             <!-- <input type="checkbox" id="caratteristica${caratteristica.key}-indifferente" name="${caratteristica.key}-indifferente"> Indifferente -->
             <!-- Checkbox e dicitura Indifferente -->
@@ -20,7 +20,7 @@
         </div>
     </#list>
     <#else>
-    <div class="characteristics-row">
+    <div class="characteristics-row margin-10">
                     <p>Non ci sono caratteristiche associate alla categoria scelta</p>
 
         </div>
@@ -28,7 +28,7 @@
 
 
         <div class="characteristics-row">
-            <label for="note">Note:</label>
+            <label for="note" class="margin-10">Note:</label>
             <textarea id="note" name="note" placeholder="Inserisci eventuali note" class="w-full border rounded p-2"></textarea>
         </div>
         

@@ -22,7 +22,7 @@
     <div class="category-container flex flex-col items-center justify-center">
         <h4 class="mb-4 text-center">Scegli la categoria del prodotto che desideri acquistare</h4>
         <#if (categorie?size>0)>
-        <select name="category" id="category" class="standard-select  mb-6" onchange="loadSubCategories(this.value)">
+        <select name="category" id="category" class="standard-select  mb-6" onchange="loadSubCategories(this.value)" required="">
            <option value="" selected disabled>Seleziona una Categoria</option>
            <#list categorie as cat>
 

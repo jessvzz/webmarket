@@ -614,6 +614,17 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     margin: 10px;
 }
 
+.title-black {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin: 10px;
+}
+
+.margin-10{
+    margin: 10px;
+}
+
 /*
 .categories {
     display: grid;
@@ -799,7 +810,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 .search-input {
     border: 1px solid #ccc;
     padding: 10px;
-    border-radius: 5px 0 0 5px;
+    border-radius: 200px;
     outline: none;
     font-size: 16px;
     width: 300px;
@@ -884,6 +895,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     width: 100%;
     height: auto;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
@@ -1012,6 +1024,8 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     padding: 30px;
     text-align: center;
     box-sizing: border-box;
+    background-color: #90CAF9;
+    border-radius: 30px;
 }
 
 .row-tecnico {
