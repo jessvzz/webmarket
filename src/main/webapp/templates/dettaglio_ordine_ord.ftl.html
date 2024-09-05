@@ -1,7 +1,7 @@
 <div class="container-beige px-4 md:px-8 lg:px-16 py-6 bg-beige-50">
     <div class="nav-container flex items-center space-x-4 mb-6">
         
-            <div class="home-card bg-indigo-600 p-2">
+            <div class="home-card flex justify-center items-center bg-indigo-600 p-2">
                 <a href="homepageordinante">
                 <img src="images/home-svg.svg" alt="icona home" class="home-icon w-8 h-8">
                 </a>
@@ -24,7 +24,7 @@
             <div class="form-group-tecnico flex items-center">
                 <label for="proposta" class="text-gray-700 italic mr-2"> Vai alla Proposta: </label>
                 <a href="dettaglio_proposta_ord?n=${ordine.getProposta().key}">
-                    <div name="proposta" class="darkblue-richiesta-storico">#${ordine.getProposta().codice}</div></a>
+                    <div name="proposta" class="darkblue-richiesta-storico">Proposta #${ordine.getProposta().codice}</div></a>
             </div>
           
 
@@ -65,7 +65,7 @@
                 <div class="flex space-x-4">
                     <form action="" method="post" class="mb-2">
                         <input type="hidden" name="action" value="accettaOrdine">
-                        <button class="green-button  hover:bg-green-600 text-white px-4 py-2 rounded-md">ACCETTA</button>
+                        <button type="submit"  class="green-button  hover:bg-green-600 text-white px-4 py-2 rounded-md">ACCETTA</button>
                     </form>
                     </#if>
 
