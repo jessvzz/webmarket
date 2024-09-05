@@ -1,4 +1,3 @@
-
 function getStatoOrdine(statoOrdine) {
     let backgroundColor;
 
@@ -13,7 +12,7 @@ function getStatoOrdine(statoOrdine) {
             backgroundColor = '#FFEECC'; 
             break;
         case 'ACCETTATO':
-            backgroundColor = '#AFF4C6'; // green
+            backgroundColor = '#AFF4C6';
             break;
         case 'RIFIUTATO':
                 backgroundColor = '#f76a6a'; 
@@ -36,11 +35,11 @@ function sortOrdini(ordini) {
         const statoA = a.getAttribute('data-stato');
         const statoB = b.getAttribute('data-stato');
         const priority = {
-            "IN_ATTESA": 1,
-            "RESPINTO_NON_CONFORME": 2,
-            "RESPINTO_NON_FUNZIONANTE": 2,
-            "ACCETTATO": 3,
-            "RIFIUTATO": 3
+            "RESPINTO_NON_CONFORME": 1,
+            "RESPINTO_NON_FUNZIONANTE": 1,
+            "ACCETTATO": 2,
+            "RIFIUTATO": 2,
+            "IN_ATTESA": 3
         };
 
         return priority[statoA] - priority[statoB];
@@ -64,12 +63,22 @@ document.addEventListener("DOMContentLoaded", function() {
         const stato = container.getAttribute("data-stato");
     //     container.style.backgroundColor = stato === "IN_ATTESA" ? "#5D54BE" : "#9892d1";
     // });
-    if (stato === "IN_ATTESA") { 
-          
-
-        container.style.backgroundColor = "##be7b54";
+    if (stato === "RESPINTO_NON_CONFORME" || stato === "RESPINTO_NON_FUNZIONANTE") {
+        container.style.backgroundColor = "#F67956";
+        container.addEventListener("mouseover", function() {
+            container.style.backgroundColor = "#f55e33";
+        });
+        container.addEventListener("mouseout", function() {
+            container.style.backgroundColor = "#F67956";
+        });
     } else {
-        container.style.backgroundColor = "#cf9a7c";
+        container.style.backgroundColor = "#e6a693";
+        container.addEventListener("mouseover", function() {
+            container.style.backgroundColor = "#F67956";
+        });
+        container.addEventListener("mouseout", function() {
+            container.style.backgroundColor = "#e6a693";
+        });
     }
 });
 

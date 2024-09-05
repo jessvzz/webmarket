@@ -16,10 +16,13 @@
 - [ ] Implementare il filtro in proposte, richieste e storico
 - [x] Rivedere PropostaAcquisto_DAO, mancano data (si può risolvere con la data di default) ma sopratuttto codiceProdotto
 - [x] Risolvere l'errore del trim
-- [ ] Togliere la data della proposta dello storico
+- [x] Togliere la data della proposta dello storico
 - [x] Risolvere il problema del codice richiesta nelle email
 - [x] Sort delle richieste, proposte e ordini ordinante
 - [x] Impostazioni tecnico
+- [x] Fixare i colori nello storico e mettere hover
+- [ ] Aggiustare button nuove richieste e pagina notifiche_tecnico
+- [x] Sistemare (soprattutto colore stato) detailstorico_tecnico
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
