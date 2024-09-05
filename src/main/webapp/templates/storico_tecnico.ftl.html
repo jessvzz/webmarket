@@ -8,7 +8,7 @@
         <h3 style="color: #F67956; margin-left: 10px;">> Storico ordini</h3> 
     </div>
     <div class="search-container">
-        <input type="text" placeholder="Cerca..." id="search" class="search-input">
+        <input type="text" placeholder="Cerca tramite codice..." id="search" class="search-input">
        
     </div>
     <div class="filter-container">
@@ -28,13 +28,10 @@
         <div id="ordine-container" class="card-row-orange" data-stato="${ordine.stato}" data-codice="${ordine.proposta.getCodice()}" >
             <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards">
                 <div class="card-row-content">
-                    <p class="card-row-text">Proposta: ${ordine.proposta.codice}</p>
+                    <p class="card-row-text"><b>Proposta: </b>${ordine.proposta.codice}</p>
                 </div>
                 <div class="card-row-content">
-                    <p class="card-row-text">Utente: ${ordine.proposta.richiestaOrdine.utente.username}</p>
-                </div>
-                <div class="card-row-content">
-                    <p class="card-row-text">${ordine.data}</p>
+                    <p class="card-row-text"><b>Utente: </b>${ordine.proposta.richiestaOrdine.utente.username}</p>
                 </div>
                 <div class="card-row-content" stato="${ordine.getStato()}">
                     <p class="card-row-text">${ordine.stato}</p>

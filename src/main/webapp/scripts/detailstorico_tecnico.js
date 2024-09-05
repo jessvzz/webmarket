@@ -3,18 +3,27 @@ document.addEventListener("DOMContentLoaded", function() {
     var stato = statoBadge.textContent.trim();
 
     switch(stato) {
+        case 'RESPINTO_NON_CONFORME':
+            statoBadge.style.backgroundColor = '#FFAEAE';
+            break;
+
+        case 'RESPINTO_NON_FUNZIONANTE':
+            statoBadge.style.backgroundColor = '#E4CCFF';
+            break;
+
         case 'IN_ATTESA':
-            statoBadge.classList.add('grey-storico');
+            statoBadge.style.backgroundColor = '#FFEECC';
             break;
+
         case 'RIFIUTATO':
-            statoBadge.classList.add('grey-storico');
+            statoBadge.style.backgroundColor = '#f76a6a';
             break;
+
         case 'ACCETTATO':
-            statoBadge.classList.add('green-storico');
+            statoBadge.style.backgroundColor = '#AFF4C6';
             break;
         
         default:
-            statoBadge.classList.add('orange-storico');
+            statoBadge.style.backgroundColor = '#979dac';
     }
 });
-
