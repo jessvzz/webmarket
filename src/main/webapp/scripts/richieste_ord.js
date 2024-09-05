@@ -49,19 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
         richiesta.outerHTML = cambiaStatoRichiesta(statoRichiesta);
     });
 
-    const richiestaContainers = document.querySelectorAll(".card-row-skyblue");
-
-    richiestaContainers.forEach(container => {
-        const stato = container.getAttribute("data-stato");
-
-        if (stato === "IN_ATTESA") { 
-          
-
-            container.style.backgroundColor = "#1685c7";
-        } else {
-            container.style.backgroundColor = "#90D5FE";
-        }
-    });
+    
 
     const searchInput = document.getElementById('search');
     const filterSelect = document.getElementById('status');
