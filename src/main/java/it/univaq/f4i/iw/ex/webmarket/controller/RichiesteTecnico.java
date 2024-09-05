@@ -21,6 +21,7 @@ public class RichiesteTecnico extends BaseController {
 
         //creo un nuovo dao che contenente una lista di richieste non ancora evase (stato: PRESA_IN_CARICO e tecnico=tecnicoId)
         request.setAttribute("richieste", ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiesteNonEvase(user));
+        request.setAttribute("categorie", ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getAllCategorie());
 
         res.activate("richieste_tecnico.ftl.html", request, response);
     }

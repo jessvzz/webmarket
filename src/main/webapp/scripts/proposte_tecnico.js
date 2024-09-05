@@ -92,4 +92,30 @@ document.addEventListener("DOMContentLoaded", function() {
             container.style.backgroundColor = "#67c4f1";
         }
     });
+
+    // filtraggio (sia searchbar che select)
+    const searchInput = document.getElementById("search-input");
+    const filterSelect = document.getElementById("stato");
+
+    function filterProposte() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedStato = filterSelect.value;
+
+        propostaContainers.forEach(container => {
+            const codice = container.getAttribute("data-codice").toLowerCase();
+            const stato = container.getAttribute("data-stato");
+
+            const matchesSearch = codice.includes(searchTerm);
+            const matchesFilter = selectedStato === "tutti" || stato === selectedStato;
+
+            if (matchesSearch && matchesFilter) {
+                container.style.display = "";
+            } else {
+                container.style.display = "none";
+            }
+        });
+    }
+
+    searchInput.addEventListener("input", filterProposte);
+    filterSelect.addEventListener("change", filterProposte);
 });

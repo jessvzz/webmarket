@@ -1,32 +1,29 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
-    //prendo elementi di ricerca e filtro
-    const searchInput = document.getElementById('search');
-    
-    //container delle proposte
-    const proposals = document.querySelectorAll('#richiesta-container');
 
-    function filterProposte() {
-        console.log('ciao');
-        //prendo valori nella ricerca e nel select (minuscoli)
+    const searchInput = document.getElementById("search-input");
+    const filterSelect = document.getElementById("category");
+    const richiestaContainers = document.querySelectorAll(".card-row-purple");
+
+    function filterRichieste() {
         const searchTerm = searchInput.value.toLowerCase();
+        const selectedCategory = filterSelect.value;
 
-        proposals.forEach(function(proposal) {
-            //prendo valori degli attributi
-            const codice = proposal.getAttribute('data-codice').toLowerCase();
+        richiestaContainers.forEach(container => {
+            const codice = container.getAttribute("data-codice").toLowerCase();
+            const categoria = container.getAttribute("data-categoria");
 
-            // filtro per codice (ricerca)
-            //il codice deve includere quello che ho nella ricerca
-            const matchCodice = codice.includes(searchTerm);
-            
-            if (matchCodice) {
-                proposal.style.display = '';
+            const matchesSearch = codice.includes(searchTerm);
+            const matchesFilter = selectedCategory === "tutte" || categoria === selectedCategory;
+
+            if (matchesSearch && matchesFilter) {
+                container.style.display = "";
             } else {
-                proposal.style.display = 'none';
+                container.style.display = "none";
             }
         });
     }
-    
-    // filtro search
-    searchInput.addEventListener('input', filterProposte);
+
+    searchInput.addEventListener("input", filterRichieste);
+    filterSelect.addEventListener("change", filterRichieste);
+
 });

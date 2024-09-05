@@ -10,6 +10,7 @@
     <div class="search-container">
         <input type="text" id="search-input" placeholder="Cerca per codice..." class="search-input">
         
+
     </div>
     <div class="filter-container">
         <label class="filter-text" for="stato">Filtra per stato:</label>
@@ -44,7 +45,7 @@
     <#list proposte as proposta>
         
     <div class="rows-container">
-        <div class="card-row-skyblue" id="proposta-container" data-stato="${proposta.getStatoProposta()}">
+        <div class="card-row-skyblue" id="proposta-container" data-codice="${proposta.codice}" data-stato="${proposta.getStatoProposta()}">
             <a href="detailproposta_tecnico?n=${proposta.key}" class="a-cards">
                 <div class="card-row-content">
                     <p class="card-row-text">${proposta.codice}</p>

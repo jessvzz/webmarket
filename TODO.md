@@ -12,8 +12,8 @@
 - [x] Sistemare la dimensione della card-richieste-storico
 - [x] Aggiungere data alla proposta acquisto
 - [x] Finire visualizzazione proposte tecnico (mostrare l'username dell'utente)
-- [ ] Implementare la ricerca in proposte, richieste e storico
-- [ ] Implementare il filtro in proposte, richieste e storico
+- [x] Implementare la ricerca in proposte, richieste e storico
+- [x] Implementare il filtro in proposte, richieste e storico
 - [x] Rivedere PropostaAcquisto_DAO, mancano data (si può risolvere con la data di default) ma sopratuttto codiceProdotto
 - [x] Risolvere l'errore del trim
 - [x] Togliere la data della proposta dello storico
