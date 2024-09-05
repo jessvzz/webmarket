@@ -102,7 +102,7 @@ public class InvioProposta extends BaseController {
         System.out.println("PROPOSTA:" + prop.getCodice());
         String codice = prop.getCodice();  
 
-        String messaggio = "Dettagli dell'ordine effettuato per la richiesta numero: " + richiesta.getCodiceRichiesta() + "\n\n";
+        String messaggio = "Dettagli della proposta per la richiesta numero: " + richiesta.getCodiceRichiesta() + "\n\n";
         String pdfFilePath = "PropostaRichiesta_" + codice + ".pdf";
 
         try {
