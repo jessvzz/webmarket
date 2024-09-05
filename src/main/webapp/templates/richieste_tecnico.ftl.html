@@ -44,15 +44,9 @@
         </div>
         <!-- TODO: Rendere dinamiche le righe mostrate -->
         <#list richieste as richiesta>
-<<<<<<< HEAD
 
-        
-            <div class="card-row-purple" id="richiesta-container" data-codice="${richiesta.codiceRichiesta}">
-                <a href="detailrichiesta_tecnico?n=${richiesta.key}&source=richieste" class="a-cards">
-=======
         <a href="detailrichiesta_tecnico?n=${richiesta.key}&source=richieste" class="a-cards">
             <div class="card-row-purple" data-codice="${richiesta.codiceRichiesta}" data-categoria="${richiesta.categoria.nome}">
->>>>>>> 956ea7a661c8cd1f2b892449e043bee9e20b2b56
                 <div class="card-row-content">
                     <p class="card-row-text">${richiesta.codiceRichiesta}</p>
                 </div>
@@ -74,9 +68,5 @@
         <h1 class="hi-text" style="text-align: left;">Non ci sono richieste non ancora evase</h1>
     </#if>
 </div>
-<<<<<<< HEAD
-<script src="scripts/richieste_tecnico.js"></script>
-=======
 
 <script src="scripts/richieste_tecnico.js"></script>
->>>>>>> 956ea7a661c8cd1f2b892449e043bee9e20b2b56
