@@ -705,7 +705,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 .form-container-orange {
-    background-color: #eba06e;
+    background-color: #90CAF9;
     padding: 20px;
     border-radius: 30px;
     text-align: left;
@@ -1114,7 +1114,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 .skyblue-richiesta-storico {
-    background-color: #90D5FE;
+    background-color: #E3F2FD;
     color: black;
 }
 
@@ -1189,6 +1189,27 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-bottom: 10px;
+}
+
+.btn-blu {
+    display: block;
+    width: auto;
+    padding: 10px;
+    background-color: #1E88E5;
+    color: #333;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+
+.btn-blu:hover {
+    background-color: #1976D2;
 }
 
 .btn-verde:hover {
