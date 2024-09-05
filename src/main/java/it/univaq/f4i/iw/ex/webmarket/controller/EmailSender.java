@@ -10,10 +10,16 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
 
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 
@@ -76,38 +82,56 @@ public class EmailSender {
 	    }
 	}
         
+        // la creazione di questo pdf ha richiesto piu tempo di tutto il progetto
         public static void createPDF(String tipo, String messaggio, PropostaAcquisto proposta, String codice) throws FileNotFoundException, DocumentException{
            Document document = new Document();
         try {
             PdfWriter.getInstance(document, new FileOutputStream(tipo + codice + ".pdf"));
             document.open();
-
+            
+            //font che uso
+            Font headerFont = FontFactory.getFont(FontFactory.TIMES_BOLD, 24, BaseColor.BLACK);
+            Font subHeaderFont = FontFactory.getFont(FontFactory.TIMES_BOLD, 18, BaseColor.BLACK);
             Font font = FontFactory.getFont(FontFactory.TIMES, 14, BaseColor.BLACK);
             Font bold = FontFactory.getFont(FontFactory.TIMES_BOLD, 14, BaseColor.BLACK);
+            
+            //header
+            Paragraph header = new Paragraph("WebMarket Univaq", headerFont);
+            header.setAlignment(Element.ALIGN_CENTER);
+            document.add(header);
+            
+            document.add(new Paragraph("\n"));
+            
+            //qui il messaggio
+            Paragraph subHeader = new Paragraph(messaggio, subHeaderFont);
+            subHeader.setAlignment(Element.ALIGN_CENTER);
+            document.add(subHeader);
+            
+            //divisore
+            LineSeparator line = new LineSeparator();
+            line.setOffset(-2);
+            document.add(new Chunk(line));
+            document.add(new Paragraph("\n"));
+            
+            // creo tabella per riepilogo con due colonne
+            PdfPTable table = new PdfPTable(2); 
+            table.setWidthPercentage(100); 
+            table.setSpacingBefore(10f); 
+            table.setSpacingAfter(10f); 
 
+            table.addCell(createCell("Codice Proposta:", bold));
+            table.addCell(createCell(codice, font));
+            table.addCell(createCell("Produttore:", bold));
+            table.addCell(createCell(proposta.getProduttore(), font));
+            table.addCell(createCell("Prodotto:", bold));
+            table.addCell(createCell(proposta.getProdotto(), font));
+            table.addCell(createCell("Codice Prodotto:", bold));
+            table.addCell(createCell(proposta.getCodiceProdotto(), font));
+            table.addCell(createCell("Prezzo:", bold));
+            table.addCell(createCell("€ " + proposta.getPrezzo(), font));
+            
 
-            Chunk greetingChunk = new Chunk(messaggio, font);
-            document.add(greetingChunk);
-
-            System.out.println("prezzo: €"+proposta.getPrezzo());
-            Paragraph details = new Paragraph();
-            details.add(new Chunk("Codice Proposta: ", bold));
-            details.add(new Chunk(codice + "\n", font));
-            details.add(new Chunk("Produttore: ", bold));
-            details.add(new Chunk(proposta.getProduttore() + "\n", font));
-            details.add(new Chunk("Prodotto: ", bold));
-            details.add(new Chunk(proposta.getProdotto() + "\n", font));
-            details.add(new Chunk("Codice Prodotto: ", bold));
-            details.add(new Chunk(proposta.getCodiceProdotto() + "\n", font));
-            details.add(new Chunk("Prezzo: ", bold));
-            details.add(new Chunk("€ "));
-            details.add(new Chunk(proposta.getPrezzo() + "\n", font));
-            details.add(new Chunk("URL: ", bold));
-            Anchor anchor = new Anchor(proposta.getUrl(), font);
-            anchor.setReference(proposta.getUrl());
-            details.add(anchor);
-
-            document.add(details);
+            document.add(table);
             
             document.close();
             System.out.println("PDF generato con successo!");
@@ -115,6 +139,12 @@ public class EmailSender {
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
+        }
+        
+        private static PdfPCell createCell(String content, Font font) {
+            PdfPCell cell = new PdfPCell(new Phrase(content, font));
+            cell.setBorder(Rectangle.NO_BORDER); 
+            return cell;
         }
 
         

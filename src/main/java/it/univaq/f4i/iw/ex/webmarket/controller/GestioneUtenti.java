@@ -83,6 +83,15 @@ public class GestioneUtenti extends BaseController {
         action_default(request, response);
         return;
     }
+    
+    // controllo se lo username esiste già nel database
+    Utente existingUser = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtenteByUsername(username);
+
+    if (existingUser != null) {
+        request.setAttribute("error", "Questo username è già utilizzato");
+        action_default(request, response);
+        return;
+    }
 
     TipologiaUtente role = TipologiaUtente.valueOf(roleParam.toUpperCase());
     String hashedPass = SecurityHelpers.getPasswordHashPBKDF2(password);

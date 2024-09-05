@@ -794,6 +794,9 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     background-color: #e65746;
 }
 
+.error-message{
+    color: red;
+}
 /* Barra di ricerca */
 .search-container {
     display: flex;
