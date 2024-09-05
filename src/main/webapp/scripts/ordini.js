@@ -49,9 +49,6 @@ function sortOrdini(ordini) {
 document.addEventListener("DOMContentLoaded", function() {
 
     const ordini = document.querySelectorAll('.card-row-content[stato]');
-
-    // const ordiniContainers = document.querySelectorAll("#ordine-container");
-
     ordini.forEach(ordine => {
         const statoOrdine = ordine.getAttribute('stato');
         ordine.outerHTML = cambiaStatoOrdini(statoOrdine);
@@ -61,14 +58,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
        ordineContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");
-    //     container.style.backgroundColor = stato === "IN_ATTESA" ? "#5D54BE" : "#9892d1";
-    // });
-    if (stato === "IN_ATTESA") { 
-          
 
-        container.style.backgroundColor = "#5D54BE";
+    if (stato === "IN_ATTESA") { 
+        container.style.backgroundColor = "#6659f0";
+        container.addEventListener('mouseenter', () => {
+                        //per l'hover 
+                        container.style.backgroundColor = "#5D54BE"; 
+                    });
+        
+                    container.addEventListener('mouseleave', () => {
+                        container.style.backgroundColor = "#6659f0"; 
+                    });
     } else {
-        container.style.backgroundColor = "#9892d1";
+        container.style.backgroundColor = "#8076f5";
+        container.addEventListener('mouseenter', () => {
+            container.style.backgroundColor = "#5D54BE"; 
+        });
+
+        container.addEventListener('mouseleave', () => {
+            container.style.backgroundColor = "#8076f5"; 
+        });
     }
 });
 

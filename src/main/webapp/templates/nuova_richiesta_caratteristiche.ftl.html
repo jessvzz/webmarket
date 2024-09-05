@@ -1,5 +1,5 @@
     <!-- Form delle Caratteristiche -->
-    <form method="POST" action="" id="characteristics-form" class="characteristics-container orange">
+    <form method="POST" action="" id="characteristics-form" class="characteristics-container orange space-y-4">
         <input type="hidden" name="action" value="createRichiesta">
    
         <h4>Caratteristiche</h4>
@@ -7,10 +7,16 @@
 
         <#if (caratteristiche?size>0)>
         <#list caratteristiche as caratteristica>
-        <div class="characteristics-row">
-            <label for="caratteristica${caratteristica.key}">${caratteristica.nome}:</label>
-            <input type="text" id="caratteristica${caratteristica.key}" name="caratteristica${caratteristica.key}" placeholder="Inserisci ${caratteristica.nome}">
-            <input type="checkbox" id="caratteristica${caratteristica.key}-indifferente" name="${caratteristica.key}-indifferente"> Indifferente
+        <div class="characteristics-row flex flex-wrap items-center space-y-2 md:space-y-0 md:flex-row md:space-x-4">
+            <label for="caratteristica${caratteristica.key}" class="w-full md:w-1/3">${caratteristica.nome}:</label>
+            <input type="text" id="caratteristica${caratteristica.key}" name="caratteristica${caratteristica.key}" placeholder="Inserisci ${caratteristica.nome}" class="flex-1 border rounded p-2">
+            <!-- <input type="checkbox" id="caratteristica${caratteristica.key}-indifferente" name="${caratteristica.key}-indifferente"> Indifferente -->
+            <!-- Checkbox e dicitura Indifferente -->
+            <div class="flex items-center space-x-2">
+                <input type="checkbox" id="caratteristica${caratteristica.key}-indifferente" name="${caratteristica.key}-indifferente" class="h-5 w-5">
+                <label for="caratteristica${caratteristica.key}-indifferente" class="text-sm">Indifferente</label>
+            </div>
+ 
         </div>
     </#list>
     <#else>
@@ -23,17 +29,18 @@
 
         <div class="characteristics-row">
             <label for="note">Note:</label>
-            <textarea id="note" name="note" placeholder="Inserisci eventuali note"></textarea>
+            <textarea id="note" name="note" placeholder="Inserisci eventuali note" class="w-full border rounded p-2"></textarea>
         </div>
         
         <!-- Pulsante per Inviare la Richiesta -->
-          <div class="form-buttons">
+          <div class="form-buttons flex justify-between">
             <a href="homepageordinante">
-            <button type="button" class="purple-button">INDIETRO</button>
+            <button type="button " class="purple-button bg-purple-500 text-white py-2 px-4 rounded">INDIETRO</button>
             </a>
-            <button type="submit" class="orange-button">AVANTI</button>
+            <button type="submit" class="orange-button bg-orange-500 text-white py-2 px-4 rounded">AVANTI</button>
         </div>
     </form>
+    
     <!---
     <div id="custom-alert" class="custom-alert">
         <div class="custom-alert-content">
