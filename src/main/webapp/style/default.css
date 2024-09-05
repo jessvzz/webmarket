@@ -614,7 +614,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     margin: 10px;
 }
 
-
+/*
 .categories {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -624,7 +624,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 .category-item{
     width: 100%;
 }
-/*
+*/
 .categories {
     display: flex;
     flex-wrap: wrap;
@@ -637,7 +637,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 
-*/
+
 
 
 .breadcrumb {
