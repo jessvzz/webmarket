@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
         container.style.backgroundColor = "#6659f0";
         container.addEventListener('mouseenter', () => {
                         //per l'hover 
-                        container.style.backgroundColor = "#5D54BE"; 
+                        container.style.backgroundColor = "#4f40f5"; 
                     });
         
                     container.addEventListener('mouseleave', () => {
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         container.style.backgroundColor = "#8076f5";
         container.addEventListener('mouseenter', () => {
-            container.style.backgroundColor = "#5D54BE"; 
+            container.style.backgroundColor = "#4f40f5"; 
         });
 
         container.addEventListener('mouseleave', () => {
