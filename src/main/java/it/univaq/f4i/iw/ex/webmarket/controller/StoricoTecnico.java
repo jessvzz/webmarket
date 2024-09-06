@@ -27,7 +27,6 @@ public class StoricoTecnico extends BaseController {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Storico Tecnico");
 
-        // Recupera gli ordini associati al tecnico loggato
         OrdineDAO ordineDAO = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO();
         List<Ordine> ordini = ordineDAO.getOrdiniByTecnico(tecnico);
         request.setAttribute("ordini", ordini);
@@ -35,6 +34,7 @@ public class StoricoTecnico extends BaseController {
         res.activate("storico_tecnico.ftl.html", request, response);
     }
 
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {
@@ -44,7 +44,6 @@ public class StoricoTecnico extends BaseController {
             return;
         }
 
-        // Recupero l'ID del tecnico dalla sessione
         int tecnicoId = (int) session.getAttribute("userid");
 
         action_default(request, response, tecnicoId);

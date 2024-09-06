@@ -56,7 +56,7 @@ public class EmailSender {
 		try
 	    {
 	      MimeMessage msg = new MimeMessage(session);
-	      //set message headers
+	      //message headers
 	      msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
 	      msg.addHeader("format", "flowed");
 	      msg.addHeader("Content-Transfer-Encoding", "8bit");
@@ -180,7 +180,6 @@ public class EmailSender {
             MimeBodyPart messageBodyPart = new MimeBodyPart();
             messageBodyPart.setText(body, "UTF-8");
 
-            // Creazione della parte allegato
             MimeBodyPart attachmentBodyPart = new MimeBodyPart();
             attachmentBodyPart.attachFile(new File(pdfFilePath));
             attachmentBodyPart.setFileName(MimeUtility.encodeText(new File(pdfFilePath).getName(), "UTF-8", null));
@@ -191,7 +190,6 @@ public class EmailSender {
 
             msg.setContent(multipart);
 
-            // Invio dell'email
             Transport.send(msg);
 
             System.out.println("Email con allegato PDF inviata con successo!");

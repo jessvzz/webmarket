@@ -1,9 +1,6 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -26,10 +23,11 @@ public class NotificheTecnico extends BaseController {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("richieste", ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiesteInoltrate());
 
-        request.setAttribute("page_title", "Notifiche");
+        request.setAttribute("page_title", "Nuove Richieste");
         res.activate("notifiche_tecnico.ftl.html", request, response);
     }
-
+    
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {
@@ -57,7 +55,7 @@ public class NotificheTecnico extends BaseController {
      */
     @Override
     public String getServletInfo() {
-        return "Main Newspaper servlet";
+        return "Nuove Richieste servlet";
     }// </editor-fold>
 
 }

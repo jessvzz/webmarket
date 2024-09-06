@@ -18,10 +18,7 @@ public class CaratteristicaProxy extends CaratteristicaImpl implements DataItemP
     protected boolean modified;
     protected DataLayer dataLayer;
     protected int categoria_id = 0;
-    /*
-    protected int author_key = 0;
-    protected int issue_key = 0;
-*/
+   
     
     public CaratteristicaProxy(DataLayer d) {
     super();

@@ -28,7 +28,8 @@ public class ProposteTecnico extends BaseController {
 
         res.activate("proposte_tecnico.ftl.html", request, response);
     }
-
+    
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {

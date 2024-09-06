@@ -99,7 +99,6 @@ public class InvioProposta extends BaseController {
         
         //Mi servono per la generazione del pdf
         PropostaAcquisto prop = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(proposta.getKey());
-        System.out.println("PROPOSTA:" + prop.getCodice());
         String codice = prop.getCodice();  
 
         String messaggio = "Dettagli della proposta per la richiesta numero: " + richiesta.getCodiceRichiesta() + "\n\n";
@@ -116,6 +115,7 @@ public class InvioProposta extends BaseController {
         response.sendRedirect("detailproposta_tecnico?n=" + proposta.getKey());
     }
 
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
         try {

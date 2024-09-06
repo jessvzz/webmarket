@@ -70,7 +70,6 @@ public class GestioneUtenti extends BaseController {
     String password = request.getParameter("temp-password");
     String confirmPassword = request.getParameter("confirm-password");
     String roleParam = request.getParameter("role");
-    System.out.println("user: " + username);
     
     if (username == null || email == null || password == null || confirmPassword == null || roleParam == null) {
         request.setAttribute("error", "Tutti i campi sono obbligatori.");

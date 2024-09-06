@@ -21,7 +21,6 @@ import java.sql.Statement;
  * @author Giuseppe Della Penna, Giulia Di Flamminio & Samanta Di Stefano
  */
 
-//to do --> modifica store utente
 public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
 
     private PreparedStatement sUserByID, sUserByEmail, sUserByUsername, iUser, uUser;
@@ -225,18 +224,6 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         }
     }
 
-    @Override
-    public void deleteUtente(int utente_key) throws DataException { //TODO: Da fare?
-        /* try {
-            dUser.setInt(1, userKey);
-            int rowsAffected = dUser.executeUpdate();
-            if (rowsAffected == 0) {
-                throw new DataException("No user found with the given ID.");
-            }
-        } catch (SQLException ex) {
-            throw new DataException("Unable to delete user", ex);
-        } */
-    }
-
+ 
     
 }

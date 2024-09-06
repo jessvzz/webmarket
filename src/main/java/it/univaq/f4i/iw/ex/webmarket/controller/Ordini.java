@@ -2,8 +2,6 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.framework.data.DataException;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
@@ -29,6 +27,7 @@ public class Ordini extends BaseController {
          res.activate("ordini.ftl.html", request, response);
     }
 
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
         try {

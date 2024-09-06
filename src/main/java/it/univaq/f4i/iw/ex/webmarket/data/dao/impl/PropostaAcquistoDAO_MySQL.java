@@ -8,7 +8,6 @@ import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.PropostaAcquistoProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
-import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 
@@ -25,7 +24,6 @@ import java.time.LocalDate;
 
 public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDAO {
 
-    // Query SQL precompilate
     private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente,sProposteByTecnico,sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta, proposteDaNotificare, proposteDaNotificareOrd;
 
     public PropostaAcquistoDAO_MySQL(DataLayer d) {
@@ -37,14 +35,12 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         try {
             super.init();
 
-            // Inizializzazione delle prepared statements con le query SQL
             sPropostaByID = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ID = ?");
             sProposteByRichiesta = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE richiesta_id = ?");
             sAllProposte = connection.prepareStatement("SELECT * FROM proposta_acquisto");
 
             sProposteByTecnico = connection.prepareStatement("SELECT pa.* FROM proposta_acquisto pa JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ? ORDER BY CASE WHEN (pa.stato = 'ACCETTATO') THEN 1 ELSE 2 END");
             sProposteByUtente = connection.prepareStatement("SELECT pa.* FROM proposta_acquisto pa JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ? ORDER BY CASE WHEN pa.stato = 'IN_ATTESA' THEN 1 ELSE 2 END");
-            // sProposteByOrdine = connection.prepareStatement("SELECT * FROM proposta_acquisto WHERE ordine_id = ?");
             
             iProposta = connection.prepareStatement("INSERT INTO proposta_acquisto (produttore, prodotto, codice, codice_prodotto, prezzo, URL, note, stato, data, motivazione, richiesta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uProposta = connection.prepareStatement("UPDATE proposta_acquisto SET produttore=?, prodotto=?, codice=?, codice_prodotto=?, prezzo=?, URL=?, note=?, stato=?, data=?, motivazione=?, richiesta_id=?, version=? WHERE ID=? AND version=?");
@@ -74,7 +70,6 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
     @Override
     public void destroy() throws DataException {
         try {
-            // Chiusura delle prepared statements
             sPropostaByID.close();
             sProposteByRichiesta.close();
             sAllProposte.close();
@@ -85,7 +80,6 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             uInviaProposta.close();
             dProposta.close();
         } catch (SQLException ex) {
-            // Ignora eccezione di chiusura
         }
         super.destroy();
     }
@@ -95,7 +89,6 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         return new PropostaAcquistoProxy(getDataLayer());
     }
 
-    // Metodo helper per creare un oggetto PropostaAcquistoProxy da un ResultSet
     private PropostaAcquistoProxy createPropostaAcquisto(ResultSet rs) throws DataException {
         try {
             PropostaAcquistoProxy p = (PropostaAcquistoProxy) createPropostaAcquisto();
@@ -111,7 +104,6 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             p.setData(rs.getDate("data"));
             p.setMotivazione(rs.getString("motivazione"));
             p.setVersion(rs.getLong("version"));
-            //Recupera l'oggetto RichiestaOrdine tramite il suo ID
             RichiestaOrdineDAO richiestaOrdineDAO = (RichiestaOrdineDAO) dataLayer.getDAO(RichiestaOrdine.class);
             p.setRichiestaOrdine(richiestaOrdineDAO.getRichiestaOrdine(rs.getInt("richiesta_id")));
             return p;
@@ -174,11 +166,11 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
     public void storePropostaAcquisto(PropostaAcquisto proposta) throws DataException {
         try {
             if (proposta.getKey() != null && proposta.getKey() > 0) {
-                // Se la proposta è un proxy e non è stata modificata, salta l'aggiornamento
+
                 if (proposta instanceof PropostaAcquistoProxy && !((PropostaAcquistoProxy) proposta).isModified()) {
                     return;
                 }
-                // Aggiorna la proposta d'acquisto esistente
+
                 uProposta.setString(1, proposta.getProduttore());
                 uProposta.setString(2, proposta.getProdotto());
                 uProposta.setString(3, proposta.getCodice());
@@ -201,7 +193,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
                     proposta.setVersion(versione);
                 }
             } else {
-                // Inserisce una nuova proposta d'acquisto nel database
+
                 iProposta.setString(1, proposta.getProduttore());
                 iProposta.setString(2, proposta.getProdotto());
                 iProposta.setString(3, proposta.getCodice());

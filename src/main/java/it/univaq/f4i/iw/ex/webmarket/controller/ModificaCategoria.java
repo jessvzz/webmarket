@@ -6,14 +6,12 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.CategoriaImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -45,9 +43,7 @@ public class ModificaCategoria extends BaseController{
      
     private void action_updateCategory(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, DataException, TemplateManagerException {
         String name = request.getParameter("category-name");
-        
-        System.out.println("da qui ho questo nome: "+name+", e questa n: "+n);
-        
+                
         Categoria categoria = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategoria(n);
         categoria.setNome(name);        
 
@@ -89,6 +85,6 @@ public class ModificaCategoria extends BaseController{
      */
     @Override
     public String getServletInfo() {
-        return "Categoria servlet";
+        return "Modifica Categoria servlet";
     }// </editor-fold>
 }

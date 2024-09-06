@@ -1,7 +1,6 @@
 package it.univaq.f4i.iw.ex.webmarket.data.dao.impl;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.CaratteristicaDAO;
-import it.univaq.f4i.iw.ex.webmarket.data.dao.CategoriaDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.CaratteristicaProxy;
@@ -58,7 +57,7 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
             uCaratteristica.close();
             dCaratteristica.close();
         } catch (SQLException ex) {
-            //
+            
         }
         super.destroy();
     }

@@ -31,7 +31,8 @@ public class OrdinanteHomepage extends BaseController {
         
         res.activate("homepageordinante.ftl.html", request, response);
     }
-
+    
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
 
@@ -48,8 +49,7 @@ public class OrdinanteHomepage extends BaseController {
          Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtente(userId);
         
          if (u != null) {
-          // Passa l'utente alla vista
-                        request.setAttribute("user", u);
+            request.setAttribute("user", u);
          }
         
          action_default(request, response, userId);

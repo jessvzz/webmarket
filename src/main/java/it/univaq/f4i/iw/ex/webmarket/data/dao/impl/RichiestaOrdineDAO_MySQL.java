@@ -19,12 +19,8 @@ import java.util.List;
 
 
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- * Implementazione di RichiestaOrdineDAO per MySQL.
- */
+
 public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO {
 
     private PreparedStatement sRichiestaOrdineByID, sRichiesteByUtente, iRichiestaOrdine, uRichiestaOrdine, sRichiesteInoltrate, sRichiesteNonEvase, sRichiesteTecnico, sRichiesteRisolte, esisteRichiestaInAttesa;
@@ -38,7 +34,6 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         try {
             super.init();
 
-            // Precompilazione delle query utilizzate nella classe
             sRichiestaOrdineByID = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE ID = ?");
             sRichiesteByUtente = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE utente = ? ORDER BY data DESC");
             sRichiesteInoltrate = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
@@ -70,7 +65,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
             iRichiestaOrdine.close();
             uRichiestaOrdine.close();
         } catch (SQLException ex) {
-            //
+            
         }
         super.destroy();
     }
@@ -261,10 +256,6 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
     }
 
 
-    // Questo metodo si occupa di inviare una richiesta ordine, il che potrebbe 
-    // significare cambiare lo stato della richiesta e fare altre operazioni associate 
-    // (come inviare una notifica, se necessario). Supponendo che inviare la richiesta 
-    // significhi semplicemente cambiare il suo stato a IN_ATTESA
 
     @Override
     public void inviaRichiestaOrdine(RichiestaOrdine richiestaOrdine) throws DataException {
@@ -282,7 +273,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         PreparedStatement dRichiestaOrdine = connection.prepareStatement("DELETE FROM richiesta_ordine WHERE ID=?");
         dRichiestaOrdine.setInt(1, richiesta_key);
         dRichiestaOrdine.executeUpdate();
-        dataLayer.getCache().delete(RichiestaOrdine.class, richiesta_key);  // Rimuove l'elemento dalla cache, se esistente
+        dataLayer.getCache().delete(RichiestaOrdine.class, richiesta_key); 
         dRichiestaOrdine.close();
     } catch (SQLException ex) {
         throw new DataException("Unable to delete RichiestaOrdine", ex);

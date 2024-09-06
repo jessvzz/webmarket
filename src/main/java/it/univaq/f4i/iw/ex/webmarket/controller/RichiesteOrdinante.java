@@ -27,7 +27,8 @@ public class RichiesteOrdinante extends BaseController {
         res.activate("richieste_ordinante.ftl.html", request, response);
     }
 
-
+    
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {

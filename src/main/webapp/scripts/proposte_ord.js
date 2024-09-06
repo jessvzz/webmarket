@@ -24,21 +24,7 @@ return `
 `;
 }
 
-/*function sortProposte(proposte) {
-    return Array.from(proposte).sort((a, b) => {
-        const statoA = a.getAttribute('data-stato');
-        const statoB = b.getAttribute('data-stato');
-        const priority = {
-            "IN_ATTESA": 1,
-            "ORDINATO": 2,
-            "ACCETTATO": 3,
-            "RIFIUTATO": 3
-        };
 
-        return priority[statoA] - priority[statoB];
-    });
-}
-*/
 document.addEventListener("DOMContentLoaded", function() {
     const proposte = document.querySelectorAll('.card-row-content[stato]');
     proposte.forEach(proposta => {
@@ -113,12 +99,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // filtro select
     filterSelect.addEventListener('change', filterProposte);
-
-    //const props = document.querySelectorAll('.card-row-salm');
-    //const sortedProposte = sortProposte(props);
-
-    //const rowsContainer = document.querySelector('.rows-container');
-    //sortedProposte.forEach(ord => rowsContainer.appendChild(ord));
 });
 
 

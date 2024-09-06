@@ -2,14 +2,8 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import com.itextpdf.text.DocumentException;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.OrdineImpl;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -31,13 +25,9 @@ public class DettaglioPropostaOrd extends BaseController {
         request.setAttribute("page_title", "Dettaglio proposta ordinante");
 
         int proposta_key = Integer.parseInt(request.getParameter("n"));
-        System.out.println("ID Proposta: " + proposta_key);
-
-        // request.setAttribute("proposta", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(proposta_key));
-        // System.out.println("Proposta Recuperata");
+        
 
         PropostaAcquisto proposta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(proposta_key);
-        System.out.println("Proposta Recuperata: " + proposta);
         request.setAttribute("proposta", proposta);
 
         res.activate("dettaglio_proposta_ord.ftl.html", request, response);

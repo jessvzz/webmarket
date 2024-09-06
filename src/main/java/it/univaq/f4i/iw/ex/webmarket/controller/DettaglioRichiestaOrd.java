@@ -1,12 +1,7 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
-import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
-import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -30,10 +25,8 @@ public class DettaglioRichiestaOrd extends BaseController {
 
         // Recupero la richiesta dal database utilizzando il DAO
         request.setAttribute("richiesta", ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiestaOrdine(richiestaId));
-        // request.setAttribute("proposte", ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getProposteAcquistoByRichiesta(richiestaId));
-        System.out.println(richiestaId);
+       
         List<PropostaAcquisto> proposte = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getProposteAcquistoByRichiesta(richiestaId);
-        System.out.println("Proposte: " + proposte);
         request.setAttribute("proposte", proposte);
         res.activate("dettaglio_richiesta_ord.ftl.html", request, response);
     }
@@ -50,7 +43,6 @@ public class DettaglioRichiestaOrd extends BaseController {
     // Recupero l'ID dell'utente dalla sessione
     int userId = (int) session.getAttribute("userid");
 
-        String action = request.getParameter("action");
         action_default(request, response, userId);
 
     } catch (IOException | TemplateManagerException /* | DataException */ ex) {

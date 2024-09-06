@@ -29,23 +29,6 @@ return `
 `;
 }
 
-/*
-function sortOrdini(ordini) {
-    return Array.from(ordini).sort((a, b) => {
-        const statoA = a.getAttribute('data-stato');
-        const statoB = b.getAttribute('data-stato');
-        const priority = {
-            "IN_ATTESA": 1,
-            "RESPINTO_NON_CONFORME": 2,
-            "RESPINTO_NON_FUNZIONANTE": 2,
-            "ACCETTATO": 3,
-            "RIFIUTATO": 3
-        };
-
-        return priority[statoA] - priority[statoB];
-    });
-}
-*/
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -114,10 +97,6 @@ document.addEventListener("DOMContentLoaded", function() {
         // filtro select
         filterSelect.addEventListener('change', filterOrdini);
 
-        //const ords = document.querySelectorAll('.card-row-purple');
-        //const sortedOrdini = sortOrdini(ords);
-
-        //const rowsContainer = document.querySelector('.rows-container');
-        //sortedOrdini.forEach(ord => rowsContainer.appendChild(ord));
+        
         });
 

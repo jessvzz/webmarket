@@ -1,23 +1,17 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
-import com.itextpdf.text.DocumentException;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +33,7 @@ public class RifiutoOrdine extends BaseController {
     
     private void action_rifiutaOrdine(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
         Ordine ordine = ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdine(n);
-        // Recupera il tipo di rifiuto
+
         String motivoRifiuto = request.getParameter("azione");
        
         if (motivoRifiuto == null || motivoRifiuto.trim().isEmpty()) {
@@ -50,13 +44,12 @@ public class RifiutoOrdine extends BaseController {
             return; 
         }
 
-       // Setta lo stato dell'ordine in base al tipo di rifiuto
+       
        if (motivoRifiuto.equals("RESPINTO_NON_CONFORME")) {
         ordine.setStato(StatoOrdine.RESPINTO_NON_CONFORME);
     } else if (motivoRifiuto.equals("RESPINTO_NON_FUNZIONANTE")) {
         ordine.setStato(StatoOrdine.RESPINTO_NON_FUNZIONANTE);
     }
-         // Salva l'ordine con il nuovo stato
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordine);
         
         
@@ -70,12 +63,10 @@ public class RifiutoOrdine extends BaseController {
         richiesta.setStato(StatoRichiesta.IN_ATTESA);
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
 
-       // Recupera le informazioni dell'utente tecnico
 
        String email = richiesta.getTecnico().getEmail();
        String username = richiesta.getTecnico().getUsername();
         
-            // Prepara e invia l'email di notifica
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.outlook.com"); 
             props.put("mail.smtp.port", "587");
@@ -98,7 +89,6 @@ public class RifiutoOrdine extends BaseController {
 
 EmailSender.sendEmail(session, email, "Notifica Rifiuto Ordine", text);
 
-// Reindirizza alla pagina del dettaglio ordine
 response.sendRedirect("dettaglio_ordine_ord?n=" + n); 
 }
     

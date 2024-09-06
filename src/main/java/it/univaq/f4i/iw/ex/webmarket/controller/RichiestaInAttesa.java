@@ -5,13 +5,9 @@
 package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
 import it.univaq.f4i.iw.ex.webmarket.data.model.CaratteristicaRichiesta;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.CategoriaImpl;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.RichiestaOrdineImpl;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.SplitSlashesFmkExt;
@@ -132,7 +128,7 @@ public class RichiestaInAttesa extends BaseController{
      */
     @Override
     public String getServletInfo() {
-        return "Categoria servlet";
+        return "Richieste in attesa servlet";
     }// </editor-fold>
 }
 

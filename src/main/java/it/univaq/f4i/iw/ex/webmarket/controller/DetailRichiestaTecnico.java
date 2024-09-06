@@ -45,6 +45,7 @@ public class DetailRichiestaTecnico extends BaseController {
 
     }
 
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {

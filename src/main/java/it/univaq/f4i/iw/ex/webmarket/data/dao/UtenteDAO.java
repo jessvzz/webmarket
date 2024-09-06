@@ -11,15 +11,11 @@ public interface UtenteDAO {
 
     Utente getUtente(int utente_key) throws DataException;
 
-    //List<Utente> getAllUtenti() throws DataException;
-
     void storeUtente(Utente utente) throws DataException;
 
     Utente getUtenteByEmail(String email) throws DataException;
 
     Utente getUtenteByUsername(String username) throws DataException;
-
-    void deleteUtente(int utente_key) throws DataException;
     
 
 }

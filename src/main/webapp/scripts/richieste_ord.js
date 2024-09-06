@@ -24,21 +24,6 @@ return `
 `;
 }
 
-/*function sortRichieste(richieste) {
-    return Array.from(richieste).sort((a, b) => {
-        const statoA = a.getAttribute('data-stato');
-        const statoB = b.getAttribute('data-stato');
-        const priority = {
-            "IN_ATTESA": 1,
-            "ORDINATA": 2,
-            "PRESA_IN_CARICO": 3,
-            "RISOLTA": 4
-        };
-
-        return priority[statoA] - priority[statoB];
-    });
-}*/
-
 document.addEventListener("DOMContentLoaded", function() {
  
    const richieste = document.querySelectorAll('.card-row-content[stato]');
@@ -83,11 +68,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // filtro select
             filterSelect.addEventListener('change', filterRichieste);
-
-            const rics = document.querySelectorAll('.card-row-skyblue');
-            //const sortedRichieste = sortRichieste(rics);
-
-            const rowsContainer = document.querySelector('.rows-container');
-            //sortedRichieste.forEach(ord => rowsContainer.appendChild(ord));
         });
 

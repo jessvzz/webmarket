@@ -2,7 +2,6 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -16,11 +15,7 @@ import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-/**
- *
- * @author Ingegneria del Web
- * @version
- */
+
 public class Login extends BaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, TemplateManagerException {
@@ -30,8 +25,6 @@ public class Login extends BaseController {
        
     }
 
-    //nota: usente di default nel database: nome a, password p
-    //note: default user in the database: name: a, password p
     private void action_login(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, TemplateManagerException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -45,13 +38,8 @@ public class Login extends BaseController {
                 
                if (u != null && SecurityHelpers.checkPasswordHashPBKDF2(password, u.getPassword())) {
                 
-                    //se la validazione ha successo
-                    //if the identity validation succeeds
                     SecurityHelpers.createSession(request, username, u.getKey(), u.getTipologiaUtente());
-                    
-                    
-                    //se è stato trasmesso un URL di origine, torniamo a quell'indirizzo
-                    //if an origin URL has been transmitted, return to it
+           
                     String redirectPage;
                     redirectPage = switch (u.getTipologiaUtente()) {
     
@@ -62,8 +50,7 @@ public class Login extends BaseController {
                     };
                     
                     String referrer = request.getParameter("referrer");
-                    System.out.println("Referrer: " + referrer);
-                    System.out.println("User Type: " + u.getTipologiaUtente().toString());
+                 
 
                 if (referrer != null && SecurityHelpers.isPageAllowedForUserType(referrer, u.getTipologiaUtente().toString())) {
                         response.sendRedirect(referrer);

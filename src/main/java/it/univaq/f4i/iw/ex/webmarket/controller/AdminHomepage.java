@@ -20,7 +20,8 @@ public class AdminHomepage extends BaseController {
         request.setAttribute("page_title", "Admin Dashboard");
         res.activate("homepageadmin.ftl.html", request, response);
     }
-
+    
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {
@@ -32,10 +33,7 @@ public class AdminHomepage extends BaseController {
             return;
         }
         
-        /*if(!"AMMINISTRATORE".equals(session.getAttribute("tipo"))){
-            response.sendRedirect("login");
-            return;
-    }*/
+        
         
         // trovo user
         int userId = (int) session.getAttribute("userid");
@@ -61,7 +59,7 @@ public class AdminHomepage extends BaseController {
      */
     @Override
     public String getServletInfo() {
-        return "Main Newspaper servlet";
+        return "Admin's Homepage servlet";
     }// </editor-fold>
 
 }

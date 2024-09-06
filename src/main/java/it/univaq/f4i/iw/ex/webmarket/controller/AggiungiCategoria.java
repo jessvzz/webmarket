@@ -13,8 +13,6 @@ import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +28,7 @@ public class AggiungiCategoria extends BaseController{
             request.setAttribute("categorie", ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getAllCategorie());
 
                 
-            request.setAttribute("page_title", "aggiungi categoria");
+            request.setAttribute("page_title", "Aggiungi categoria");
                 
             TemplateResult res = new TemplateResult(getServletContext());
               

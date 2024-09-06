@@ -36,11 +36,9 @@ public class CategoriaController extends BaseController{
                 List<Categoria> categorieFiglie = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategorieByPadre(n);
                     request.setAttribute("categorieFiglie", categorieFiglie);
                 request.setAttribute("page_title", categoria.getNome());
-                //verr� usato automaticamente il template di outline spcificato tra i context parameters
-                //the outlne template specified through the context parameters will be added by the TemplateResult to the specified template
+                
                 TemplateResult res = new TemplateResult(getServletContext());
-                //aggiungiamo al template un wrapper che ci permette di chiamare la funzione stripSlashes
-                //add to the template a wrapper object that allows to call the stripslashes function
+                
                 request.setAttribute("strip_slashes", new SplitSlashesFmkExt());
                 res.activate("categoria.ftl.html", request, response);
             } else {

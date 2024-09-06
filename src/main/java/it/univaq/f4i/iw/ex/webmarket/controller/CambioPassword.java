@@ -26,7 +26,7 @@ public class CambioPassword extends BaseController {
         request.setAttribute("tipologia", tipologia);
 
   
-        request.setAttribute("page_title", "Profilo Ordinante");
+        request.setAttribute("page_title", "Cambio Password");
         request.setAttribute("user_type", u.getTipologiaUtente().toString());
         res.activate("cambio_password.ftl.html", request, response);
     }

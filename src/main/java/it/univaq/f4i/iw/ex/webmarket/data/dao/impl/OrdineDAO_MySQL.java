@@ -15,9 +15,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Implementazione MySQL dell'interfaccia OrdineDAO
 public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
-    // Query SQL precompilate
+    
     private PreparedStatement sOrdineByID, sOrdiniByUtente, sOrdiniByTecnico, sAllOrdini, iOrdine, uOrdine, dOrdine, ordiniDaNotificare, ordiniDaNotificareOrd;
 
     public OrdineDAO_MySQL(DataLayer d) {
@@ -28,7 +27,6 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
     public void init() throws DataException {
         try {
             super.init();
-            // Inizializzazione delle prepared statements con le query SQL
             sOrdineByID = connection.prepareStatement("SELECT * FROM ordine WHERE ID = ?");
             sOrdiniByUtente = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ?  ORDER BY CASE WHEN o.stato = 'IN_ATTESA' THEN 1 ELSE 2 END, o.data DESC");
             sOrdiniByTecnico = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ? ORDER BY CASE WHEN (o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE') THEN 1 ELSE 2 END, o.data DESC");
@@ -47,7 +45,6 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
     @Override
     public void destroy() throws DataException {
         try {
-            // Chiusura delle prepared statements
             sOrdineByID.close();
             sOrdiniByUtente.close();
             sAllOrdini.close();
@@ -55,7 +52,7 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             uOrdine.close();
             dOrdine.close();
         } catch (SQLException ex) {
-            //
+            
         }
         super.destroy();
     }
@@ -65,7 +62,6 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         return new OrdineProxy(getDataLayer());
     }
 
-     // Metodo helper per creare un oggetto OrdineProxy da un ResultSet
     private OrdineProxy createOrdine(ResultSet rs) throws DataException {
         try {
             OrdineProxy o = (OrdineProxy) createOrdine();
@@ -157,9 +153,8 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
                     return;
                 }
                
-                 // Aggiorna l'ordine esistente
+
                 uOrdine.setString(1, ordine.getStato().toString());
-                // uOrdine.setInt(2, ordine.getProposta().getId());
                 uOrdine.setInt(2, ordine.getProposta().getKey());
                 uOrdine.setDate(3, new java.sql.Date(ordine.getData().getTime()));
                 long oldVersion = ordine.getVersion();

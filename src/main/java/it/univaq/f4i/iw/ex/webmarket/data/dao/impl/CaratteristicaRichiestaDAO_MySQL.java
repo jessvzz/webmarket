@@ -6,7 +6,6 @@ import it.univaq.f4i.iw.ex.webmarket.data.dao.RichiestaOrdineDAO;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
 import it.univaq.f4i.iw.ex.webmarket.data.model.CaratteristicaRichiesta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.CaratteristicaProxy;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.proxy.CaratteristicaRichiestaProxy;
 import it.univaq.f4i.iw.framework.data.DAO;
 import it.univaq.f4i.iw.framework.data.DataException;
@@ -14,7 +13,6 @@ import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 
-// import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -84,10 +82,8 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
         try{
             CaratteristicaRichiestaProxy cr = (CaratteristicaRichiestaProxy) createCaratteristicaRichiesta();
             cr.setKey(rs.getInt("ID"));
-            // Ottenere RichiestaOrdineDAO
              RichiestaOrdineDAO richiestaOrdineDAO = (RichiestaOrdineDAO) dataLayer.getDAO(RichiestaOrdine.class);
              cr.setRichiestaOrdine(richiestaOrdineDAO.getRichiestaOrdine(rs.getInt("richiesta_id")));
-            // Ottenere CaratteristicaDAO
             CaratteristicaDAO caratteristicaDAO = (CaratteristicaDAO) dataLayer.getDAO(Caratteristica.class);
             cr.setCaratteristica(caratteristicaDAO.getCaratteristica(rs.getInt("caratteristica_id")));
             cr.setValore(rs.getString("valore"));
@@ -129,9 +125,9 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
             sCaratteristicheByRichiesta.setInt(1, richiesta_key);
             try (ResultSet rs = sCaratteristicheByRichiesta.executeQuery()) {
                 while (rs.next()) {
-                    // Crea una nuova CaratteristicaRichiesta usando i dati del ResultSet
+
                     CaratteristicaRichiesta caratteristicaRichiesta = createCaratteristicaRichiesta(rs);
-                    // Aggiungi la caratteristica alla lista
+
                     caratteristiche.add(caratteristicaRichiesta.getCaratteristica());
                 }
             }
@@ -166,9 +162,9 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
             sRichiesteByCaratteristica.setInt(1, caratteristica_key);
             try (ResultSet rs = sRichiesteByCaratteristica.executeQuery()) {
                 while (rs.next()) {
-                    // Crea una nuova CaratteristicaRichiesta usando i dati del ResultSet
+
                     CaratteristicaRichiesta caratteristicaRichiesta = createCaratteristicaRichiesta(rs);
-                    // Aggiungi la richiesta alla lista
+
                     richiesteOrdine.add(caratteristicaRichiesta.getRichiestaOrdine());
                 }
             }

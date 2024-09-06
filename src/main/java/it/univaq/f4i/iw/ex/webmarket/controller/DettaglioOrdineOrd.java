@@ -2,12 +2,7 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Ordine;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoOrdine;
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
-import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
-import it.univaq.f4i.iw.ex.webmarket.data.model.Utente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoProposta;
 import it.univaq.f4i.iw.ex.webmarket.data.model.impl.StatoRichiesta;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.TipologiaUtente;
-import it.univaq.f4i.iw.ex.webmarket.data.model.impl.UtenteImpl;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
 import it.univaq.f4i.iw.framework.result.TemplateResult;
@@ -32,10 +27,9 @@ public class DettaglioOrdineOrd extends BaseController {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Dettaglio ordine ordinante");
         int ordineId = Integer.parseInt(request.getParameter("n"));
-        System.out.println("ID ordine: " + ordineId);
+        
         // Recupero l'ordine dal database utilizzando il DAO
         request.setAttribute("ordine", ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().getOrdine(ordineId));
-        System.out.println(ordineId);
         res.activate("dettaglio_ordine_ord.ftl.html", request, response);
     }
 
@@ -55,7 +49,6 @@ public class DettaglioOrdineOrd extends BaseController {
 
         
 
-        System.out.println("Ordine accettato"+ ordine.getStato() + "e richiesta risolta" + ordine.getProposta().getRichiestaOrdine().getStato());
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordine);
         String email = ordine.getProposta().getRichiestaOrdine().getTecnico().getEmail();
         String username = ordine.getProposta().getRichiestaOrdine().getTecnico().getUsername();
@@ -93,7 +86,7 @@ public class DettaglioOrdineOrd extends BaseController {
     }
 
 
-
+    @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException {
     try {
@@ -106,9 +99,7 @@ public class DettaglioOrdineOrd extends BaseController {
         int userId = (int) session.getAttribute("userid");
 
 
-        // String action = request.getParameter("action");
-        // action_default(request, response, userId);
-
+        
         String action = request.getParameter("action");
         if (action != null && action.equals("accettaOrdine")) {
             action_accettaOrdine(request, response);

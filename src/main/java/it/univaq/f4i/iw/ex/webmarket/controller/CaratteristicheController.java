@@ -15,7 +15,6 @@ import it.univaq.f4i.iw.framework.result.TemplateResult;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -27,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author jessviozzi
  */
 public class CaratteristicheController extends BaseController{
-     private void action_categoria(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
+     private void action_default(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
         try {
             Categoria categoria = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategoria(n);
             if (categoria != null) {
@@ -104,7 +103,7 @@ public class CaratteristicheController extends BaseController{
         } else {
             request.setAttribute("error", "ID caratteristica mancante.");
         }
-        action_categoria(request, response, n);
+        action_default(request, response, n);
     }
     
 
@@ -120,7 +119,7 @@ public class CaratteristicheController extends BaseController{
             String action = request.getParameter("action");
             
             if (action == null || action.isEmpty()) {
-                action_categoria(request, response, n);
+                action_default(request, response, n);
             } else {
                 switch (action) {
                     case "createCaratteristica":
@@ -131,7 +130,7 @@ public class CaratteristicheController extends BaseController{
                         break;
                     default:
                         request.setAttribute("error", "Azione non riconosciuta.");
-                        action_categoria(request, response, n);
+                        action_default(request, response, n);
                         break;
                 }
             }
@@ -153,6 +152,6 @@ public class CaratteristicheController extends BaseController{
      */
     @Override
     public String getServletInfo() {
-        return "Categoria servlet";
+        return "Caratteristiche servlet";
     }// </editor-fold>
 }

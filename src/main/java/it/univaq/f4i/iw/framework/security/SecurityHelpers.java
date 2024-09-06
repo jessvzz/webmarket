@@ -55,17 +55,7 @@ public class SecurityHelpers {
         default:
             return false;
     }
-    /*
-        switch (tipo) {
-        case "AMMINISTRATORE":
-            return requestedPage.matches("^/WebMarket/(homepageadmin|gestioneutenti|gestionecategorie|categoria|modificacategoria|aggiungicategoria|gestisci_caratteristiche).*$");
-        case "TECNICO":
-            return requestedPage.matches("^/WebMarket/(homepagetecnico|richieste_tecnico|proposte_tecnico|storico_tecnico|detailrichiesta_tecnico|detailstorico_tecnico|detailproposta_tecnico|invioproposta|notifiche_tecnico|richiesta_inattesa|cambio_password).*$");
-        case "ORDINANTE":
-            return requestedPage.matches("^/WebMarket/(homepageordinante|richieste_ordinante|ordini|nuova_richiesta|nuova_richiesta_caratteristiche|notifiche_ordinante|cambio_password|dettaglio_richiesta_ord|dettaglio_ordine_ord|dettaglio_proposta_ord|motiva_rifiuto|proposte_ordinante|rifiuto_ordine).*$");
-        default:
-            return false;
-    }*/
+    
 
 }
     
