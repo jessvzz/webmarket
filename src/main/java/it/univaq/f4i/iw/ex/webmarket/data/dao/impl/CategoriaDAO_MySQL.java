@@ -37,6 +37,8 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
 
     private PreparedStatement dCategoria;
     
+    private PreparedStatement sCategorieRoot;
+    
 
 
     public CategoriaDAO_MySQL(DataLayer d) {
@@ -64,6 +66,8 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
             sCategorieFiglioFromPadre = connection.prepareStatement("SELECT * FROM categoria WHERE padre = ?");
 
             dCategoria = connection.prepareStatement("DELETE FROM categoria WHERE ID=?");
+            
+            sCategorieRoot = connection.prepareStatement("SELECT * FROM categoria WHERE padre IS NULL");
 
         } catch (SQLException e) {
             throw new DataException("Error initializing webmarket data layer", e);
@@ -205,6 +209,21 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
     try {
         sCategorieFiglioFromPadre.setInt(1, padre);
         try (ResultSet rs = sCategorieFiglioFromPadre.executeQuery()) {
+            while (rs.next()) {
+                result.add(createCategoria(rs));
+            }
+        }
+    } catch (SQLException ex) {
+        throw new DataException("Unable to load child categories by parent ID", ex);
+    }
+    return result;
+}
+    
+    @Override
+    public List<Categoria> getCategorieRoot() throws DataException {
+    List<Categoria> result = new ArrayList<>();
+    try {
+        try (ResultSet rs = sCategorieRoot.executeQuery()) {
             while (rs.next()) {
                 result.add(createCategoria(rs));
             }
