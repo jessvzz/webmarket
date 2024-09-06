@@ -2,6 +2,7 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.ApplicationDataLayer;
 import it.univaq.f4i.iw.ex.webmarket.data.model.CaratteristicaRichiesta;
+import it.univaq.f4i.iw.ex.webmarket.data.model.PropostaAcquisto;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 import it.univaq.f4i.iw.framework.data.DataException;
 import it.univaq.f4i.iw.framework.result.TemplateManagerException;
@@ -37,7 +38,11 @@ public class DetailRichiestaTecnico extends BaseController {
         //Recupero la richiesta usando la key
         RichiestaOrdine richiesta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiestaOrdine(richiesta_key);
         request.setAttribute("richiesta", richiesta);
-        
+
+        //Recupero le proposte già fatte per quella richiesta (se esistono)
+        List<PropostaAcquisto> proposte = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getProposteAcquistoByRichiesta(richiesta_key);
+        request.setAttribute("proposte", proposte);
+
         List<CaratteristicaRichiesta> caratteristiche = ((ApplicationDataLayer) request.getAttribute("datalayer")).getCaratteristicaRichiestaDAO().getCaratteristicaRichiestaByRichiesta(richiesta_key);
                 request.setAttribute("caratteristiche", caratteristiche);
         
@@ -69,7 +74,7 @@ public class DetailRichiestaTecnico extends BaseController {
 
     @Override
     public String getServletInfo() {
-        return "Servlet per la visualizzazione dei dettagli di una richiesta da evadere";
+        return "Servlet per la visualizzazione dei dettagli di una richiesta";
     }
 
 }

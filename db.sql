@@ -262,7 +262,7 @@ INSERT INTO categoria (nome, padre) VALUES
     ('Scrivanie', 8),
     ('Sedie', 8),
     ('Cancelleria', NULL),
-    ('Quaderno', 11),
+    ('Quaderni', 11),
     ('Agende', 11);
 
 INSERT INTO caratteristica (nome, categoria_id) VALUES

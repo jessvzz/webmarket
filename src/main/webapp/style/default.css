@@ -964,7 +964,6 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .card-row-pink {
     background-color: #FFC7C2;
-    width: 100%;
 }
 
 .card-row-purple:hover {
@@ -1198,7 +1197,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     margin-bottom: 10px;
 }
 
-.btn-blu {
+.btn-blu, .btn-proposte {
     display: block;
     width: auto;
     padding: 10px;
@@ -1212,6 +1211,17 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-bottom: 10px;
+}
+
+.btn-proposte {
+    background-color: #f4c46c;
+    color: #000000;
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+.btn-proposte:hover {
+    background-color: #f7bd50;
 }
 
 
