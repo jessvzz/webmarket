@@ -1,14 +1,14 @@
 <div class="container-beige  mx-auto p-4 md:p-6 lg:p-8">
     <div class="nav-container flex items-center space-x-2">
-        <div class="home-card flex justify-center items-center" style="background-color: #F67956;">
+        <div class="home-card flex justify-center items-center" style="background-color:#1E88E5;">
             <a href="homepageordinante">
                 <img src="images/home-svg.svg" alt="icona home" class="home-icon">
             </a>
         </div>
         <a href="proposte_ordinante">
-            <h3 class="text-lg ml-2 font-semibold" style="color: #F67956; margin-left: 10px;">> Proposte</h3>
+            <h3 class="text-lg ml-2 font-semibold" style="color:#1E88E5; margin-left: 10px;">> Proposte</h3>
         </a>
-        <h3 class="text-lg ml-2 font-semibold" style="color: #F67956; margin-left: 10px;">> Dettaglio Proposta #${proposta.codice}</h3> 
+        <h3 class="text-lg ml-2 font-semibold" style="color:#1E88E5; margin-left: 10px;">> Dettaglio Proposta #${proposta.codice}</h3> 
     </div>
     
     <div class="container-proposta">
@@ -25,7 +25,7 @@
             <div class="form-group-tecnico flex item-center">
                 <label for="richiesta" class="text-gray-700 italic mr-2">Vai alla Richiesta</label>
                 <a href="dettaglio_richiesta_ord?n=${proposta.getRichiestaOrdine().key}">
-                <div name="richiesta" class="darkblue-richiesta-storico">Richiesta #${proposta.getRichiestaOrdine().codiceRichiesta}</div>
+                <div name="richiesta" class="vai-richiesta">Richiesta #${proposta.getRichiestaOrdine().codiceRichiesta}</div>
                 </a>
             </div>
     

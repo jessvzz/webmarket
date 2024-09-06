@@ -54,24 +54,24 @@ document.addEventListener("DOMContentLoaded", function() {
         const stato = container.getAttribute("data-stato");
 
         if (stato === "IN_ATTESA") {
-            container.style.backgroundColor = "#e78e52";
+            container.style.backgroundColor = "#1E88E5";
             container.addEventListener('mouseenter', () => {
                 
                 //per l'hover
-                container.style.backgroundColor = "#ff9966"; 
+                container.style.backgroundColor = "#6ab8fc"; 
             });
 
             container.addEventListener('mouseleave', () => {
-                container.style.backgroundColor = "#e78e52"; 
+                container.style.backgroundColor = "#1E88E5"; 
             });
         } else {
-            container.style.backgroundColor = "#edb995";
+            container.style.backgroundColor = "#4ea5f2";
             container.addEventListener('mouseenter', () => {
-                container.style.backgroundColor = "#e78e52"; 
+                container.style.backgroundColor = "#6ab8fc"; 
             });
 
             container.addEventListener('mouseleave', () => {
-                container.style.backgroundColor = "#edb995"; 
+                container.style.backgroundColor = "#4ea5f2"; 
             });
         }
     });

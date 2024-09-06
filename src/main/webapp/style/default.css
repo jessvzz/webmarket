@@ -975,7 +975,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     background-color: #67c4f1;
 }
 .card-row-salm:hover {
-    background-color: #e27a34;
+    background-color:#167bd3;
 }
 
 .card-row-orange:hover {
@@ -1726,4 +1726,14 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     right: 20px;
     font-size: 18px;
     cursor: pointer;
+}
+
+.vai-richiesta {
+    background-color: #1E88E5;
+    width: auto;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    color: white;
 }
