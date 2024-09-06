@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
     propostaContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");
 
-        if (stato === "ACCETTATO" || stato === "RIFIUTATO") {
+        if (stato === "ACCETTATO" ) {
             container.style.backgroundColor = "#67c4f1";
             container.addEventListener("mouseover", function() {
                 container.style.backgroundColor = "#31a8e3";
