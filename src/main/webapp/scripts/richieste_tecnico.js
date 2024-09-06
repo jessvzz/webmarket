@@ -1,9 +1,26 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    /**
+     * Campo di input per la ricerca.
+     * @type {HTMLElement}
+     */
     const searchInput = document.getElementById("search-input");
+
+    /**
+     * Select per il filtraggio delle categorie.
+     * @type {HTMLElement}
+     */
     const filterSelect = document.getElementById("category");
+
+    /**
+     * Contenitori delle richieste.
+     * @type {NodeListOf<Element>}
+     */
     const richiestaContainers = document.querySelectorAll(".card-row-purple");
 
+    /**
+     * Filtra le richieste in base al termine di ricerca e alla categoria selezionata.
+     */
     function filterRichieste() {
         const searchTerm = searchInput.value.toLowerCase();
         const selectedCategory = filterSelect.value;

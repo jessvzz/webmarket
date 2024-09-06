@@ -1,7 +1,19 @@
 document.addEventListener("DOMContentLoaded", function() {
+    /**
+     * Elemento HTML che rappresenta il badge dello stato.
+     * @type {HTMLElement}
+     */
     var statoBadge = document.getElementById("statoBadge");
+
+    /**
+     * Testo dello stato ottenuto dal contenuto del badge.
+     * @type {string}
+     */
     var stato = statoBadge.textContent.trim();
 
+    /**
+     * Cambia il colore di sfondo del badge in base allo stato.
+     */
     switch(stato) {
         case 'RESPINTO_NON_CONFORME':
             statoBadge.style.backgroundColor = '#FFAEAE';

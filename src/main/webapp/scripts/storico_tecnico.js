@@ -1,3 +1,9 @@
+/**
+ * Restituisce l'HTML per lo stato dell'ordine con il colore di sfondo appropriato.
+ * 
+ * @param {string} statoOrdine - Lo stato dell'ordine.
+ * @return {string} L'HTML con il colore di sfondo appropriato.
+ */
 function getStatoOrdine(statoOrdine) {
     let backgroundColor;
 
@@ -28,51 +34,69 @@ return `
     </div>
 `;
 }
-
-
  
 
 document.addEventListener("DOMContentLoaded", function() {
 
+    /**
+     * Seleziona tutti gli elementi con la classe 'card-row-content' e attributo 'stato'.
+     * @type {NodeListOf<Element>}
+     */
     const ordini = document.querySelectorAll('.card-row-content[stato]');
-
 
     ordini.forEach(ordine => {
         const statoOrdine = ordine.getAttribute('stato');
         ordine.outerHTML = getStatoOrdine(statoOrdine);
     });
     
+    /**
+     * Seleziona tutti gli elementi con la classe 'card-row-orange'.
+     * @type {NodeListOf<Element>}
+     */
     const ordineContainers = document.querySelectorAll(".card-row-orange");
 
-       ordineContainers.forEach(container => {
+    ordineContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");
-    //     container.style.backgroundColor = stato === "IN_ATTESA" ? "#5D54BE" : "#9892d1";
-    // });
-    if (stato === "RESPINTO_NON_CONFORME" || stato === "RESPINTO_NON_FUNZIONANTE") {
-        container.style.backgroundColor = "#F67956";
-        container.addEventListener("mouseover", function() {
-            container.style.backgroundColor = "#f55e33";
-        });
-        container.addEventListener("mouseout", function() {
+        if (stato === "RESPINTO_NON_CONFORME" || stato === "RESPINTO_NON_FUNZIONANTE") {
             container.style.backgroundColor = "#F67956";
-        });
-    } else {
-        container.style.backgroundColor = "#e6a693";
-        container.addEventListener("mouseover", function() {
-            container.style.backgroundColor = "#F67956";
-        });
-        container.addEventListener("mouseout", function() {
+            container.addEventListener("mouseover", function() {
+                container.style.backgroundColor = "#f55e33";
+            });
+            container.addEventListener("mouseout", function() {
+                container.style.backgroundColor = "#F67956";
+            });
+        } else {
             container.style.backgroundColor = "#e6a693";
-        });
-    }
-});
+            container.addEventListener("mouseover", function() {
+                container.style.backgroundColor = "#F67956";
+            });
+            container.addEventListener("mouseout", function() {
+                container.style.backgroundColor = "#e6a693";
+            });
+        }
+    });
 
+    /**
+     * Campo di input per la ricerca.
+     * @type {HTMLElement}
+     */
     const searchInput = document.getElementById('search');
+
+    /**
+     * Select per il filtraggio dello stato.
+     * @type {HTMLElement}
+     */
     const filterSelect = document.getElementById("stato");
   
+    /**
+     * Contenitori degli ordini.
+     * @type {NodeListOf<Element>}
+     */
     const ord = document.querySelectorAll('#ordine-container');
 
-
+    /**
+     * Filtra gli ordini in base al termine di ricerca e allo stato selezionato.
+     */
     function filterOrdini() {
         
         const searchTerm = searchInput.value.toLowerCase();

@@ -1,3 +1,10 @@
+/**
+ * Restituisce l'HTML per lo stato della proposta con il colore di sfondo appropriato.
+ * 
+ * @param {string} statoProposta - Lo stato della proposta.
+ * @param {string} p - Il tipo di badge ('big-badge' o 'small-badge').
+ * @return {string} L'HTML con il colore di sfondo appropriato.
+ */
 function getStatoProposta(statoProposta, p) {
     let backgroundColor;
     switch (statoProposta) {
@@ -28,6 +35,10 @@ function getStatoProposta(statoProposta, p) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    /**
+     * Seleziona tutti gli elementi con la classe 'card-row-content' e attributo 'stato'.
+     * @type {NodeListOf<Element>}
+     */
     const proposte = document.querySelectorAll('.card-row-content[stato]');
     proposte.forEach(proposta => {
         const statoProposta = proposta.getAttribute('stato');
@@ -37,6 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
+    /**
+     * Seleziona tutti gli elementi con la classe 'badge-stato' e attributo 'stato'.
+     * @type {NodeListOf<Element>}
+     */
     const proposte = document.querySelectorAll('.badge-stato[stato]');
     proposte.forEach(proposta => {
         const statoProposta = proposta.getAttribute('stato');
@@ -44,6 +59,10 @@ document.addEventListener("DOMContentLoaded", function() {
         proposta.outerHTML = getStatoProposta(statoProposta, p);
     });
     
+    /**
+     * Seleziona tutti gli elementi con l'ID 'proposta-container'.
+     * @type {NodeListOf<Element>}
+     */
     const propostaContainers = document.querySelectorAll("#proposta-container");
 
     propostaContainers.forEach(container => {
@@ -60,10 +79,21 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // filtraggio (sia searchbar che select)
+    /**
+     * Campo di input per la ricerca.
+     * @type {HTMLElement}
+     */
     const searchInput = document.getElementById("search-input");
+
+    /**
+     * Select per il filtraggio dello stato.
+     * @type {HTMLElement}
+     */
     const filterSelect = document.getElementById("stato");
 
+    /**
+     * Filtra le proposte in base al termine di ricerca e allo stato selezionato.
+     */
     function filterProposte() {
         const searchTerm = searchInput.value.toLowerCase();
         const selectedStato = filterSelect.value;
