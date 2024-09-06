@@ -30,9 +30,9 @@
     <div class="rows-container">
 
         <#list richieste as richiesta>
-
+<a href="dettaglio_richiesta_ord?n=${richiesta.key}" class="a-cards">
         <div id="richiesta-container" class="card-row-skyblue" data-stato="${richiesta.getStato()}" data-codice="${richiesta.codiceRichiesta}">
-            <a href="dettaglio_richiesta_ord?n=${richiesta.key}" class="a-cards">
+            
                 <div class="card-row-content">
                     <p class="card-row-text">Codice: ${richiesta.codiceRichiesta}</p>
                 </div>
@@ -45,8 +45,9 @@
                 <div class="card-row-content" stato="${richiesta.getStato()}">
                     <p class="card-row-text">${richiesta.getStato()} </p>
                 </div>
-            </a>
+           
         </div>
+</a>
         </#list>
         
         </div>
