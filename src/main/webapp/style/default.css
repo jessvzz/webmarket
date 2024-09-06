@@ -922,6 +922,8 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     text-align: center;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .card-row-transparent {
@@ -937,6 +939,8 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     transition: background-color 0.3s ease;
     cursor: pointer;
     background-color: transparent;
+    margin-left: 5%;
+    margin-right: 5%;
 
 }
 
