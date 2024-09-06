@@ -19,7 +19,7 @@ function cambiaStatoDettaglioRichiesta(statoRichiesta) {
 }
 return `
 
-            <div class="badge-stato" style="background-color: ${backgroundColor}!important;">
+            <div class="badge-stato w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" style="background-color: ${backgroundColor}!important;">
                 ${statoRichiesta}
             </div> 
 `;

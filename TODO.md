@@ -32,19 +32,24 @@
 - [x] aggiusta modifica categoria
 
 ## Samanta:
-- [x]:inserisci campo categoria per la pagina Proposte Ordinante
-- [ ]: capire che problemi tiene richieste_ordinante.ftl.html
-- [ ]: modifica layout bottoni di accetta e rifiuta proposta
-
-
-****
-Pulsante notifiche tecnico lo vedo "troncato" in basso
-****
-- [ ]:nelle PROPOSTE dell'ordinante non riesco a filtrare e non riesco a fare il sort delle proposte per visualizzare in alto quelle IN ATTESA. per come è adesso il codice, rimane solo selezionata la proposta in stato d'attesa.
--[ ]: in RICHIESTE non capisco perchè la stessa funzione utilizzata per le proposte non mi evidenzia le richieste in attesa.
--[ ]: implementare tutti i filtri
 -[ ]: ALERT per "andata a buon fine!"
+-[ ]: css vari
 
+PROBLEMI CONSOLE SUL BROWSER:
+Compatibilità per chrome android 
+-[ ]: -ms-text-size-adjust' dentro normalize.css --> text-size-adjust
+-[ ]: -webkit-text-size-adjust: 100%; --> text-size-adjust
+ProposteOrdinante:
+-[ ]: Select element must have an accessible name: Element has no title attribute
+     <select name="status" id="status" class="filter-select">
+-[ ]: A 'set-cookie' header doesn't have the 'secure' directive.
+    Set-Cookie: JSESSIONID=A8AE906B4801FBB31A970EE29DD5FF4D; Path=/WebMarket; HttpOnly
+
+
+
+WARNING:
+-[ ]: homepageordinante: 'charset' meta element was not specified.
+-[ ]: Resource should use cache busting but URL does not match configured patterns.
 
 # ALTRO
 - [Figma dell'admin](https://www.figma.com/file/c6hYZIz2AJhbynd5b2UdG1?node-id=0-1&t=uapcU6HHGd49wdL5-0&type=whiteboard)

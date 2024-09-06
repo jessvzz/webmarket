@@ -19,7 +19,7 @@ function cambiaStatoDettaglioProposta(statoProposta) {
 }
 return `
 
-            <div class="badge-stato rounded-full px-4 py-2 font-semibold text-sm" style="background-color: ${backgroundColor};">
+            <div class="badge-stato w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" style="background-color: ${backgroundColor};">
                 ${statoProposta}
             </div> 
 `;
