@@ -46,7 +46,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
                 "SELECT r.ID, r.note, r.stato, r.data, r.codice_richiesta, r.utente, r.tecnico, r.categoria_id " +
                 "FROM richiesta_ordine r " +
                 "WHERE r.stato = ? AND r.tecnico = ? " +
-                "AND NOT EXISTS (SELECT 1 FROM proposta_acquisto p WHERE p.richiesta_id = r.ID)"
+                "AND NOT EXISTS (SELECT 1 FROM proposta_acquisto p WHERE p.richiesta_id = r.ID) ORDER BY data ASC"
             );
             sRichiesteTecnico = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE tecnico_id = ?");
             sRichiesteRisolte = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");

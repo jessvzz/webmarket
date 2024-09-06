@@ -27,6 +27,7 @@ function getStatoProposta(statoProposta, p) {
      }
 }
 
+/*
 function sortProposte(proposte) {
     return Array.from(proposte).sort((a, b) => {
         const statoA = a.getAttribute('data-stato');
@@ -65,6 +66,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+ * 
+ */
 
 document.addEventListener("DOMContentLoaded", function() {
     const proposte = document.querySelectorAll('.card-row-content[stato]');
@@ -90,6 +93,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (stato === "ACCETTATO" || stato === "RIFIUTATO") {
             container.style.backgroundColor = "#67c4f1";
+            container.addEventListener("mouseover", function() {
+                container.style.backgroundColor = "#31a8e3";
+            });
+            container.addEventListener("mouseout", function() {
+                container.style.backgroundColor = "#67c4f1";
+            });
         }
     });
 

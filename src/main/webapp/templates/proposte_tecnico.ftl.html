@@ -46,8 +46,9 @@
     <#list proposte as proposta>
         
     <div class="rows-container">
+        <a href="detailproposta_tecnico?n=${proposta.key}" class="a-cards">
         <div class="card-row-skyblue" id="proposta-container" data-codice="${proposta.codice}" data-stato="${proposta.getStatoProposta()}">
-            <a href="detailproposta_tecnico?n=${proposta.key}" class="a-cards">
+            
                 <div class="card-row-content">
                     <p class="card-row-text">${proposta.codice}</p>
                 </div>
@@ -60,8 +61,9 @@
                 <div class="card-row-content" stato="${proposta.getStatoProposta()}">
                     <p class="card-row-text">${proposta.getStatoProposta()}</p>
                 </div>
-            </a>
+            
         </div>
+            </a>
         </#list>
     </div>
     </#if>

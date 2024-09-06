@@ -25,8 +25,9 @@
     <div class="rows-container">
 
         <#list ordini as ordine>
+ <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards">
+
         <div id="ordine-container" class="card-row-orange" data-stato="${ordine.stato}" data-codice="${ordine.proposta.getCodice()}" >
-            <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards">
                 <div class="card-row-content">
                     <p class="card-row-text"><b>Proposta: </b>${ordine.proposta.codice}</p>
                 </div>
@@ -36,8 +37,9 @@
                 <div class="card-row-content" stato="${ordine.getStato()}">
                     <p class="card-row-text">${ordine.stato}</p>
                 </div>
-            </a>
+           
         </div>
+     </a>
         </#list>
     </div>
 </div>

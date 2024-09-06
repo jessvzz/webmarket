@@ -31,7 +31,7 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
             // Inizializzazione delle prepared statements con le query SQL
             sOrdineByID = connection.prepareStatement("SELECT * FROM ordine WHERE ID = ?");
             sOrdiniByUtente = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.utente = ?  ORDER BY CASE WHEN o.stato = 'IN_ATTESA' THEN 1 ELSE 2 END");
-            sOrdiniByTecnico = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ? ORDER BY CASE WHEN o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE' THEN 1 ELSE 2 END");
+            sOrdiniByTecnico = connection.prepareStatement("SELECT o.* FROM ordine o JOIN proposta_acquisto pa ON o.proposta_id = pa.ID JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID WHERE ro.tecnico = ? ORDER BY CASE WHEN (o.stato = 'RESPINTO_NON_CONFORME' OR o.stato = 'RESPINTO_NON_FUNZIONANTE') THEN 1 ELSE 2 END, o.data DESC");
             sAllOrdini = connection.prepareStatement("SELECT * FROM ordine");
             iOrdine = connection.prepareStatement("INSERT INTO ordine (stato, proposta_id, data) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             uOrdine = connection.prepareStatement("UPDATE ordine SET stato=?, proposta_id=? , data=?, version=? WHERE ID=? AND version=?");

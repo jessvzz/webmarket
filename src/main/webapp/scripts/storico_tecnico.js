@@ -29,7 +29,7 @@ return `
 `;
 }
 
-
+/*
 function sortOrdini(ordini) {
     return Array.from(ordini).sort((a, b) => {
         const statoA = a.getAttribute('data-stato');
@@ -45,6 +45,8 @@ function sortOrdini(ordini) {
         return priority[statoA] - priority[statoB];
     });
 }
+ * */
+ 
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -115,10 +117,10 @@ document.addEventListener("DOMContentLoaded", function() {
         filterSelect.addEventListener('change', filterOrdini);
 
         const ords = document.querySelectorAll('.card-row-orange');
-        const sortedOrdini = sortOrdini(ords);
+        //const sortedOrdini = sortOrdini(ords);
 
-        const rowsContainer = document.querySelector('.rows-container');
-        sortedOrdini.forEach(ord => rowsContainer.appendChild(ord));
+        //const rowsContainer = document.querySelector('.rows-container');
+        //sortedOrdini.forEach(ord => rowsContainer.appendChild(ord));
         });
 
 
