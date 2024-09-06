@@ -66,10 +66,10 @@ public class CambioPassword extends BaseController {
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().storeUtente(u);
         
         if (u.getTipologiaUtente().equals(TipologiaUtente.ORDINANTE)) {
-            response.sendRedirect("homepageordinante");
+            response.sendRedirect("homepageordinante?success=true");
             
         } else if (u.getTipologiaUtente().equals(TipologiaUtente.TECNICO)) {
-            response.sendRedirect("homepagetecnico");
+            response.sendRedirect("homepagetecnico?success=true");
         }
     }
 
@@ -113,7 +113,7 @@ public class CambioPassword extends BaseController {
      */
     @Override
     public String getServletInfo() {
-        return "Profilo Ordinante servlet";
+        return "Cambio password servlet";
     }
 
 }

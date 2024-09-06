@@ -24,6 +24,8 @@
 - [x] Aggiustare resize button nuove richieste e impostazioni
 - [x] Sistemare (soprattutto colore stato) detailstorico_tecnico
 - [ ] Mettere dei button di riferimento alle proposte già fatte per una determinata richiesta
+- [x] Alert per password cambiata con successo
+- [ ] Rivedere il margine tra le righe quando si fa la select
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
