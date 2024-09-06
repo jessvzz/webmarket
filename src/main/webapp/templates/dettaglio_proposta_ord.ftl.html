@@ -23,35 +23,35 @@
 
 
             <div class="form-group-tecnico flex item-center">
-                <label for="richiesta" class="text-gray-700 italic mr-2">Vai alla Richiesta</label>
+                <label class="text-gray-700 italic mr-2">Vai alla Richiesta</label>
                 <a href="dettaglio_richiesta_ord?n=${proposta.getRichiestaOrdine().key}">
-                <div name="richiesta" class="vai-richiesta">Richiesta #${proposta.getRichiestaOrdine().codiceRichiesta}</div>
+                <div class="vai-richiesta shadow-lg">Richiesta #${proposta.getRichiestaOrdine().codiceRichiesta}</div>
                 </a>
             </div>
     
 
-        <div class="container-salm-proposta p-4">
+        <div class="container-salm-proposta p-4 shadow-lg">
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome produttore" class="block text-gray-700 font-bold">Nome produttore:</label>
+                    <label class="block text-gray-700 font-bold">Nome produttore:</label>
                     <div class="grey-row">${proposta.produttore!"Produttore non disponibile"}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto" class="block text-gray-700 font-bold">Nome prodotto:</label>
+                    <label class="block text-gray-700 font-bold">Nome prodotto:</label>
                     <div class="grey-row">${proposta.prodotto}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="codice prodotto" class="block text-gray-700 font-bold">Codice prodotto:</label>
+                    <label class="block text-gray-700 font-bold">Codice prodotto:</label>
                     <div class="grey-row">${proposta.codiceProdotto}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prezzo" class="block text-gray-700 font-bold">Prezzo:</label>
+                    <label class="block text-gray-700 font-bold">Prezzo:</label>
                     <div class="grey-row">€${proposta.prezzo}</div>
                 </div>
             </div>
@@ -78,16 +78,17 @@
             <form action="" method="post" class="mb-2">
                 <input type="hidden" name="action" value="accettaProposta">
                 <!-- <button class="green-button">ACCETTA</button> -->
-                <button type="submit"  class="green-button  hover:bg-green-600 text-white px-4 py-2 rounded-md">ACCETTA</button>
+                <button type="submit"  class="green-button  hover:bg-green-600 text-white px-4 py-2 rounded-md shadow-lg">ACCETTA</button>
             </form>
         </#if>
         <#if proposta.getStatoProposta() == "IN_ATTESA">
             <div>
                 <a href="motiva_rifiuto?n=${proposta.key}">
                     <!-- <button class="orange-button">RIFIUTA</button> -->
-                    <button class="orange-button hover:bg-orange-600 text-white px-4 py-2 rounded-md">RIFIUTA</button>
+                    <div class="orange-button hover:bg-orange-600 text-white px-4 py-2 rounded-md shadow-lg">RIFIUTA</div>
                 </a>
             </div>
         </#if>
     </div>
+</div>
 </div>
