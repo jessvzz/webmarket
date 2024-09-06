@@ -26,10 +26,20 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
 
     private PreparedStatement sPropostaByID,sProposteByOrdine,sProposteByUtente,sProposteByTecnico,sProposteByRichiesta, sAllProposte, iProposta, uProposta,uInviaProposta, dProposta, proposteDaNotificare, proposteDaNotificareOrd;
 
+    /**
+     * Costruttore della classe.
+     * 
+     * @param d il DataLayer da utilizzare
+     */
     public PropostaAcquistoDAO_MySQL(DataLayer d) {
         super(d);
     }
 
+    /**
+     * Inizializza le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante l'inizializzazione
+     */
     @Override
     public void init() throws DataException {
         try {
@@ -67,6 +77,11 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         }
     }
 
+    /**
+     * Chiude le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante la chiusura
+     */
     @Override
     public void destroy() throws DataException {
         try {
@@ -84,11 +99,23 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         super.destroy();
     }
 
+    /**
+     * Crea una nuova istanza di PropostaAcquisto.
+     * 
+     * @return una nuova istanza di PropostaAcquistoProxy
+     */
     @Override
     public PropostaAcquisto createPropostaAcquisto() {
         return new PropostaAcquistoProxy(getDataLayer());
     }
 
+    /**
+     * Crea una PropostaAcquistoProxy a partire da un ResultSet.
+     * 
+     * @param rs il ResultSet da cui creare la PropostaAcquistoProxy
+     * @return una nuova istanza di PropostaAcquistoProxy
+     * @throws DataException se si verifica un errore durante la creazione
+     */
     private PropostaAcquistoProxy createPropostaAcquisto(ResultSet rs) throws DataException {
         try {
             PropostaAcquistoProxy p = (PropostaAcquistoProxy) createPropostaAcquisto();
@@ -112,6 +139,13 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         }
     }
 
+    /**
+     * Recupera una proposta d'acquisto dato il suo ID.
+     * 
+     * @param proposta_key l'ID della proposta d'acquisto
+     * @return la proposta d'acquisto corrispondente all'ID
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public PropostaAcquisto getPropostaAcquisto(int proposta_key) throws DataException {
         PropostaAcquisto p = null;
@@ -133,6 +167,13 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         return p;
     }
 
+    /**
+     * Recupera le proposte d'acquisto associate a una richiesta.
+     * 
+     * @param richiesta_id l'ID della richiesta
+     * @return una lista di proposte d'acquisto associate alla richiesta
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<PropostaAcquisto> getProposteAcquistoByRichiesta(int richiesta_id) throws DataException {
         List<PropostaAcquisto> proposte = new ArrayList<>();
@@ -149,6 +190,12 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         return proposte;
     }
 
+    /**
+     * Recupera tutte le proposte d'acquisto.
+     * 
+     * @return una lista di tutte le proposte d'acquisto
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<PropostaAcquisto> getAllProposteAcquisto() throws DataException {
         List<PropostaAcquisto> proposte = new ArrayList<>();
@@ -162,6 +209,12 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         return proposte;
     }
 
+    /**
+     * Memorizza una proposta d'acquisto nel database.
+     * 
+     * @param proposta la proposta d'acquisto da memorizzare
+     * @throws DataException se si verifica un errore durante la memorizzazione
+     */
     @Override
     public void storePropostaAcquisto(PropostaAcquisto proposta) throws DataException {
         try {
@@ -218,6 +271,13 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         }
     }
 
+    /**
+     * Recupera le proposte d'acquisto associate a un utente.
+     * 
+     * @param utente_key l'ID dell'utente
+     * @return una lista di proposte d'acquisto associate all'utente
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<PropostaAcquisto> getProposteByUtente(int utente_key) throws DataException {
            List<PropostaAcquisto> proposte = new ArrayList<>();
@@ -234,6 +294,13 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
     return proposte;
     }
 
+    /**
+     * Recupera le proposte d'acquisto associate a un ordine.
+     * 
+     * @param ordine_key l'ID dell'ordine
+     * @return una lista di proposte d'acquisto associate all'ordine
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<PropostaAcquisto> getProposteByOrdine(int ordine_key) throws DataException {
         List<PropostaAcquisto> proposte = new ArrayList<>();
@@ -250,7 +317,12 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         return proposte;
     }
     
-
+    /**
+     * Invia una proposta d'acquisto.
+     * 
+     * @param proposta la proposta d'acquisto da inviare
+     * @throws DataException se si verifica un errore durante l'invio
+     */
     @Override
     public void inviaPropostaAcquisto(PropostaAcquisto proposta) throws DataException {
         try {
@@ -266,6 +338,13 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         }
     }
 
+    /**
+     * Recupera le proposte d'acquisto associate a un tecnico.
+     * 
+     * @param tecnico_key l'ID del tecnico
+     * @return una lista di proposte d'acquisto associate al tecnico
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<PropostaAcquisto> getProposteByTecnico(int tecnico_key) throws DataException {
         List<PropostaAcquisto> proposte = new ArrayList<>();
@@ -282,6 +361,13 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
         return proposte;
         }
     
+    /**
+     * Verifica se ci sono proposte da notificare per un tecnico.
+     * 
+     * @param tecnicoId l'ID del tecnico
+     * @return true se ci sono proposte da notificare, false altrimenti
+     * @throws DataException se si verifica un errore durante la verifica
+     */
     @Override
     public boolean notificaProposte(int tecnicoId) throws DataException {
         try {
@@ -293,11 +379,18 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
                 }
             }
         } catch (SQLException ex) {
-            throw new DataException("Non sia riusciti a controllare se ci sono porposte accettate o rifiutate", ex);
+            throw new DataException("Non siamo riusciti a controllare se ci sono proposte accettate o rifiutate", ex);
         }
         return false;
     }
     
+    /**
+     * Verifica se ci sono proposte d'acquisto da notificare per un ordinante.
+     * 
+     * @param ordinanteId l'ID dell'ordinante
+     * @return true se ci sono proposte d'acquisto da notificare, false altrimenti
+     * @throws DataException se si verifica un errore durante la verifica
+     */
     @Override
     public boolean notificaProposteOrd(int ordinanteId) throws DataException {
         try {
@@ -309,7 +402,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
                 }
             }
         } catch (SQLException ex) {
-            throw new DataException("Non sia riusciti a controllare se ci sono porposte accettate o rifiutate", ex);
+            throw new DataException("Non siamo riusciti a controllare se ci sono proposte accettate o rifiutate", ex);
         }
         return false;
     }

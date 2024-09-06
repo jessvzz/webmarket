@@ -23,10 +23,20 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
 
     private PreparedStatement sCaratteristicaRichiestaByID, sCaratteristicheByRichiesta, sRichiesteByCaratteristica, iCaratteristicaRichiesta, uCaratteristicaRichiesta;
 
+    /**
+     * Costruttore della classe.
+     * 
+     * @param d il DataLayer da utilizzare
+     */
     public CaratteristicaRichiestaDAO_MySQL(DataLayer d) {
         super(d);
     }
 
+    /**
+     * Inizializza le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante l'inizializzazione
+     */
     @Override
     public void init() throws DataException {
         try {
@@ -41,6 +51,11 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
         }
     }
 
+    /**
+     * Chiude le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante la chiusura
+     */
     @Override
     public void destroy() throws DataException {
         try {
@@ -70,14 +85,23 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
         }
     }
     
-
-
+    /**
+     * Crea una nuova istanza di CaratteristicaRichiesta.
+     * 
+     * @return una nuova istanza di CaratteristicaRichiestaProxy
+     */
     @Override
     public CaratteristicaRichiesta createCaratteristicaRichiesta() {
         return new CaratteristicaRichiestaProxy(getDataLayer());
     }
 
-    //helper
+    /**
+     * Crea una CaratteristicaRichiestaProxy a partire da un ResultSet.
+     * 
+     * @param rs il ResultSet da cui creare la CaratteristicaRichiestaProxy
+     * @return una nuova istanza di CaratteristicaRichiestaProxy
+     * @throws DataException se si verifica un errore durante la creazione
+     */
     private CaratteristicaRichiestaProxy createCaratteristicaRichiesta(ResultSet rs) throws DataException {
         try{
             CaratteristicaRichiestaProxy cr = (CaratteristicaRichiestaProxy) createCaratteristicaRichiesta();
@@ -95,7 +119,13 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
         
     }
 
-
+    /**
+     * Recupera una caratteristica richiesta dato il suo ID.
+     * 
+     * @param cr_key l'ID della caratteristica richiesta
+     * @return la caratteristica richiesta corrispondente all'ID
+     * @throws DataException se si verifica un errore durante il recupero
+     */
      @Override
      public CaratteristicaRichiesta getCaratteristicaRichiesta(int cr_key) throws DataException {
          CaratteristicaRichiesta c = null;
@@ -117,7 +147,13 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
           return c;
       }
 
-
+    /**
+     * Recupera le caratteristiche associate a una richiesta.
+     * 
+     * @param richiesta_key l'ID della richiesta
+     * @return una lista di caratteristiche associate alla richiesta
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Caratteristica> getCaratteristicheByRichiesta(int richiesta_key) throws DataException {
         List<Caratteristica> caratteristiche = new ArrayList<>();
@@ -137,6 +173,13 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
         return caratteristiche;
     }
     
+    /**
+     * Recupera le caratteristiche richieste associate a una richiesta.
+     * 
+     * @param richiesta_key l'ID della richiesta
+     * @return una lista di caratteristiche richieste associate alla richiesta
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<CaratteristicaRichiesta> getCaratteristicaRichiestaByRichiesta(int richiesta_key) throws DataException {
         List<CaratteristicaRichiesta> caratteristiche = new ArrayList<>();
@@ -154,7 +197,13 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
         return caratteristiche;
     }
     
-
+    /**
+     * Recupera le richieste associate a una caratteristica.
+     * 
+     * @param caratteristica_key l'ID della caratteristica
+     * @return una lista di richieste associate alla caratteristica
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<RichiestaOrdine> getRichiesteByCaratteristica(int caratteristica_key) throws DataException {
         List<RichiestaOrdine> richiesteOrdine = new ArrayList<>();
@@ -174,7 +223,12 @@ public class CaratteristicaRichiestaDAO_MySQL extends DAO implements Caratterist
         return richiesteOrdine;
     }
     
-
+    /**
+     * Memorizza una caratteristica richiesta nel database.
+     * 
+     * @param caratteristicaRichiesta la caratteristica richiesta da memorizzare
+     * @throws DataException se si verifica un errore durante la memorizzazione
+     */
     @Override
     public void storeCaratteristicaRichiesta(CaratteristicaRichiesta caratteristicaRichiesta) throws DataException {
         try {

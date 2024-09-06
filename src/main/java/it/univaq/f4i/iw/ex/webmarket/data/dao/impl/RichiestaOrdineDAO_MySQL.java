@@ -25,10 +25,20 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
 
     private PreparedStatement sRichiestaOrdineByID, sRichiesteByUtente, iRichiestaOrdine, uRichiestaOrdine, sRichiesteInoltrate, sRichiesteNonEvase, sRichiesteTecnico, sRichiesteRisolte, esisteRichiestaInAttesa;
 
+    /**
+     * Costruttore della classe.
+     * 
+     * @param d il DataLayer da utilizzare
+     */
     public RichiestaOrdineDAO_MySQL(DataLayer d) {
         super(d);
     }
 
+    /**
+     * Inizializza le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante l'inizializzazione
+     */
     @Override
     public void init() throws DataException {
         try {
@@ -53,6 +63,11 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         }
     }
 
+    /**
+     * Chiude le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante la chiusura
+     */
     @Override
     public void destroy() throws DataException {
         try {
@@ -70,11 +85,23 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         super.destroy();
     }
 
+    /**
+     * Crea una nuova istanza di RichiestaOrdine.
+     * 
+     * @return una nuova istanza di RichiestaOrdineProxy
+     */
     @Override
     public RichiestaOrdine createRichiestaOrdine() {
         return new RichiestaOrdineProxy(getDataLayer());
     }
 
+    /**
+     * Crea una RichiestaOrdineProxy a partire da un ResultSet.
+     * 
+     * @param rs il ResultSet da cui creare la RichiestaOrdineProxy
+     * @return una nuova istanza di RichiestaOrdineProxy
+     * @throws DataException se si verifica un errore durante la creazione
+     */
     private RichiestaOrdineProxy createRichiestaOrdine(ResultSet rs) throws DataException {
         try {
             RichiestaOrdineProxy richiesta = (RichiestaOrdineProxy) createRichiestaOrdine();
@@ -103,6 +130,13 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         }
     }
 
+    /**
+     * Recupera una richiesta dato il suo ID.
+     * 
+     * @param richiesta_key l'ID della richiesta
+     * @return la richiesta corrispondente all'ID
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public RichiestaOrdine getRichiestaOrdine(int richiesta_key) throws DataException {
         RichiestaOrdine richiesta = null;
@@ -124,6 +158,13 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         return richiesta;
     }
 
+    /**
+     * Recupera le richieste associate a un utente.
+     * 
+     * @param utente_key l'ID dell'utente
+     * @return una lista di richieste associate all'utente
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<RichiestaOrdine> getRichiesteByUtente(int utente_key) throws DataException {
         List<RichiestaOrdine> result = new ArrayList<>();
@@ -140,6 +181,12 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         return result;
     }
 
+    /**
+     * Memorizza una richiesta nel database.
+     * 
+     * @param richiesta la richiesta da memorizzare
+     * @throws DataException se si verifica un errore durante la memorizzazione
+     */
     @Override
     public void storeRichiestaOrdine(RichiestaOrdine richiesta) throws DataException {
         try {
@@ -189,7 +236,12 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         }
     }
 
-    
+    /**
+     * Recupera le richieste inoltrate.
+     * 
+     * @return una lista di richieste inoltrate
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<RichiestaOrdine> getRichiesteInoltrate() throws DataException {
         List<RichiestaOrdine> result = new ArrayList<>();
@@ -206,6 +258,13 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         return result;
     }
 
+    /**
+     * Recupera le richieste non evase per un tecnico specifico.
+     * 
+     * @param tecnico_key l'ID del tecnico
+     * @return una lista di richieste non evase
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<RichiestaOrdine> getRichiesteNonEvase(int tecnico_key) throws DataException {
         List<RichiestaOrdine> result = new ArrayList<>();
@@ -223,6 +282,13 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         return result;
     }
 
+    /**
+     * Recupera le richieste associate a un tecnico specifico.
+     * 
+     * @param tecnico_key l'ID del tecnico
+     * @return una lista di richieste associate al tecnico
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<RichiestaOrdine> getRichiesteTecnico(int tecnico_key) throws DataException {
         List<RichiestaOrdine> result = new ArrayList<>();
@@ -239,6 +305,12 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         return result;
     }
 
+    /**
+     * Recupera le richieste risolte.
+     * 
+     * @return una lista di richieste risolte
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<RichiestaOrdine> getRichiesteRisolte() throws DataException {
         List<RichiestaOrdine> result = new ArrayList<>();
@@ -255,8 +327,12 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         return result;
     }
 
-
-
+    /**
+     * Invia una richiesta impostando il suo stato a "IN_ATTESA".
+     * 
+     * @param richiestaOrdine la richiesta da inviare
+     * @throws DataException se si verifica un errore durante l'invio
+     */
     @Override
     public void inviaRichiestaOrdine(RichiestaOrdine richiestaOrdine) throws DataException {
         if (richiestaOrdine != null && richiestaOrdine.getKey() != null) {
@@ -267,6 +343,12 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
         }
     }
 
+    /**
+     * Elimina una richiesta dal database.
+     * 
+     * @param richiesta_key l'ID della richiesta da eliminare
+     * @throws DataException se si verifica un errore durante l'eliminazione
+     */
     @Override
     public void deleteRichiestaOrdine(int richiesta_key) throws DataException {
       try {
@@ -280,6 +362,12 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
     }
 }
     
+    /**
+     * Verifica se esiste una richiesta in stato "IN_ATTESA".
+     * 
+     * @return true se esiste almeno una richiesta in stato "IN_ATTESA", false altrimenti.
+     * @throws DataException se si verifica un errore durante la verifica.
+     */
     @Override
     public boolean esisteRichiestaInAttesa() throws DataException {
         try {

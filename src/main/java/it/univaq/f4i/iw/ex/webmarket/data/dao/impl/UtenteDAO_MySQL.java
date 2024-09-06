@@ -16,19 +16,24 @@ import java.sql.SQLException;
 
 import java.sql.Statement;
 
-/**
- *
- * @author Giuseppe Della Penna, Giulia Di Flamminio & Samanta Di Stefano
- */
-
 public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
 
     private PreparedStatement sUserByID, sUserByEmail, sUserByUsername, iUser, uUser;
 
+    /**
+     * Costruttore della classe.
+     * 
+     * @param d il DataLayer da utilizzare
+     */
     public UtenteDAO_MySQL(DataLayer d) {
         super(d);
     }
 
+    /**
+     * Inizializza le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante l'inizializzazione
+     */
     @Override
     public void init() throws DataException {
         try {
@@ -46,6 +51,11 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         }
     }
 
+    /**
+     * Chiude le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante la chiusura
+     */
     @Override
     public void destroy() throws DataException {
         //anche chiudere i PreparedStamenent è una buona pratica...
@@ -62,19 +72,23 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         super.destroy();
     }
 
-//metodi "factory" che permettono di creare
-//e inizializzare opportune implementazioni
-//delle interfacce del modello dati, nascondendo
-//all'utente tutti i particolari
-//factory methods to create and initialize
-//suitable implementations of the data model interfaces,
-//hiding all the implementation details
+    /**
+     * Crea una nuova istanza di Utente.
+     * 
+     * @return una nuova istanza di UtenteProxy
+     */
     @Override
     public Utente createUtente() {
         return new UtenteProxy(getDataLayer());
     }
 
-    //helper
+    /**
+     * Crea una UtenteProxy a partire da un ResultSet.
+     * 
+     * @param rs il ResultSet da cui creare la UtenteProxy
+     * @return una nuova istanza di UtenteProxy
+     * @throws DataException se si verifica un errore durante la creazione
+     */
     private UtenteProxy createUtente(ResultSet rs) throws DataException {
         try {
             UtenteProxy a = (UtenteProxy) createUtente();
@@ -90,6 +104,13 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         }
     }
 
+    /**
+     * Recupera un utente dato il suo ID.
+     * 
+     * @param user_key l'ID dell'utente
+     * @return l'utente corrispondente all'ID
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public Utente getUtente(int user_key) throws DataException {
         Utente u = null;
@@ -125,6 +146,13 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         return u;
     }
 
+    /**
+     * Recupera un utente dato il suo indirizzo email.
+     * 
+     * @param email l'indirizzo email dell'utente
+     * @return l'utente corrispondente all'indirizzo email
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public Utente getUtenteByEmail(String email) throws DataException {
 
@@ -141,6 +169,13 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         return null;
     }
     
+    /**
+     * Recupera un utente dato il suo username.
+     * 
+     * @param username lo username dell'utente
+     * @return l'utente corrispondente allo username
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public Utente getUtenteByUsername(String username) throws DataException {
 
@@ -157,6 +192,12 @@ public class UtenteDAO_MySQL extends DAO implements UtenteDAO {
         return null;
     }
 
+    /**
+     * Memorizza un utente nel database.
+     * 
+     * @param user l'utente da memorizzare
+     * @throws DataException se si verifica un errore durante la memorizzazione
+     */
     @Override
     public void storeUtente(Utente user) throws DataException {
         try {

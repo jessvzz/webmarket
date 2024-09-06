@@ -15,10 +15,6 @@ import it.univaq.f4i.iw.framework.data.DataItemProxy;
 import it.univaq.f4i.iw.framework.data.DataLayer;
 import it.univaq.f4i.iw.framework.data.OptimisticLockException;
 
-/**
- *
- * @author Giulia Di Flamminio
- */
 
 public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
 
@@ -39,12 +35,20 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
     
     private PreparedStatement sCategorieRoot;
     
-
-
+    /**
+     * Costruttore della classe.
+     * 
+     * @param d il DataLayer da utilizzare
+     */
     public CategoriaDAO_MySQL(DataLayer d) {
         super(d);
     }
 
+    /**
+     * Inizializza le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante l'inizializzazione
+     */
     @Override
     public void init() throws DataException {
         try {
@@ -74,6 +78,11 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
         }
     }
 
+    /**
+     * Chiude le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante la chiusura
+     */
     @Override
     public void destroy() throws DataException {
         try {
@@ -95,11 +104,23 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
         super.destroy();
     }
 
+    /**
+     * Crea una nuova istanza di Categoria.
+     * 
+     * @return una nuova istanza di CategoriaProxy
+     */
     @Override
     public Categoria createCategoria() {
         return new CategoriaProxy(getDataLayer());
     }
 
+    /**
+     * Crea una CategoriaProxy a partire da un ResultSet.
+     * 
+     * @param rs il ResultSet da cui creare la CategoriaProxy
+     * @return una nuova istanza di CategoriaProxy
+     * @throws DataException se si verifica un errore durante la creazione
+     */
     private Categoria createCategoria(ResultSet rs) throws DataException {
         try {
             CategoriaProxy cp = (CategoriaProxy) createCategoria();
@@ -113,6 +134,13 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
         }
     }
 
+    /**
+     * Recupera una categoria dato il suo ID.
+     * 
+     * @param categoria_key l'ID della categoria
+     * @return la categoria corrispondente all'ID
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public Categoria getCategoria(int categoria_key) throws DataException {
         Categoria cp = null;
@@ -134,6 +162,12 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
         return cp;
     }
 
+    /**
+     * Recupera tutte le categorie.
+     * 
+     * @return una lista di tutte le categorie
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Categoria> getAllCategorie() throws DataException {
     List<Categoria> result = new ArrayList<>();
@@ -149,6 +183,12 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
         }
     }
 
+    /**
+     * Memorizza una categoria nel database.
+     * 
+     * @param categoria la categoria da memorizzare
+     * @throws DataException se si verifica un errore durante la memorizzazione
+     */
     @Override
     public void storeCategoria(Categoria categoria) throws DataException {
         try {
@@ -191,6 +231,12 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
         }
     }
 
+    /**
+     * Elimina una categoria dal database.
+     * 
+     * @param categoria la categoria da eliminare
+     * @throws DataException se si verifica un errore durante l'eliminazione
+     */
     @Override
     public void deleteCategoria(Categoria categoria) throws DataException {
         try {
@@ -203,6 +249,13 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
         }
     }
     
+    /**
+     * Recupera le categorie figlie di una categoria padre.
+     * 
+     * @param padre l'ID della categoria padre
+     * @return una lista di categorie figlie
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Categoria> getCategorieByPadre(int padre) throws DataException {
     List<Categoria> result = new ArrayList<>();
@@ -219,6 +272,12 @@ public class CategoriaDAO_MySQL extends DAO implements CategoriaDAO {
     return result;
 }
     
+    /**
+     * Recupera le categorie root.
+     * 
+     * @return una lista di categorie root
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Categoria> getCategorieRoot() throws DataException {
     List<Categoria> result = new ArrayList<>();

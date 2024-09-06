@@ -21,12 +21,20 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
 
     private PreparedStatement sCaratteristicaByID, sCaratteristicheByRichiesta, sCaratteristiche, iCaratteristica, uCaratteristica, dCaratteristica, sCaratteristicaByCategoria;
 
-
+    /**
+     * Costruttore della classe.
+     * 
+     * @param d il DataLayer da utilizzare
+     */
     public CaratteristicaDAO_MySQL(DataLayer d) {
         super(d);
     }
 
-
+    /**
+     * Inizializza le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante l'inizializzazione
+     */
         @Override
         public void init() throws DataException {
         try {
@@ -45,7 +53,11 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
         }
     }
 
-
+    /**
+     * Chiude le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante la chiusura
+     */
     @Override
     public void destroy() throws DataException {
         try {
@@ -62,8 +74,11 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
         super.destroy();
     }
 
-
-
+    /**
+     * Crea una nuova istanza di Caratteristica.
+     * 
+     * @return una nuova istanza di CaratteristicaProxy
+     */
     @Override
     public Caratteristica createCaratteristica() {
     
@@ -71,6 +86,13 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
 
     }
 
+    /**
+     * Crea una CaratteristicaProxy a partire da un ResultSet.
+     * 
+     * @param rs il ResultSet da cui creare la CaratteristicaProxy
+     * @return una nuova istanza di CaratteristicaProxy
+     * @throws DataException se si verifica un errore durante la creazione
+     */
     private CaratteristicaProxy createCaratteristica(ResultSet rs) throws DataException {
         try {
             CaratteristicaProxy c = (CaratteristicaProxy) createCaratteristica();
@@ -87,6 +109,12 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
         }
     }
 
+    /**
+     * Recupera tutte le caratteristiche.
+     * 
+     * @return una lista di tutte le caratteristiche
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Caratteristica> getCaratteristiche() throws DataException {
         List<Caratteristica> result = new ArrayList<>();
@@ -100,7 +128,13 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
     return result;
     } 
 
-
+    /**
+     * Recupera una caratteristica dato il suo ID.
+     * 
+     * @param caratteristica_key l'ID della caratteristica
+     * @return la caratteristica corrispondente all'ID
+     * @throws DataException se si verifica un errore durante il recupero
+     */
      @Override
      public Caratteristica getCaratteristica(int caratteristica_key) throws DataException {
    
@@ -124,6 +158,13 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
    
     }
 
+    /**
+     * Recupera le caratteristiche associate a una richiesta.
+     * 
+     * @param richiesta_key l'ID della richiesta
+     * @return una lista di caratteristiche associate alla richiesta
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Caratteristica> getCaratteristicheByRichiesta(int richiesta_key) throws DataException {
           List<Caratteristica> result = new ArrayList<>();
@@ -140,6 +181,13 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
     return result;
     }
     
+    /**
+     * Recupera le caratteristiche associate a una categoria.
+     * 
+     * @param categoria l'ID della categoria
+     * @return una lista di caratteristiche associate alla categoria
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Caratteristica> getCaratteristicheByCategoria(int categoria) throws DataException {
         List<Caratteristica> result = new ArrayList<>();
@@ -156,7 +204,12 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
     return result;
     }
 
-
+    /**
+     * Memorizza una caratteristica nel database.
+     * 
+     * @param caratteristica la caratteristica da memorizzare
+     * @throws DataException se si verifica un errore durante la memorizzazione
+     */
     @Override
     public void storeCaratteratica(Caratteristica caratteristica) throws DataException {
         try {
@@ -194,7 +247,12 @@ public class CaratteristicaDAO_MySQL extends DAO implements CaratteristicaDAO{
         }
     }
 
-  
+    /**
+     * Elimina una caratteristica dal database.
+     * 
+     * @param caratteristica_key l'ID della caratteristica da eliminare
+     * @throws DataException se si verifica un errore durante l'eliminazione
+     */
     @Override
     public void deleteCaratteristica(int caratteristica_key) throws DataException {
         try {

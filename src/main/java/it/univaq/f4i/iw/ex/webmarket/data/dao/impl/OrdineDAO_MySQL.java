@@ -19,10 +19,20 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
     
     private PreparedStatement sOrdineByID, sOrdiniByUtente, sOrdiniByTecnico, sAllOrdini, iOrdine, uOrdine, dOrdine, ordiniDaNotificare, ordiniDaNotificareOrd;
 
+    /**
+     * Costruttore della classe.
+     * 
+     * @param d il DataLayer da utilizzare
+     */
     public OrdineDAO_MySQL(DataLayer d) {
         super(d);
     }
 
+    /**
+     * Inizializza le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante l'inizializzazione
+     */
     @Override
     public void init() throws DataException {
         try {
@@ -42,6 +52,11 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         }
     }
 
+    /**
+     * Chiude le PreparedStatement.
+     * 
+     * @throws DataException se si verifica un errore durante la chiusura
+     */
     @Override
     public void destroy() throws DataException {
         try {
@@ -57,11 +72,23 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         super.destroy();
     }
 
+    /**
+     * Crea una nuova istanza di Ordine.
+     * 
+     * @return una nuova istanza di OrdineProxy
+     */
     @Override
     public Ordine createOrdine() {
         return new OrdineProxy(getDataLayer());
     }
 
+    /**
+     * Crea una OrdineProxy a partire da un ResultSet.
+     * 
+     * @param rs il ResultSet da cui creare la OrdineProxy
+     * @return una nuova istanza di OrdineProxy
+     * @throws DataException se si verifica un errore durante la creazione
+     */
     private OrdineProxy createOrdine(ResultSet rs) throws DataException {
         try {
             OrdineProxy o = (OrdineProxy) createOrdine();
@@ -78,6 +105,13 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         }
     }
 
+    /**
+     * Recupera un ordine dato il suo ID.
+     * 
+     * @param ordine_key l'ID dell'ordine
+     * @return l'ordine corrispondente all'ID
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public Ordine getOrdine(int ordine_key) throws DataException {
         Ordine o = null;
@@ -99,6 +133,13 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         return o;
     }
 
+    /**
+     * Recupera gli ordini associati a un utente.
+     * 
+     * @param utente_key l'ID dell'utente
+     * @return una lista di ordini associati all'utente
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Ordine> getOrdiniByUtente(int utente_key) throws DataException {
         List<Ordine> ordini = new ArrayList<>();
@@ -115,6 +156,13 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         return ordini;
     }
 
+    /**
+     * Recupera gli ordini associati a un tecnico.
+     * 
+     * @param tecnico_key l'ID del tecnico
+     * @return una lista di ordini associati al tecnico
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Ordine> getOrdiniByTecnico(int tecnico_key) throws DataException {
         List<Ordine> ordini = new ArrayList<>();
@@ -131,6 +179,12 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         return ordini;
     }
 
+    /**
+     * Recupera tutti gli ordini.
+     * 
+     * @return una lista di tutti gli ordini
+     * @throws DataException se si verifica un errore durante il recupero
+     */
     @Override
     public List<Ordine> getAllOrdini() throws DataException {
         List<Ordine> ordini = new ArrayList<>();
@@ -144,6 +198,12 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         return ordini;
     }
 
+    /**
+     * Memorizza un ordine nel database.
+     * 
+     * @param ordine l'ordine da memorizzare
+     * @throws DataException se si verifica un errore durante la memorizzazione
+     */
     @Override
     public void storeOrdine(Ordine ordine) throws DataException {
         try {
@@ -190,6 +250,12 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         }
     }
 
+    /**
+     * Elimina un ordine dal database.
+     * 
+     * @param ordine_key l'ID dell'ordine da eliminare
+     * @throws DataException se si verifica un errore durante l'eliminazione
+     */
     @Override
     public void deleteOrdine(int ordine_key) throws DataException {
         try {
@@ -203,6 +269,13 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         }
     }
     
+    /**
+     * Verifica se ci sono ordini da notificare ad un tecnico.
+     * 
+     * @param tecnicoId l'ID del tecnico
+     * @return true se ci sono ordini da notificare, false altrimenti
+     * @throws DataException se si verifica un errore durante la verifica
+     */
      @Override
     public boolean notificaOrdine(int tecnicoId) throws DataException {
 
@@ -219,6 +292,13 @@ public class OrdineDAO_MySQL extends DAO implements OrdineDAO {
         return false;
     }
     
+    /**
+     * Verifica se ci sono ordini da notificare per un utente.
+     * 
+     * @param utenteId l'ID dell'utente
+     * @return true se ci sono ordini da notificare, false altrimenti
+     * @throws DataException se si verifica un errore durante la verifica
+     */
      @Override
     public boolean notificaOrdineOrd(int utenteId) throws DataException {
 
