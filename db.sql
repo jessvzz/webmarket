@@ -243,108 +243,6 @@ DELIMITER ;
 
 /* POPOLAMENTO TABELLE */
 
-INSERT INTO categoria (nome, padre) VALUES
-    ('root', NULL), #1
-        ('Informatica', 1), #2
-            ('Hardware', 2), #3
-                ('Portatili', 3), #4
-                ('Desktop', 3), #5
-                ('Periferiche', 3), #6
-            ('Software', 2), #7
-                ('Sistemi operativi', 7), #8
-                ('Programmi', 7), #9
-        ('Telefonia', 1), #10
-            ('Smartphone', 10), #11
-            ('Tablet', 10), #12
-        ('Console videogiochi', 1), #13
-        ('Foto e video', 1), #14
-            ('Fotocamere', 14), #15
-            ('Videocamere', 14); #16
-
-INSERT INTO caratteristica (nome, categoria_id) VALUES
-    /* Portatili */
-    ('Marca', 4), #1
-    ('Colore', 4), #2
-    ('Anno', 4), #3
-    ('RAM', 4), #4
-    ('Memoria archiviazione', 4), #5
-    ('Processore', 4), #6
-    ('Scheda video', 4), #7
-    ('Sistema operativo', 4), #8
-    ('Schermo', 4), #9
-
-    /* Desktop */
-    ('Marca', 5), #10
-    ('Colore', 5), #11
-    ('Anno', 5), #12
-    ('RAM', 5), #13
-    ('Memoria archiviazione', 5), #14
-    ('Processore', 5), #15
-    ('Scheda video', 5), #16
-    ('Sistema operativo', 5), #17
-
-    /* Periferiche */
-    ('Tipologia', 6), #18
-    ('Marca', 6), #19
-    ('Colore', 6), #20
-
-    /* Sistemi operativi */
-    ('Nome', 8), #21
-    ('Versione', 8), #22
- 
-    /* Programmi */
-    ('Nome', 9), #23
-    ('Versione', 9), #24
-    ('Anno', 9), #25
-
-    /* Smartphone */
-    ('Marca', 11), #26
-    ('Modello', 11), #27
-    ('Colore', 11), #28
-    ('RAM', 11), #29
-    ('Memoria archiviazione', 11), #30
-    ('Processore', 11), #31
-    ('Sistema operativo', 11), #32
-    ('Schermo', 11), #33
-
-    /* Tablet */
-    ('Marca', 12), #34
-    ('Modello', 12), #35
-    ('Colore', 12), #36
-    ('RAM', 12), #37
-    ('Memoria archiviazione', 12), #38
-    ('Processore', 12), #39
-    ('Sistema operativo', 12), #40
-    ('Schermo', 12), #41
-
-    /* Console videogiochi */
-    ('Marca', 13), #42
-    ('Modello', 13), #43
-    ('Colore', 13), #44
-    ('Anno', 13), #45
-    ('Schermo', 13), #46
-    ('RAM', 13), #47
-    ('Memoria archiviazione', 13), #48
-    ('Processore', 13), #49
-
-    /* Fotocamere */
-    ('Marca', 15), #50
-    ('Modello', 15), #51
-    ('Colore', 15), #52
-    ('Schermo', 15), #53
-    ('Batteria', 15), #54
-    ('Obiettivo', 15), #55
-
-    /* Videocamere */
-    ('Marca', 16), #56
-    ('Modello', 16), #57
-    ('Colore', 16), #58
-    ('Schermo', 16), #59
-    ('Batteria', 16), #60
-    ('Obiettivo', 16); #61
-
-
-
 INSERT INTO utente (username, email, password, tipologia_utente) VALUES
     ('admin', 'admin@example.com', '282db4a4425f50237e7df29d56988825f15dd8b34fa74af54e650ce0fd8897a82dff0b952017a3a88a62f5f1b0e0e467', 'AMMINISTRATORE'), #admin
     ('tecnicog', 'difgiulia@gmail.com', 'aec1e7153435fb922c594376ca7e0ed24d0e8ad306648ba4a2153165941157d3a2a80649d70780821a4b8b6e5e8bb4a6', 'TECNICO'), #tecnico1
@@ -352,54 +250,58 @@ INSERT INTO utente (username, email, password, tipologia_utente) VALUES
     ('samanta', 'samanta_dis@hotmail.com', '63a7d1207dab49f5cdc13091e8a87006097ca0c7fecba40b316d8571d415a7d5109e48bdba061a98fa7ff551717fd79a', 'ORDINANTE'), #samanta
     ('tecnicoS', 'samanta_dis@hotmail.com', '277fb18292a23f495c1f5ffd79af834aa2107d47ea2f7db6b7d1ac3098d451a6bbee64f6e041d7b0850791ec3a5cded9', 'TECNICO'); #tecnicoS
 
-INSERT INTO richiesta_ordine (note, stato, data, utente, tecnico, categoria_id) VALUES
-    (NULL, 'IN_ATTESA', '2024-08-06', 3, NULL, 4), /* 1) geaviozzi -> Portatili */
-    ('Vorrei un telefono impermeabile', 'PRESA_IN_CARICO', '2023-01-29', 3, 2, 11), /* 2) geaviozzi -> Tecnicog -> Smartphone */
-    (NULL, 'RISOLTA', '2023-01-29', 3, 2, 13), /* 3) Samanta -> Tecnicog -> Console videogiochi */
-    (NULL, 'ORDINATA', '2024-08-01', 4, 5, 15), /* 4) Samanta -> TecnicoS-> Fotocamera */
-    (NULL, 'RISOLTA', '2024-08-01', 4, 5, 15),
-    (NULL, 'IN_ATTESA', '2024-08-26', 4, NULL, 12),
-    (NULL, 'PRESA_IN_CARICO', '2024-08-13', 4, 5, 4);
-    
+INSERT INTO categoria (nome, padre) VALUES
+    ('Informatica', NULL), -- root
+    ('Computer', 1),
+    ('Notebook', 2),
+    ('Desktop', 2),
+    ('Periferiche', 1),
+    ('Monitor', 5),
+    ('Stampanti', 5),
+    ('Mobili', NULL),
+    ('Scrivanie', 8),
+    ('Sedie', 8),
+    ('Cancelleria', NULL),
+    ('Penna', 11),
+    ('Quaderno', 11),
+    ('Agende', 11);
+
+INSERT INTO caratteristica (nome, categoria_id) VALUES
+    ('RAM', 3), -- Notebook
+    ('CPU', 3), -- Notebook
+    ('Dimensione Schermo', 6), -- Monitor
+    ('Risoluzione', 6), -- Monitor
+    ('Tipo di Inchiostro', 7), -- Stampanti
+    ('Velocità di Stampa', 7), -- Stampanti
+    ('Materiale', 9), -- Scrivanie
+    ('Colore', 9), -- Scrivanie
+    ('Peso Massimo Supportato', 10); -- Sedie
+
+INSERT INTO richiesta_ordine (note, stato, data, codice_richiesta, utente, tecnico, categoria_id) VALUES
+    ('Acquisto nuovo notebook', 'RISOLTA', '2024-09-01', generate_codice(), 3, 2, 3),
+    ('Acquisto scrivania', 'PRESA_IN_CARICO', '2024-08-25', generate_codice(), 3, 5, 9),
+    ('Monitor esterno per ufficio', 'RISOLTA', '2024-08-15', generate_codice(), 4, 2, 6),
+    ('Stampante multifunzione', 'ORDINATA', '2024-07-30', generate_codice(), 4, 2, 7),
+    ('Acquisto sedia ergonomica', 'IN_ATTESA', '2024-09-02', generate_codice(), 3, 2, 10);
+
 INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES
-    /* 1) Giulia -> Portatili */
-    (1, 1, 'Indifferente'), #Marca
-    (1, 2, 'Grigio'), #Colore
-    (1, 3, 'Indifferente'), #Anno
-    (1, 4, '8 GB'), #RAM
-    (1, 5, '512 GB'), #Memoria archiviazione
-    (1, 6, 'Indifferente'), #Processore
-    (1, 7, 'Indifferente'), #Scheda video
-    (1, 8, 'Windows'), #Sistema operativo
-    (1, 9, 'Indifferente'), #Schermo
+    (1, 1, '16GB'), -- Notebook (RAM)
+    (1, 2, 'Intel i7'), -- Notebook (CPU)
+    (2, 7, 'Legno'), -- Scrivania (Materiale)
+    (2, 8, 'Bianco'), -- Scrivania (Colore)
+    (3, 3, '27 pollici'), -- Monitor (Dimensione Schermo)
+    (3, 4, '4K'), -- Monitor (Risoluzione)
+    (4, 5, 'Laser'), -- Stampanti (Tipo di Inchiostro)
+    (4, 6, '40 pagine al minuto'), -- Stampanti (Velocità di Stampa)
+    (5, 9, '120 kg'); -- Sedia (Peso Massimo Supportato)
 
-    /* Gea -> Smartphone */
-    (2, 26, 'Apple'), #Marca
-    (2, 27, 'iPhone 15 Pro'), #Modello
-    (2, 28, 'Indifferente'), #Colore
-    (2, 29, 'Indifferente'), #RAM
-    (2, 30, 'Indifferente'), #Memoria archiviazione
-    (2, 31, 'Indifferente'), #Processore
-    (2, 32, 'Indifferente'), #Sistema operativo
-    (2, 33, 'Indifferente'), #Schermo
+INSERT INTO proposta_acquisto (produttore, prodotto, codice, codice_prodotto, prezzo, URL, note, stato, data, richiesta_id) VALUES
+    ('Dell', 'Notebook XPS 15', generate_codice(), 'XPS-2024', 1500.50, 'https://dell.com/notebook-xps15', 'Perfetto per ufficio', 'ORDINATO', '2024-09-03', 1),
+    ('Ikea', 'Scrivania LINNMON', generate_codice(), 'LINNMON-2024', 89.99, 'https://ikea.com/scrivania-linnmon', 'Colore bianco, misura 120x60 cm', 'IN_ATTESA', '2024-09-01', 2),
+    ('Samsung', 'Monitor 27" UHD', generate_codice(), 'SAM-UHD-27', 299.99, 'https://samsung.com/monitor-uhd27', 'Schermo UHD 4K', 'ORDINATO', '2024-08-18', 3),
+    ('HP', 'Stampante LaserJet Pro', generate_codice(), 'LASERPRO-2024', 199.99, 'https://hp.com/stampante-laserjet-pro', 'Laser, alta velocità', 'ORDINATO', '2024-08-01', 4);
 
-    /* Samanta -> Console videogiochi */
-    (3, 42, 'Nintendo'), #Marca
-    (3, 43, 'Switch'), #Modello
-    (3, 44, 'Indifferente'), #Colore
-    (3, 45, '2023'), #Anno
-    (3, 46, 'Indifferente'), #Schermo
-    (3, 47, 'Indifferente'), #RAM
-    (3, 48, 'Indifferente'), #Memoria archiviazione
-    (3, 49, 'Indifferente'); #Processore
-
-INSERT INTO proposta_acquisto (produttore, prodotto, codice_prodotto, prezzo, URL, note, stato, data, motivazione, richiesta_id) VALUES
-    ('Apple', 'iPhone 15 Pro 256GB Titanio Blu', '1a2b3c4d', 1369, 'https://www.apple.com/it/shop/buy-iphone/iphone-15-pro/display-da-6,1%22-256gb-titanio-blu', 'Dal sito potrà tranquillamente cambiare colore o capacità di archiviazione', 'IN_ATTESA', '2024-08-27', NULL, 2), #1
-    ('Nintendo', 'Nintendo Switch Modello OLED (bianco)', '2b3c4d5e', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-bianco-000000000010007454', 'La nuova Switch con schermo OLED', 'RIFIUTATO', '2024-08-26', 'Troppo vecchia, è uscita nel 2021, la voglio più nuova', 3), #2
-    ('Nintendo', 'Nintendo Switch Modello OLED edizione speciale Mario (rossa)', '3c4d5e6f', 349.99, 'https://store.nintendo.it/it/nintendo-switch-modello-oled-edizione-speciale-mario-rossa-000000000010011772', 'Questa è la versione speciale Mario, è tutta rossa ed è uscita a fine 2023!', 'ACCETTATO', '2024-08-25', NULL, 3), #3
-    ('Canon', 'Canon EOS 2000D + EF-S 18-55 mm DC III', 'AHloaLmj9R', 475.98, 'https://www.amazon.it/Canon-Camera-2000d-55-III-2728-C002/dp/B07BMV268V/ref=asc_df_B07BMV268V/?tag=googshopit-21&linkCode=df0&hvadid=700886612843&hvpos=&hvnetw=g&hvrand=843493562612396069&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1008064&hvtargid=pla-785247369067&mcid=f5094b4c6126324c8ad3252f06f8ff80&gad_source=1&th=1', 'Accessori non inclusi, visita il sito per ulteriori dettagli.', 'ORDINATO', '2024-08-24', NULL, 4), #4
-    ('Lenovo', 'Lenovo Yoga Pro 7', 'JlkFpEXqQT', 899.99, 'https://www.unieuro.it/online/Notebook/Yoga-Pro-7-Ultrathin-14-Intel-i7-16GB-512GB-pidLNV82Y7005HIX?gad_source=1&gclid=CjwKCAjw8rW2BhAgEiwAoRO5rFLPrUeSd6sncIFHfDVBbb3RbqsE0UHsvas5IlSnL1CQsTKodJ9OCRoCAnIQAvD_BwE&gclsrc=aw.ds', 'Prezzo consigliato 1.499,00. Non farti perdere questa occasione.', 'IN_ATTESA', '2023-08-23', NULL, 7) ; #5
-
-INSERT INTO ordine (stato, data, proposta_id) VALUES
-    ('ACCETTATO' , '2023-09-01', 3), #1
-    ('ACCETTATO', '2023-09-01', 5); #2
+INSERT INTO ordine (data, stato, proposta_id) VALUES
+    ('2024-09-05', 'ACCETTATO', 1), -- Notebook Dell
+    ('2024-08-20', 'ACCETTATO', 3), -- Monitor Samsung
+    ('2024-08-05', 'IN_ATTESA', 4); -- Stampante HP
