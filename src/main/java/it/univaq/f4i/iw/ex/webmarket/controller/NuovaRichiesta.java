@@ -23,7 +23,7 @@ public class NuovaRichiesta extends BaseController {
     // Metodo per gestire l'azione di default
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException, DataException {
         //prendo le categorie generate da root
-        request.setAttribute("categorie", ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategorieByPadre(1));
+        request.setAttribute("categorie", ((ApplicationDataLayer) request.getAttribute("datalayer")).getCategoriaDAO().getCategorieRoot());
 
         
         TemplateResult res = new TemplateResult(getServletContext());

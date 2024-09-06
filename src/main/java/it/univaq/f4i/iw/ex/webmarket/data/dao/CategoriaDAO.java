@@ -17,5 +17,7 @@ public interface CategoriaDAO {
     void storeCategoria(Categoria categoria) throws DataException;
 
     void deleteCategoria(Categoria categoria) throws DataException;
+    
+    List<Categoria> getCategorieRoot() throws DataException;
 
 }
