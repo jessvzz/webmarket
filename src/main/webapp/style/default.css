@@ -1457,6 +1457,16 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 /* utili */
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    align-items: center;
+    
+    justify-content: center;
+    gap: 20px;
+}
+
 
 .pallino-rosso{
     position: absolute;

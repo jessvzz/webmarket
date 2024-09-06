@@ -20,6 +20,7 @@
         <div class="container-purple-proposta" style="background-color: #5D54BE;">
             <form action="" method="post">
                 <input type="hidden" name="action" value="invioProposta">
+                
                 <div class="row-tecnico">
                     <div class="form-group-tecnico">
                         <label for="nome produttore">Nome produttore:</label>
@@ -38,14 +39,14 @@
                         <input type="text" id="codiceProdotto" name="codiceProdotto" class="textfield-grey" placeholder="Inserisci codice prodotto">
                     </div>
                 </div>
+                <#if (errorMessage)??>
+                        <span id="prezzo-error" class="error-message" style="color: red;">${errorMessage}</span>
+                    </#if>
                 <div class="row-tecnico">
                     <div class="form-group-tecnico">
                         <label for="nome prodotto">Prezzo:</label>
                         <input type="text" id="prezzo" name="prezzo" class="textfield-grey" placeholder="Inserisci prezzo">
-
-                        <#if (errorMessage)??>
-                        <span id="prezzo-error" class="error-message" style="color: red;">${errorMessage}</span>
-                    </#if>
+                        
                     </div>
                 </div>
                 <div class="row-tecnico">
