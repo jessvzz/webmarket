@@ -352,7 +352,11 @@ select.medium,input.medium {
 }
 
 .card-notif-pulse {
+    width: 200px;
+    min-width: 200px;
     animation: pulse 2s infinite;
+    min-width: fit-content;
+    max-width: fit-content;
 }
 
 .card-pink-notifications .img-notif {
@@ -956,6 +960,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .card-row-pink {
     background-color: #FFC7C2;
+    width: 100%;
 }
 
 .card-row-purple:hover {
@@ -1194,7 +1199,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     width: auto;
     padding: 10px;
     background-color: #1E88E5;
-    color: #333;
+    color: white;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
@@ -1394,6 +1399,9 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
         width: auto;
     }
 
+    .notifications-container {
+        margin-right: 10px;
+    }
     .form-title {
         font-size: 20px;
     }
@@ -1504,6 +1512,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 .card-notifiche {
     width: 180px; 
+    min-width: 180px;
     height: 50px; 
     border-radius: 20px;
     display: flex;
@@ -1570,9 +1579,10 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
         height: 200px;
     }
 
-    .card-pink-notifications, .card-notif-pulse {
+    .card-pink-notifications {
         width: 100%;
         height: 50px;
+
     }
     
     .two-buttons-container {

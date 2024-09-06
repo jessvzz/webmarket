@@ -21,8 +21,9 @@
 - [x] Sort delle richieste, proposte e ordini ordinante
 - [x] Impostazioni tecnico
 - [x] Fixare i colori nello storico e mettere hover
-- [ ] Aggiustare button nuove richieste e pagina notifiche_tecnico
+- [x] Aggiustare resize button nuove richieste e impostazioni
 - [x] Sistemare (soprattutto colore stato) detailstorico_tecnico
+- [ ] Mettere dei button di riferimento alle proposte già fatte per una determinata richiesta
 
 ## Gea:
 - [ ] rivedi css gestionecatgorie
