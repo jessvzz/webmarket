@@ -27,12 +27,12 @@
      
         <#if (proposte?size>0)>
 
-       <div class="rows-container  mt-6">
+       <div class="rows-container">
 
             <#list proposte as proposta>
-
-            <div id="proposta-container" class="card-row-salm max-width-card  border rounded" data-stato="${proposta.getStatoProposta()}" data-codice="${proposta.codice}">
-                    <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
+    <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
+            <div id="proposta-container" class="card-row-salm" data-stato="${proposta.getStatoProposta()}" data-codice="${proposta.codice}">
+                    
                         <div class="card-row-content mb-2">
                             <p class="card-row-text">Codice: ${proposta.codice}</p>
                         </div>
@@ -46,9 +46,9 @@
                         <div class="card-row-content mb-2" stato="${proposta.getStatoProposta()}">
                             <p class="card-row-text">${proposta.getStatoProposta()!"Stato non disponibile"}</p>
                         </div>
-                    </a>
+                    
             </div>
-         
+         </a>
              </#list>
         </div>
               </#if>

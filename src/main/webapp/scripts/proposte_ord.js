@@ -24,7 +24,7 @@ return `
 `;
 }
 
-function sortProposte(proposte) {
+/*function sortProposte(proposte) {
     return Array.from(proposte).sort((a, b) => {
         const statoA = a.getAttribute('data-stato');
         const statoB = b.getAttribute('data-stato');
@@ -38,7 +38,7 @@ function sortProposte(proposte) {
         return priority[statoA] - priority[statoB];
     });
 }
-
+*/
 document.addEventListener("DOMContentLoaded", function() {
     const proposte = document.querySelectorAll('.card-row-content[stato]');
     proposte.forEach(proposta => {
@@ -114,11 +114,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // filtro select
     filterSelect.addEventListener('change', filterProposte);
 
-    const props = document.querySelectorAll('.card-row-salm');
-    const sortedProposte = sortProposte(props);
+    //const props = document.querySelectorAll('.card-row-salm');
+    //const sortedProposte = sortProposte(props);
 
-    const rowsContainer = document.querySelector('.rows-container');
-    sortedProposte.forEach(ord => rowsContainer.appendChild(ord));
+    //const rowsContainer = document.querySelector('.rows-container');
+    //sortedProposte.forEach(ord => rowsContainer.appendChild(ord));
 });
 
 

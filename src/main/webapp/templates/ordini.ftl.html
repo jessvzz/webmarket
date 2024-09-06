@@ -35,9 +35,9 @@
     <div class="rows-container mt-6">
 
         <#list ordini as ordine>
-
-        <div  id="ordine-container" class="card-row-purple border rounded max-width-card" data-stato="${ordine.getStato()}" data-codice="${ordine.proposta.getCodice()}" >
-            <a href="dettaglio_ordine_ord?n=${ordine.key}" class="a-cards"> 
+<a href="dettaglio_ordine_ord?n=${ordine.key}" class="a-cards"> 
+        <div  id="ordine-container" class="card-row-purple" data-stato="${ordine.getStato()}" data-codice="${ordine.proposta.getCodice()}" >
+            
                 <div class="card-row-content  mb-2">
                     <p class="card-row-text font-semibold">Data: ${ordine.getData()}</p>
                 </div>
@@ -47,8 +47,9 @@
                 <div class="card-row-content">
                     <p class="card-row-text font-semibold">Proposta: ${ordine.proposta.getCodice()}</p>
                 </div>
-            </a>
+            
         </div>
+    </a>
         </#list>     
     </div>
         <#else>
