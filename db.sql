@@ -262,25 +262,33 @@ INSERT INTO categoria (nome, padre) VALUES
     ('Scrivanie', 8),
     ('Sedie', 8),
     ('Cancelleria', NULL),
-    ('Penna', 11),
     ('Quaderno', 11),
     ('Agende', 11);
 
 INSERT INTO caratteristica (nome, categoria_id) VALUES
+	('Sistema Op supportato', 1), -- informatica
+	('Scheda Grafica', 2), -- Computer
     ('RAM', 3), -- Notebook
     ('CPU', 3), -- Notebook
+    ('Formato del case', 4), -- Desktop
+    ('Tipo di dispositivo', 5), -- Periferiche
+    ('Tipo di risoluzione', 5), -- periferiche
     ('Dimensione Schermo', 6), -- Monitor
     ('Risoluzione', 6), -- Monitor
     ('Tipo di Inchiostro', 7), -- Stampanti
     ('Velocità di Stampa', 7), -- Stampanti
+    ('Tipo', 8), -- mobili
     ('Materiale', 9), -- Scrivanie
     ('Colore', 9), -- Scrivanie
-    ('Peso Massimo Supportato', 10); -- Sedie
+    ('Peso Massimo Supportato', 10), -- Sedie
+    ('Tipo', 11), -- cancelleria
+    ('Formato', 12),
+    ('Formato', 13);
 
 INSERT INTO richiesta_ordine (note, stato, data, codice_richiesta, utente, tecnico, categoria_id) VALUES
     ('Acquisto nuovo notebook', 'RISOLTA', '2024-09-01', generate_codice(), 3, 2, 3),
-    ('Acquisto scrivania', 'PRESA_IN_CARICO', '2024-08-25', generate_codice(), 3, 5, 9),
-    ('Monitor esterno per ufficio', 'RISOLTA', '2024-08-15', generate_codice(), 4, 2, 6),
+    ('Acquisto scrivania', 'PRESA_IN_CARICO', '2024-08-25', generate_codice(), 3, 2, 9),
+    ('Monitor esterno per ufficio', 'RISOLTA', '2024-08-15', generate_codice(), 4, 5, 6),
     ('Stampante multifunzione', 'ORDINATA', '2024-07-30', generate_codice(), 4, 2, 7),
     ('Acquisto sedia ergonomica', 'IN_ATTESA', '2024-09-02', generate_codice(), 3, 2, 10);
 
