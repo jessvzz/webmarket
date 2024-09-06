@@ -25,15 +25,16 @@
             <div class="form-group-tecnico flex items-center">
                 <label for="proposta" class="text-gray-700 italic mr-2"> Vai alla Proposta: </label>
                 <a href="dettaglio_proposta_ord?n=${ordine.getProposta().key}">
-                    <div name="proposta" class="darkblue-richiesta-storico">Proposta #${ordine.getProposta().codice}</div></a>
+                    <div name="proposta" id="proposta" class="darkblue-richiesta-storico">Proposta #${ordine.getProposta().codice}
+                    </div></a>
             </div>
           
 
         <div class="container-skyblue-proposta p-4">
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label class="block text-gray-700 font-bold">Data Ordine:</label>
-                    <div class="grey-row"> 
+                    <label for="ordine" class="block text-gray-700 font-bold">Data Ordine:</label>
+                    <div id="ordine" class="grey-row"> 
                         ${ordine.data}
                     </div>
                 </div>
@@ -42,10 +43,10 @@
                 <div class="row-tecnico">
                     <div class="form-group-tecnico">
                   
-                             <label class="block text-gray-700 font-bold">
+                             <label for="descrizione" class="block text-gray-700 font-bold">
                             
                             Descrizione Proposta:</label>
-                        <div class="grey-row" > 
+                        <div id="descrizione" class="grey-row" > 
                             <span class="font-bold"> Produttore: </span> ${ordine.getProposta().produttore}
                             <br>
                             <br>
@@ -73,9 +74,10 @@
                     <#if ordine.getStato() == "IN_ATTESA">
                     <div>
                         <a href="rifiuto_ordine?n=${ordine.key}">
-                            <button class="orange-button hover:bg-orange-600 text-white px-4 py-2 rounded-md">RIFIUTA</button>
+                            <div class="orange-button hover:bg-orange-600 text-white px-4 py-2 rounded-md">RIFIUTA</div>
                         </a>
                     </div>
                      </#if>
     </div>
+</div>
 </div>
