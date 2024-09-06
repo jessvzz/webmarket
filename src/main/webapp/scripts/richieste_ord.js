@@ -24,7 +24,7 @@ return `
 `;
 }
 
-function sortRichieste(richieste) {
+/*function sortRichieste(richieste) {
     return Array.from(richieste).sort((a, b) => {
         const statoA = a.getAttribute('data-stato');
         const statoB = b.getAttribute('data-stato');
@@ -37,7 +37,7 @@ function sortRichieste(richieste) {
 
         return priority[statoA] - priority[statoB];
     });
-}
+}*/
 
 document.addEventListener("DOMContentLoaded", function() {
  
@@ -85,9 +85,9 @@ document.addEventListener("DOMContentLoaded", function() {
             filterSelect.addEventListener('change', filterRichieste);
 
             const rics = document.querySelectorAll('.card-row-skyblue');
-            const sortedRichieste = sortRichieste(rics);
+            //const sortedRichieste = sortRichieste(rics);
 
             const rowsContainer = document.querySelector('.rows-container');
-            sortedRichieste.forEach(ord => rowsContainer.appendChild(ord));
+            //sortedRichieste.forEach(ord => rowsContainer.appendChild(ord));
         });
 

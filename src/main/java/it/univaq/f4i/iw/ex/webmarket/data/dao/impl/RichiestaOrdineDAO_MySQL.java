@@ -40,7 +40,7 @@ public class RichiestaOrdineDAO_MySQL extends DAO implements RichiestaOrdineDAO 
 
             // Precompilazione delle query utilizzate nella classe
             sRichiestaOrdineByID = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE ID = ?");
-            sRichiesteByUtente = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE utente = ?");
+            sRichiesteByUtente = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE utente = ? ORDER BY data DESC");
             sRichiesteInoltrate = connection.prepareStatement("SELECT * FROM richiesta_ordine WHERE stato = ?");
             sRichiesteNonEvase = connection.prepareStatement(
                 "SELECT r.ID, r.note, r.stato, r.data, r.codice_richiesta, r.utente, r.tecnico, r.categoria_id " +
