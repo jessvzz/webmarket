@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchInput = document.getElementById('search');
     const filterSelect = document.getElementById('status');
 
-    const ric = document.querySelectorAll('richiesta-container');
+    const ric = document.querySelectorAll('.richiesta-container');
 
 
     function filterRichieste() {
