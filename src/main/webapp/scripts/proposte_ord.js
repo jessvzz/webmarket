@@ -3,16 +3,16 @@ function cambiaStatoProposta(statoProposta) {
 
     switch (statoProposta) {
         case 'RIFIUTATO':
-            backgroundColor = '#ff6347'; // red
+            backgroundColor = '#FFAEAE '; // red
             break;
         case 'IN_ATTESA':
-            backgroundColor = '#ff7f50'; // orange
+            backgroundColor = '#FFE8A3'; // giallo
             break;
         case 'ORDINATO':
-            backgroundColor = '#ffd700'; // yellow
+            backgroundColor = '#E4CCFF '; // lilla
             break;
         case 'ACCETTATO':
-            backgroundColor = '#adff2f'; // green
+            backgroundColor = '#AFF4C6'; // green
             break;
         default:            
         backgroundColor = "#FFFFFF";
@@ -44,20 +44,20 @@ document.addEventListener("DOMContentLoaded", function() {
             container.addEventListener('mouseenter', () => {
                 
                 //per l'hover
-                container.style.backgroundColor = "#6ab8fc"; 
+                container.style.backgroundColor = "#1b54e3"; 
             });
 
             container.addEventListener('mouseleave', () => {
                 container.style.backgroundColor = "#1E88E5"; 
             });
         } else {
-            container.style.backgroundColor = "#4ea5f2";
+            container.style.backgroundColor = "#69b8ff";
             container.addEventListener('mouseenter', () => {
-                container.style.backgroundColor = "#6ab8fc"; 
+                container.style.backgroundColor = "#1b54e3"; 
             });
 
             container.addEventListener('mouseleave', () => {
-                container.style.backgroundColor = "#4ea5f2"; 
+                container.style.backgroundColor = "#69b8ff"; 
             });
         }
     });
