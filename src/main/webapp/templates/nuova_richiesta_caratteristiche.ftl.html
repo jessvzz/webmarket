@@ -9,7 +9,7 @@
         <#list caratteristiche as caratteristica>
         <div class="characteristics-row flex flex-wrap items-center space-y-2 md:space-y-0 md:flex-row md:space-x-4">
             <label for="caratteristica${caratteristica.key}" class="margin-10 w-full md:w-1/3">${caratteristica.nome}:</label>
-            <input type="text" id="caratteristica${caratteristica.key}" name="caratteristica${caratteristica.key}" placeholder="Inserisci ${caratteristica.nome}" class="flex-1 border rounded p-2">
+            <input type="text" id="caratteristica${caratteristica.key}" name="caratteristica${caratteristica.key}" placeholder="Inserisci ${caratteristica.nome}" class="flex-1 border rounded-extra-large p-2">
             <!-- <input type="checkbox" id="caratteristica${caratteristica.key}-indifferente" name="${caratteristica.key}-indifferente"> Indifferente -->
             <!-- Checkbox e dicitura Indifferente -->
             <div class="flex items-center space-x-2">
@@ -29,15 +29,15 @@
 
         <div class="characteristics-row">
             <label for="note" class="margin-10">Note:</label>
-            <textarea id="note" name="note" placeholder="Inserisci eventuali note" class="w-full border rounded p-2"></textarea>
+            <textarea id="note" name="note" placeholder="Inserisci eventuali note" class="w-full border rounded-extra-large p-2"></textarea>
         </div>
         
         <!-- Pulsante per Inviare la Richiesta -->
           <div class="form-buttons flex justify-between">
             <a href="homepageordinante">
-            <div class="purple-button bg-purple-500 text-white py-2 px-4 rounded">INDIETRO</div>
+            <div class="purple-button bg-purple-500 text-white py-2 px-4 rounded-extra-large shadow-lg">INDIETRO</div>
             </a>
-            <button type="submit" class="orange-button bg-orange-500 text-white py-2 px-4 rounded">AVANTI</button>
+            <button type="submit" class="orange-button bg-orange-500 text-white py-2 px-4 rounded-extra-large shadow-lg">AVANTI</button>
         </div>
     </form>
     

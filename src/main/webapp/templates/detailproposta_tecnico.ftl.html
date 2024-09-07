@@ -24,16 +24,16 @@
             </h1>
             <div class="badge-stato" stato="${proposta.getStatoProposta()}">${proposta.getStatoProposta()}</div>
         </div>
-        <div class="container-skyblue-proposta">
+        <div class="container-skyblue-proposta shadow-lg">
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome produttore">Nome produttore:</label>
+                    <label>Nome produttore:</label>
                     <div class="grey-row">${proposta.produttore}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">Nome prodotto:</label>
+                    <label>Nome prodotto:</label>
                     <div class="grey-row">${proposta.prodotto}</div>
                 </div>
             </div>
@@ -45,26 +45,26 @@
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">Prezzo:</label>
+                    <label>Prezzo:</label>
                     <div class="grey-row">€${proposta.prezzo}</div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">URL:</label>
+                    <label>URL:</label>
                     <div class="grey-row"><a href="${proposta.url}">Visualizza</a></div>
                 </div>
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">Note:</label>
+                    <label>Note:</label>
                     <div class="grey-row"><i>${proposta.note!'Nessuna nota inserita'}</i></div>
                 </div>
             </div>
             <#if proposta.getStatoProposta() == "RIFIUTATO">            
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">Motivazione del rifiuto:</label>
+                    <label>Motivazione del rifiuto:</label>
                     <div class="grey-row" style="background-color: #FFC7C2;">${proposta.motivazione}</div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     <#if proposta.getStatoProposta() == "ACCETTATO">
                     <form action="" method="post">
                         <input type="hidden" name="action" value="inviaOrdine">
-                        <button type="submit" class="btn-verde">Invia ordine</button>
+                        <button type="submit" class="btn-verde shadow-lg">Invia ordine</button>
                     </form>
                 </#if>
                 </div>

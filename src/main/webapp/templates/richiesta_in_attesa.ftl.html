@@ -12,7 +12,7 @@
     </div>
     <h1 class="hi-text" style="text-align: left;">#${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
     <br>
-    <form action="" method="post" class="form-container-orange">
+    <form action="" method="post" class="form-container-orange shadow-lg">
         <input type="hidden" name="action" value="prendiInCarico">
     <div class="container-richieste-storico p-4 w-full">
         <div class="row-tecnico">
@@ -37,12 +37,12 @@
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="note">Note:</label>
+                <label>Note:</label>
                 <div class="skyblue-richiesta-storico break-words">${richiesta.note!'Nessuna nota inserita'}</div>
             </div>
         </div>
         <div class="row-tecnico">
-            <button type="submit" class="btn-blu">Prendi in carico</button>
+            <button type="submit" class="btn-blu shadow-lg">Prendi in carico</button>
         </div>
     </div>
     </form>

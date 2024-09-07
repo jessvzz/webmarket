@@ -12,7 +12,7 @@
     </div>
     <h1 class="hi-text" style="text-align: left;"> Ordine della proposta #${ordine.getProposta().codice} -  ${ordine.getProposta().richiestaOrdine.utente.username}</h1> 
     <br>
-    <div class="container-richieste-storico">
+    <div class="container-richieste-storico shadow-lg">
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="categoria">Categoria:</label>
@@ -47,7 +47,7 @@
                     <#if ordine.stato == "RESPINTO_NON_CONFORME" || ordine.stato == "RESPINTO_NON_FUNZIONANTE">
                     <form action="" method="post">
                         <input type="hidden" name="action" value="reinviaOrdine">
-                        <button type="submit" class="btn-verde">Re-invia ordine</button>
+                        <button type="submit" class="btn-verde shadow-lg">Re-invia ordine</button>
                     </form>
                 </#if>
                 </div>

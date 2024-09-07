@@ -20,7 +20,7 @@
             <strong>Categoria padre:</strong>
              <#if (padre??)>
             <a href="categoria?n=${padre.key}">
-            <button class="purple-button">${padre.nome}</button>
+            <div class="purple-button shadow-lg">${padre.nome}</div>
             </a>
              <#else>
             <span>Questa catgoria non deriva da nessun'altra</span>
@@ -32,7 +32,7 @@
                 <#if (categorieFiglie?size>0)>
             <#list categorieFiglie as figlia>
             <a href="categoria?n=${figlia.key}">
-                <button class="purple-button width150px margin-right">${figlia.nome}</button>
+                <div class="purple-button width150px margin-right shadow-lg">${figlia.nome}</div>
             </a>
             </#list>
         <#else>

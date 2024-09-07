@@ -10,6 +10,8 @@
     caratteristicaInput.name = 'nuova-caratteristica'; 
     caratteristicaInput.placeholder = 'Inserisci una caratteristica';
 
+    caratteristicaInput.classList.add('flex-1', 'border', 'rounded-extra-large', 'p-2');
+
     const removeButton = document.createElement('button');
     removeButton.className = 'cancel-btn';
     removeButton.innerHTML = '✖';

@@ -1747,3 +1747,15 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     border: none;
     color: white;
 }
+
+
+.vai-richiesta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+}
+
+.darkblue-richiesta-storico:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+}
+ 

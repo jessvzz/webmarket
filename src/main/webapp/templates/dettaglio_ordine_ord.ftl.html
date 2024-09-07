@@ -23,14 +23,14 @@
 
          
             <div class="form-group-tecnico flex items-center">
-                <label for="proposta" class="text-gray-700 italic mr-2"> Vai alla Proposta: </label>
+                <label class="text-gray-700 italic mr-2"> Vai alla Proposta: </label>
                 <a href="dettaglio_proposta_ord?n=${ordine.getProposta().key}">
-                    <div name="proposta" id="proposta" class="darkblue-richiesta-storico">Proposta #${ordine.getProposta().codice}
+                    <div id="proposta" class="darkblue-richiesta-storico shadow-lg">Proposta #${ordine.getProposta().codice}
                     </div></a>
             </div>
           
 
-        <div class="container-skyblue-proposta p-4">
+        <div class="container-skyblue-proposta p-4 shadow-lg">
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
                     <label for="ordine" class="block text-gray-700 font-bold">Data Ordine:</label>
@@ -67,14 +67,14 @@
                 <div class="flex space-x-4">
                     <form action="" method="post" class="mb-2">
                         <input type="hidden" name="action" value="accettaOrdine">
-                        <button type="submit"  class="green-button  hover:bg-green-600 text-white px-4 py-2 rounded-md">ACCETTA</button>
+                        <button type="submit"  class="green-button  hover:bg-green-600 text-white px-4 py-2 rounded-md shadow-lg">ACCETTA</button>
                     </form>
                     </#if>
 
                     <#if ordine.getStato() == "IN_ATTESA">
                     <div>
                         <a href="rifiuto_ordine?n=${ordine.key}">
-                            <div class="orange-button hover:bg-orange-600 text-white px-4 py-2 rounded-md">RIFIUTA</div>
+                            <div class="orange-button hover:bg-orange-600 text-white px-4 py-2 rounded-md shadow-lg">RIFIUTA</div>
                         </a>
                     </div>
                      </#if>

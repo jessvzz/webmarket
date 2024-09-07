@@ -12,7 +12,7 @@
     </div>
     <h1 class="hi-text" style="text-align: left;">Richiesta #${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
     <br>
-    <div class="container-richieste-storico">
+    <div class="container-richieste-storico shadow-lg">
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label for="categoria">Categoria:</label>
@@ -45,7 +45,7 @@
                     <label for="proposte">Proposte effettuate:</label>
                     <#list proposte as proposta>
                         <a href="detailproposta_tecnico?n=${proposta.key}">
-                            <button class="btn-proposte" style="margin-bottom: 2px;">#${proposta.codice}</button>
+                            <div class="proposta-card" style="margin-bottom: 2px;">#${proposta.codice}</div>
                         </a>
                     </#list>
                 </div>
@@ -55,7 +55,7 @@
         <div class="row-tecnico">
             
             <a href="invioproposta?n=${richiesta.key}">
-                <button class="btn-blu">Compila proposta</button>
+                <div class="btn-blu shadow-lg">Compila proposta</div>
             </a>
         </div>
         </#if>

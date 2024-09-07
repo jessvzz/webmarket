@@ -1,7 +1,7 @@
 <div class="container-beige">
     <div class="title-container">
         <a href="homepageadmin">
-        <div class="logo">
+        <div class="logo shadow-lg">
             <img src="images/home-svg.svg" alt="Home" />
         </div>
          </a>
@@ -13,11 +13,11 @@
     <#if (categorie?size>0)>
     <div class="categories">
         <a href="aggiungicategoria">
-        <button class="lblue-button width150px height61px span-1">Aggiungi</button>
+        <button class="lblue-button width150px height61px span-1 shadow-lg">Aggiungi</button>
         </a>
         <#list categorie as categoria>
         <a href="categoria?n=${categoria.key}">
-        <button class="purple-button width150px category-item height61px span-1">${categoria.nome}</button>
+        <div class="purple-button width150px category-item height61px span-1 shadow-lg">${categoria.nome}</div>
         </a>
         </#list>
     </div>
