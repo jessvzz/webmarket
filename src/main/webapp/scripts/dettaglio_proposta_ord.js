@@ -3,16 +3,16 @@ function cambiaStatoDettaglioProposta(statoProposta) {
 
     switch (statoProposta) {
         case 'RIFIUTATO':
-            backgroundColor = '#ff6347'; // red
+            backgroundColor = '#FFAEAE'; // red
             break;
         case 'IN_ATTESA':
-            backgroundColor = '#ff7f50'; // orange
+            backgroundColor = '#FFE8A3'; // orange
             break;
         case 'ORDINATO':
-            backgroundColor = '#ffd700'; // yellow
+            backgroundColor = '#E4CCFF'; 
             break;
         case 'ACCETTATO':
-            backgroundColor = '#adff2f'; // green
+            backgroundColor = '#AFF4C6'; // green
             break;
         default:            
         backgroundColor = "#FFFFFF";

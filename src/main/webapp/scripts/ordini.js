@@ -3,16 +3,16 @@ function cambiaStatoOrdini(statoOrdine) {
 
     switch (statoOrdine) {
         case 'RESPINTO_NON_CONFORME':
-            backgroundColor = '#ff6347'; // red
+            backgroundColor = '#FFAEAE'; // red
             break;
         case 'RESPINTO_NON_FUNZIONANTE':
-            backgroundColor = '#ff7f50'; // orange
+            backgroundColor = '#ffbf70'; // orange
             break;
         case 'IN_ATTESA':
-            backgroundColor = '#ffd700'; // yellow
+            backgroundColor = '#FFE8A3'; // yellow
             break;
         case 'ACCETTATO':
-            backgroundColor = '#adff2f'; // green
+            backgroundColor = '#AFF4C6'; // green
             break;
         case 'RIFIUTATO':
                 backgroundColor = '#de533e'; 
@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         container.style.backgroundColor = "#6659f0"; 
                     });
     } else {
-        container.style.backgroundColor = "#8076f5";
+        container.style.backgroundColor = "#958df7";
         container.addEventListener('mouseenter', () => {
             container.style.backgroundColor = "#4f40f5"; 
         });
 
         container.addEventListener('mouseleave', () => {
-            container.style.backgroundColor = "#8076f5"; 
+            container.style.backgroundColor = "#958df7"; 
         });
     }
 });

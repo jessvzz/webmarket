@@ -9,16 +9,16 @@ function cambiaStatoDettaglioOrdine(statoOrdine) {
 
     switch (statoOrdine) {
         case 'RESPINTO_NON_CONFORME':
-            backgroundColor = '#ff6347';
+            backgroundColor = '#FFAEAE';
             break;
         case 'RESPINTO_NON_FUNZIONANTE':
-            backgroundColor = '#ff7f50';
+            backgroundColor = '#ffbf70';
             break;
         case 'IN_ATTESA':
-            backgroundColor = '#ffd700';
+            backgroundColor = '#FFE8A3';
             break;
         case 'ACCETTATO':
-            backgroundColor = '#adff2f';
+            backgroundColor = '#AFF4C6';
             break;
         default:            
         backgroundColor = "#FFFFFF";

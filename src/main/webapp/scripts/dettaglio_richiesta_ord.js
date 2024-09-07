@@ -3,16 +3,16 @@ function cambiaStatoDettaglioRichiesta(statoRichiesta) {
 
     switch (statoRichiesta) {
         case 'IN_ATTESA':
-            backgroundColor = '#ff6347'; // red
+            backgroundColor = '#FFE8A3'; 
             break;
         case 'PRESA_IN_CARICO':
-            backgroundColor = '#ff7f50'; // orange
+            backgroundColor = '#ffbf70'; // orange
             break;
         case 'RISOLTA':
-            backgroundColor = '#ffd700'; // yellow
+            backgroundColor = '#AFF4C6'; // yellow
             break;
         case 'ORDINATA':
-            backgroundColor = '#adff2f'; // green
+            backgroundColor = '#E4CCFF'; // green
             break;
         default:            
         backgroundColor = "#FFFFFF";
