@@ -1,18 +1,23 @@
+/**
+ * Restituisce un elemento HTML con il colore di sfondo cambiato in base allo stato della proposta.
+ * @param {string} statoProposta - Lo stato della proposta (es. 'RIFIUTATO', 'IN_ATTESA', 'ORDINATO', 'ACCETTATO').
+ * @returns {string} - Un elemento HTML con lo stile appropriato per lo stato della proposta.
+ */
 function cambiaStatoProposta(statoProposta) {
     let backgroundColor;
 
     switch (statoProposta) {
         case 'RIFIUTATO':
-            backgroundColor = '#FFAEAE '; // red
+            backgroundColor = '#FFAEAE '
             break;
         case 'IN_ATTESA':
-            backgroundColor = '#FFE8A3'; // giallo
+            backgroundColor = '#FFE8A3';
             break;
         case 'ORDINATO':
-            backgroundColor = '#E4CCFF '; // lilla
+            backgroundColor = '#E4CCFF '
             break;
         case 'ACCETTATO':
-            backgroundColor = '#AFF4C6'; // green
+            backgroundColor = '#AFF4C6';
             break;
         default:            
         backgroundColor = "#FFFFFF";
@@ -24,8 +29,19 @@ return `
 `;
 }
 
-
+/**
+ * Funzione che viene eseguita quando il contenuto del documento è completamente caricato.
+ * Trova gli elementi con la classe 'card-row-content' e l'attributo 'data-state', quindi aggiorna il loro HTML
+ * utilizzando la funzione cambiaStatoProposta.
+ * Aggiunge anche eventi di hover agli elementi con la classe 'proposta-container'.
+ * Aggiunge filtri di ricerca e selezione per le proposte.
+ * @event DOMContentLoaded
+ */
 document.addEventListener("DOMContentLoaded", function() {
+    /**
+     * NodeList di elementi con la classe 'card-row-content' e l'attributo 'data-state'.
+     * @type {NodeList}
+     */
     const proposte = document.querySelectorAll('.card-row-content[data-state]');
     proposte.forEach(proposta => {
         const statoProposta = proposta.getAttribute('data-state');
@@ -33,7 +49,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     
     
-    
+    /**
+     * NodeList di elementi con la classe 'proposta-container'.
+     * @type {NodeList}
+     */
     const propostaContainers = document.querySelectorAll(".proposta-container");
 
     propostaContainers.forEach(container => {
@@ -62,13 +81,27 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
     
-    //prendo elementi di ricerca e filtro
+    /**
+     * Input di ricerca per filtrare le proposte.
+     * @type {HTMLInputElement}
+     */
     const searchInput = document.getElementById('search');
+    
+    /**
+     * Select per filtrare le proposte in base allo stato.
+     * @type {HTMLSelectElement}
+     */
     const filterSelect = document.getElementById('status');
     
-    //container delle proposte
+    /**
+     * NodeList di elementi con la classe 'proposta-container'.
+     * @type {NodeList}
+     */
     const proposals = document.querySelectorAll('.proposta-container');
 
+    /**
+     * Filtra le proposte in base al termine di ricerca e allo stato selezionato.
+     */
     function filterProposte() {
         //prendo valori nella ricerca e nel select (minuscoli)
         const searchTerm = searchInput.value.toLowerCase();
@@ -100,7 +133,3 @@ document.addEventListener("DOMContentLoaded", function() {
     // filtro select
     filterSelect.addEventListener('change', filterProposte);
 });
-
-
-
-

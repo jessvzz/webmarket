@@ -1,11 +1,23 @@
+/**
+ * Carica le sottocategorie in base all'ID della categoria principale selezionata.
+ * @param {string} parentCategoryId - L'ID della categoria principale selezionata.
+ */
 function loadSubCategories(parentCategoryId) {
     console.log("selected: "+parentCategoryId);
     
     if (!parentCategoryId) return;
+    /**
+     * Elemento HTML per la categoria scelta.
+     * @type {HTMLElement}
+     */
     let chosenCategory = document.getElementById("chosen-category");
     chosenCategory.setAttribute("value", parentCategoryId);
     
     
+    /**
+     * Contenitore per le sottocategorie.
+     * @type {HTMLElement}
+     */
     let container = document.getElementById("subcategories-container");
     
    
@@ -18,25 +30,39 @@ function loadSubCategories(parentCategoryId) {
         })
         .then(data => {
             if (data.length > 0) {
+                /**
+                 * NodeList di elementi select nel documento.
+                 * @type {NodeList}
+                 */
                 let selects = document.querySelectorAll('select');
                 selects.forEach(select => {
                     
                         select.disabled = true;
                     
                 });
-                // nuovo select per le sottocategorie
+                /**
+                 * Elemento select per le sottocategorie.
+                 * @type {HTMLSelectElement}
+                 */
                 let subCategorySelect = document.createElement("select");
                 subCategorySelect.classList.add('standard-select', 'mb-4');
                 subCategorySelect.setAttribute("onchange", "loadSubCategories(this.value)");
 
+                /**
+                 * Opzione predefinita per il select delle sottocategorie.
+                 * @type {HTMLOptionElement}
+                 */
                 let defaultOption = document.createElement("option");
                 defaultOption.text = "Seleziona una Sottocategoria";
                 defaultOption.disabled = true;
                 defaultOption.selected = true;
                 subCategorySelect.appendChild(defaultOption);
 
-                // opzioni per le sottocategorie
                 data.forEach(cat => {
+                    /**
+                     * Opzione per una sottocategoria.
+                     * @type {HTMLOptionElement}
+                     */
                     let option = document.createElement("option");
                     option.value = cat.key;
                     option.text = cat.nome;
