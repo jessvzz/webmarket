@@ -802,6 +802,14 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 .error-message{
     color: red;
 }
+
+.success-msg {
+    color: green;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
 /* Barra di ricerca */
 .search-container {
     display: flex;
