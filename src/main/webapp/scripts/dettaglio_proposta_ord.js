@@ -28,9 +28,9 @@ return `
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const proposta = document.querySelector('.badge-stato[stato]');
+    const proposta = document.querySelector('.badge-stato[data-stato]');
     if (proposta) {
-        const statoProposta = proposta.getAttribute('stato');
+        const statoProposta = proposta.getAttribute('data-stato');
         proposta.outerHTML = cambiaStatoDettaglioProposta(statoProposta);
     }
 });
