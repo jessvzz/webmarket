@@ -1,18 +1,23 @@
+/**
+ * Restituisce un elemento HTML con il colore di sfondo cambiato in base allo stato della richiesta.
+ * @param {string} statoRichiesta - Lo stato della richiesta (es. 'IN_ATTESA', 'PRESA_IN_CARICO', 'RISOLTA', 'ORDINATA').
+ * @returns {string} - Un elemento HTML con lo stile appropriato per lo stato della richiesta.
+ */
 function cambiaStatoRichiesta(statoRichiesta) {
     let backgroundColor;
 
     switch (statoRichiesta) {
         case 'IN_ATTESA':
-            backgroundColor = '#FFE8A3'; //giallo
+            backgroundColor = '#FFE8A3';
             break;
         case 'PRESA_IN_CARICO':
-            backgroundColor = '#ffbf70'; //arancione
+            backgroundColor = '#ffbf70';
             break;
         case 'RISOLTA':
-            backgroundColor = '#AFF4C6'; //verde
+            backgroundColor = '#AFF4C6';
             break;
         case 'ORDINATA':
-            backgroundColor = '#E4CCFF'; // lilla
+            backgroundColor = '#E4CCFF';
             break;
         default:            
         backgroundColor = "#FFFFFF";
@@ -24,8 +29,19 @@ return `
 `;
 }
 
+/**
+ * Funzione che viene eseguita quando il contenuto del documento è completamente caricato.
+ * Trova gli elementi con la classe 'card-row-content' e l'attributo 'data-state', quindi aggiorna il loro HTML
+ * utilizzando la funzione cambiaStatoRichiesta.
+ * Aggiunge filtri di ricerca e selezione per le richieste.
+ * @event DOMContentLoaded
+ */
 document.addEventListener("DOMContentLoaded", function() {
  
+   /**
+    * NodeList di elementi con la classe 'card-row-content' e l'attributo 'data-state'.
+    * @type {NodeList}
+    */
    const richieste = document.querySelectorAll('.card-row-content[data-state]');
 
     richieste.forEach(richiesta => {
@@ -36,12 +52,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
 
+    /**
+     * Input di ricerca per filtrare le richieste.
+     * @type {HTMLInputElement}
+     */
     const searchInput = document.getElementById('search');
+    
+    /**
+     * Select per filtrare le richieste in base allo stato.
+     * @type {HTMLSelectElement}
+     */
     const filterSelect = document.getElementById('status');
 
+    /**
+     * NodeList di elementi con la classe 'richiesta-container'.
+     * @type {NodeList}
+     */
     const ric = document.querySelectorAll('.richiesta-container');
 
 
+    /**
+     * Filtra le richieste in base al termine di ricerca e allo stato selezionato.
+     */
     function filterRichieste() {
         
         const searchTerm = searchInput.value.toLowerCase();
@@ -69,4 +101,3 @@ document.addEventListener("DOMContentLoaded", function() {
             // filtro select
             filterSelect.addEventListener('change', filterRichieste);
         });
-
