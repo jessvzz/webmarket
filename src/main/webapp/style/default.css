@@ -1309,6 +1309,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     border: none;
     color: black;
     text-align: center;
+    overflow: hidden;
 }
 
 .grey-row {
