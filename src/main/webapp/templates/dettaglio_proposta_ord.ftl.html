@@ -17,7 +17,7 @@
     
     <div class="container-proposta">
         <div class="container-info-proposta">
-            <h1 class="hi-text"> Proposta #: ${proposta.codice}</h1>
+            <h1 class="hi-text"> Proposta #${proposta.codice}</h1>
             <div class="badge-stato w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" data-stato="${proposta.getStatoProposta()}" style="display: inline-block; font-weight: bold;">
                 ${proposta.getStatoProposta()! "Stato non disponibile"}
             </div> 
