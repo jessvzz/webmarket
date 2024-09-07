@@ -12,18 +12,18 @@
     </div>
     <h1 class="hi-text" style="text-align: left;">#${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
     <br>
-    <form action="" method="post" class="form-container-orange shadow-lg">
+    <form action="richiesta_inattesa?n=${richiesta.key}" method="post" class="form-container-orange shadow-lg">
         <input type="hidden" name="action" value="prendiInCarico">
     <div class="container-richieste-storico p-4 w-full">
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="categoria">Categoria:</label>
+                <label>Categoria:</label>
                 <div class="purple-richiesta-storico" style="width: auto;">${richiesta.categoria.nome}</div>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="caratteristiche">Caratteristiche:</label>
+                <label>Caratteristiche:</label>
                 <#if (caratteristiche?size>0)>
                 
                 <div class="skyblue-richiesta-storico break-words">

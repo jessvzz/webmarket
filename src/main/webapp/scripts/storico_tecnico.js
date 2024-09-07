@@ -42,10 +42,10 @@ document.addEventListener("DOMContentLoaded", function() {
      * Seleziona tutti gli elementi con la classe 'card-row-content' e attributo 'stato'.
      * @type {NodeListOf<Element>}
      */
-    const ordini = document.querySelectorAll('.card-row-content[stato]');
+    const ordini = document.querySelectorAll('.card-row-content[data-state]');
 
     ordini.forEach(ordine => {
-        const statoOrdine = ordine.getAttribute('stato');
+        const statoOrdine = ordine.getAttribute('data-state');
         ordine.outerHTML = getStatoOrdine(statoOrdine);
     });
     
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
      * Contenitori degli ordini.
      * @type {NodeListOf<Element>}
      */
-    const ord = document.querySelectorAll('#ordine-container');
+    const ord = document.querySelectorAll('.ordine-container');
 
     /**
      * Filtra gli ordini in base al termine di ricerca e allo stato selezionato.

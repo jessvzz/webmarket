@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function() {
      * Seleziona tutti gli elementi con la classe 'card-row-content' e attributo 'stato'.
      * @type {NodeListOf<Element>}
      */
-    const proposte = document.querySelectorAll('.card-row-content[stato]');
+    const proposte = document.querySelectorAll('.card-row-content[data-state]');
     proposte.forEach(proposta => {
-        const statoProposta = proposta.getAttribute('stato');
+        const statoProposta = proposta.getAttribute('data-state');
         let p = 'big-badge';
         proposta.outerHTML = getStatoProposta(statoProposta, p);
     });
@@ -52,9 +52,9 @@ document.addEventListener("DOMContentLoaded", function() {
      * Seleziona tutti gli elementi con la classe 'badge-stato' e attributo 'stato'.
      * @type {NodeListOf<Element>}
      */
-    const proposte = document.querySelectorAll('.badge-stato[stato]');
+    const proposte = document.querySelectorAll('.badge-stato[data-state]');
     proposte.forEach(proposta => {
-        const statoProposta = proposta.getAttribute('stato');
+        const statoProposta = proposta.getAttribute('data-state');
         let p = 'small-badge';
         proposta.outerHTML = getStatoProposta(statoProposta, p);
     });
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
      * Seleziona tutti gli elementi con l'ID 'proposta-container'.
      * @type {NodeListOf<Element>}
      */
-    const propostaContainers = document.querySelectorAll("#proposta-container");
+    const propostaContainers = document.querySelectorAll(".proposta-container");
 
     propostaContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");

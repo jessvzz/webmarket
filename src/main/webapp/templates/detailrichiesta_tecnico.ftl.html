@@ -21,7 +21,7 @@
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="caratteristiche">Caratteristiche:</label>
+                <label>Caratteristiche:</label>
                 <#if (caratteristiche?size>0)>
                 
                 <div class="skyblue-richiesta-storico">
@@ -35,14 +35,14 @@
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="note">Note:</label>
+                <label>Note:</label>
                 <div class="skyblue-richiesta-storico">${richiesta.note!'Nessuna nota inserita'}</div>
             </div>
         </div>
         <#if (proposte?size > 0)>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="proposte">Proposte effettuate:</label>
+                    <label>Proposte effettuate:</label>
                     <#list proposte as proposta>
                         <a href="detailproposta_tecnico?n=${proposta.key}">
                             <div class="proposta-card" style="margin-bottom: 2px;">#${proposta.codice}</div>

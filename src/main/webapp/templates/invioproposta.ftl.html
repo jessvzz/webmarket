@@ -18,7 +18,7 @@
             <h1 class="hi-text">#${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
         </div>
         <div class="container-purple-proposta" style="background-color: #5D54BE;">
-            <form action="" method="post">
+            <form action="invioproposta?n=${richiesta.key}" method="post">
                 <input type="hidden" name="action" value="invioProposta">
                 
                 <div class="row-tecnico">

@@ -322,11 +322,11 @@ INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) V
     (11, 14, 'Indifferente');
     
 
-INSERT INTO proposta_acquisto (produttore, prodotto, codice, codice_prodotto, prezzo, URL, note, stato, data, richiesta_id) VALUES
-    ('Dell', 'Notebook XPS 15', generate_codice(), 'XPS-2024', 1500.50, 'https://dell.com/notebook-xps15', 'Perfetto per ufficio', 'ORDINATO', '2024-09-03', 1),
-    ('Ikea', 'Scrivania LINNMON', generate_codice(), 'LINNMON-2024', 89.99, 'https://ikea.com/scrivania-linnmon', 'Colore bianco, misura 120x60 cm', 'IN_ATTESA', '2024-09-01', 2),
-    ('Samsung', 'Monitor 27" UHD', generate_codice(), 'SAM-UHD-27', 299.99, 'https://samsung.com/monitor-uhd27', 'Schermo UHD 4K', 'ORDINATO', '2024-08-18', 3),
-    ('HP', 'Stampante LaserJet Pro', generate_codice(), 'LASERPRO-2024', 199.99, 'https://hp.com/stampante-laserjet-pro', 'Laser, alta velocità', 'ORDINATO', '2024-08-01', 4),
+INSERT INTO proposta_acquisto (produttore, prodotto, codice, codice_prodotto, prezzo, URL, note, stato, data, motivazione, richiesta_id) VALUES
+    ('Dell', 'Notebook XPS 15', generate_codice(), 'XPS-2024', 1500.50, 'https://dell.com/notebook-xps15', 'Perfetto per ufficio', 'ORDINATO', '2024-09-03', NULL,  1),
+    ('Ikea', 'Scrivania LINNMON', generate_codice(), 'LINNMON-2024', 89.99, 'https://ikea.com/scrivania-linnmon', 'Colore bianco, misura 120x60 cm', 'IN_ATTESA', '2024-09-01', NULL, 2),
+    ('Samsung', 'Monitor 27" UHD', generate_codice(), 'SAM-UHD-27', 299.99, 'https://samsung.com/monitor-uhd27', 'Schermo UHD 4K', 'ORDINATO', '2024-08-18', NULL, 3),
+    ('HP', 'Stampante LaserJet Pro', generate_codice(), 'LASERPRO-2024', 199.99, 'https://hp.com/stampante-laserjet-pro', 'Laser, alta velocità', 'ORDINATO', '2024-08-01', NULL, 4),
     ('HP', 'HP Pavilion 15-eh3008nl', generate_codice(), '83A27EA#ABZ', 629.98, 'https://www.hp.com/it-it/shop/product.aspx?id=83A27EA&opt=ABZ&sel=NTB&gad_source=1&gclid=Cj0KCQjw8--2BhCHARIsAF_w1gzGUkreM3_06TgYvfdYv0Ll5zyRO9GfFK0wqn2f7FK6zzFTIxZQ91AaAlO4EALw_wcB&gclsrc=aw.ds', NULL, 'RIFIUTATO', '2024-09-03', 'Non mi piace il produttore HP', 6),
     ('Pigna Monocromo', 'Quaderno formato A4', generate_codice(), 'n/a', 14.99, 'https://www.amazon.it/Pigna-Monocromo-02298875M-Quadretti-Elementare/dp/B07GR9LQSK/ref=asc_df_B07GR9LQSK/?tag=googshopit-21&linkCode=df0&hvadid=701238956335&hvpos=&hvnetw=g&hvrand=12216248457852547069&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9050671&hvtargid=pla-533311440398&mcid=6540bcbf14773a68b184db22a11bf770&gad_source=1&th=1', 'disponibile in diversi colori', 'IN_ATTESA',  '2024-09-05', NULL, 8),
     ('Apple', 'Apple Magic Mouse', generate_codice(), 'tYy3BaDB5i', 75.00, 'https://www.amazon.it/Apple-MK2E3ZM-A-Magic-Mouse/dp/B09BV7YYG3/ref=sr_1_3?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1JR7AGS0VAY3Z&dib=eyJ2IjoiMSJ9.3aecOhkwpcmvt_QDJguKiv9022QFwHUAXnJ7Ma93QSrbXLBtbNGpCmcvqzJ9tAtFYjnvAqLdOQZyl1rbt5_5SnRF7gww_uKDkXiXbZmfYiQR7cgOADBucCX_m_zj0cJ1DE5o69ZcMMvX2B10914oxuGl7lK3AaHzehd30heTX5SRQYFRJHLSXXx7ADtv52T2-BbCVu-1TvEjT03m2XwsZ41csrIWOrL8Q4Lk8IYU3IBT5ni5SzOMm8A4KiEWHQLzrcJuynWnhXfKAp_N_jE2N7cXPTy5r-FleFSqmEWETo8.jAyKWBW_lGd-tXrNPMUOuyOQmT7EJsNtgZfd-9Dlu3A&dib_tag=se&keywords=magic+mouse&qid=1725697145&s=pc&sprefix=magic+mouse%2Ccomputers%2C90&sr=1-3', NULL, 'ORDINATO', '2024-09-06', NULL, 9),

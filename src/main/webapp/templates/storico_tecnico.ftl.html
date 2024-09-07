@@ -27,14 +27,14 @@
         <#list ordini as ordine>
  <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards">
 
-        <div id="ordine-container" class="card-row-orange" data-stato="${ordine.stato}" data-codice="${ordine.proposta.getCodice()}" >
+        <div class="card-row-orange ordine-container" data-stato="${ordine.stato}" data-codice="${ordine.proposta.getCodice()}" >
                 <div class="card-row-content">
                     <p class="card-row-text"><b>Proposta: </b>${ordine.proposta.codice}</p>
                 </div>
                 <div class="card-row-content">
                     <p class="card-row-text"><b>Utente: </b>${ordine.proposta.richiestaOrdine.utente.username}</p>
                 </div>
-                <div class="card-row-content" stato="${ordine.getStato()}">
+                <div class="card-row-content" data-state="${ordine.getStato()}">
                     <p class="card-row-text">${ordine.stato}</p>
                 </div>
            

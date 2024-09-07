@@ -22,7 +22,7 @@
                     #${proposta.richiestaOrdine.codiceRichiesta}
                 </a> - ${proposta.richiestaOrdine.utente.username}
             </h1>
-            <div class="badge-stato" stato="${proposta.getStatoProposta()}">${proposta.getStatoProposta()}</div>
+            <div class="badge-stato" data-state="${proposta.getStatoProposta()}">${proposta.getStatoProposta()}</div>
         </div>
         <div class="container-skyblue-proposta shadow-lg">
             <div class="row-tecnico">
@@ -39,7 +39,7 @@
             </div>
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="nome prodotto">Codice prodotto:</label>
+                    <label>Codice prodotto:</label>
                     <div class="grey-row">${proposta.codiceProdotto}</div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <div class="form-group-tecnico" style="justify-content: center;">
                     
                     <#if proposta.getStatoProposta() == "ACCETTATO">
-                    <form action="" method="post">
+                    <form action="detailproposta_tecnico?n=${proposta.key}" method="post">
                         <input type="hidden" name="action" value="inviaOrdine">
                         <button type="submit" class="btn-verde shadow-lg">Invia ordine</button>
                     </form>

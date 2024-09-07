@@ -15,29 +15,29 @@
     <div class="container-richieste-storico shadow-lg">
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="categoria">Categoria:</label>
+                <label>Categoria:</label>
                 <div class="purple-richiesta-storico" style="width: auto;"> ${ordine.getProposta().richiestaOrdine.categoria.nome}</div>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="stato">Stato ordine:</label>
+                <label>Stato ordine:</label>
                 <div id="statoBadge" class="grey-storico">${ordine.stato}</div>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="richiesta">Vai alla richiesta:</label>
+                <label>Vai alla richiesta:</label>
                 <a href="detailrichiesta_tecnico?n=${ordine.getProposta().richiestaOrdine.key}&source=proposte">
-                <div class="darkblue-richiesta-storico" name="richiesta">Richiesta #${ordine.getProposta().richiestaOrdine.codiceRichiesta}</div>
+                <div class="darkblue-richiesta-storico" >Richiesta #${ordine.getProposta().richiestaOrdine.codiceRichiesta}</div>
                 </a>
             </div>
         </div>
         <div class="row-tecnico">
             <div class="form-group-tecnico">
-                <label for="proposta">Vai alla proposta:</label>
+                <label>Vai alla proposta:</label>
                 <a href="detailproposta_tecnico?n=${ordine.getProposta().key}">
-                <div name="proposta" class="darkblue-richiesta-storico">Proposta #${ordine.getProposta().codice}</div>
+                <div class="darkblue-richiesta-storico">Proposta #${ordine.getProposta().codice}</div>
                 </a>
             </div>
         </div>
@@ -45,7 +45,7 @@
     </div>
     <div class="form-group-tecnico" style="justify-content: center; width: 100%;">
                     <#if ordine.stato == "RESPINTO_NON_CONFORME" || ordine.stato == "RESPINTO_NON_FUNZIONANTE">
-                    <form action="" method="post">
+                    <form action="detailstorico_tecnico?n=${ordine.key}" method="post">
                         <input type="hidden" name="action" value="reinviaOrdine">
                         <button type="submit" class="btn-verde shadow-lg">Re-invia ordine</button>
                     </form>
