@@ -32,9 +32,9 @@ return `
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    const ordini = document.querySelectorAll('.card-row-content[stato]');
+    const ordini = document.querySelectorAll('.card-row-content[data-state]');
     ordini.forEach(ordine => {
-        const statoOrdine = ordine.getAttribute('stato');
+        const statoOrdine = ordine.getAttribute('data-state');
         ordine.outerHTML = cambiaStatoOrdini(statoOrdine);
     });
     
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchInput = document.getElementById('search');
     const filterSelect = document.getElementById("status");
   
-    const ord = document.querySelectorAll('#ordine-container');
+    const ord = document.querySelectorAll('.ordine-container');
 
 
     function filterOrdini() {
