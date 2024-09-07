@@ -1,5 +1,5 @@
 <div class="container-beige">
-    <h2 class="form-title">Gentile Cliente, inserisca la motivazione del rifiuto per l'ordine ${proposta.codice}</h2>
+    <h2 class="form-title">Gentile Cliente, inserisca la motivazione del rifiuto della proposta ${proposta.codice}</h2>
     <div class="form-container">
     <form method="POST" action="">
         <input type="hidden" name="action" value="rifiutaProposta">
@@ -7,7 +7,7 @@
         
         <div class="form-group">
             <label for="note">Motivazione:</label>
-            <textarea id="note" name="note" required></textarea>
+            <textarea id="note" name="note" required class="pl-2"></textarea>
         </div>
        
         <div class="form-buttons">
