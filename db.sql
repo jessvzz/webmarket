@@ -298,7 +298,7 @@ INSERT INTO richiesta_ordine (note, stato, data, codice_richiesta, utente, tecni
     (NULL, 'PRESA_IN_CARICO', '2024-09-04', generate_codice(), 6, 7, 12),
     ('Schemo curvo', 'RISOLTA', '2024-09-05', generate_codice(), 6, 7, 6),
     ('magic mouse', 'PRESA_IN_CARICO', '2024-09-06', generate_codice(), 6, 7, 5),
-    ('Deve essere abbastanza grande per il mio fisso, il mio pranzo e la mia borsa da lavoro', 'IN_ATTESA', '2024-09-07', generate_codice(), 6, 7, 7);
+    ('Deve essere abbastanza grande per il mio fisso, il mio pranzo e la mia borsa da lavoro', 'IN_ATTESA', '2024-09-07', generate_codice(), 6, 7, 9);
 
 INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES
     (1, 1, '16GB'), -- Notebook (RAM)
