@@ -80,7 +80,7 @@
 
         <#if proposta.getStatoProposta() == "IN_ATTESA">
         <div class="flex space-x-4">
-            <form action="" method="post" class="mb-2">
+            <form action="dettaglio_proposta_ord?n=${proposta.key}" method="post" class="mb-2">
                 <input type="hidden" name="action" value="accettaProposta"/>
               
                 <button type="submit"  class="green-button  hover:bg-green-600 text-white px-4 py-2 rounded-md shadow-lg">ACCETTA</button>
@@ -90,7 +90,7 @@
             <div>
 
                 <div class="orange-button hover:bg-orange-600 text-white px-4 py-2 rounded-md shadow-lg">
-                <a href="motiva_rifiuto?n=${proposta.key}">&gt; RIFIUTA</a>
+                <a href="motiva_rifiuto?n=${proposta.key}">RIFIUTA</a>
                    
                 </div>
             </div>
