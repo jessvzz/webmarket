@@ -36,12 +36,12 @@
 
         <#list ordini as ordine>
 <a href="dettaglio_ordine_ord?n=${ordine.key}" class="a-cards"> 
-        <div  id="ordine-container" class="card-row-purple" data-stato="${ordine.getStato()}" data-codice="${ordine.proposta.getCodice()}" >
+        <div class="card-row-purple ordine-container" data-stato="${ordine.getStato()}" data-codice="${ordine.proposta.getCodice()}" >
             
                 <div class="card-row-content  mb-2">
                     <p class="card-row-text font-semibold">Data: ${ordine.getData()}</p>
                 </div>
-                <div class="card-row-content" stato="${ordine.getStato()}">
+                <div class="card-row-content" data-state="${ordine.getStato()}">
                     <p class="card-row-text">Stato: ${ordine.stato}</p>
                 </div>
                 <div class="card-row-content">
