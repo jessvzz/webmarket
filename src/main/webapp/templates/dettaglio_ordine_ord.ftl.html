@@ -3,7 +3,7 @@
         
             <div class="home-card flex justify-center items-center bg-indigo-600 p-2">
                 <a href="homepageordinante">
-                <img src="images/home-svg.svg" alt="icona home" class="home-icon w-8 h-8">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon w-8 h-8"/>
                 </a>
             </div>
                  <a href="ordini">
@@ -15,10 +15,10 @@
     <div class="container-proposta">
              <div class="container-info-proposta">
                 <h1 class="hi-text"> Ordine </h1>
-                <div class="badge-statoOrdini w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" stato="${ordine.getStato()}"style="display: inline-block; font-weight: bold;">
+                <div class="badge-statoOrdini w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" data-stato="${ordine.getStato()}" style="display: inline-block; font-weight: bold;">
                    ${ordine.getStato()} 
                 </div> 
-           <br>
+           <br/>
         </div>
 
          
@@ -33,7 +33,7 @@
         <div class="container-skyblue-proposta p-4 shadow-lg">
             <div class="row-tecnico">
                 <div class="form-group-tecnico">
-                    <label for="ordine" class="block text-gray-700 font-bold">Data Ordine:</label>
+                    <label class="block text-gray-700 font-bold">Data Ordine:</label>
                     <div id="ordine" class="grey-row"> 
                         ${ordine.data}
                     </div>
@@ -43,19 +43,19 @@
                 <div class="row-tecnico">
                     <div class="form-group-tecnico">
                   
-                             <label for="descrizione" class="block text-gray-700 font-bold">
+                             <label class="block text-gray-700 font-bold">
                             
                             Descrizione Proposta:</label>
                         <div id="descrizione" class="grey-row" > 
                             <span class="font-bold"> Produttore: </span> ${ordine.getProposta().produttore}
-                            <br>
-                            <br>
+                            <br/>
+                            <br/>
                             <span class="font-bold">  Prodotto: </span> ${ordine.getProposta().prodotto}
-                            <br>
-                            <br>
+                            <br/>
+                            <br/>
                             <span class="font-bold">Prezzo: </span>${ordine.getProposta().prezzo}
-                            <br>
-                            <br>
+                            <br/>
+                            <br/>
                             <span class="font-bold"> Note: </span> ${ordine.getProposta().note!'Nessuna nota inserita'}
                         </div>
                     </div>

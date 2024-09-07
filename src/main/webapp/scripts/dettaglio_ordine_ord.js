@@ -38,13 +38,13 @@ document.addEventListener("DOMContentLoaded", function() {
      * Elemento HTML che rappresenta lo stato dell'ordine.
      * @type {HTMLElement}
      */
-    const ordine = document.querySelector('.badge-statoOrdini[stato]');
+    const ordine = document.querySelector('.badge-statoOrdini[data-stato]');
     if (ordine) {
         /**
          * Stato dell'ordine ottenuto dall'attributo stato dell'elemento.
          * @type {string}
          */
-        const statoOrdine = ordine.getAttribute('stato');
+        const statoOrdine = ordine.getAttribute('data-stato');
         console.log('Stato ordine:', statoOrdine); // Verifica il valore
         console.log('Background color:', cambiaStatoDettaglioOrdine(statoOrdine));
         ordine.outerHTML = cambiaStatoDettaglioOrdine(statoOrdine);
