@@ -31,7 +31,7 @@
 
             <#list proposte as proposta>
     <a href="dettaglio_proposta_ord?n=${proposta.key}" class="a-cards">
-            <div id="proposta-container" class="card-row-salm" data-stato="${proposta.getStatoProposta()}" data-codice="${proposta.codice}">
+            <div class="card-row-salm proposta-container" data-stato="${proposta.getStatoProposta()}" data-codice="${proposta.codice}">
                     
                         <div class="card-row-content mb-2">
                             <p class="card-row-text">Codice: ${proposta.codice}</p>

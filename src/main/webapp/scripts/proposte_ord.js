@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     
     
-    const propostaContainers = document.querySelectorAll("#proposta-container");
+    const propostaContainers = document.querySelectorAll(".proposta-container");
 
     propostaContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const filterSelect = document.getElementById('status');
     
     //container delle proposte
-    const proposals = document.querySelectorAll('#proposta-container');
+    const proposals = document.querySelectorAll('.proposta-container');
 
     function filterProposte() {
         //prendo valori nella ricerca e nel select (minuscoli)
