@@ -248,10 +248,12 @@ INSERT INTO utente (username, email, password, tipologia_utente) VALUES
     ('tecnicog', 'difgiulia@gmail.com', 'aec1e7153435fb922c594376ca7e0ed24d0e8ad306648ba4a2153165941157d3a2a80649d70780821a4b8b6e5e8bb4a6', 'TECNICO'), #tecnico1
     ('geaviozzi', 'geaviozzi@icloud.com', '3ece874c150039c7740d2d5c74ecf2f0b64c3a6c972bbd1b389ca3db8402bdb5a783084ac59a1015c793f4c24a8fbcb2', 'ORDINANTE'), #passgea
     ('samanta', 'samanta_dis@hotmail.com', '63a7d1207dab49f5cdc13091e8a87006097ca0c7fecba40b316d8571d415a7d5109e48bdba061a98fa7ff551717fd79a', 'ORDINANTE'), #samanta
-    ('tecnicoS', 'samanta_dis@hotmail.com', '277fb18292a23f495c1f5ffd79af834aa2107d47ea2f7db6b7d1ac3098d451a6bbee64f6e041d7b0850791ec3a5cded9', 'TECNICO'); #tecnicoS
+    ('tecnicoS', 'samanta_dis@hotmail.com', '277fb18292a23f495c1f5ffd79af834aa2107d47ea2f7db6b7d1ac3098d451a6bbee64f6e041d7b0850791ec3a5cded9', 'TECNICO'), #tecnicoS
+    ('userOrd', 'giuseppe.dellapenna@univaq.it', 'd494f861ac83dc88d6dac053dccd14bdb49e6e985ee0f4f86d85f07d3c01064d24ce9d7806a369fbd18a93a7702cecb3', 'ORDINANTE'), #example
+    ('userTec', 'giuseppe.dellapenna@univaq.it', 'd494f861ac83dc88d6dac053dccd14bdb49e6e985ee0f4f86d85f07d3c01064d24ce9d7806a369fbd18a93a7702cecb3', 'TECNICO'); #example
 
 INSERT INTO categoria (nome, padre) VALUES
-    ('Informatica', NULL), -- root
+    ('Informatica', NULL),
     ('Computer', 1),
     ('Notebook', 2),
     ('Desktop', 2),
@@ -290,7 +292,13 @@ INSERT INTO richiesta_ordine (note, stato, data, codice_richiesta, utente, tecni
     ('Acquisto scrivania', 'PRESA_IN_CARICO', '2024-08-25', generate_codice(), 3, 2, 9),
     ('Monitor esterno per ufficio', 'RISOLTA', '2024-08-15', generate_codice(), 4, 5, 6),
     ('Stampante multifunzione', 'ORDINATA', '2024-07-30', generate_codice(), 4, 2, 7),
-    ('Acquisto sedia ergonomica', 'IN_ATTESA', '2024-09-02', generate_codice(), 3, 2, 10);
+    ('Acquisto sedia ergonomica', 'IN_ATTESA', '2024-09-02', generate_codice(), 3, NULL, 10), 
+    ('Lo vorrei leggero', 'ORDINATA', '2024-09-02', generate_codice(), 6, 7, 3),
+    ('Ergonomica contro il mal di schiena', 'IN_ATTESA', '2024-09-03', generate_codice(), 6, NULL, 10),
+    (NULL, 'PRESA_IN_CARICO', '2024-09-04', generate_codice(), 6, 7, 12),
+    ('Schemo curvo', 'RISOLTA', '2024-09-05', generate_codice(), 6, 7, 6),
+    ('magic mouse', 'PRESA_IN_CARICO', '2024-09-06', generate_codice(), 6, 7, 5),
+    ('Deve essere abbastanza grande per il mio fisso, il mio pranzo e la mia borsa da lavoro', 'IN_ATTESA', '2024-09-07', generate_codice(), 6, 7, 7);
 
 INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) VALUES
     (1, 1, '16GB'), -- Notebook (RAM)
@@ -301,15 +309,34 @@ INSERT INTO caratteristica_richiesta (richiesta_id, caratteristica_id, valore) V
     (3, 4, '4K'), -- Monitor (Risoluzione)
     (4, 5, 'Laser'), -- Stampanti (Tipo di Inchiostro)
     (4, 6, '40 pagine al minuto'), -- Stampanti (Velocità di Stampa)
-    (5, 9, '120 kg'); -- Sedia (Peso Massimo Supportato)
+    (5, 9, '120 kg'), -- Sedia (Peso Massimo Supportato)
+    (6, 3, '16GB'),
+    (6, 4, 'intel'),
+    (7, 15, '100kg'),
+    (8, 17, 'quadretti'),
+    (9, 8, 'indifferente'),
+    (9, 9, '4K'),
+    (10, 6, 'mouse'),
+    (10, 7, 'indifferente'),
+    (11, 13, 'Legno'),
+    (11, 14, 'Indifferente');
+    
 
 INSERT INTO proposta_acquisto (produttore, prodotto, codice, codice_prodotto, prezzo, URL, note, stato, data, richiesta_id) VALUES
     ('Dell', 'Notebook XPS 15', generate_codice(), 'XPS-2024', 1500.50, 'https://dell.com/notebook-xps15', 'Perfetto per ufficio', 'ORDINATO', '2024-09-03', 1),
     ('Ikea', 'Scrivania LINNMON', generate_codice(), 'LINNMON-2024', 89.99, 'https://ikea.com/scrivania-linnmon', 'Colore bianco, misura 120x60 cm', 'IN_ATTESA', '2024-09-01', 2),
     ('Samsung', 'Monitor 27" UHD', generate_codice(), 'SAM-UHD-27', 299.99, 'https://samsung.com/monitor-uhd27', 'Schermo UHD 4K', 'ORDINATO', '2024-08-18', 3),
-    ('HP', 'Stampante LaserJet Pro', generate_codice(), 'LASERPRO-2024', 199.99, 'https://hp.com/stampante-laserjet-pro', 'Laser, alta velocità', 'ORDINATO', '2024-08-01', 4);
+    ('HP', 'Stampante LaserJet Pro', generate_codice(), 'LASERPRO-2024', 199.99, 'https://hp.com/stampante-laserjet-pro', 'Laser, alta velocità', 'ORDINATO', '2024-08-01', 4),
+    ('HP', 'HP Pavilion 15-eh3008nl', generate_codice(), '83A27EA#ABZ', 629.98, 'https://www.hp.com/it-it/shop/product.aspx?id=83A27EA&opt=ABZ&sel=NTB&gad_source=1&gclid=Cj0KCQjw8--2BhCHARIsAF_w1gzGUkreM3_06TgYvfdYv0Ll5zyRO9GfFK0wqn2f7FK6zzFTIxZQ91AaAlO4EALw_wcB&gclsrc=aw.ds', NULL, 'RIFIUTATO', '2024-09-03', 'Non mi piace il produttore HP', 6),
+    ('Pigna Monocromo', 'Quaderno formato A4', generate_codice(), 'n/a', 14.99, 'https://www.amazon.it/Pigna-Monocromo-02298875M-Quadretti-Elementare/dp/B07GR9LQSK/ref=asc_df_B07GR9LQSK/?tag=googshopit-21&linkCode=df0&hvadid=701238956335&hvpos=&hvnetw=g&hvrand=12216248457852547069&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9050671&hvtargid=pla-533311440398&mcid=6540bcbf14773a68b184db22a11bf770&gad_source=1&th=1', 'disponibile in diversi colori', 'IN_ATTESA',  '2024-09-05', NULL, 8),
+    ('Apple', 'Apple Magic Mouse', generate_codice(), 'tYy3BaDB5i', 75.00, 'https://www.amazon.it/Apple-MK2E3ZM-A-Magic-Mouse/dp/B09BV7YYG3/ref=sr_1_3?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1JR7AGS0VAY3Z&dib=eyJ2IjoiMSJ9.3aecOhkwpcmvt_QDJguKiv9022QFwHUAXnJ7Ma93QSrbXLBtbNGpCmcvqzJ9tAtFYjnvAqLdOQZyl1rbt5_5SnRF7gww_uKDkXiXbZmfYiQR7cgOADBucCX_m_zj0cJ1DE5o69ZcMMvX2B10914oxuGl7lK3AaHzehd30heTX5SRQYFRJHLSXXx7ADtv52T2-BbCVu-1TvEjT03m2XwsZ41csrIWOrL8Q4Lk8IYU3IBT5ni5SzOMm8A4KiEWHQLzrcJuynWnhXfKAp_N_jE2N7cXPTy5r-FleFSqmEWETo8.jAyKWBW_lGd-tXrNPMUOuyOQmT7EJsNtgZfd-9Dlu3A&dib_tag=se&keywords=magic+mouse&qid=1725697145&s=pc&sprefix=magic+mouse%2Ccomputers%2C90&sr=1-3', NULL, 'ORDINATO', '2024-09-06', NULL, 9),
+    ('LENOVO', 'Notebook 15" IdeaPad', generate_codice(), 'N/A', 499.98, 'https://www.euronics.it/informatica/computer-portatili/notebook/lenovo---notebook-15-ideapad-slim-3-amd-ryzen5-16gb-512gb-artic-grey/232002072.html?gad_source=1&gclid=Cj0KCQjw8--2BhCHARIsAF_w1gx_23whh278MLJM2UCalVHNyGg61giUydkv-WgpyeO66ELnwfB3siYaAsHxEALw_wcB', 'Ottimo prezzo', 'ORDINATO', '2024-09-04', NULL, 6),
+    ('Castellani Shop', 'Scrivania Ufficio', generate_codice(), 'fhbjdn', 122.24, 'https://www.castellanishop.it/scrivania-eco-con-fianchi-pannellati-in-melaminico-cm-80-140-160x80x72h.html?fee=1&fep=6239&gad_source=1&gclid=Cj0KCQjw8--2BhCHARIsAF_w1gwsuG_Cy4iofUmi-0B_VfxmG2ImfWX59-z6XO8jKLbLpinfXCJUUCQaAhG4EALw_wcB', NULL, 'ACCETTATO', '2024-09-07', NULL, 11);
 
 INSERT INTO ordine (data, stato, proposta_id) VALUES
     ('2024-09-05', 'ACCETTATO', 1), -- Notebook Dell
     ('2024-08-20', 'ACCETTATO', 3), -- Monitor Samsung
-    ('2024-08-05', 'IN_ATTESA', 4); -- Stampante HP
+    ('2024-08-05', 'IN_ATTESA', 4), -- Stampante HP
+    ('2024-09-06', 'ACCETTATO', 7),
+    ('2024-09-07', 'IN_ATTESA', 8),
+    ('2024-09-07', 'RESPINTO_NON_CONFORME', 9);

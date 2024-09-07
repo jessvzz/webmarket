@@ -61,7 +61,7 @@ public class PropostaAcquistoDAO_MySQL extends DAO implements PropostaAcquistoDA
             "    SELECT 1 " +
             "    FROM proposta_acquisto pa " +
             "    JOIN richiesta_ordine ro ON pa.richiesta_id = ro.ID " +
-            "    WHERE (pa.stato = 'ACCETTATO' OR pa.stato = 'RIFIUTATO') " +
+            "    WHERE (pa.stato = 'ACCETTATO') " +
             "    AND ro.tecnico = ?" +
             ") AS notifica_proposta;");
             

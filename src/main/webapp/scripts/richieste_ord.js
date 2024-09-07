@@ -26,10 +26,10 @@ return `
 
 document.addEventListener("DOMContentLoaded", function() {
  
-   const richieste = document.querySelectorAll('.card-row-content[stato]');
+   const richieste = document.querySelectorAll('.card-row-content[data-state]');
 
     richieste.forEach(richiesta => {
-        const statoRichiesta = richiesta.getAttribute('stato');
+        const statoRichiesta = richiesta.getAttribute('data-state');
       
         richiesta.outerHTML = cambiaStatoRichiesta(statoRichiesta);
     });
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchInput = document.getElementById('search');
     const filterSelect = document.getElementById('status');
 
-    const ric = document.querySelectorAll('#richiesta-container');
+    const ric = document.querySelectorAll('richiesta-container');
 
 
     function filterRichieste() {

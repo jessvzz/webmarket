@@ -26,9 +26,9 @@ return `
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const proposte = document.querySelectorAll('.card-row-content[stato]');
+    const proposte = document.querySelectorAll('.card-row-content[data-state]');
     proposte.forEach(proposta => {
-        const statoProposta = proposta.getAttribute('stato');
+        const statoProposta = proposta.getAttribute('data-state');
         proposta.outerHTML = cambiaStatoProposta(statoProposta);
     });
     
