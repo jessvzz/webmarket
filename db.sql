@@ -249,8 +249,8 @@ INSERT INTO utente (username, email, password, tipologia_utente) VALUES
     ('geaviozzi', 'geaviozzi@icloud.com', '3ece874c150039c7740d2d5c74ecf2f0b64c3a6c972bbd1b389ca3db8402bdb5a783084ac59a1015c793f4c24a8fbcb2', 'ORDINANTE'), #passgea
     ('samanta', 'samanta_dis@hotmail.com', '63a7d1207dab49f5cdc13091e8a87006097ca0c7fecba40b316d8571d415a7d5109e48bdba061a98fa7ff551717fd79a', 'ORDINANTE'), #samanta
     ('tecnicoS', 'samanta_dis@hotmail.com', '277fb18292a23f495c1f5ffd79af834aa2107d47ea2f7db6b7d1ac3098d451a6bbee64f6e041d7b0850791ec3a5cded9', 'TECNICO'), #tecnicoS
-    ('userOrd', 'giuseppe.dellapenna@univaq.it', 'd494f861ac83dc88d6dac053dccd14bdb49e6e985ee0f4f86d85f07d3c01064d24ce9d7806a369fbd18a93a7702cecb3', 'ORDINANTE'), #example
-    ('userTec', 'giuseppe.dellapenna@univaq.it', 'd494f861ac83dc88d6dac053dccd14bdb49e6e985ee0f4f86d85f07d3c01064d24ce9d7806a369fbd18a93a7702cecb3', 'TECNICO'); #example
+    ('userOrd', 'example@univaq.it', 'd494f861ac83dc88d6dac053dccd14bdb49e6e985ee0f4f86d85f07d3c01064d24ce9d7806a369fbd18a93a7702cecb3', 'ORDINANTE'), #example
+    ('userTec', 'example@univaq.it', 'd494f861ac83dc88d6dac053dccd14bdb49e6e985ee0f4f86d85f07d3c01064d24ce9d7806a369fbd18a93a7702cecb3', 'TECNICO'); #example
 
 INSERT INTO categoria (nome, padre) VALUES
     ('Informatica', NULL),
